@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "medicalconsultation-dev-20190817171816-authRole",
+            "UnauthRoleArn": "arn:aws:iam::846928963573:role/medicalconsultation-dev-20190817171816-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::846928963573:role/medicalconsultation-dev-20190817171816-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "medicalconsultation-dev-20190817171816-deployment",
+            "UnauthRoleName": "medicalconsultation-dev-20190817171816-unauthRole",
+            "StackName": "medicalconsultation-dev-20190817171816",
+            "StackId": "arn:aws:cloudformation:us-east-1:846928963573:stack/medicalconsultation-dev-20190817171816/87a94b70-c134-11e9-a9f0-0a545e22b5be"
+        },
+        "categories": {
+            "auth": {
+                "medicalconsultatione9dc845a": {}
+            }
+        }
+    }
+}
