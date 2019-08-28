@@ -13,10 +13,6 @@ class GeneralInformations extends Component {
     }
   }
 
-  componentWillMount = () => {
-    //console.log(this.props.childProps.state.stripe_plan_name);
-  }
-
 
 toggleCollapse = collapseID => () =>
 this.setState(prevState => ({

@@ -40,7 +40,7 @@ class PaymentMethod extends Component {
 
   handleGenerateToken = () => {
 
-    fetch('https://613b5audw3.execute-api.us-east-1.amazonaws.com/dev/token', {
+    fetch('https://2q98w1y78h.execute-api.us-east-1.amazonaws.com/dev/token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

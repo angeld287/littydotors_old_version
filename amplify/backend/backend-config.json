@@ -1,13 +1,13 @@
 {
 	"auth": {
-		"medicalconsultatione9dc845a": {
+		"medicalconsultationsace8ba69": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": []
 		}
 	},
 	"api": {
-		"medicalconsultation": {
+		"medicalconsultations": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {

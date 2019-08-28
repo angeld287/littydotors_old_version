@@ -67,7 +67,7 @@ class SubscriptionPage extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault();
 
-    fetch('https://613b5audw3.execute-api.us-east-1.amazonaws.com/dev/token', {
+    fetch('https://2q98w1y78h.execute-api.us-east-1.amazonaws.com/dev/token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ class SubscriptionPage extends Component {
   };
 
   createCustomer = (id) => {
-    fetch('https://613b5audw3.execute-api.us-east-1.amazonaws.com/dev/customer/create', {
+    fetch('https://2q98w1y78h.execute-api.us-east-1.amazonaws.com/dev/customer/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -108,7 +108,7 @@ class SubscriptionPage extends Component {
   };
 
   subscribeCustomer = (id) => {
-    fetch('https://613b5audw3.execute-api.us-east-1.amazonaws.com/dev/subscription/create', {
+    fetch('https://2q98w1y78h.execute-api.us-east-1.amazonaws.com/dev/subscription/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

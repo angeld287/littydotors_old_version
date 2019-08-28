@@ -24,7 +24,7 @@ class Cards extends Component {
     
     this.cardsList()
 
-    /* fetch('https://613b5audw3.execute-api.us-east-1.amazonaws.com/dev/card/'+this.state.stripe_customer_id, {
+    /* fetch('https://2q98w1y78h.execute-api.us-east-1.amazonaws.com/dev/card/'+this.state.stripe_customer_id, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ class Cards extends Component {
   }
 
   cardsList = () => {
-    fetch('https://613b5audw3.execute-api.us-east-1.amazonaws.com/dev/card/'+this.state.stripe_customer_id, {
+    fetch('https://2q98w1y78h.execute-api.us-east-1.amazonaws.com/dev/card/'+this.state.stripe_customer_id, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -56,7 +56,7 @@ class Cards extends Component {
   };
 
   getCardFinguerprint = () => {
-    fetch('https://613b5audw3.execute-api.us-east-1.amazonaws.com/dev/token/'+this.state.stripe_source_token , {
+    fetch('https://2q98w1y78h.execute-api.us-east-1.amazonaws.com/dev/token/'+this.state.stripe_source_token , {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

@@ -26,7 +26,7 @@
     "react-images-upload": "^1.2.7",
     "react-jss": "8.6.1",
     "react-places-autocomplete": "^7.2.1",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.8",
     "typescript": "^3.3.4000"
   },

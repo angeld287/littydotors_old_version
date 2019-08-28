@@ -40,6 +40,34 @@ import aws_exports from './aws-exports'; // specify the location of aws-exports.
 import { ApolloProvider } from 'react-apollo'
 import { Rehydrated } from 'aws-appsync-react' */
 
+const listConsultingRoomsSecretary = `query ListConsultingRooms(
+  $filter: ModelConsultingRoomFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listConsultingRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      doctor {
+        id
+        name
+        username
+        email
+        speciality
+        sex
+        image
+      }
+      secretary
+      location {
+        id
+        name
+      }
+    }
+    nextToken
+  }
+}
+`;
+
 Amplify.configure(aws_exports); 
 
 /* const client = new AWSAppSyncClient({
@@ -260,7 +288,8 @@ class App extends Component {
       authState: {
         isLoggedIn: false,
         error: false,
-      }
+      },
+      username: null,
     };
   }
 
@@ -270,54 +299,74 @@ class App extends Component {
   }
 
   GetCompanyUserProfile = () => {
-    API.graphql(graphqlOperation(listConsultingRooms)).then( result =>{
-      this.setState({
-        id: result.data.listConsultingRooms.items[0].id,
-        doctorname: result.data.listConsultingRooms.items[0].doctor.name,
-        speciality: result.data.listConsultingRooms.items[0].doctor.speciality,
-        image: result.data.listConsultingRooms.items[0].doctor.image,
-        email: result.data.listConsultingRooms.items[0].doctor.email,
-        location: result.data.listConsultingRooms.items[0].location.name,
-        secretary: result.data.listConsultingRooms.items[0].secretary,
-        stripe_source_token: result.data.listConsultingRooms.items[0].stripe.source_token,
-        stripe_plan_id: result.data.listConsultingRooms.items[0].stripe.plan_id,
-        stripe_plan_name: result.data.listConsultingRooms.items[0].stripe.plan_name,
-        stripe_customer_id: result.data.listConsultingRooms.items[0].stripe.customer_id,
-        stripe_subscription_id: result.data.listConsultingRooms.items[0].stripe.subscription_id,
-    });
-    }).catch( err => {
-      this.setState({
-          error: true,
-      });
-      console.log(err)
+    Auth.currentSession().then(data => {
+      const roll = data.accessToken.payload['cognito:groups'][0];
+      this.setState({user_roll: roll})
+      if (roll === 'company') {
+        API.graphql(graphqlOperation(listConsultingRooms)).then( result =>{
+            this.setState({
+                id: result.data.listConsultingRooms.items[0].id,
+                doctorname: result.data.listConsultingRooms.items[0].doctor.name,
+                doctorusername: result.data.listConsultingRooms.items[0].doctor.username,
+                speciality: result.data.listConsultingRooms.items[0].doctor.speciality,
+                image: result.data.listConsultingRooms.items[0].doctor.image,
+                email: result.data.listConsultingRooms.items[0].doctor.email,
+                location: result.data.listConsultingRooms.items[0].location.name,
+                secretary: result.data.listConsultingRooms.items[0].secretary,
+                stripe_source_token: result.data.listConsultingRooms.items[0].stripe.source_token,
+                stripe_plan_id: result.data.listConsultingRooms.items[0].stripe.plan_id,
+                stripe_plan_name: result.data.listConsultingRooms.items[0].stripe.plan_name,
+                stripe_customer_id: result.data.listConsultingRooms.items[0].stripe.customer_id,
+                stripe_subscription_id: result.data.listConsultingRooms.items[0].stripe.subscription_id,
+            });
+        }).catch( err => {
+          this.setState({
+              error: true,
+          });
+          console.log(err)
+        });
+
+      }else if(roll === 'secretary'){
+        API.graphql(graphqlOperation(listConsultingRoomsSecretary,{
+          filter:{
+            secretary:{
+              contains: this.state.username
+            }
+          }
+        })).then( result =>{
+            this.setState({
+                id: result.data.listConsultingRooms.items[0].id,
+                doctorname: result.data.listConsultingRooms.items[0].doctor.name,
+                doctorusername: result.data.listConsultingRooms.items[0].doctor.username,
+                speciality: result.data.listConsultingRooms.items[0].doctor.speciality,
+                image: result.data.listConsultingRooms.items[0].doctor.image,
+                email: result.data.listConsultingRooms.items[0].doctor.email,
+                location: result.data.listConsultingRooms.items[0].location.name,
+                secretary: result.data.listConsultingRooms.items[0].secretary,
+            });
+        }).catch( err => {
+          this.setState({
+              error: true,
+          });
+          console.log(err)
+        });
+      }
+    }).catch(err => {
+      console.log('There was an error: ' + err);
     });
   }
 
-  handleUserSignIn = () => {
+  handleUserSignIn = async () => {
     this.setState({ authState: { isLoggedIn: true } });
-    Auth.currentUserInfo()
-      .then(data => {
-        this.setState({
-          username: data.username,
-          email: data.attributes.email,
-          phonenumber: data.attributes.phone_number,
-          name: data.attributes.name,
-          //authState: {
-          //  isLoggedIn: true,
-          //}
-        })
-      })
-      .catch(err =>{})
-
-
-      Auth.currentSession().then(data => {
-        this.setState({
-          user_roll: data.accessToken.payload['cognito:groups'][0]
-        })
-      }).catch(err => {
-        console.log('There was an error: ' + err);
-      });
-      this.GetCompanyUserProfile();
+    const user = await Auth.currentUserInfo();
+    this.setState({
+      username: user.username,
+      email: user.attributes.email,
+      phonenumber: user.attributes.phone_number,
+      name: user.attributes.name,
+    })
+    
+    this.GetCompanyUserProfile();
   };
 
   handleUserLogOut = () => {

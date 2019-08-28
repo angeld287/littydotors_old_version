@@ -146,7 +146,7 @@ class ConsultationsManagement extends Component {
       this.GetConsultationsList(); 
     }
 
-
+    console.log(this.props.childProps.state.secretary, this.props.childProps.state.doctorusername)
     //suscripcion para ingresos de consulta
     this.subscription = API.graphql(
       graphqlOperation(onCreateMedicalConsultation)

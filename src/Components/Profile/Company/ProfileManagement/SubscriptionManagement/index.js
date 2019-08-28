@@ -28,7 +28,7 @@ togglePills = tab => () => {
 }
 
 CancelSubscription = () => {
-  fetch('https://613b5audw3.execute-api.us-east-1.amazonaws.com/dev/subscription/'+this.props.childProps.state.stripe_subscription_id , {
+  fetch('https://2q98w1y78h.execute-api.us-east-1.amazonaws.com/dev/subscription/'+this.props.childProps.state.stripe_subscription_id , {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

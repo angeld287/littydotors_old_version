@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "medicalconsultatione9dc845a_identitypool_e9dc845a",
+    "identityPoolName": "medicalconsultationsace8ba69_identitypool_ace8ba69",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "medicae9dc845a",
-    "userPoolName": "medicalconsultatione9dc845a_userpool_e9dc845a",
+    "resourceNameTruncated": "medicaace8ba69",
+    "userPoolName": "medicalconsultationsace8ba69_userpool_ace8ba69",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "medicae9dc845a_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "medicaace8ba69_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "medicalconsultatione9dc845a",
+    "resourceName": "medicalconsultationsace8ba69",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [

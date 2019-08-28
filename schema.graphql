@@ -57,6 +57,7 @@ type Doctor
     speciality: String!
     sex: String!
     consultingroom: ConsultingRoom @connection
+    image: String!
 }
 
 type Patient 

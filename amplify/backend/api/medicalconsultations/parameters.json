@@ -1,10 +1,10 @@
 {
-    "AppSyncApiName": "medicalconsultation",
+    "AppSyncApiName": "medicalconsultations",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "DynamoDBEnableServerSideEncryption": "false",
     "AuthCognitoUserPoolId": {
         "Fn::GetAtt": [
-            "authmedicalconsultatione9dc845a",
+            "authmedicalconsultationsace8ba69",
             "Outputs.UserPoolId"
         ]
     }
