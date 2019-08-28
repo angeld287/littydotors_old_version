@@ -1,6 +1,163 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateMedicalConsultation = `subscription OnCreateMedicalConsultation(
+  $doctorname: String
+  $secretary: String
+) {
+  onCreateMedicalConsultation(doctorname: $doctorname, secretary: $secretary) {
+    id
+    location {
+      id
+      name
+    }
+    doctor {
+      id
+      name
+      username
+      email
+      speciality
+      sex
+      consultingroom {
+        id
+        secretary
+      }
+      image
+    }
+    doctorname
+    patient {
+      id
+      name
+      username
+      email
+      phone
+    }
+    rejection {
+      items {
+        id
+        description
+        doctor
+        secretary
+        patient
+        createdAt
+      }
+      nextToken
+    }
+    cancelation {
+      id
+      description
+    }
+    notification {
+      items {
+        id
+        state
+        doctor
+        secretary
+        patient
+        createdAt
+      }
+      nextToken
+    }
+    confirmation {
+      id
+    }
+    secretary
+    details
+    date_created
+    date_of_medical_consultation
+    state
+    consultation_position
+    consult_cost
+    read_secretary
+    read_company
+    read_client
+    createdAt
+  }
+}
+`;
+export const onUpdateMedicalConsultation = `subscription OnUpdateMedicalConsultation(
+  $read_secretary: Boolean
+  $read_company: Boolean
+  $read_client: Boolean
+  $doctorname: String
+  $secretary: String
+) {
+  onUpdateMedicalConsultation(
+    read_secretary: $read_secretary
+    read_company: $read_company
+    read_client: $read_client
+    doctorname: $doctorname
+    secretary: $secretary
+  ) {
+    id
+    location {
+      id
+      name
+    }
+    doctor {
+      id
+      name
+      username
+      email
+      speciality
+      sex
+      consultingroom {
+        id
+        secretary
+      }
+      image
+    }
+    doctorname
+    patient {
+      id
+      name
+      username
+      email
+      phone
+    }
+    rejection {
+      items {
+        id
+        description
+        doctor
+        secretary
+        patient
+        createdAt
+      }
+      nextToken
+    }
+    cancelation {
+      id
+      description
+    }
+    notification {
+      items {
+        id
+        state
+        doctor
+        secretary
+        patient
+        createdAt
+      }
+      nextToken
+    }
+    confirmation {
+      id
+    }
+    secretary
+    details
+    date_created
+    date_of_medical_consultation
+    state
+    consultation_position
+    consult_cost
+    read_secretary
+    read_company
+    read_client
+    createdAt
+  }
+}
+`;
 export const onCreateConsultingRoom = `subscription OnCreateConsultingRoom {
   onCreateConsultingRoom {
     id
@@ -394,213 +551,6 @@ export const onUpdateConfirmation = `subscription OnUpdateConfirmation {
 export const onDeleteConfirmation = `subscription OnDeleteConfirmation {
   onDeleteConfirmation {
     id
-  }
-}
-`;
-export const onCreateMedicalConsultation = `subscription OnCreateMedicalConsultation {
-  onCreateMedicalConsultation {
-    id
-    location {
-      id
-      name
-    }
-    doctor {
-      id
-      name
-      username
-      email
-      speciality
-      sex
-      consultingroom {
-        id
-        secretary
-      }
-      image
-    }
-    doctorname
-    patient {
-      id
-      name
-      username
-      email
-      phone
-    }
-    rejection {
-      items {
-        id
-        description
-        doctor
-        secretary
-        patient
-        createdAt
-      }
-      nextToken
-    }
-    cancelation {
-      id
-      description
-    }
-    notification {
-      items {
-        id
-        state
-        doctor
-        secretary
-        patient
-        createdAt
-      }
-      nextToken
-    }
-    confirmation {
-      id
-    }
-    secretary
-    details
-    date_created
-    date_of_medical_consultation
-    state
-    consultation_position
-    consult_cost
-    read
-    createdAt
-  }
-}
-`;
-export const onUpdateMedicalConsultation = `subscription OnUpdateMedicalConsultation {
-  onUpdateMedicalConsultation {
-    id
-    location {
-      id
-      name
-    }
-    doctor {
-      id
-      name
-      username
-      email
-      speciality
-      sex
-      consultingroom {
-        id
-        secretary
-      }
-      image
-    }
-    doctorname
-    patient {
-      id
-      name
-      username
-      email
-      phone
-    }
-    rejection {
-      items {
-        id
-        description
-        doctor
-        secretary
-        patient
-        createdAt
-      }
-      nextToken
-    }
-    cancelation {
-      id
-      description
-    }
-    notification {
-      items {
-        id
-        state
-        doctor
-        secretary
-        patient
-        createdAt
-      }
-      nextToken
-    }
-    confirmation {
-      id
-    }
-    secretary
-    details
-    date_created
-    date_of_medical_consultation
-    state
-    consultation_position
-    consult_cost
-    read
-    createdAt
-  }
-}
-`;
-export const onDeleteMedicalConsultation = `subscription OnDeleteMedicalConsultation {
-  onDeleteMedicalConsultation {
-    id
-    location {
-      id
-      name
-    }
-    doctor {
-      id
-      name
-      username
-      email
-      speciality
-      sex
-      consultingroom {
-        id
-        secretary
-      }
-      image
-    }
-    doctorname
-    patient {
-      id
-      name
-      username
-      email
-      phone
-    }
-    rejection {
-      items {
-        id
-        description
-        doctor
-        secretary
-        patient
-        createdAt
-      }
-      nextToken
-    }
-    cancelation {
-      id
-      description
-    }
-    notification {
-      items {
-        id
-        state
-        doctor
-        secretary
-        patient
-        createdAt
-      }
-      nextToken
-    }
-    confirmation {
-      id
-    }
-    secretary
-    details
-    date_created
-    date_of_medical_consultation
-    state
-    consultation_position
-    consult_cost
-    read
-    createdAt
   }
 }
 `;

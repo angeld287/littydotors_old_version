@@ -461,7 +461,9 @@ export const createMedicalConsultation = `mutation CreateMedicalConsultation($in
     state
     consultation_position
     consult_cost
-    read
+    read_secretary
+    read_company
+    read_client
     createdAt
   }
 }
@@ -530,7 +532,9 @@ export const updateMedicalConsultation = `mutation UpdateMedicalConsultation($in
     state
     consultation_position
     consult_cost
-    read
+    read_secretary
+    read_company
+    read_client
     createdAt
   }
 }
@@ -599,7 +603,9 @@ export const deleteMedicalConsultation = `mutation DeleteMedicalConsultation($in
     state
     consultation_position
     consult_cost
-    read
+    read_secretary
+    read_company
+    read_client
     createdAt
   }
 }

@@ -83,7 +83,8 @@ const listMedicalConsultations = `query ListMedicalConsultations(
       state
       consultation_position
       consult_cost
-      read
+      read_secretary
+      read_company
       createdAt
     }
     nextToken
@@ -146,10 +147,12 @@ class ConsultationsManagement extends Component {
       this.GetConsultationsList(); 
     }
 
-    console.log(this.props.childProps.state.secretary, this.props.childProps.state.doctorusername)
     //suscripcion para ingresos de consulta
     this.subscription = API.graphql(
-      graphqlOperation(onCreateMedicalConsultation)
+      graphqlOperation(onCreateMedicalConsultation, {
+        doctorname: this.props.childProps.state.doctorusername,
+        secretary: this.props.childProps.state.secretary,
+      })
     ).subscribe({
       next: MedicalConsultation => {
         const consultation = MedicalConsultation.value.data.onCreateMedicalConsultation
@@ -171,14 +174,19 @@ class ConsultationsManagement extends Component {
     
 
     //suscripcion para modificaciones de consulta | se decidio no utilizar esta suscripcion porque hay otra forma de hacerlo que evita consumir este servicio
-    /* this.subscription = API.graphql(
-      graphqlOperation(onUpdateMedicalConsultation)
+    this.subscription = API.graphql(
+      graphqlOperation(onUpdateMedicalConsultation, {
+        doctorname: this.props.childProps.state.doctorusername,
+        secretary: this.props.childProps.state.secretary,
+        read_secretary: false,
+        read_company: false,
+      })
     ).subscribe({
       next: MedicalConsultation => {
         const consultation = MedicalConsultation.value.data.onUpdateMedicalConsultation
         if (this.state.consultations !== null) {
           this.state.consultations.splice(this.state.consultations.findIndex(v => v.id === consultation.id), 1);
-          console.log("borrado");
+          //console.log("borrado");
         
           const consultations = [
             ...this.state.consultations.filter(r => {
@@ -190,11 +198,11 @@ class ConsultationsManagement extends Component {
           ]
           
           this.setState({ consultations });
-          console.log("ingresado");
+          //console.log("ingresado");
           this.SetConsultationsList();
         }
       }
-    }) */
+    })
   }
 
   componentWillUnmount() {
@@ -257,9 +265,9 @@ class ConsultationsManagement extends Component {
   updateFieldFromConsultations = (object, update) => {
     switch(update) {
         case 'read':
-            const read = object.read
+            const read_secretary = object.read_secretary
             this.setState({
-              consultations: this.state.consultations.map(el => (el.id === object.id ? Object.assign({}, el, { read }) : el))
+              consultations: this.state.consultations.map(el => (el.id === object.id ? Object.assign({}, el, { read_secretary }) : el))
             });
             this.SetConsultationsList();
             break;

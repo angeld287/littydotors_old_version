@@ -367,7 +367,9 @@ export const getMedicalConsultation = `query GetMedicalConsultation($id: ID!) {
     state
     consultation_position
     consult_cost
-    read
+    read_secretary
+    read_company
+    read_client
     createdAt
   }
 }
@@ -425,7 +427,9 @@ export const listMedicalConsultations = `query ListMedicalConsultations(
       state
       consultation_position
       consult_cost
-      read
+      read_secretary
+      read_company
+      read_client
       createdAt
     }
     nextToken

@@ -151,7 +151,7 @@ type Confirmation
 }
 
 type MedicalConsultation 
-    @model 
+    @model(subscriptions: null)
     @auth(rules: [
         # Defaults to use the "owner" field.
         { allow: owner },
@@ -179,8 +179,15 @@ type MedicalConsultation
     state: State!
     consultation_position: Int!
     consult_cost: String!
-    read: Boolean
+    read_secretary: Boolean
+    read_company: Boolean
+    read_client: Boolean
     createdAt: String!
+}
+
+type Subscription {
+  onCreateMedicalConsultation(doctorname: String, secretary: String): MedicalConsultation @aws_subscribe(mutations: ["createMedicalConsultation"])
+  onUpdateMedicalConsultation(read_secretary: Boolean, read_company: Boolean, read_client: Boolean, doctorname: String, secretary: String): MedicalConsultation @aws_subscribe(mutations: ["updateMedicalConsultation"])
 }
 
 enum State { INSERTED APPROVED CONFIRMED PRESENT IN_PROCESS FINISHED REJECTED CANCELED}

@@ -29,8 +29,8 @@ class List extends Component {
         })
     }
     this.props.ActiveElement(item, i);
-    if (item.read === false) {
-      this.props.updateMedicalConsultationData({id: item.id, read: true}, "read"); 
+    if (item.read_secretary === false) {
+      this.props.updateMedicalConsultationData({id: item.id, read_secretary: true}, "read"); 
     }
   }
 
@@ -52,7 +52,7 @@ class List extends Component {
             {item.patient.name}
           </td>
           <td bgcolor={(selectedItem === i) ? ("#4285F4") : ("#fff")} style={(selectedItem === i) ? ({color:"#fff"}) : ({color:"#000"})}>
-            {(item.read === false)?(<MDBIcon icon="bell" size="1x" className="red-text" /> ):(<MDBBadge color="primary" pill></MDBBadge>)}
+            {(item.read_secretary === false)?(<MDBIcon icon="bell" size="1x" className="red-text" /> ):(<MDBBadge color="primary" pill></MDBBadge>)}
           </td>
           <td bgcolor={(selectedItem === i) ? ("#4285F4") : ("#fff")} style={(selectedItem === i) ? ({color:"#fff", width: "80%"}) : ({color:"#000", width: "80%"})} >
             <small>{moment(item.date_of_medical_consultation).format('DD-MM')}   </small>
