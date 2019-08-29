@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
 
+import awsmobile from '../../../../aws-exports'
 
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon, MDBCard, MDBCardBody, MDBModalFooter, MDBInput, MDBModal, MDBModalHeader, MDBModalBody, MDBAlert } from 'mdbreact';
 
@@ -60,7 +61,7 @@ class ClientSignUp extends Component {
         },
         body: JSON.stringify({
           groupname: "client",
-          UserPoolId: "us-east-1_2wJEjb8rI",
+          UserPoolId: awsmobile.aws_user_pools_id,
           username: this.state.username
         })
       }).then((r) => r.json()).then((r) => {
