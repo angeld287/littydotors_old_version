@@ -29,7 +29,7 @@ toggleVerticalPills = tab => () => {
 }
 
 GetSubscriptionData = () => {
-  fetch('https://2q98w1y78h.execute-api.us-east-1.amazonaws.com/dev/subscription/'+this.props.childProps.state.stripe_subscription_id, {
+  fetch('https://ugwnuazczk.execute-api.us-east-1.amazonaws.com/dev/subscription/'+this.props.childProps.state.stripe_subscription_id, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

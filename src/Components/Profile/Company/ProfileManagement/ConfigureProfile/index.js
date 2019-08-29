@@ -181,7 +181,7 @@ class ConfigureProfile extends Component {
   }
 
   createCustomer = () => {
-    fetch('https://2q98w1y78h.execute-api.us-east-1.amazonaws.com/dev/customer/create', {
+    fetch('https://ugwnuazczk.execute-api.us-east-1.amazonaws.com/dev/customer/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -205,7 +205,7 @@ class ConfigureProfile extends Component {
   };
 
   subscribeCustomer = () => {
-    fetch('https://2q98w1y78h.execute-api.us-east-1.amazonaws.com/dev/subscription/create', {
+    fetch('https://ugwnuazczk.execute-api.us-east-1.amazonaws.com/dev/subscription/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

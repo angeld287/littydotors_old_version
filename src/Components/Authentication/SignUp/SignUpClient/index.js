@@ -53,13 +53,14 @@ class ClientSignUp extends Component {
         forceAliasCreation: true    
     }).then(data => {
       //invoke lambda function to add user to a group
-      fetch('https://8xwxi622gg.execute-api.us-east-1.amazonaws.com/dev/addUserToGroup', {
+      fetch('https://ugwnuazczk.execute-api.us-east-1.amazonaws.com/dev/addUserToGroup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           groupname: "client",
+          UserPoolId: "us-east-1_2wJEjb8rI",
           username: this.state.username
         })
       }).then((r) => r.json()).then((r) => {
