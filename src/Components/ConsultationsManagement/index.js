@@ -136,7 +136,7 @@ class ConsultationsManagement extends Component {
   ActiveElement = (item, i) => {
     //el problema del cambio de item es por es state
     this.setState({ItemData: item, selectedItem: i});
-    console.log(item)
+    //console.log(item)
   }
 
   componentDidMount = async () => {
@@ -172,14 +172,15 @@ class ConsultationsManagement extends Component {
       }
     })
     
-
+    console.log(this.props.childProps.state.doctorusername, this.props.childProps.state.secretary)
     //suscripcion para modificaciones de consulta | se decidio no utilizar esta suscripcion porque hay otra forma de hacerlo que evita consumir este servicio
     this.subscription = API.graphql(
       graphqlOperation(onUpdateMedicalConsultation, {
-        doctorname: this.props.childProps.state.doctorusername,
-        secretary: this.props.childProps.state.secretary,
+        read_client: true,
         read_secretary: false,
         read_company: false,
+        doctorname: this.props.childProps.state.doctorusername,
+        secretary: this.props.childProps.state.secretary,
       })
     ).subscribe({
       next: MedicalConsultation => {
@@ -265,10 +266,17 @@ class ConsultationsManagement extends Component {
   updateFieldFromConsultations = (object, update) => {
     switch(update) {
         case 'read':
-            const read_secretary = object.read_secretary
-            this.setState({
-              consultations: this.state.consultations.map(el => (el.id === object.id ? Object.assign({}, el, { read_secretary }) : el))
-            });
+            if (this.props.childProps.state.user_roll === 'company') {
+              const read_company = object.read_company
+              this.setState({
+                consultations: this.state.consultations.map(el => (el.id === object.id ? Object.assign({}, el, { read_company }) : el))
+              });
+            }else if (this.props.childProps.state.user_roll === 'secretary') {
+              const read_secretary = object.read_secretary
+              this.setState({
+                consultations: this.state.consultations.map(el => (el.id === object.id ? Object.assign({}, el, { read_secretary }) : el))
+              }); 
+            }
             this.SetConsultationsList();
             break;
         case 'state':
@@ -377,6 +385,7 @@ class ConsultationsManagement extends Component {
                   <MDBRow>
                     <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
                       <List Consultations={insertedConsultations}
+                            childProps={this.props.childProps}
                             ActiveElement={this.ActiveElement}
                             updateMedicalConsultationData={this.updateMedicalConsultationData}/>
                     </MDBCol>
@@ -393,6 +402,7 @@ class ConsultationsManagement extends Component {
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
                     <List Consultations={approvedConsultations}
+                          childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalConsultationData={this.updateMedicalConsultationData}/>
                   </MDBCol>
@@ -409,6 +419,7 @@ class ConsultationsManagement extends Component {
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
                     <List Consultations={confirmedConsultations}
+                          childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalConsultationData={this.updateMedicalConsultationData}/>
                   </MDBCol>
@@ -424,6 +435,7 @@ class ConsultationsManagement extends Component {
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
                     <List Consultations={presentConsultations}
+                          childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalConsultationData={this.updateMedicalConsultationData}/>
                   </MDBCol>
@@ -439,6 +451,7 @@ class ConsultationsManagement extends Component {
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
                     <List Consultations={inProcessConsultations}
+                          childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalConsultationData={this.updateMedicalConsultationData}/>
                   </MDBCol>
@@ -454,6 +467,7 @@ class ConsultationsManagement extends Component {
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
                     <List Consultations={finishedConsultations}
+                          childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalConsultationData={this.updateMedicalConsultationData}/>
                   </MDBCol>
@@ -469,6 +483,7 @@ class ConsultationsManagement extends Component {
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
                     <List Consultations={rejectedConsultations}
+                          childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalConsultationData={this.updateMedicalConsultationData}/>
                   </MDBCol>
@@ -484,6 +499,7 @@ class ConsultationsManagement extends Component {
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
                     <List Consultations={canceledConsultations}
+                          childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalConsultationData={this.updateMedicalConsultationData}/>
                   </MDBCol>

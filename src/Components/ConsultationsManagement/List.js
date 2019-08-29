@@ -21,6 +21,7 @@ class List extends Component {
   }
 
   details(event, item, i){
+    
     event.preventDefault();
     if (this.state.activeItem !== item) {
       this.setState({ 
@@ -29,8 +30,14 @@ class List extends Component {
         })
     }
     this.props.ActiveElement(item, i);
-    if (item.read_secretary === false) {
-      this.props.updateMedicalConsultationData({id: item.id, read_secretary: true}, "read"); 
+    if (this.props.childProps.state.user_roll === 'company') {
+      if (item.read_company === false) {
+        this.props.updateMedicalConsultationData({id: item.id, read_company: true}, "read"); 
+      }
+    }else if (this.props.childProps.state.user_roll === 'secretary') {
+      if (item.read_secretary === false) {
+        this.props.updateMedicalConsultationData({id: item.id, read_secretary: true}, "read"); 
+      }
     }
   }
 
@@ -49,10 +56,10 @@ class List extends Component {
           <td bgcolor={(selectedItem === i) ? ("#4285F4") : ("#fff")} 
               style={(selectedItem === i) ? ({color:"#fff", width: "80%"}) : ({color:"#000", width: "80%"})} 
               >
-            {item.patient.name}
+            {item.patient.name}    
           </td>
           <td bgcolor={(selectedItem === i) ? ("#4285F4") : ("#fff")} style={(selectedItem === i) ? ({color:"#fff"}) : ({color:"#000"})}>
-            {(item.read_secretary === false)?(<MDBIcon icon="bell" size="1x" className="red-text" /> ):(<MDBBadge color="primary" pill></MDBBadge>)}
+            {!((this.props.childProps.state.user_roll === 'company')?(item.read_company):((this.props.childProps.state.user_roll === 'secretary')?(item.read_secretary):( null ) )) && <MDBIcon icon="bell" size="1x" className="red-text" />}
           </td>
           <td bgcolor={(selectedItem === i) ? ("#4285F4") : ("#fff")} style={(selectedItem === i) ? ({color:"#fff", width: "80%"}) : ({color:"#000", width: "80%"})} >
             <small>{moment(item.date_of_medical_consultation).format('DD-MM')}   </small>
