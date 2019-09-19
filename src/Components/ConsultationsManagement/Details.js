@@ -87,6 +87,31 @@ class Details extends Component {
         //this.setState({data: this.props.ItemData})
         //console.log(this.state.data)
     }
+
+    sendNotifications = () => {
+        fetch('https://fcm.googleapis.com/fcm/send', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'key=AIzaSyCu0M66PmeecaQ8NLAKHFbEkXoiFqeZKuE'
+                },
+                body: JSON.stringify({
+                        to: 'fvP_0CBvN7U:APA91bHNj8nsjlx-HuS9tVwuw7bfeMpz_nFGt7NaDerp-SMn5F8W9iHEk42Bpw2jWhS8nnmBxVRvUSbVxp8SnLtgTwo1SGymbzo2jirL8V3NNqXgK4Aoc04wfC6kNdSz22D8vVUAG6dN',
+                        notification: {
+                            title: "Prueba",
+                            message: "Prueba desde la Web",
+                            sound: 'default'
+                        }
+                    })
+            }).then((r) => r.json()).then((r) => {
+                console.log('Bien: ',r)
+            }).catch((err) => { // Error response
+                //this.setState({ loading: false });
+                console.log(err);
+            });
+        
+    }
+
     render(){
 
         const insertedcost = (this.state.insertedCost !== null) ? (this.state.insertedcost) : ("")
@@ -258,10 +283,7 @@ class Details extends Component {
 
                                     {confirm &&
                                         <div className="text-center text-md-left">
-                                            <MDBBtn color="primary" size="md" onClick={(e) => {
-                                                        e.preventDefault()
-                                                        this.changeState(id, "CONFIRMED")
-                                                    }}>
+                                            <MDBBtn color="primary" size="md" onClick={this.sendNotifications}>
                                                 Confirmar
                                             </MDBBtn>
                                         </div>

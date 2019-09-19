@@ -31,6 +31,7 @@ export const onCreateMedicalConsultation = `subscription OnCreateMedicalConsulta
       username
       email
       phone
+      phone_id
     }
     rejection {
       items {
@@ -114,6 +115,7 @@ export const onUpdateMedicalConsultation = `subscription OnUpdateMedicalConsulta
       username
       email
       phone
+      phone_id
     }
     rejection {
       items {
@@ -426,6 +428,7 @@ export const onCreatePatient = `subscription OnCreatePatient {
     username
     email
     phone
+    phone_id
   }
 }
 `;
@@ -436,6 +439,7 @@ export const onUpdatePatient = `subscription OnUpdatePatient {
     username
     email
     phone
+    phone_id
   }
 }
 `;
@@ -446,6 +450,7 @@ export const onDeletePatient = `subscription OnDeletePatient {
     username
     email
     phone
+    phone_id
   }
 }
 `;
