@@ -4,7 +4,9 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
 
 import { API, graphqlOperation } from "aws-amplify";
 
-import { Auth } from "aws-amplify";
+import { Auth, Storage } from "aws-amplify";
+
+import { PhotoPicker, S3Image } from "aws-amplify-react";
 
 import CompanyProfile from './CompanyProfileReview'
 
@@ -65,6 +67,8 @@ class ConfigureProfile extends Component {
       modal: false,
       croppedImage: null,
       file: null,
+      previewSource: null,
+      key: null,
     }
 
     this.handleSetPlan = this.handleSetPlan.bind(this);
@@ -79,8 +83,40 @@ class ConfigureProfile extends Component {
      
           this.setState({ redirect: true });
     }
+
+    /* //GetS3 image
+    Storage.get(this.state.username+'.png')
+      .then(result => {
+        this.setState({key: result});
+        console.log(this.state.key)
+      })
+      .catch(err => console.log(err)); */
   }
 
+  //upload S3 image
+  onChange(e) {
+      const file = e.target.files[0];
+      console.log(file)
+      /* Storage.put('example2.png', file, {
+          contentType: 'image/png'
+      })
+      .then (result => {
+         this.setState({croppedImage: result.key})
+         //console.log(result)
+      })
+      .catch(err => console.log(err));
+
+      let type = file.type;
+      Storage.put(this.state.username+'.'+type.replace("image/", ""), file, {
+          contentType: 'image/png'
+      })
+      .then (result =>{
+        this.setState({croppedImage: result.key})
+        //console.log(result.key)
+      })
+      .catch(err => console.log(err)); */
+  }
+  
   toggle = () => {
     this.setState({
       modal: !this.state.modal
@@ -217,7 +253,15 @@ class ConfigureProfile extends Component {
       }).then((r) => r.json()).then((r) => {
           var responseObject = JSON.parse(r.body);
           this.setState({ stripe_subscription_id: responseObject.stripeResponse.id });
-          this.insertUserProfileData();
+          
+          Storage.put(this.state.username+".png", this.state.croppedImage, {
+              contentType: 'image/png'
+          })
+          .then (result =>{
+            this.setState({croppedImage: result.key})
+            this.insertUserProfileData();
+          })
+          .catch(err => console.log(err));
       }).catch((err) => { // Error response
           this.setState({ loading: false });
           console.log(err);
@@ -301,7 +345,7 @@ class ConfigureProfile extends Component {
 
 render() {
 
-  const { specialty, location, stripe_source_token, redirect, error, loading, name, croppedImage } = this.state
+  const { specialty, location, stripe_source_token, redirect, error, loading, name, croppedImage, key } = this.state
   const image = (croppedImage !== null)?(<img src={croppedImage} height="200" width="200" className="img-fluid" alt="" />):(null);
   const complete = (!(location === '') && !(specialty === '') && !(croppedImage === null)/*  && !(stripe_source_token === '') */)
   const validation = (complete && (error === ''))
@@ -376,13 +420,27 @@ render() {
                   </div>
                 )}
               </PlacesAutocomplete>
-              <ImageUploader
+                <ImageUploader
                     withIcon={true}
                     buttonText='Agrege una Imagen de Perfil'
                     onChange={this.onDrop}
                     imgExtension={['.jpg', '.gif', '.png', '.gif']}
                     maxFileSize={5242880}
                 />
+
+                {/* 
+                <S3Image imgKey={key}/>
+                <PhotoPicker
+                  title="Priview PhotoPicker"
+                  preview="hidden"
+                  onLoad={url => console.log(url)}
+                  onPick={data => console.log("data: ",data)}
+                  /> 
+                  */}
+                  <input
+                      type="file" accept='image/*'
+                      onChange={(e) => this.onChange(e)}
+                  />
             <MDBBtn color="mdb-color" rounded className="float-right" onClick={this.handleNextPrevClick(1)(4)}>next</MDBBtn>
           </MDBCol>)}
 

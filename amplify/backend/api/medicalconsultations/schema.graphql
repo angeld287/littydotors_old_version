@@ -63,7 +63,7 @@ type Doctor
 type Patient 
     @model 
     @auth(rules: [
-        # Defaults to use the "owner" field.
+        # Defaults to use the "owner" fields.
         { allow: owner },
 
         # Admin users can access any operation.

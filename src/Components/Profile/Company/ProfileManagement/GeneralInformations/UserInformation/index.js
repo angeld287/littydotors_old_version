@@ -3,20 +3,33 @@ import { MDBCol, MDBRow, MDBModalFooter, MDBCard, MDBCardUp, MDBCardBody, MDBAva
 
 import image_back from '../../../../../../images/modern-blue-medical-background.jpg';
 
+import { Storage } from "aws-amplify";
+import { S3Image } from 'aws-amplify-react';
+
+
 class UserInformation extends Component {
 state = {
   flipped: false
 }
 
+
+
 handleFlipping = () => {
   this.setState({ flipped: !this.state.flipped });
 }
+
+/* componentWillMount = () => {
+  Storage.get(this.props.childProps.state.image)
+    .then(result => console.log(result))
+    .catch(err => console.log(err));
+} */
+
 
 render() {
 
   const {image} = this.props.childProps.state
 
-  const _image = (image !== null && image !== undefined)?(<img src={image} height="100" width="60" alt="" className="rounded-circle" />):(null);
+  const _image = (image !== null && image !== undefined)?(<S3Image imgKey={image} height="100" width="60" alt="" className="rounded-circle" />):(null);
 
   return (
     <MDBRow>

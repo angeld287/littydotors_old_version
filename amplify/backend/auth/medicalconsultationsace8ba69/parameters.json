@@ -1,6 +1,6 @@
 {
     "identityPoolName": "medicalconsultationsace8ba69_identitypool_ace8ba69",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "medicaace8ba69",
     "userPoolName": "medicalconsultationsace8ba69_userpool_ace8ba69",
     "autoVerifiedAttributes": [
