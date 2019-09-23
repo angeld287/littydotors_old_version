@@ -46,6 +46,7 @@ const listMedicalConsultations = `query ListMedicalConsultations(
         username
         email
         phone
+        phone_id
       }
       rejection {
         items {
@@ -172,7 +173,7 @@ class ConsultationsManagement extends Component {
       }
     })
     
-    console.log(this.props.childProps.state.doctorusername, this.props.childProps.state.secretary)
+    //console.log(this.props.childProps.state.doctorusername, this.props.childProps.state.secretary)
     //suscripcion para modificaciones de consulta | se decidio no utilizar esta suscripcion porque hay otra forma de hacerlo que evita consumir este servicio
     this.subscription = API.graphql(
       graphqlOperation(onUpdateMedicalConsultation, {

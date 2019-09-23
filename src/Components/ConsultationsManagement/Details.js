@@ -57,6 +57,7 @@ class Details extends Component {
     }
 
     createRejection = (id, patient, doctor, secretary) => {
+        const patientPhoneId = (this.props.ItemData !== null && this.props.ItemData.patient !== null) ? (this.props.ItemData.patient.phone_id) : (null);
         const object = {
                         medicalConsultationRejectionId: id,
                         description: this.state.rejectionReason,
@@ -65,13 +66,23 @@ class Details extends Component {
                         patient: patient,
                         createdAt: String(moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.SSS')),
                     }
+        const notification = {
+                        to: patientPhoneId,
+                        title: "Rechazo de Consulta",
+                        message: "Verifique la razon de rechazo",
+                    };
+
         this.props.createRejection(object)
         this.changeState(id, "REJECTED")
         this.setState({rejectionReason: null})
+        this.sendNotifications(notification);
         this.toggle()
     }
 
     createNotification = (id, patient, doctor, secretary, state) => {
+        const patientPhoneId = (this.props.ItemData !== null && this.props.ItemData.patient !== null) ? (this.props.ItemData.patient.phone_id) : (null);
+        const consult_date = (this.props.ItemData !== null) ? (this.props.ItemData.date_of_medical_consultation) : (null);
+        const date = moment(consult_date).format('YYYY-DD-MM')
         const object = {
                         medicalConsultationNotificationId: id,
                         state: state,
@@ -81,6 +92,12 @@ class Details extends Component {
                         createdAt: String(moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.SSS')),
                     }
         this.props.createNotification(object)
+        const notification = {
+            to: patientPhoneId,
+            title: "Confirmar Consulta",
+            message: "Favor confirmar su consulta medica para la fecha "+date ,
+        };
+        this.sendNotifications(notification);
     }
 
     componentWillReceiveProps = () =>{
@@ -88,18 +105,18 @@ class Details extends Component {
         //console.log(this.state.data)
     }
 
-    sendNotifications = () => {
+    sendNotifications = (object) => {
         fetch('https://fcm.googleapis.com/fcm/send', {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'key=AIzaSyCu0M66PmeecaQ8NLAKHFbEkXoiFqeZKuE'
+                'Authorization': 'key=AIzaSyBnmavsrltI_zvcP8kmZVpwr8fS0e95fQY'
                 },
                 body: JSON.stringify({
-                        to: 'fvP_0CBvN7U:APA91bHNj8nsjlx-HuS9tVwuw7bfeMpz_nFGt7NaDerp-SMn5F8W9iHEk42Bpw2jWhS8nnmBxVRvUSbVxp8SnLtgTwo1SGymbzo2jirL8V3NNqXgK4Aoc04wfC6kNdSz22D8vVUAG6dN',
+                        to: object.to,
                         notification: {
-                            title: "Prueba",
-                            message: "Prueba desde la Web",
+                            title: object.title,
+                            body: object.message,
                             sound: 'default'
                         }
                     })
@@ -123,6 +140,7 @@ class Details extends Component {
         const patientUserName = (this.props.ItemData !== null && this.props.ItemData.patient !== null) ? (this.props.ItemData.patient.username) : (null);
         const patientPhone = (this.props.ItemData !== null && this.props.ItemData.patient !== null) ? (this.props.ItemData.patient.phone) : (null);
         const patientEmail = (this.props.ItemData !== null && this.props.ItemData.patient !== null) ? (this.props.ItemData.patient.email) : (null);
+        const patientPhoneId = (this.props.ItemData !== null && this.props.ItemData.patient !== null) ? (this.props.ItemData.patient.phone_id) : (null);
         const mutation_date = moment((this.props.ItemData !== null) ? (this.props.ItemData.date_created) : (null)).format('DD-MM HH:mm');
         const consult_cost = (this.props.ItemData !== null) ? (this.props.ItemData.consult_cost) : (0);
         const state = (this.props.ItemData !== null) ? (this.props.ItemData.state) : (null);
@@ -138,7 +156,7 @@ class Details extends Component {
         const date = "Fecha: "+ moment(consult_date).format('YYYY-DD-MM')
 
         const aprove =  (this.props.ItemData !== null && this.props.ItemData.state === "INSERTED") ? (true) : (false);
-        const confirm = (this.props.ItemData !== null && this.props.ItemData.state === "APPROVED") ? (true) : (false);
+        const confirm = false;//(this.props.ItemData !== null && this.props.ItemData.state === "APPROVED") ? (true) : (false);
         const reject = (this.props.ItemData !== null && this.props.ItemData.state === "INSERTED") ? (true) : (false);
         const present = (this.props.ItemData !== null && this.props.ItemData.state === "CONFIRMED") ? (true) : (false);
         const inProcess = (this.props.ItemData !== null && this.props.ItemData.state === "PRESENT") ? (true) : (false);
@@ -273,9 +291,16 @@ class Details extends Component {
                                     {aprove &&
                                         <div className="text-center text-md-left">
                                             <MDBBtn color="primary" size="md" onClick={(e) => {
-                                                        e.preventDefault()
+                                                        e.preventDefault();
+                                                        const object = {
+                                                            to: patientPhoneId,
+                                                            title: "Consulta Aprobada",
+                                                            message: "Su consulta ha sido aprobada para la "+date ,
+                                                        };
                                                         this.changeState(id, "APPROVED")
+                                                        this.sendNotifications(object);
                                                     }}>
+
                                                 Aprobar
                                             </MDBBtn>
                                         </div>
@@ -292,7 +317,7 @@ class Details extends Component {
                                     {reject &&
                                         <div className="text-center text-md-left">
                                             <MDBBtn color="primary" size="md" onClick={(e) => {
-                                                        e.preventDefault()
+                                                        e.preventDefault();
                                                         this.toggle()
                                                     }}>
                                                 Rechazar
