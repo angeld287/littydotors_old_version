@@ -1,6 +1,6 @@
 import React from "react";
-import { Line, Bar } from "react-chartjs-2";
-import { MDBContainer, MDBSelect, MDBBtn } from "mdbreact";
+import { Bar } from "react-chartjs-2";
+import { MDBContainer, MDBBtn } from "mdbreact";
 
 //import { listMedicalConsultations } from './../../../../graphql/queries';
 

@@ -226,11 +226,17 @@ class App extends Component {
         isLoggedIn: false,
       }
     };
+    this._isMounted = false;
   }
 
   componentWillMount = () => {
     //this.handleUserSignIn();
+    this._isMounted = true;
     this.GetCompanyUserProfile();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   GetCompanyUserProfile = () => {

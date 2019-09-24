@@ -1,29 +1,26 @@
 import React, {Component} from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBSpinner,
-  MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
+  MDBModal, MDBModalBody, MDBModalFooter } from "mdbreact";
 
 import { API, graphqlOperation } from "aws-amplify";
 
-import { Auth, Storage } from "aws-amplify";
+import { Storage } from "aws-amplify";
 
-import { PhotoPicker, S3Image } from "aws-amplify-react";
+//import { PhotoPicker, S3Image } from "aws-amplify-react";
 
 import CompanyProfile from './CompanyProfileReview'
 
 import Cropper from 'react-easy-crop'
 import getCroppedImg from '../../../../ImageUpload/cropImage'
 
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete';
+import PlacesAutocomplete from 'react-places-autocomplete';
 
 import ImageUploader from 'react-images-upload';
 
 import { Redirect } from 'react-router'
 
-import PricingPlans from './PricingPlans'
-import PaymentMethod from './PaymentMethod'
+//import PricingPlans from './PricingPlans'
+//import PaymentMethod from './PaymentMethod'
 
 import { createDoctor, createStripe, createConsultingRoom, createLocation, updateDoctor } from '../../../../../graphql/mutations';
 
@@ -31,7 +28,7 @@ const updateByPropertyName = (propertyName, value) => () => ({
   [propertyName]: value
 });
 
-const Compress = require('compress.js')
+//const Compress = require('compress.js')
 
 // Se quitaron los pasos de que tienen que ver con subscrpcion y se comento la validacion de si el campo stripe_source_token esta completado
 // Tambien se configuraron los botones next y previous para los dos pasos restantes
@@ -74,29 +71,29 @@ class ConfigureProfile extends Component {
     this.handleSetPlan = this.handleSetPlan.bind(this);
     this.handleSetCard = this.handleSetCard.bind(this);
     this.onDrop = this.onDrop.bind(this);
+    this._isMounted = false;
   }
 
   componentWillMount = () => {
+    this._isMounted = true;
+    this.redirect();
+  }
 
-    if((this.props.childProps.state.stripe_subscription_id !== 'undefined' && this.props.childProps.state.stripe_subscription_id !== undefined && this.props.childProps.state.stripe_subscription_id !== '' && 
-        this.props.childProps.state.stripe_subscription_id !== null) || (this.props.childProps.state.user_roll !== 'company' && this.props.childProps.state.user_roll !== '' && this.props.childProps.state.user_roll !== 'undefined' && this.props.childProps.state.user_roll !== undefined && this.props.childProps.state.user_roll !== null)){
-     
-          this.setState({ redirect: true });
-    }
+  redirect = () => {
+      if((this.props.childProps.state.stripe_subscription_id !== 'undefined' && this.props.childProps.state.stripe_subscription_id !== undefined && this.props.childProps.state.stripe_subscription_id !== '' && 
+          this.props.childProps.state.stripe_subscription_id !== null) || (this.props.childProps.state.user_roll !== 'company' && this.props.childProps.state.user_roll !== '' && this.props.childProps.state.user_roll !== 'undefined' && this.props.childProps.state.user_roll !== undefined && this.props.childProps.state.user_roll !== null)){
+      
+            this.setState({ redirect: true });
+      }
+  }
 
-    /* //GetS3 image
-    Storage.get(this.state.username+'.png')
-      .then(result => {
-        this.setState({key: result});
-        console.log(this.state.key)
-      })
-      .catch(err => console.log(err)); */
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   //upload S3 image
   onChange(e) {
-      const file = e.target.files[0];
-      console.log(file)
+      //const file = e.target.files[0];
       /* Storage.put('example2.png', file, {
           contentType: 'image/png'
       })
@@ -147,7 +144,6 @@ class ConfigureProfile extends Component {
   }
 
   onCropComplete = (croppedArea, croppedAreaPixels) => {
-    //console.log(croppedArea, croppedAreaPixels)
     this.setState({ croppedAreaPixels })
   }
 
@@ -345,8 +341,8 @@ class ConfigureProfile extends Component {
 
 render() {
 
-  const { specialty, location, stripe_source_token, redirect, error, loading, name, croppedImage, key } = this.state
-  const image = (croppedImage !== null)?(<img src={croppedImage} height="200" width="200" className="img-fluid" alt="" />):(null);
+  const { specialty, location, redirect, error, loading, name, croppedImage } = this.state
+  //const image = (croppedImage !== null)?(<img src={croppedImage} height="200" width="200" className="img-fluid" alt="" />):(null);
   const complete = (!(location === '') && !(specialty === '') && !(croppedImage === null)/*  && !(stripe_source_token === '') */)
   const validation = (complete && (error === ''))
 

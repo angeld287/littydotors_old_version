@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { MDBNavLink, MDBTable, MDBTableBody, MDBListGroup, MDBListGroupItem, MDBContainer, MDBBadge, MDBIcon } from "mdbreact";
+import { MDBTable, MDBTableBody, MDBContainer, MDBIcon } from "mdbreact";
 
 import moment from 'moment';
 
@@ -16,10 +16,7 @@ class List extends Component {
 
     this.details = this.details.bind(this);
   }
-
-  componentDidMount = () => {
-  }
-
+  
   details(event, item, i){
     
     event.preventDefault();

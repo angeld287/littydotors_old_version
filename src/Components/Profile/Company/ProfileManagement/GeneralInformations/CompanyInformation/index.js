@@ -27,13 +27,7 @@ class CompanyInformation extends Component {
     };
   }
 
-  
-  componentWillMount = () => {
-    //console.log(this.props.childProps.state.stripe_subscription_id)
-  }
-
   AddSecretary = () => {
-    //console.log(this.state.secretary)
       Auth.signIn(this.state.secretary, 'FALSE_PASSWORD').then().catch(err => {
         
         this.setState({ 
@@ -43,8 +37,6 @@ class CompanyInformation extends Component {
 
          // agregar secretaria al consultorio
          if(this.state.userExist){
-
-          //console.log(this.props.childProps.state.id)
           const UpdateConsultingR = {
             input:{
               id: this.props.childProps.state.id,

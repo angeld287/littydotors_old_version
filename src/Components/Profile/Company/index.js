@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCardTitle, MDBCardText, MDBTabPane, MDBTabContent,
-MDBNav, MDBNavItem, MDBIcon, MDBBtn } from "mdbreact";
+/* import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCardTitle, MDBCardText, MDBTabPane, MDBTabContent,
+MDBNav, MDBNavItem, MDBIcon, MDBBtn } from "mdbreact"; */
 
 import GeneralInformations from './ProfileManagement/GeneralInformations';
 import PaymentInformation from './ProfileManagement/PaymentInformations';
@@ -36,7 +36,6 @@ GetSubscriptionData = () => {
       }
     }).then((r) => r.json()).then((r) => {
         var responseObject = JSON.parse(r.body);
-        //console.log(responseObject)
         this.setState({ subscriptionData: responseObject.stripeResponse });
     }).catch((err) => { // Error response
         console.log(err);

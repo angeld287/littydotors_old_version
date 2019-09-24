@@ -21,7 +21,7 @@ this.setState(prevState => ({
 
 render() {
 const { collapseID } = this.state;
-const havePlan = (this.props.childProps.state.stripe_plan_name !== '' && this.props.childProps.state.stripe_plan_name !== null && this.props.childProps.state.stripe_plan_name !== 'undefined');
+//const havePlan = (this.props.childProps.state.stripe_plan_name !== '' && this.props.childProps.state.stripe_plan_name !== null && this.props.childProps.state.stripe_plan_name !== 'undefined');
     return (
       <MDBContainer fluid>
         <MDBContainer className="md-accordion mt-5">

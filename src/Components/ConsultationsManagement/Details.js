@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBListGroupItem, MDBCardHeader, MDBCardFooter,
+MDBCard, MDBBtn,
 MDBRow, MDBContainer, MDBNavItem, MDBNavLink, MDBNav, MDBTabContent, MDBTabPane, MDBCol, MDBInput, MDBIcon,
 MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBTable, MDBTableBody, MDBTableHead
 } from "mdbreact";
@@ -67,6 +67,7 @@ class Details extends Component {
                         createdAt: String(moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.SSS')),
                     }
         const notification = {
+                        consultation_id: id,
                         to: patientPhoneId,
                         title: "Rechazo de Consulta",
                         message: "Verifique la razon de rechazo",
@@ -93,16 +94,12 @@ class Details extends Component {
                     }
         this.props.createNotification(object)
         const notification = {
+            consultation_id: id,
             to: patientPhoneId,
             title: "Confirmar Consulta",
             message: "Favor confirmar su consulta medica para la fecha "+date ,
         };
         this.sendNotifications(notification);
-    }
-
-    componentWillReceiveProps = () =>{
-        //this.setState({data: this.props.ItemData})
-        //console.log(this.state.data)
     }
 
     sendNotifications = (object) => {
@@ -117,13 +114,13 @@ class Details extends Component {
                         notification: {
                             title: object.title,
                             body: object.message,
-                            sound: 'default'
+                            sound: 'default',
+                        },
+                        data: {
+                            consult_id: object.consultation_id,
                         }
                     })
-            }).then((r) => r.json()).then((r) => {
-                console.log('Bien: ',r)
-            }).catch((err) => { // Error response
-                //this.setState({ loading: false });
+            }).then((r) => r.json()).then().catch((err) => { // Error response
                 console.log(err);
             });
         
@@ -293,6 +290,7 @@ class Details extends Component {
                                             <MDBBtn color="primary" size="md" onClick={(e) => {
                                                         e.preventDefault();
                                                         const object = {
+                                                            consultation_id: id,
                                                             to: patientPhoneId,
                                                             title: "Consulta Aprobada",
                                                             message: "Su consulta ha sido aprobada para la "+date ,

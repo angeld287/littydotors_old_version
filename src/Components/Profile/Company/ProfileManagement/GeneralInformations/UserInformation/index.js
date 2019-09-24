@@ -18,13 +18,6 @@ handleFlipping = () => {
   this.setState({ flipped: !this.state.flipped });
 }
 
-/* componentWillMount = () => {
-  Storage.get(this.props.childProps.state.image)
-    .then(result => console.log(result))
-    .catch(err => console.log(err));
-} */
-
-
 render() {
 
   const {image} = this.props.childProps.state

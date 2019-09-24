@@ -31,12 +31,7 @@ class CompanySignUp extends Component {
 
     this.state = { ...INITIAL_STATE };
   }
-
-  componentWillMount = () => {
-  }
-
   toggle = () => {
-    console.log("Toggle Clic");
   }
 
   getYear = () => {
@@ -94,7 +89,7 @@ class CompanySignUp extends Component {
         email_exist: false
       });
       Auth.signOut()
-        .then(data => console.log(data))
+        .then()
         .catch(err => console.log(err));
     }).catch(err => {
       if(err.code === 'UserNotFoundException' && err.message === 'User does not exist.'){

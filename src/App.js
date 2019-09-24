@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { /* withAuthenticator , */Authenticator, SignIn, SignUp, RequireNewPassword } from 'aws-amplify-react';
+import { /* withAuthenticator , */Authenticator, SignIn, SignUp/* , RequireNewPassword */ } from 'aws-amplify-react';
 import queryString from 'query-string'
 
 import logo from './images/logo-blanco.png';
@@ -22,15 +22,15 @@ import {
 
 import CustomSignIn from './Components/Authentication/SignIn';
 import CustomSignUp from './Components/Authentication/SignUp';
-import CustomrequireNewPassword from './Components/Authentication/RequireNewPassword';
+//import CustomrequireNewPassword from './Components/Authentication/RequireNewPassword';
 import Profile from './Components/Profile';
 import ConfigureProfile from './Components/Profile/Company/ProfileManagement/ConfigureProfile';
 import ConsultationsManagement from './Components/ConsultationsManagement';
 import Reports from './Components/Profile/Company/Reports';
 import Error from './Components/Error'
-import DoctorSearch from './Components/DoctorSearch';
-import ConsultingRoom from './Components/ConsultingRoom';
-import IntroductionPage from './Components/IntroductionPage';
+//import DoctorSearch from './Components/DoctorSearch';
+//import ConsultingRoom from './Components/ConsultingRoom';
+//import IntroductionPage from './Components/IntroductionPage';
 
 import { listConsultingRooms } from './graphql/queries';
 
@@ -291,11 +291,18 @@ class App extends Component {
       },
       username: null,
     };
+
+    this._isMounted = false;
   }
 
   componentWillMount = () => {
     //this.handleUserSignIn();
+    this._isMounted = true;
     this.GetCompanyUserProfile();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   GetCompanyUserProfile = () => {

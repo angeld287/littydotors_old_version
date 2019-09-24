@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {   MDBContainer, MDBCol, MDBRow, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, MDBIcon } from "mdbreact";
+import {   MDBContainer, MDBCol, MDBRow, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink } from "mdbreact";
 
 import { Redirect } from 'react-router'
 import List from './List'
@@ -104,7 +104,6 @@ class ConsultationsManagement extends Component {
       consultations: null,
       ItemData: null,
       selectedItem: null,
-      consultations: null,
       insertedConsultations: null,
       approvedConsultations: null,
       confirmedConsultations: null,
@@ -114,6 +113,8 @@ class ConsultationsManagement extends Component {
       rejectedConsultations: null,
       canceledConsultations: null,
     };
+
+    this._isMounted = false;
 
     this.changeState = this.changeState.bind(this);
     this.GetConsultationsList = this.GetConsultationsList.bind(this);
@@ -137,16 +138,11 @@ class ConsultationsManagement extends Component {
   ActiveElement = (item, i) => {
     //el problema del cambio de item es por es state
     this.setState({ItemData: item, selectedItem: i});
-    //console.log(item)
   }
 
   componentDidMount = async () => {
-    if(this.props.childProps.state.user_roll === 'client'){
-          this.setState({ redirect: true });
-    }
-    if (this.state.consultations === null) {
-      this.GetConsultationsList(); 
-    }
+    this._isMounted = true;
+    this.redirect();
 
     //suscripcion para ingresos de consulta
     this.subscription = API.graphql(
@@ -173,7 +169,6 @@ class ConsultationsManagement extends Component {
       }
     })
     
-    //console.log(this.props.childProps.state.doctorusername, this.props.childProps.state.secretary)
     //suscripcion para modificaciones de consulta | se decidio no utilizar esta suscripcion porque hay otra forma de hacerlo que evita consumir este servicio
     this.subscription = API.graphql(
       graphqlOperation(onUpdateMedicalConsultation, {
@@ -188,7 +183,6 @@ class ConsultationsManagement extends Component {
         const consultation = MedicalConsultation.value.data.onUpdateMedicalConsultation
         if (this.state.consultations !== null) {
           this.state.consultations.splice(this.state.consultations.findIndex(v => v.id === consultation.id), 1);
-          //console.log("borrado");
         
           const consultations = [
             ...this.state.consultations.filter(r => {
@@ -200,15 +194,23 @@ class ConsultationsManagement extends Component {
           ]
           
           this.setState({ consultations });
-          //console.log("ingresado");
           this.SetConsultationsList();
         }
       }
     })
   }
 
+  redirect = () => {
+    if(this.props.childProps.state.user_roll === 'client'){
+          this.setState({ redirect: true });
+    }
+    if (this.state.consultations === null) {
+      this.GetConsultationsList(); 
+    }
+  }
   componentWillUnmount() {
-    this.subscription.unsubscribe()
+    this.subscription.unsubscribe();
+    this._isMounted = false;
   }
 
   GetConsultationsList = () => {
@@ -287,7 +289,9 @@ class ConsultationsManagement extends Component {
             });
             this.SetConsultationsList();
             this.setState({ItemData: null, selectedItem: null});
-            break;   
+            break;  
+        default:
+            break;
     }
   }
 

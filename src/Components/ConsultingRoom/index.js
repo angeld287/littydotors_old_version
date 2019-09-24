@@ -25,10 +25,12 @@ class ConsultingRoom extends Component {
       consultations: {}
       
      };
+
+     this._isMounted = false;
   }
   
   componentDidMount = () => {
-    //console.log(Object.keys(this.state.consultingRoom).length)
+    this._isMounted = true;
     if(Object.keys(this.state.consultingRoom).length === 0){
       const { id } = this.props.match.params
       API.graphql(graphqlOperation(getConsultingRoom, {
@@ -44,7 +46,6 @@ class ConsultingRoom extends Component {
               }
           })).then( result =>{
               this.setState({ consultations: result.data.listMedicalConsultations.items})
-              //console.log(this.state.consultations)
           }).catch( err => {
             console.log(err)
           });
@@ -53,6 +54,10 @@ class ConsultingRoom extends Component {
         console.log(err)
       });
     }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   toggle = nr => () => {
