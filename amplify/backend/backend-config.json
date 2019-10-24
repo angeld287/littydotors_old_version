@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"medicalconsultationsace8ba69": {
+		"medicalconsultationsedee05af": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": []
@@ -16,7 +16,7 @@
 		}
 	},
 	"storage": {
-		"mdconsults3": {
+		"mdconsultass3": {
 			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}

@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "medicalconsultationsace8ba69_identitypool_ace8ba69",
+    "identityPoolName": "medicalconsultationsedee05af_identitypool_edee05af",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "medicaace8ba69",
-    "userPoolName": "medicalconsultationsace8ba69_userpool_ace8ba69",
+    "resourceNameTruncated": "medicaedee05af",
+    "userPoolName": "medicalconsultationsedee05af_userpool_edee05af",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "medicaace8ba69_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "medicaedee05af_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "medicalconsultationsace8ba69",
+    "resourceName": "medicalconsultationsedee05af",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -44,6 +44,14 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
+    "useDefault": "defaultSocial",
+    "hostedUI": true,
+    "hostedUIDomainName": "medicalconsultationsedee05af-edee05af",
+    "authProvidersUserPool": [
+        "Facebook",
+        "Google"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:19000/\"],\"LogoutURLs\":[\"http://localhost:19001/\"]}",
     "dependsOn": []
 }
