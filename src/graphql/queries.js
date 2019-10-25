@@ -185,7 +185,6 @@ export const getPatient = `query GetPatient($id: ID!) {
     username
     email
     phone
-    phone_id
   }
 }
 `;
@@ -201,7 +200,6 @@ export const listPatients = `query ListPatients(
       username
       email
       phone
-      phone_id
     }
     nextToken
   }
@@ -332,7 +330,6 @@ export const getMedicalConsultation = `query GetMedicalConsultation($id: ID!) {
       username
       email
       phone
-      phone_id
     }
     rejection {
       items {
@@ -409,7 +406,6 @@ export const listMedicalConsultations = `query ListMedicalConsultations(
         username
         email
         phone
-        phone_id
       }
       rejection {
         nextToken

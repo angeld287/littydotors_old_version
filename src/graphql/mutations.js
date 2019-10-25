@@ -269,7 +269,6 @@ export const createPatient = `mutation CreatePatient($input: CreatePatientInput!
     username
     email
     phone
-    phone_id
   }
 }
 `;
@@ -280,7 +279,6 @@ export const updatePatient = `mutation UpdatePatient($input: UpdatePatientInput!
     username
     email
     phone
-    phone_id
   }
 }
 `;
@@ -291,7 +289,6 @@ export const deletePatient = `mutation DeletePatient($input: DeletePatientInput!
     username
     email
     phone
-    phone_id
   }
 }
 `;
@@ -427,7 +424,6 @@ export const createMedicalConsultation = `mutation CreateMedicalConsultation($in
       username
       email
       phone
-      phone_id
     }
     rejection {
       items {
@@ -499,7 +495,6 @@ export const updateMedicalConsultation = `mutation UpdateMedicalConsultation($in
       username
       email
       phone
-      phone_id
     }
     rejection {
       items {
@@ -571,7 +566,6 @@ export const deleteMedicalConsultation = `mutation DeleteMedicalConsultation($in
       username
       email
       phone
-      phone_id
     }
     rejection {
       items {
