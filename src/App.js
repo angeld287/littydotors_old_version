@@ -30,7 +30,7 @@ import Reports from './Components/Profile/Company/Reports';
 import Error from './Components/Error'
 //import DoctorSearch from './Components/DoctorSearch';
 //import ConsultingRoom from './Components/ConsultingRoom';
-//import IntroductionPage from './Components/IntroductionPage';
+import IntroductionPage from './Components/IntroductionPage';
 
 import { listConsultingRooms } from './graphql/queries';
 
@@ -95,7 +95,8 @@ class HeaderLinks extends Component {
             <MDBCollapse id="navbarCollapse3" /* isOpen={this.state.isOpen} */ navbar>
               <MDBNavbarNav left>
                 <MDBNavItem active>
-                  <MDBNavLink to="/"><img className="card-img-top" src={logo} style={{height: 20, width: 25}} alt="" /> Medical Consultations</MDBNavLink>
+                {/* Medical Consultations */}
+                  <MDBNavLink to="/"><img className="card-img-top" src={logo} style={{height: 20, width: 25}} alt="" /> </MDBNavLink>
                 </MDBNavItem>
                 {/* <MDBNavItem>
                   <MDBNavLink to="/about">About Page</MDBNavLink>
@@ -103,9 +104,9 @@ class HeaderLinks extends Component {
                 {(this.props.childProps.state.user_roll === 'secretary' || this.props.childProps.state.user_roll === 'company') && <MDBNavItem ><MDBNavLink to="/consultationsmanagement">Administraccion de Consultas</MDBNavLink></MDBNavItem>}
                 {this.props.childProps.state.user_roll === 'company' && <MDBNavItem ><MDBNavLink to="/reports">Reportes</MDBNavLink></MDBNavItem>}
               </MDBNavbarNav>
-            
-              {!this.props.childProps.isLoggedIn &&<MDBNavbarNav right><MDBNavItem><MDBNavLink to="/profile">LogIn</MDBNavLink></MDBNavItem></MDBNavbarNav>}
-              {this.props.childProps.isLoggedIn &&
+            {/* !this.props.childProps.isLoggedIn */}
+              {false &&<MDBNavbarNav right><MDBNavItem><MDBNavLink to="/profile">LogIn</MDBNavLink></MDBNavItem></MDBNavbarNav>}
+              {false &&
               <MDBNavbarNav right>
                 <MDBNavItem>
                     <MDBDropdown>
@@ -228,10 +229,10 @@ class AuthComponent extends Component {
 
 const Routes = ({ childProps }) => (
   <Switch>
-    {/* <Route exact path="/" render={() => <IntroductionPage/>} /> */}
+    <Route exact path="/" render={() => <IntroductionPage/>} />
     <ProppedRoute
       exact
-      path="/"
+      path="/signin"
       render={AuthComponent}
       props={childProps}
     />
