@@ -23,15 +23,13 @@ export default class HeaderLinks extends Component {
             <MDBCollapse id="navbarCollapse3" /* isOpen={this.state.isOpen} */ navbar>
               <MDBNavbarNav left>
                 <MDBNavItem active>
-                {/* Medical Consultations */}
-                  <MDBNavLink to="/"><img className="card-img-top" src={logo} style={{height: 20, width: 25}} alt="" /> </MDBNavLink>
+                  <MDBNavLink to="/"><img className="card-img-top" src={logo} style={{height: 20, width: 25}} alt="" /></MDBNavLink>
                 </MDBNavItem>
                 {(this.props.childProps.state.user_roll === 'secretary' || this.props.childProps.state.user_roll === 'company') && <MDBNavItem ><MDBNavLink to="/consultationsmanagement">Administraccion de Consultas</MDBNavLink></MDBNavItem>}
                 {this.props.childProps.state.user_roll === 'company' && <MDBNavItem ><MDBNavLink to="/reports">Reportes</MDBNavLink></MDBNavItem>}
               </MDBNavbarNav>
-            {/* !this.props.childProps.isLoggedIn */}
-              {false &&<MDBNavbarNav right><MDBNavItem><MDBNavLink to="/profile">LogIn</MDBNavLink></MDBNavItem></MDBNavbarNav>}
-              {false &&
+              {!this.props.childProps.isLoggedIn &&<MDBNavbarNav right><MDBNavItem><MDBNavLink to="/profile">LogIn</MDBNavLink></MDBNavItem></MDBNavbarNav>}
+              {this.props.childProps.isLoggedIn &&
               <MDBNavbarNav right>
                 <MDBNavItem>
                     <MDBDropdown>

@@ -8,7 +8,13 @@ import CustomSignUp from '../SignUp';
 
 import queryString from 'query-string';
 
+const federated = {
+        google_client_id: '1004779032464-pb8iee6o6e4lr3m9tp3p8vghorn9bdj3.apps.googleusercontent.com',
+        facebook_app_id: '838590132942281'
+    };
+
 export default class AuthComponent extends Component {
+  
   
   handleStateChange = state => {
     const values = queryString.parse(this.props.location.search)
@@ -29,7 +35,7 @@ export default class AuthComponent extends Component {
       <div>
         <Authenticator 
           authState="signIn" 
-          amplifyConfig={aws_exports}
+          federated={federated}
           hide={ 
               [
                   SignIn,
