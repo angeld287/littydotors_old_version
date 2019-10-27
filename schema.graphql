@@ -12,7 +12,7 @@ type ConsultingRoom
     id: ID!
     doctor: Doctor @connection
     stripe: Stripe @connection
-    secretary: String!
+    secretary: String
     location: Location @connection
 }
 
@@ -31,11 +31,11 @@ type Location
 
 type Stripe @model @auth(rules: [{allow: owner}]){
     id: ID!
-    source_token: String!
-    plan_id: String!
-    plan_name: String!
-    customer_id: String!
-    subscription_id: String!
+    source_token: String
+    plan_id: String
+    plan_name: String
+    customer_id: String
+    subscription_id: String
 }
 
 type Doctor 
@@ -51,13 +51,13 @@ type Doctor
         { allow: groups, groups: ["secretary"], operations: [read] }
     ]) {
     id: ID!
-    name: String!
-    username: String!
-    email: String!
-    speciality: String!
-    sex: String!
+    name: String
+    username: String
+    email: String
+    speciality: String
+    sex: String
     consultingroom: ConsultingRoom @connection
-    image: String!
+    image: String
 }
 
 type Patient 
@@ -73,10 +73,15 @@ type Patient
         { allow: groups, groups: ["secretary"], operations: [read] }
     ]) {
     id: ID!
-    name: String!
-    username: String!
-    email: String!
-    phone: String!
+    name: String
+    username: String
+    email: String
+    phone: String
+    weight: String
+    height: String
+    size: String
+    age: String
+    birthdate: String
 }
 
 type Rejection 
@@ -92,10 +97,10 @@ type Rejection
         { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
-    description: String!
-    doctor: String!
-    secretary: String!
-    patient: String!
+    description: String
+    doctor: String
+    secretary: String
+    patient: String
     createdAt: String!
 }
 
@@ -112,7 +117,7 @@ type Cancelation
         { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
-    description: String!
+    description: String
 }
 
 type Notification 
@@ -128,10 +133,10 @@ type Notification
         { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
-    state: String!
-    doctor: String!
-    secretary: String!
-    patient: String!
+    state: String
+    doctor: String
+    secretary: String
+    patient: String
     createdAt: String!
 }
 
@@ -150,7 +155,7 @@ type Confirmation
     id: ID!
 }
 
-type MedicalConsultation 
+type MedicalAppointments 
     @model(subscriptions: null)
     @auth(rules: [
         # Defaults to use the "owner" field.
@@ -166,19 +171,19 @@ type MedicalConsultation
     id: ID!
     location: Location @connection
     doctor: Doctor @connection
-    doctorname: String!
+    doctorname: String
     patient: Patient @connection
     rejection: [Rejection] @connection
     cancelation: Cancelation @connection
     notification: [Notification] @connection(sortField: "createdAt")
     confirmation: Confirmation @connection
-    secretary: String!
-    details: String!
-    date_created: String!
-    date_of_medical_consultation: String!
-    state: State!
-    consultation_position: Int!
-    consult_cost: String!
+    secretary: String
+    details: String
+    date_created: String
+    date_of_medical_consultation: String
+    state: State
+    consultation_position: Int
+    consult_cost: String
     read_secretary: Boolean
     read_company: Boolean
     read_client: Boolean
@@ -186,8 +191,8 @@ type MedicalConsultation
 }
 
 type Subscription {
-  onCreateMedicalConsultation(doctorname: String, secretary: String): MedicalConsultation @aws_subscribe(mutations: ["createMedicalConsultation"])
-  onUpdateMedicalConsultation(read_secretary: Boolean, read_company: Boolean, read_client: Boolean, doctorname: String, secretary: String): MedicalConsultation @aws_subscribe(mutations: ["updateMedicalConsultation"])
+  onCreateMedicalAppointments(doctorname: String, secretary: String): MedicalAppointments @aws_subscribe(mutations: ["createMedicalAppointments"])
+  onUpdateMedicalAppointments(read_secretary: Boolean, read_company: Boolean, read_client: Boolean, doctorname: String, secretary: String): MedicalAppointments @aws_subscribe(mutations: ["updateMedicalAppointments"])
 }
 
 enum State { INSERTED APPROVED CONFIRMED PRESENT IN_PROCESS FINISHED REJECTED CANCELED}

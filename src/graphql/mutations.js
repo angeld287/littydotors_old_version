@@ -269,6 +269,11 @@ export const createPatient = `mutation CreatePatient($input: CreatePatientInput!
     username
     email
     phone
+    weight
+    height
+    size
+    age
+    birthdate
   }
 }
 `;
@@ -279,6 +284,11 @@ export const updatePatient = `mutation UpdatePatient($input: UpdatePatientInput!
     username
     email
     phone
+    weight
+    height
+    size
+    age
+    birthdate
   }
 }
 `;
@@ -289,6 +299,11 @@ export const deletePatient = `mutation DeletePatient($input: DeletePatientInput!
     username
     email
     phone
+    weight
+    height
+    size
+    age
+    birthdate
   }
 }
 `;
@@ -424,6 +439,11 @@ export const createMedicalConsultation = `mutation CreateMedicalConsultation($in
       username
       email
       phone
+      weight
+      height
+      size
+      age
+      birthdate
     }
     rejection {
       items {
@@ -495,6 +515,11 @@ export const updateMedicalConsultation = `mutation UpdateMedicalConsultation($in
       username
       email
       phone
+      weight
+      height
+      size
+      age
+      birthdate
     }
     rejection {
       items {
@@ -566,6 +591,11 @@ export const deleteMedicalConsultation = `mutation DeleteMedicalConsultation($in
       username
       email
       phone
+      weight
+      height
+      size
+      age
+      birthdate
     }
     rejection {
       items {
