@@ -31,6 +31,11 @@ export const onCreateMedicalConsultation = `subscription OnCreateMedicalConsulta
       username
       email
       phone
+      weight
+      height
+      size
+      age
+      birthdate
     }
     rejection {
       items {
@@ -114,6 +119,11 @@ export const onUpdateMedicalConsultation = `subscription OnUpdateMedicalConsulta
       username
       email
       phone
+      weight
+      height
+      size
+      age
+      birthdate
     }
     rejection {
       items {
@@ -426,6 +436,11 @@ export const onCreatePatient = `subscription OnCreatePatient {
     username
     email
     phone
+    weight
+    height
+    size
+    age
+    birthdate
   }
 }
 `;
@@ -436,6 +451,11 @@ export const onUpdatePatient = `subscription OnUpdatePatient {
     username
     email
     phone
+    weight
+    height
+    size
+    age
+    birthdate
   }
 }
 `;
@@ -446,6 +466,11 @@ export const onDeletePatient = `subscription OnDeletePatient {
     username
     email
     phone
+    weight
+    height
+    size
+    age
+    birthdate
   }
 }
 `;

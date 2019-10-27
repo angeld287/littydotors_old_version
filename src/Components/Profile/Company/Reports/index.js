@@ -4,25 +4,11 @@ import { MDBContainer, MDBBtn } from "mdbreact";
 
 //import { listMedicalConsultations } from './../../../../graphql/queries';
 
+import { listMedicalConsultationsReports } from './../../../../graphql/custom-queries';
+
 //import moment from 'moment';
 
 import { API, graphqlOperation } from 'aws-amplify';
-
-const listMedicalConsultations = `query ListMedicalConsultations(
-  $filter: ModelMedicalConsultationFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listMedicalConsultations(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      createdAt
-    }
-  }
-}`;
 
 class Reports extends React.Component {
   constructor(props) {
@@ -142,7 +128,7 @@ class Reports extends React.Component {
     const y = new Date().getFullYear();
     const fecha_desde = y +'-01-01T00:00:00.000';
     const fecha_hasta = y +'-12-31T00:00:00.000';
-    await API.graphql(graphqlOperation(listMedicalConsultations, {
+    await API.graphql(graphqlOperation(listMedicalConsultationsReports, {
       filter: {
         createdAt: {
           gt: fecha_desde, 
