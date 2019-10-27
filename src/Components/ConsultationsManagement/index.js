@@ -9,12 +9,10 @@ import moment from 'moment';
 
 import { API, graphqlOperation } from 'aws-amplify';
 
-import { onCreateMedicalConsultation, onUpdateMedicalConsultation } from './../../graphql/subscriptions';
+import { onCreateMedicalAppointment, onUpdateMedicalAppointment } from './../../graphql/subscriptions';
 
-//import { listMedicalConsultations } from './../../graphql/queries';
-
-import { updateMedicalConsultation, createRejection, createNotification } from './../../graphql/mutations';
-import { listMedicalConsultations } from './../../graphql/custom-queries';
+import { updateMedicalAppointment, createRejection, createNotification } from './../../graphql/mutations';
+import { listMedicalAppointments } from './../../graphql/custom-queries';
 
 class ConsultationsManagement extends Component {
   constructor(props) {
@@ -42,7 +40,7 @@ class ConsultationsManagement extends Component {
     this.changeState = this.changeState.bind(this);
     this.GetConsultationsList = this.GetConsultationsList.bind(this);
     this.ActiveElement = this.ActiveElement.bind(this);
-    this.updateMedicalConsultationData = this.updateMedicalConsultationData.bind(this);
+    this.updateMedicalAppointmentData = this.updateMedicalAppointmentData.bind(this);
     this.updateFieldFromConsultations = this.updateFieldFromConsultations.bind(this);
     this.createRejection = this.createRejection.bind(this);
   }
@@ -69,13 +67,13 @@ class ConsultationsManagement extends Component {
 
     //suscripcion para ingresos de consulta
     this.subscription = API.graphql(
-      graphqlOperation(onCreateMedicalConsultation, {
+      graphqlOperation(onCreateMedicalAppointment, {
         doctorname: this.props.childProps.state.doctorusername,
         secretary: this.props.childProps.state.secretary,
       })
     ).subscribe({
       next: MedicalConsultation => {
-        const consultation = MedicalConsultation.value.data.onCreateMedicalConsultation
+        const consultation = MedicalConsultation.value.data.onCreateMedicalAppointment
 
         if (this.state.consultations !== null) {
           const consultations = [
@@ -94,7 +92,7 @@ class ConsultationsManagement extends Component {
     
     //suscripcion para modificaciones de consulta | se decidio no utilizar esta suscripcion porque hay otra forma de hacerlo que evita consumir este servicio
     this.subscription = API.graphql(
-      graphqlOperation(onUpdateMedicalConsultation, {
+      graphqlOperation(onUpdateMedicalAppointment, {
         read_client: true,
         read_secretary: false,
         read_company: false,
@@ -103,7 +101,7 @@ class ConsultationsManagement extends Component {
       })
     ).subscribe({
       next: MedicalConsultation => {
-        const consultation = MedicalConsultation.value.data.onUpdateMedicalConsultation
+        const consultation = MedicalConsultation.value.data.onUpdateMedicalAppointment
         if (this.state.consultations !== null) {
           this.state.consultations.splice(this.state.consultations.findIndex(v => v.id === consultation.id), 1);
         
@@ -139,7 +137,7 @@ class ConsultationsManagement extends Component {
   GetConsultationsList = () => {
     var prev_date = new Date();
     prev_date.setDate(prev_date.getDate() - 1);
-    API.graphql(graphqlOperation(listMedicalConsultations, {
+    API.graphql(graphqlOperation(listMedicalAppointments, {
       filter: {
         or: [
           {date_created: {gt: String(moment(prev_date).format('YYYY-MM-DDTHH:mm:ss.SSS'))}}, 
@@ -149,7 +147,7 @@ class ConsultationsManagement extends Component {
       limit: 100
     })).then( result =>{
         
-        this.setState({consultations: result.data.listMedicalConsultations.items});
+        this.setState({consultations: result.data.listMedicalAppointments.items});
         this.SetConsultationsList();
 
     }).catch( err => {
@@ -182,8 +180,8 @@ class ConsultationsManagement extends Component {
       })
   }
 
-  updateMedicalConsultationData = async (object, update) =>{
-    await API.graphql(graphqlOperation(updateMedicalConsultation, {input: object}))
+  updateMedicalAppointmentData = async (object, update) =>{
+    await API.graphql(graphqlOperation(updateMedicalAppointment, {input: object}))
     .then( result =>{
       this.updateFieldFromConsultations(object, update);
     });
@@ -315,11 +313,11 @@ class ConsultationsManagement extends Component {
                       <List Consultations={insertedConsultations}
                             childProps={this.props.childProps}
                             ActiveElement={this.ActiveElement}
-                            updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                            updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                     </MDBCol>
                     <MDBCol md="9" lg="6" xl="7" className="mx-auto mt-3">
                       <Details ItemData={ItemData}
-                               updateMedicalConsultationData={this.updateMedicalConsultationData}
+                               updateMedicalAppointmentData={this.updateMedicalAppointmentData}
                                createRejection={this.createRejection}/>
                     </MDBCol>
                   </MDBRow>
@@ -332,11 +330,11 @@ class ConsultationsManagement extends Component {
                     <List Consultations={approvedConsultations}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
-                          updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                          updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                   <MDBCol md="9" lg="6" xl="7" className="mx-auto mt-3">
                     <Details ItemData={ItemData}
-                             updateMedicalConsultationData={this.updateMedicalConsultationData}
+                             updateMedicalAppointmentData={this.updateMedicalAppointmentData}
                              createNotification={this.createNotification}/>
                   </MDBCol>
                 </MDBRow>
@@ -349,11 +347,11 @@ class ConsultationsManagement extends Component {
                     <List Consultations={confirmedConsultations}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
-                          updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                          updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                   <MDBCol md="9" lg="6" xl="7" className="mx-auto mt-3">
                     <Details ItemData={ItemData}
-                             updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                             updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                 </MDBRow>
               </MDBContainer>
@@ -365,11 +363,11 @@ class ConsultationsManagement extends Component {
                     <List Consultations={presentConsultations}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
-                          updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                          updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                   <MDBCol md="9" lg="6" xl="7" className="mx-auto mt-3">
                     <Details ItemData={ItemData}
-                             updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                             updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                 </MDBRow>
               </MDBContainer>
@@ -381,11 +379,11 @@ class ConsultationsManagement extends Component {
                     <List Consultations={inProcessConsultations}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
-                          updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                          updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                   <MDBCol md="9" lg="6" xl="7" className="mx-auto mt-3">
                     <Details ItemData={ItemData}
-                             updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                             updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                 </MDBRow>
               </MDBContainer>
@@ -397,11 +395,11 @@ class ConsultationsManagement extends Component {
                     <List Consultations={finishedConsultations}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
-                          updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                          updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                   <MDBCol md="9" lg="6" xl="7" className="mx-auto mt-3">
                     <Details ItemData={ItemData}
-                             updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                             updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                 </MDBRow>
               </MDBContainer>
@@ -413,11 +411,11 @@ class ConsultationsManagement extends Component {
                     <List Consultations={rejectedConsultations}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
-                          updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                          updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                   <MDBCol md="9" lg="6" xl="7" className="mx-auto mt-3">
                     <Details ItemData={ItemData}
-                             updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                             updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                 </MDBRow>
               </MDBContainer>
@@ -429,11 +427,11 @@ class ConsultationsManagement extends Component {
                     <List Consultations={canceledConsultations}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
-                          updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                          updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                   <MDBCol md="9" lg="6" xl="7" className="mx-auto mt-3">
                     <Details ItemData={ItemData}
-                             updateMedicalConsultationData={this.updateMedicalConsultationData}/>
+                             updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
                   </MDBCol>
                 </MDBRow>
               </MDBContainer>

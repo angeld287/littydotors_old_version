@@ -4,6 +4,13 @@
 export const createConsultingRoom = `mutation CreateConsultingRoom($input: CreateConsultingRoomInput!) {
   createConsultingRoom(input: $input) {
     id
+    modules {
+      items {
+        id
+        name
+      }
+      nextToken
+    }
     doctor {
       id
       name
@@ -36,6 +43,13 @@ export const createConsultingRoom = `mutation CreateConsultingRoom($input: Creat
 export const updateConsultingRoom = `mutation UpdateConsultingRoom($input: UpdateConsultingRoomInput!) {
   updateConsultingRoom(input: $input) {
     id
+    modules {
+      items {
+        id
+        name
+      }
+      nextToken
+    }
     doctor {
       id
       name
@@ -68,6 +82,13 @@ export const updateConsultingRoom = `mutation UpdateConsultingRoom($input: Updat
 export const deleteConsultingRoom = `mutation DeleteConsultingRoom($input: DeleteConsultingRoomInput!) {
   deleteConsultingRoom(input: $input) {
     id
+    modules {
+      items {
+        id
+        name
+      }
+      nextToken
+    }
     doctor {
       id
       name
@@ -161,6 +182,9 @@ export const createDoctor = `mutation CreateDoctor($input: CreateDoctorInput!) {
     sex
     consultingroom {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -198,6 +222,9 @@ export const updateDoctor = `mutation UpdateDoctor($input: UpdateDoctorInput!) {
     sex
     consultingroom {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -235,6 +262,9 @@ export const deleteDoctor = `mutation DeleteDoctor($input: DeleteDoctorInput!) {
     sex
     consultingroom {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -412,8 +442,83 @@ export const deleteConfirmation = `mutation DeleteConfirmation($input: DeleteCon
   }
 }
 `;
-export const createMedicalConsultation = `mutation CreateMedicalConsultation($input: CreateMedicalConsultationInput!) {
-  createMedicalConsultation(input: $input) {
+export const createModule = `mutation CreateModule($input: CreateModuleInput!) {
+  createModule(input: $input) {
+    id
+    name
+    fields {
+      items {
+        id
+        name
+        required
+        module
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const updateModule = `mutation UpdateModule($input: UpdateModuleInput!) {
+  updateModule(input: $input) {
+    id
+    name
+    fields {
+      items {
+        id
+        name
+        required
+        module
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const deleteModule = `mutation DeleteModule($input: DeleteModuleInput!) {
+  deleteModule(input: $input) {
+    id
+    name
+    fields {
+      items {
+        id
+        name
+        required
+        module
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createField = `mutation CreateField($input: CreateFieldInput!) {
+  createField(input: $input) {
+    id
+    name
+    required
+    module
+  }
+}
+`;
+export const updateField = `mutation UpdateField($input: UpdateFieldInput!) {
+  updateField(input: $input) {
+    id
+    name
+    required
+    module
+  }
+}
+`;
+export const deleteField = `mutation DeleteField($input: DeleteFieldInput!) {
+  deleteField(input: $input) {
+    id
+    name
+    required
+    module
+  }
+}
+`;
+export const createMedicalAppointment = `mutation CreateMedicalAppointment($input: CreateMedicalAppointmentInput!) {
+  createMedicalAppointment(input: $input) {
     id
     location {
       id
@@ -488,8 +593,8 @@ export const createMedicalConsultation = `mutation CreateMedicalConsultation($in
   }
 }
 `;
-export const updateMedicalConsultation = `mutation UpdateMedicalConsultation($input: UpdateMedicalConsultationInput!) {
-  updateMedicalConsultation(input: $input) {
+export const updateMedicalAppointment = `mutation UpdateMedicalAppointment($input: UpdateMedicalAppointmentInput!) {
+  updateMedicalAppointment(input: $input) {
     id
     location {
       id
@@ -564,8 +669,8 @@ export const updateMedicalConsultation = `mutation UpdateMedicalConsultation($in
   }
 }
 `;
-export const deleteMedicalConsultation = `mutation DeleteMedicalConsultation($input: DeleteMedicalConsultationInput!) {
-  deleteMedicalConsultation(input: $input) {
+export const deleteMedicalAppointment = `mutation DeleteMedicalAppointment($input: DeleteMedicalAppointmentInput!) {
+  deleteMedicalAppointment(input: $input) {
     id
     location {
       id

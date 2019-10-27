@@ -26,12 +26,12 @@ export const listConsultingRoomsSecretary = `query ListConsultingRooms(
 }
 `;
 
-export const listMedicalConsultationsReports = `query ListMedicalConsultations(
-  $filter: ModelMedicalConsultationFilterInput
+export const listMedicalAppointmentReports = `query listMedicalAppointments(
+  $filter: ModelMedicalAppointmentsFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listMedicalConsultations(
+  listMedicalAppointments(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -42,12 +42,12 @@ export const listMedicalConsultationsReports = `query ListMedicalConsultations(
   }
 }`;
 
-export const listMedicalConsultations = `query ListMedicalConsultations(
-  $filter: ModelMedicalConsultationFilterInput
+export const listMedicalAppointments = `query listMedicalAppointments(
+  $filter: ModelMedicalAppointmentsFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listMedicalConsultations(
+  listMedicalAppointments(
     filter: $filter
     limit: $limit
     nextToken: $nextToken

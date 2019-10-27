@@ -4,9 +4,9 @@ import { MDBContainer, MDBCardHeader, MDBIcon, MDBMedia, MDBBtn, /* MDBInput, */
 import { API, graphqlOperation } from 'aws-amplify';
 
 import { getConsultingRoom } from '../../graphql/queries';
-import { listMedicalConsultations } from '../../graphql/queries';
+import { listMedicalAppointments } from '../../graphql/queries';
 
-import { createMedicalConsultation } from '../../graphql/mutations';
+import { createMedicalAppointment } from '../../graphql/mutations';
 import EnumState from './EnumState.ts'
 
 const updateByPropertyName = (propertyName, value) => () => ({
@@ -38,14 +38,14 @@ class ConsultingRoom extends Component {
       })).then( result =>{
           this.setState({ consultingRoom: result.data.getConsultingRoom})
 
-          API.graphql(graphqlOperation(listMedicalConsultations, {
+          API.graphql(graphqlOperation(listMedicalAppointments, {
               filter: {
                 secretary: {
                   eq: result.data.getConsultingRoom.secretary
                 }
               }
           })).then( result =>{
-              this.setState({ consultations: result.data.listMedicalConsultations.items})
+              this.setState({ consultations: result.data.listMedicalAppointments.items})
           }).catch( err => {
             console.log(err)
           });

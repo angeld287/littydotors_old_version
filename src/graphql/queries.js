@@ -4,6 +4,13 @@
 export const getConsultingRoom = `query GetConsultingRoom($id: ID!) {
   getConsultingRoom(id: $id) {
     id
+    modules {
+      items {
+        id
+        name
+      }
+      nextToken
+    }
     doctor {
       id
       name
@@ -41,6 +48,9 @@ export const listConsultingRooms = `query ListConsultingRooms(
   listConsultingRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -128,6 +138,9 @@ export const getDoctor = `query GetDoctor($id: ID!) {
     sex
     consultingroom {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -313,8 +326,66 @@ export const listConfirmations = `query ListConfirmations(
   }
 }
 `;
-export const getMedicalConsultation = `query GetMedicalConsultation($id: ID!) {
-  getMedicalConsultation(id: $id) {
+export const getModule = `query GetModule($id: ID!) {
+  getModule(id: $id) {
+    id
+    name
+    fields {
+      items {
+        id
+        name
+        required
+        module
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const listModules = `query ListModules(
+  $filter: ModelModuleFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listModules(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      fields {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getField = `query GetField($id: ID!) {
+  getField(id: $id) {
+    id
+    name
+    required
+    module
+  }
+}
+`;
+export const listFields = `query ListFields(
+  $filter: ModelFieldFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFields(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      required
+      module
+    }
+    nextToken
+  }
+}
+`;
+export const getMedicalAppointment = `query GetMedicalAppointment($id: ID!) {
+  getMedicalAppointment(id: $id) {
     id
     location {
       id
@@ -389,12 +460,12 @@ export const getMedicalConsultation = `query GetMedicalConsultation($id: ID!) {
   }
 }
 `;
-export const listMedicalConsultations = `query ListMedicalConsultations(
-  $filter: ModelMedicalConsultationFilterInput
+export const listMedicalAppointments = `query ListMedicalAppointments(
+  $filter: ModelMedicalAppointmentFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listMedicalConsultations(
+  listMedicalAppointments(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
