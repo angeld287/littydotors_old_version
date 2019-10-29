@@ -82,7 +82,7 @@ class Details extends Component {
 
     createNotification = (id, patient, doctor, secretary, state) => {
         const patientPhoneId = (this.props.ItemData !== null && this.props.ItemData.patient !== null) ? (this.props.ItemData.patient.phone_id) : (null);
-        const consult_date = (this.props.ItemData !== null) ? (this.props.ItemData.date_of_medical_consultation) : (null);
+        const consult_date = (this.props.ItemData !== null) ? (this.props.ItemData.date_of_medical_appointment) : (null);
         const date = moment(consult_date).format('YYYY-DD-MM')
         const object = {
                         medicalConsultationNotificationId: id,
@@ -133,7 +133,7 @@ class Details extends Component {
         const patientName = (this.props.ItemData !== null && this.props.ItemData.patient !== null) ? (this.props.ItemData.patient.name) : (null);
         const consult_details = (this.props.ItemData !== null) ? (this.props.ItemData.details) : (null);
         const id = (this.props.ItemData !== null) ? (this.props.ItemData.id) : (null);
-        const consult_date = (this.props.ItemData !== null) ? (this.props.ItemData.date_of_medical_consultation) : (null);
+        const consult_date = (this.props.ItemData !== null) ? (this.props.ItemData.date_of_medical_appointment) : (null);
         const patientUserName = (this.props.ItemData !== null && this.props.ItemData.patient !== null) ? (this.props.ItemData.patient.username) : (null);
         const patientPhone = (this.props.ItemData !== null && this.props.ItemData.patient !== null) ? (this.props.ItemData.patient.phone) : (null);
         const patientEmail = (this.props.ItemData !== null && this.props.ItemData.patient !== null) ? (this.props.ItemData.patient.email) : (null);

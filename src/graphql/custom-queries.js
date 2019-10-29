@@ -107,9 +107,9 @@ export const listMedicalAppointments = `query listMedicalAppointments(
       secretary
       details
       date_created
-      date_of_medical_consultation
+      date_of_medical_appointment
       state
-      consultation_position
+      position
       consult_cost
       read_secretary
       read_company

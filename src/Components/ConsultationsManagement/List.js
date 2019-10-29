@@ -59,7 +59,7 @@ class List extends Component {
             {!((this.props.childProps.state.user_roll === 'company')?(item.read_company):((this.props.childProps.state.user_roll === 'secretary')?(item.read_secretary):( null ) )) && <MDBIcon icon="bell" size="1x" className="red-text" />}
           </td>
           <td bgcolor={(selectedItem === i) ? ("#4285F4") : ("#fff")} style={(selectedItem === i) ? ({color:"#fff", width: "80%"}) : ({color:"#000", width: "80%"})} >
-            <small>{moment(item.date_of_medical_consultation).format('DD-MM')}   </small>
+            <small>{moment(item.date_of_medical_appointment).format('DD-MM')}   </small>
           </td>
         </tr>
     )):(<tr></tr>)

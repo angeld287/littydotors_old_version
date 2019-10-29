@@ -198,6 +198,7 @@ export const getPatient = `query GetPatient($id: ID!) {
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -218,6 +219,7 @@ export const listPatients = `query ListPatients(
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -411,6 +413,7 @@ export const getMedicalAppointment = `query GetMedicalAppointment($id: ID!) {
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -449,9 +452,9 @@ export const getMedicalAppointment = `query GetMedicalAppointment($id: ID!) {
     secretary
     details
     date_created
-    date_of_medical_consultation
+    date_of_medical_appointment
     state
-    consultation_position
+    position
     consult_cost
     read_secretary
     read_company
@@ -492,6 +495,7 @@ export const listMedicalAppointments = `query ListMedicalAppointments(
         username
         email
         phone
+        phone_id
         weight
         height
         size
@@ -514,9 +518,9 @@ export const listMedicalAppointments = `query ListMedicalAppointments(
       secretary
       details
       date_created
-      date_of_medical_consultation
+      date_of_medical_appointment
       state
-      consultation_position
+      position
       consult_cost
       read_secretary
       read_company

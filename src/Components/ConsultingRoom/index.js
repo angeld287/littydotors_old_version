@@ -75,7 +75,7 @@ class ConsultingRoom extends Component {
           medicalConsultationDoctorId: this.state.consultingRoom.doctor.id,
           secretary: this.state.consultingRoom.secretary,
           details: this.state.details,
-          date_of_medical_consultation: "undefined",
+          date_of_medical_appointment: "undefined",
           state: EnumState.INSERTED
         }
     }
@@ -97,7 +97,7 @@ class ConsultingRoom extends Component {
                 <td>1</td>
                 <td>{item.secretary}</td>
                 <td>{item.state}</td>
-                <td>{item.date_of_medical_consultation}</td>
+                <td>{item.date_of_medical_appointment}</td>
             </tr>
     )
 

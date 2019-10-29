@@ -299,6 +299,7 @@ export const createPatient = `mutation CreatePatient($input: CreatePatientInput!
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -314,6 +315,7 @@ export const updatePatient = `mutation UpdatePatient($input: UpdatePatientInput!
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -329,6 +331,7 @@ export const deletePatient = `mutation DeletePatient($input: DeletePatientInput!
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -544,6 +547,7 @@ export const createMedicalAppointment = `mutation CreateMedicalAppointment($inpu
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -582,9 +586,9 @@ export const createMedicalAppointment = `mutation CreateMedicalAppointment($inpu
     secretary
     details
     date_created
-    date_of_medical_consultation
+    date_of_medical_appointment
     state
-    consultation_position
+    position
     consult_cost
     read_secretary
     read_company
@@ -620,6 +624,7 @@ export const updateMedicalAppointment = `mutation UpdateMedicalAppointment($inpu
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -658,9 +663,9 @@ export const updateMedicalAppointment = `mutation UpdateMedicalAppointment($inpu
     secretary
     details
     date_created
-    date_of_medical_consultation
+    date_of_medical_appointment
     state
-    consultation_position
+    position
     consult_cost
     read_secretary
     read_company
@@ -696,6 +701,7 @@ export const deleteMedicalAppointment = `mutation DeleteMedicalAppointment($inpu
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -734,9 +740,9 @@ export const deleteMedicalAppointment = `mutation DeleteMedicalAppointment($inpu
     secretary
     details
     date_created
-    date_of_medical_consultation
+    date_of_medical_appointment
     state
-    consultation_position
+    position
     consult_cost
     read_secretary
     read_company

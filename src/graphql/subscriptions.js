@@ -31,6 +31,7 @@ export const onCreateMedicalAppointment = `subscription OnCreateMedicalAppointme
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -69,9 +70,9 @@ export const onCreateMedicalAppointment = `subscription OnCreateMedicalAppointme
     secretary
     details
     date_created
-    date_of_medical_consultation
+    date_of_medical_appointment
     state
-    consultation_position
+    position
     consult_cost
     read_secretary
     read_company
@@ -119,6 +120,7 @@ export const onUpdateMedicalAppointment = `subscription OnUpdateMedicalAppointme
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -157,9 +159,9 @@ export const onUpdateMedicalAppointment = `subscription OnUpdateMedicalAppointme
     secretary
     details
     date_created
-    date_of_medical_consultation
+    date_of_medical_appointment
     state
-    consultation_position
+    position
     consult_cost
     read_secretary
     read_company
@@ -466,6 +468,7 @@ export const onCreatePatient = `subscription OnCreatePatient {
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -481,6 +484,7 @@ export const onUpdatePatient = `subscription OnUpdatePatient {
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -496,6 +500,7 @@ export const onDeletePatient = `subscription OnDeletePatient {
     username
     email
     phone
+    phone_id
     weight
     height
     size
