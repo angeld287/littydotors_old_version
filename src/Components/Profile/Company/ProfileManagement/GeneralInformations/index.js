@@ -9,7 +9,7 @@ class GeneralInformations extends Component {
     super(props);
 
     this.state={
-      collapseID: "collapse1"
+      collapseID: ""
     }
   }
 

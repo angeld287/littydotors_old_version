@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-/* import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCardTitle, MDBCardText, MDBTabPane, MDBTabContent,
-MDBNav, MDBNavItem, MDBIcon, MDBBtn } from "mdbreact"; */
+import { MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCardTitle, MDBCardText, MDBTabPane, MDBTabContent,
+MDBNav, MDBNavItem, MDBIcon, MDBBtn } from "mdbreact";
 
 import GeneralInformations from './ProfileManagement/GeneralInformations';
 import PaymentInformation from './ProfileManagement/PaymentInformations';
 import SubscriptionManagement from './ProfileManagement/SubscriptionManagement';
+import Card from './ProfileManagement/CustomConfiguration';
 
 class CompanyUserProfile extends Component {
   constructor(props) {
@@ -53,14 +54,7 @@ render() {
       subsmanage = <SubscriptionManagement childProps={this.props.childProps} subscriptionData={this.state.subscriptionData}/>;
     }
     return (
-      <GeneralInformations childProps={this.props.childProps}/>
-    );
-  }
-}
-
-export default CompanyUserProfile;
-
-{/* <MDBContainer fluid>
+      <MDBContainer fluid>
         <MDBRow>
           <MDBCol md="3">
             <MDBNav pills color="primary" className="flex-column">
@@ -88,6 +82,12 @@ export default CompanyUserProfile;
                   <MDBIcon icon="address-card" className="ml-2" />
                 </MDBBtn>
               </MDBNavItem>
+              <MDBNavItem>
+                <MDBBtn disabled={!subscribed} readOnly style={{width: 300}} color="primary" className={this.state.activeItemVerticalPills==="5" ? "active" : "" } onClick={this.toggleVerticalPills("5")}>
+                  Configuraciones de Modulos
+                  <MDBIcon icon="address-card" className="ml-2" />
+                </MDBBtn>
+              </MDBNavItem>
             </MDBNav>
           </MDBCol>
           <MDBCol md="9">
@@ -109,7 +109,15 @@ export default CompanyUserProfile;
               <MDBTabPane tabId="4">
                 {subsmanage}
               </MDBTabPane>
+              <MDBTabPane tabId="5">
+                <Card childProps={this.props.childProps}/>
+              </MDBTabPane>
             </MDBTabContent>
           </MDBCol>
         </MDBRow>
-      </MDBContainer> */}
+      </MDBContainer>
+    );
+  }
+}
+
+export default CompanyUserProfile;

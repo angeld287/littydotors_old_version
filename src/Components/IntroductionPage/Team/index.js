@@ -26,6 +26,12 @@ const TeamPage = () => {
                 Manuel Santana
               </h4>
               <h6 className="text-uppercase grey-text mb-3">AWS Infraestructure Manager</h6>
+              <MDBBtn target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/maanusf/" tag="a" floating size="sm" className="mx-1 mb-0 btn-tw">
+                <MDBIcon fab icon="instagram" />
+              </MDBBtn>
+              <MDBBtn target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/maansf" tag="a" floating size="sm" className="mx-1 mb-0 btn-fb">
+                <MDBIcon fab icon="facebook-f" />
+              </MDBBtn>
             </MDBCol>
 
             <MDBCol md="4" className="mb-md-0 mb-5">
