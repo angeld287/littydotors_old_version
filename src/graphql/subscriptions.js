@@ -177,6 +177,8 @@ export const onCreateConsultingRoom = `subscription OnCreateConsultingRoom {
       items {
         id
         name
+        image
+        description
       }
       nextToken
     }
@@ -216,6 +218,8 @@ export const onUpdateConsultingRoom = `subscription OnUpdateConsultingRoom {
       items {
         id
         name
+        image
+        description
       }
       nextToken
     }
@@ -255,6 +259,8 @@ export const onDeleteConsultingRoom = `subscription OnDeleteConsultingRoom {
       items {
         id
         name
+        image
+        description
       }
       nextToken
     }
@@ -622,11 +628,11 @@ export const onCreateModule = `subscription OnCreateModule {
       items {
         id
         name
-        required
-        module
       }
       nextToken
     }
+    image
+    description
   }
 }
 `;
@@ -638,11 +644,11 @@ export const onUpdateModule = `subscription OnUpdateModule {
       items {
         id
         name
-        required
-        module
       }
       nextToken
     }
+    image
+    description
   }
 }
 `;
@@ -654,11 +660,11 @@ export const onDeleteModule = `subscription OnDeleteModule {
       items {
         id
         name
-        required
-        module
       }
       nextToken
     }
+    image
+    description
   }
 }
 `;
@@ -666,8 +672,6 @@ export const onCreateField = `subscription OnCreateField {
   onCreateField {
     id
     name
-    required
-    module
   }
 }
 `;
@@ -675,8 +679,6 @@ export const onUpdateField = `subscription OnUpdateField {
   onUpdateField {
     id
     name
-    required
-    module
   }
 }
 `;
@@ -684,8 +686,45 @@ export const onDeleteField = `subscription OnDeleteField {
   onDeleteField {
     id
     name
+  }
+}
+`;
+export const onCreateDoctorCustomFieldProps = `subscription OnCreateDoctorCustomFieldProps {
+  onCreateDoctorCustomFieldProps {
+    id
+    name
     required
-    module
+    visible
+    field {
+      id
+      name
+    }
+  }
+}
+`;
+export const onUpdateDoctorCustomFieldProps = `subscription OnUpdateDoctorCustomFieldProps {
+  onUpdateDoctorCustomFieldProps {
+    id
+    name
+    required
+    visible
+    field {
+      id
+      name
+    }
+  }
+}
+`;
+export const onDeleteDoctorCustomFieldProps = `subscription OnDeleteDoctorCustomFieldProps {
+  onDeleteDoctorCustomFieldProps {
+    id
+    name
+    required
+    visible
+    field {
+      id
+      name
+    }
   }
 }
 `;

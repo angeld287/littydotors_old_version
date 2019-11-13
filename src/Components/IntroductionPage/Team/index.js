@@ -2,7 +2,7 @@ import React from "react";
 import {  MDBRow, MDBCol, MDBCard, MDBAvatar, MDBCardBody, MDBIcon, MDBBtn } from "mdbreact";
 
 import developer from '../../../images/angel-angeles.png';
-import graphic_designer from '../../../images/angel-ramos.jpg';
+import graphic_designer from '../../../images/angel-ramos.jpeg';
 import aws_infraestructure_manager from '../../../images/manuel-santana.png';
 
 const TeamPage = () => {

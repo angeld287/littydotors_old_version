@@ -8,6 +8,8 @@ export const createConsultingRoom = `mutation CreateConsultingRoom($input: Creat
       items {
         id
         name
+        image
+        description
       }
       nextToken
     }
@@ -47,6 +49,8 @@ export const updateConsultingRoom = `mutation UpdateConsultingRoom($input: Updat
       items {
         id
         name
+        image
+        description
       }
       nextToken
     }
@@ -86,6 +90,8 @@ export const deleteConsultingRoom = `mutation DeleteConsultingRoom($input: Delet
       items {
         id
         name
+        image
+        description
       }
       nextToken
     }
@@ -453,11 +459,11 @@ export const createModule = `mutation CreateModule($input: CreateModuleInput!) {
       items {
         id
         name
-        required
-        module
       }
       nextToken
     }
+    image
+    description
   }
 }
 `;
@@ -469,11 +475,11 @@ export const updateModule = `mutation UpdateModule($input: UpdateModuleInput!) {
       items {
         id
         name
-        required
-        module
       }
       nextToken
     }
+    image
+    description
   }
 }
 `;
@@ -485,11 +491,11 @@ export const deleteModule = `mutation DeleteModule($input: DeleteModuleInput!) {
       items {
         id
         name
-        required
-        module
       }
       nextToken
     }
+    image
+    description
   }
 }
 `;
@@ -497,8 +503,6 @@ export const createField = `mutation CreateField($input: CreateFieldInput!) {
   createField(input: $input) {
     id
     name
-    required
-    module
   }
 }
 `;
@@ -506,8 +510,6 @@ export const updateField = `mutation UpdateField($input: UpdateFieldInput!) {
   updateField(input: $input) {
     id
     name
-    required
-    module
   }
 }
 `;
@@ -515,8 +517,51 @@ export const deleteField = `mutation DeleteField($input: DeleteFieldInput!) {
   deleteField(input: $input) {
     id
     name
+  }
+}
+`;
+export const createDoctorCustomFieldProps = `mutation CreateDoctorCustomFieldProps(
+  $input: CreateDoctorCustomFieldPropsInput!
+) {
+  createDoctorCustomFieldProps(input: $input) {
+    id
+    name
     required
-    module
+    visible
+    field {
+      id
+      name
+    }
+  }
+}
+`;
+export const updateDoctorCustomFieldProps = `mutation UpdateDoctorCustomFieldProps(
+  $input: UpdateDoctorCustomFieldPropsInput!
+) {
+  updateDoctorCustomFieldProps(input: $input) {
+    id
+    name
+    required
+    visible
+    field {
+      id
+      name
+    }
+  }
+}
+`;
+export const deleteDoctorCustomFieldProps = `mutation DeleteDoctorCustomFieldProps(
+  $input: DeleteDoctorCustomFieldPropsInput!
+) {
+  deleteDoctorCustomFieldProps(input: $input) {
+    id
+    name
+    required
+    visible
+    field {
+      id
+      name
+    }
   }
 }
 `;

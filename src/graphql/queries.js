@@ -8,6 +8,8 @@ export const getConsultingRoom = `query GetConsultingRoom($id: ID!) {
       items {
         id
         name
+        image
+        description
       }
       nextToken
     }
@@ -336,11 +338,11 @@ export const getModule = `query GetModule($id: ID!) {
       items {
         id
         name
-        required
-        module
       }
       nextToken
     }
+    image
+    description
   }
 }
 `;
@@ -356,6 +358,8 @@ export const listModules = `query ListModules(
       fields {
         nextToken
       }
+      image
+      description
     }
     nextToken
   }
@@ -365,8 +369,6 @@ export const getField = `query GetField($id: ID!) {
   getField(id: $id) {
     id
     name
-    required
-    module
   }
 }
 `;
@@ -379,8 +381,43 @@ export const listFields = `query ListFields(
     items {
       id
       name
+    }
+    nextToken
+  }
+}
+`;
+export const getDoctorCustomFieldProps = `query GetDoctorCustomFieldProps($id: ID!) {
+  getDoctorCustomFieldProps(id: $id) {
+    id
+    name
+    required
+    visible
+    field {
+      id
+      name
+    }
+  }
+}
+`;
+export const listDoctorCustomFieldPropss = `query ListDoctorCustomFieldPropss(
+  $filter: ModelDoctorCustomFieldPropsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDoctorCustomFieldPropss(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      name
       required
-      module
+      visible
+      field {
+        id
+        name
+      }
     }
     nextToken
   }

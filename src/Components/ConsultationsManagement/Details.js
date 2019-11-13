@@ -49,10 +49,10 @@ class Details extends Component {
             if(this.state.insertedCost === "" || this.state.insertedCost === null){
                 alert("debe ingregar el costo")
             }else{
-                this.props.updateMedicalConsultationData({id: id, state: state}, "state");
+                this.props.updateMedicalAppointmentData({id: id, state: state}, "state");
             }
         }else{
-            this.props.updateMedicalConsultationData({id: id, state: state}, "state");
+            this.props.updateMedicalAppointmentData({id: id, state: state}, "state");
         }
     }
 

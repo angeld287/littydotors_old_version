@@ -5,16 +5,21 @@ MDBNav, MDBNavItem, MDBIcon, MDBBtn } from "mdbreact";
 import GeneralInformations from './ProfileManagement/GeneralInformations';
 import PaymentInformation from './ProfileManagement/PaymentInformations';
 import SubscriptionManagement from './ProfileManagement/SubscriptionManagement';
-import Card from './ProfileManagement/CustomConfiguration';
+import Modal from './ProfileManagement/CustomConfiguration/';
+import { listModules } from '../../../graphql/queries';
+import { API, graphqlOperation } from 'aws-amplify';
+import Card from './ProfileManagement/CustomConfiguration/Card'
 
 class CompanyUserProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activeItemVerticalPills: "1",
-      subscriptionData: null
+      subscriptionData: null,
+      listModules: null
     }
     this.GetSubscriptionData = this.GetSubscriptionData.bind(this)
+    this.GetModulesList = this.GetModulesList.bind(this)
   }
 
 
@@ -26,7 +31,16 @@ toggleVerticalPills = tab => () => {
     if(tab === '4' && this.state.subscriptionData === null){
       this.GetSubscriptionData();
     }
+    if(tab === '5'){
+      this.GetModulesList();
+    }
   }
+}
+
+GetModulesList = () => {
+  API.graphql(graphqlOperation(listModules)).then( result =>{
+    this.setState({listModules: result.data.listModules.items});
+  })
 }
 
 GetSubscriptionData = () => {
@@ -53,6 +67,14 @@ render() {
     if (this.state.subscriptionData !== null) {
       subsmanage = <SubscriptionManagement childProps={this.props.childProps} subscriptionData={this.state.subscriptionData}/>;
     }
+
+    const { listModules } = this.state;
+
+    const childProps = {
+      ...this.props.childProps,
+      listModules
+    }
+
     return (
       <MDBContainer fluid>
         <MDBRow>
@@ -110,7 +132,7 @@ render() {
                 {subsmanage}
               </MDBTabPane>
               <MDBTabPane tabId="5">
-                <Card childProps={this.props.childProps}/>
+                <Modal childProps={childProps} />
               </MDBTabPane>
             </MDBTabContent>
           </MDBCol>

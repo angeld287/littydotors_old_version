@@ -162,16 +162,31 @@ type Module
     @auth(rules: [
         # Defaults to use the "owner" field.
         { allow: owner },
-        
+        { allow: groups, groups: ["company"], operations: [read] },
         { allow: groups, groups: ["client"], operations: [read] },
         { allow: groups, groups: ["secretary"], operations: [read] },
     ]) {
     id: ID!
     name: String
     fields: [Field] @connection
+    image: String
+    description: String
 }
 
 type Field
+    @model 
+    @auth(rules: [
+        { allow: groups, groups: ["admin"] },
+        { allow: groups, groups: ["client"], operations: [read] },
+        { allow: groups, groups: ["secretary"], operations: [read] },
+        { allow: groups, groups: ["company"], operations: [read] },
+    ]) {
+    id: ID!
+    name: String
+    #module: Module @connection
+}
+
+type DoctorCustomFieldProps
     @model 
     @auth(rules: [
         # Defaults to use the "owner" field.
@@ -183,7 +198,8 @@ type Field
     id: ID!
     name: String
     required: Boolean
-    module: String
+    visible: Boolean
+    field: Field @connection
 }
 
 type MedicalAppointment

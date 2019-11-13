@@ -6,6 +6,8 @@ import PricingPlans from './PricingPlans';
 import TeamPage from './Team';
 import ContactPage from './ContactUs';
 
+import iphones from './../../images/iphones.png';
+
 class IntroductionPage extends Component {
   state = {
     collapsed: false
@@ -90,7 +92,7 @@ class IntroductionPage extends Component {
                 </div>
                 <MDBCol md="6" xl="5" className="mt-xl-5">
                   <img
-                    src="https://mdbootstrap.com/img/Mockups/Transparent/Small/admin-new.png"
+                    src={iphones}
                     alt=""
                     className="img-fluid"
                   />

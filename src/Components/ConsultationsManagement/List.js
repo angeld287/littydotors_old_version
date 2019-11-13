@@ -29,11 +29,11 @@ class List extends Component {
     this.props.ActiveElement(item, i);
     if (this.props.childProps.state.user_roll === 'company') {
       if (item.read_company === false) {
-        this.props.updateMedicalConsultationData({id: item.id, read_company: true}, "read"); 
+        this.props.updateMedicalAppointmentData({id: item.id, read_company: true}, "read"); 
       }
     }else if (this.props.childProps.state.user_roll === 'secretary') {
       if (item.read_secretary === false) {
-        this.props.updateMedicalConsultationData({id: item.id, read_secretary: true}, "read"); 
+        this.props.updateMedicalAppointmentData({id: item.id, read_secretary: true}, "read"); 
       }
     }
   }

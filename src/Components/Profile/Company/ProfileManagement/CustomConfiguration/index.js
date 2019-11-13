@@ -1,123 +1,75 @@
-import React, { Component } from 'react';
-import {Container, MDBCard, MDBCol, MDBRow, MDBCardBody } from 'mdbreact';
+import React, { Component } from 'react';
+import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBCol, MDBRow } from
+'mdbreact';
+import Card from './Card'
 
-import ModuleTable from './ModuleTable';
-
-import { MDBInput, MDBBtn } from 'mdbreact';
-
-class Card extends Component {
-    constructor(props) {
-        super(props);   
-        this.state = {
-            fields:[{
-                id: "idfecha",
-                field: "fecha",
-                required: false,
-                visible: false
-            },
-            {
-                id: "idposicion",
-                field: "posicion",
-                required: false,
-                visible: false
-            },
-            {
-                id: "idcosto",
-                field: "costo",
-                required: false,
-                visible: false
-            }]
-        }
-    }
-
-    updateFild = (n, id) => {
-
-        const field = this.state.fields.find(f => f.id === id);
-        this.state.fields.splice(this.state.fields.findIndex(f => f.id === id), 1);
-
-        if(n === 1){
-            field.visible= !field.visible;
-        }else if(n === 2){
-            field.required= !field.required;
+class ModalPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            OpenModal: false,
+            item: null,
         }
-        
-        const fields = [
-          ...this.state.fields,
-          field
-        ]
-        this.setState({ fields });
-    }
-
-    saveChanges = () => {
-        console.log(this.state.fields)
+        this.toggleOpen = this.toggleOpen.bind(this)
+        this.toggleClose = this.toggleClose.bind(this)
     }
 
-    render(){
-       
-             const columns = [
-                {
-                'label': 'Campo',
-                'field': 'campo',
-                'sort': 'asc'
-                },
-                {
-                'label': 'Visible',
-                'field': 'visible',
-                'sort': 'asc'
-                },
-                {
-                'label': 'Requerido',
-                'field': 'required',
-                'sort': 'asc'
-                }
-            ];
-
-            const { fields } = this.state;
-
-            const rows = [];
-
-            [].concat(fields)
-                .sort((a, b) => {
-                    if(a.field > b.field){return 1}
-                    if(a.field < b.field){return -1}
-                    return 0
-                })
-                .map((field,i)=> 
-                    {
-                        const row = {
-                            'field': field.field,
-                            'visible': <MDBInput label=" " type="checkbox" id={"visible"+i} onChange={() => {this.updateFild(1,field.id)}}/>,
-                            'required': <MDBInput label=" " type="checkbox" id={"required"+i} disabled={!field.visible} onChange={() => {this.updateFild(2,field.id)}}/>,
-                        }
-
-                        rows.push(row);
-                    }
-                );
-
-        const childProps = {
-            ...this.props.childProps,
-            columns,
-            rows
-        };
-
-        return (
-                <Container>
-                    <MDBRow>
-                        <MDBCol md="9">
-                            <MDBCard>
-                                <MDBCardBody>
-                                    <h1 className="align-middle">Modulo de Citas</h1>
-                                    <ModuleTable childProps={childProps}/>
-                                    <MDBBtn color="primary" onClick={this.saveChanges}>Primary</MDBBtn>
-                                </MDBCardBody>
-                            </MDBCard>
-                        </MDBCol>
-                    </MDBRow>
-                </Container>
-            )
-    }
+toggleOpen = (item) => {
+    this.setState({item: item, OpenModal: true})
 }
 
-    
+toggleClose = () => {
+    this.setState({item: null, OpenModal: false})
+}
 
-export default Card;
+render() {
+    const { item } = this.state;
+    const name = (item != null) ? item.name : "no data"
+  return (
+      <MDBContainer>
+        <Card childProps={this.props.childProps} toggleOpen={this.toggleOpen} toggleClose={this.toggleClose}/>
+
+        <MDBModal isOpen={this.state.OpenModal} toggle={this.toggleClose}>
+          <MDBModalHeader toggle={this.toggleClose}>MDBModal title</MDBModalHeader>
+
+          <MDBModalBody>
+            <MDBContainer fluid className="text-white">
+              <MDBRow>
+                <MDBCol md="4" className="bg-info">.col-md-4</MDBCol>
+                <MDBCol md="4" className="ml-auto bg-info">{name}</MDBCol>
+              </MDBRow>
+              <br />
+              <MDBRow>
+                <MDBCol md="3" className="ml-auto bg-info">.col-md-3 .ml-auto</MDBCol>
+                <MDBCol md="2" className="ml-auto bg-info">.col-md-2 .ml-auto</MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol md="6" className="ml-5 bg-info">.col-md-6 .ml-5</MDBCol>
+              </MDBRow>
+              <br />
+              <MDBRow>
+                <MDBCol sm="9" className="bg-info">
+                  Level 1: .col-sm-9
+                  <MDBRow>
+                    <MDBCol sm="6" className="bg-info">
+                      Level 2: .col-8 .col-sm-6
+                    </MDBCol>
+                    <MDBCol sm="6" className="bg-info">
+                      Level 2: .col-4 .col-sm-6
+                    </MDBCol>
+                  </MDBRow>
+                </MDBCol>
+              </MDBRow>
+            </MDBContainer>
+          </MDBModalBody>
+          <MDBModalFooter>
+            <MDBBtn color="secondary" onClick={this.toggleClose}>Close</MDBBtn>
+            <MDBBtn color="primary">Save changes</MDBBtn>
+          </MDBModalFooter>
+        </MDBModal>
+      </MDBContainer>
+    );
+  }
+}
+
+export default ModalPage;
