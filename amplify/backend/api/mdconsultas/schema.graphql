@@ -10,6 +10,7 @@ type ConsultingRoom
         { allow: groups, groups: ["client"], operations: [read] }
     ]) {
     id: ID!
+    modules: [Module] @connection
     doctor: Doctor @connection
     stripe: Stripe @connection
     secretary: String!
@@ -77,6 +78,7 @@ type Patient
     username: String!
     email: String!
     phone: String!
+    phone_id: String
     weight: String
     height: String
     size: String
@@ -155,7 +157,66 @@ type Confirmation
     id: ID!
 }
 
-type MedicalConsultation 
+type Module
+    @model 
+    @auth(rules: [
+        # Defaults to use the "owner" field.
+        { allow: owner },
+        { allow: groups, groups: ["company"], operations: [read] },
+        { allow: groups, groups: ["client"], operations: [read] },
+        { allow: groups, groups: ["secretary"], operations: [read] },
+    ]) {
+    id: ID!
+    name: String
+    fields: [Field] @connection
+    image: String
+    description: String
+}
+
+type DoctorCustomModuleProps
+    @model 
+    @auth(rules: [
+        # Defaults to use the "owner" field.
+        { allow: owner },
+        { allow: groups, groups: ["company"], operations: [read] },
+        { allow: groups, groups: ["client"], operations: [read] },
+        { allow: groups, groups: ["secretary"], operations: [read] },
+    ]) {
+    id: ID!
+    active: Boolean
+    module: Module @connection
+}
+
+type Field
+    @model 
+    @auth(rules: [
+        { allow: groups, groups: ["admin"] },
+        { allow: groups, groups: ["client"], operations: [read] },
+        { allow: groups, groups: ["secretary"], operations: [read] },
+        { allow: groups, groups: ["company"], operations: [read] },
+    ]) {
+    id: ID!
+    name: String
+    #module: Module @connection
+}
+
+type DoctorCustomFieldProps
+    @model 
+    @auth(rules: [
+        # Defaults to use the "owner" field.
+        { allow: owner },
+        
+        { allow: groups, groups: ["client"], operations: [read] },
+        { allow: groups, groups: ["secretary"], operations: [read] },
+    ]) {
+    id: ID!
+    name: String
+    required: Boolean
+    visible: Boolean
+    field: Field @connection
+}
+
+type MedicalAppointment
     @model(subscriptions: null)
     @auth(rules: [
         # Defaults to use the "owner" field.
@@ -180,9 +241,9 @@ type MedicalConsultation
     secretary: String
     details: String
     date_created: String
-    date_of_medical_consultation: String
+    date_of_medical_appointment: String
     state: State
-    consultation_position: Int
+    position: Int
     consult_cost: String
     read_secretary: Boolean
     read_company: Boolean
@@ -191,8 +252,8 @@ type MedicalConsultation
 }
 
 type Subscription {
-  onCreateMedicalConsultation(doctorname: String, secretary: String): MedicalConsultation @aws_subscribe(mutations: ["createMedicalConsultation"])
-  onUpdateMedicalConsultation(read_secretary: Boolean, read_company: Boolean, read_client: Boolean, doctorname: String, secretary: String): MedicalConsultation @aws_subscribe(mutations: ["updateMedicalConsultation"])
+  onCreateMedicalAppointment(doctorname: String, secretary: String): MedicalAppointment @aws_subscribe(mutations: ["createMedicalAppointment"])
+  onUpdateMedicalAppointment(read_secretary: Boolean, read_company: Boolean, read_client: Boolean, doctorname: String, secretary: String): MedicalAppointment @aws_subscribe(mutations: ["updateMedicalAppointment"])
 }
 
 enum State { INSERTED APPROVED CONFIRMED PRESENT IN_PROCESS FINISHED REJECTED CANCELED}

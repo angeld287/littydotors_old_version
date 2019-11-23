@@ -26,12 +26,12 @@ export const listConsultingRoomsSecretary = `query ListConsultingRooms(
 }
 `;
 
-export const listMedicalConsultationsReports = `query ListMedicalConsultations(
-  $filter: ModelMedicalConsultationFilterInput
+export const listMedicalAppointmentReports = `query listMedicalAppointments(
+  $filter: ModelMedicalAppointmentFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listMedicalConsultations(
+  listMedicalAppointments(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -42,12 +42,12 @@ export const listMedicalConsultationsReports = `query ListMedicalConsultations(
   }
 }`;
 
-export const listMedicalConsultations = `query ListMedicalConsultations(
-  $filter: ModelMedicalConsultationFilterInput
+export const listMedicalAppointments = `query listMedicalAppointments(
+  $filter: ModelMedicalAppointmentFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listMedicalConsultations(
+  listMedicalAppointments(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -107,9 +107,9 @@ export const listMedicalConsultations = `query ListMedicalConsultations(
       secretary
       details
       date_created
-      date_of_medical_consultation
+      date_of_medical_appointment
       state
-      consultation_position
+      position
       consult_cost
       read_secretary
       read_company

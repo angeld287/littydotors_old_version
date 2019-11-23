@@ -4,6 +4,15 @@
 export const getConsultingRoom = `query GetConsultingRoom($id: ID!) {
   getConsultingRoom(id: $id) {
     id
+    modules {
+      items {
+        id
+        name
+        image
+        description
+      }
+      nextToken
+    }
     doctor {
       id
       name
@@ -41,6 +50,9 @@ export const listConsultingRooms = `query ListConsultingRooms(
   listConsultingRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -128,6 +140,9 @@ export const getDoctor = `query GetDoctor($id: ID!) {
     sex
     consultingroom {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -185,6 +200,7 @@ export const getPatient = `query GetPatient($id: ID!) {
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -205,6 +221,7 @@ export const listPatients = `query ListPatients(
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -313,8 +330,141 @@ export const listConfirmations = `query ListConfirmations(
   }
 }
 `;
-export const getMedicalConsultation = `query GetMedicalConsultation($id: ID!) {
-  getMedicalConsultation(id: $id) {
+export const getModule = `query GetModule($id: ID!) {
+  getModule(id: $id) {
+    id
+    name
+    fields {
+      items {
+        id
+        name
+      }
+      nextToken
+    }
+    image
+    description
+  }
+}
+`;
+export const listModules = `query ListModules(
+  $filter: ModelModuleFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listModules(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+    nextToken
+  }
+}
+`;
+export const getDoctorCustomModuleProps = `query GetDoctorCustomModuleProps($id: ID!) {
+  getDoctorCustomModuleProps(id: $id) {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
+export const listDoctorCustomModulePropss = `query ListDoctorCustomModulePropss(
+  $filter: ModelDoctorCustomModulePropsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDoctorCustomModulePropss(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      active
+      module {
+        id
+        name
+        image
+        description
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getField = `query GetField($id: ID!) {
+  getField(id: $id) {
+    id
+    name
+  }
+}
+`;
+export const listFields = `query ListFields(
+  $filter: ModelFieldFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFields(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+    }
+    nextToken
+  }
+}
+`;
+export const getDoctorCustomFieldProps = `query GetDoctorCustomFieldProps($id: ID!) {
+  getDoctorCustomFieldProps(id: $id) {
+    id
+    name
+    required
+    visible
+    field {
+      id
+      name
+    }
+  }
+}
+`;
+export const listDoctorCustomFieldPropss = `query ListDoctorCustomFieldPropss(
+  $filter: ModelDoctorCustomFieldPropsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDoctorCustomFieldPropss(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      name
+      required
+      visible
+      field {
+        id
+        name
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getMedicalAppointment = `query GetMedicalAppointment($id: ID!) {
+  getMedicalAppointment(id: $id) {
     id
     location {
       id
@@ -340,6 +490,7 @@ export const getMedicalConsultation = `query GetMedicalConsultation($id: ID!) {
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -378,9 +529,9 @@ export const getMedicalConsultation = `query GetMedicalConsultation($id: ID!) {
     secretary
     details
     date_created
-    date_of_medical_consultation
+    date_of_medical_appointment
     state
-    consultation_position
+    position
     consult_cost
     read_secretary
     read_company
@@ -389,12 +540,12 @@ export const getMedicalConsultation = `query GetMedicalConsultation($id: ID!) {
   }
 }
 `;
-export const listMedicalConsultations = `query ListMedicalConsultations(
-  $filter: ModelMedicalConsultationFilterInput
+export const listMedicalAppointments = `query ListMedicalAppointments(
+  $filter: ModelMedicalAppointmentFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listMedicalConsultations(
+  listMedicalAppointments(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -421,6 +572,7 @@ export const listMedicalConsultations = `query ListMedicalConsultations(
         username
         email
         phone
+        phone_id
         weight
         height
         size
@@ -443,9 +595,9 @@ export const listMedicalConsultations = `query ListMedicalConsultations(
       secretary
       details
       date_created
-      date_of_medical_consultation
+      date_of_medical_appointment
       state
-      consultation_position
+      position
       consult_cost
       read_secretary
       read_company

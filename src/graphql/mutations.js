@@ -4,6 +4,15 @@
 export const createConsultingRoom = `mutation CreateConsultingRoom($input: CreateConsultingRoomInput!) {
   createConsultingRoom(input: $input) {
     id
+    modules {
+      items {
+        id
+        name
+        image
+        description
+      }
+      nextToken
+    }
     doctor {
       id
       name
@@ -36,6 +45,15 @@ export const createConsultingRoom = `mutation CreateConsultingRoom($input: Creat
 export const updateConsultingRoom = `mutation UpdateConsultingRoom($input: UpdateConsultingRoomInput!) {
   updateConsultingRoom(input: $input) {
     id
+    modules {
+      items {
+        id
+        name
+        image
+        description
+      }
+      nextToken
+    }
     doctor {
       id
       name
@@ -68,6 +86,15 @@ export const updateConsultingRoom = `mutation UpdateConsultingRoom($input: Updat
 export const deleteConsultingRoom = `mutation DeleteConsultingRoom($input: DeleteConsultingRoomInput!) {
   deleteConsultingRoom(input: $input) {
     id
+    modules {
+      items {
+        id
+        name
+        image
+        description
+      }
+      nextToken
+    }
     doctor {
       id
       name
@@ -161,6 +188,9 @@ export const createDoctor = `mutation CreateDoctor($input: CreateDoctorInput!) {
     sex
     consultingroom {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -198,6 +228,9 @@ export const updateDoctor = `mutation UpdateDoctor($input: UpdateDoctorInput!) {
     sex
     consultingroom {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -235,6 +268,9 @@ export const deleteDoctor = `mutation DeleteDoctor($input: DeleteDoctorInput!) {
     sex
     consultingroom {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -269,6 +305,7 @@ export const createPatient = `mutation CreatePatient($input: CreatePatientInput!
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -284,6 +321,7 @@ export const updatePatient = `mutation UpdatePatient($input: UpdatePatientInput!
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -299,6 +337,7 @@ export const deletePatient = `mutation DeletePatient($input: DeletePatientInput!
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -412,8 +451,176 @@ export const deleteConfirmation = `mutation DeleteConfirmation($input: DeleteCon
   }
 }
 `;
-export const createMedicalConsultation = `mutation CreateMedicalConsultation($input: CreateMedicalConsultationInput!) {
-  createMedicalConsultation(input: $input) {
+export const createModule = `mutation CreateModule($input: CreateModuleInput!) {
+  createModule(input: $input) {
+    id
+    name
+    fields {
+      items {
+        id
+        name
+      }
+      nextToken
+    }
+    image
+    description
+  }
+}
+`;
+export const updateModule = `mutation UpdateModule($input: UpdateModuleInput!) {
+  updateModule(input: $input) {
+    id
+    name
+    fields {
+      items {
+        id
+        name
+      }
+      nextToken
+    }
+    image
+    description
+  }
+}
+`;
+export const deleteModule = `mutation DeleteModule($input: DeleteModuleInput!) {
+  deleteModule(input: $input) {
+    id
+    name
+    fields {
+      items {
+        id
+        name
+      }
+      nextToken
+    }
+    image
+    description
+  }
+}
+`;
+export const createDoctorCustomModuleProps = `mutation CreateDoctorCustomModuleProps(
+  $input: CreateDoctorCustomModulePropsInput!
+) {
+  createDoctorCustomModuleProps(input: $input) {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
+export const updateDoctorCustomModuleProps = `mutation UpdateDoctorCustomModuleProps(
+  $input: UpdateDoctorCustomModulePropsInput!
+) {
+  updateDoctorCustomModuleProps(input: $input) {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
+export const deleteDoctorCustomModuleProps = `mutation DeleteDoctorCustomModuleProps(
+  $input: DeleteDoctorCustomModulePropsInput!
+) {
+  deleteDoctorCustomModuleProps(input: $input) {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
+export const createField = `mutation CreateField($input: CreateFieldInput!) {
+  createField(input: $input) {
+    id
+    name
+  }
+}
+`;
+export const updateField = `mutation UpdateField($input: UpdateFieldInput!) {
+  updateField(input: $input) {
+    id
+    name
+  }
+}
+`;
+export const deleteField = `mutation DeleteField($input: DeleteFieldInput!) {
+  deleteField(input: $input) {
+    id
+    name
+  }
+}
+`;
+export const createDoctorCustomFieldProps = `mutation CreateDoctorCustomFieldProps(
+  $input: CreateDoctorCustomFieldPropsInput!
+) {
+  createDoctorCustomFieldProps(input: $input) {
+    id
+    name
+    required
+    visible
+    field {
+      id
+      name
+    }
+  }
+}
+`;
+export const updateDoctorCustomFieldProps = `mutation UpdateDoctorCustomFieldProps(
+  $input: UpdateDoctorCustomFieldPropsInput!
+) {
+  updateDoctorCustomFieldProps(input: $input) {
+    id
+    name
+    required
+    visible
+    field {
+      id
+      name
+    }
+  }
+}
+`;
+export const deleteDoctorCustomFieldProps = `mutation DeleteDoctorCustomFieldProps(
+  $input: DeleteDoctorCustomFieldPropsInput!
+) {
+  deleteDoctorCustomFieldProps(input: $input) {
+    id
+    name
+    required
+    visible
+    field {
+      id
+      name
+    }
+  }
+}
+`;
+export const createMedicalAppointment = `mutation CreateMedicalAppointment($input: CreateMedicalAppointmentInput!) {
+  createMedicalAppointment(input: $input) {
     id
     location {
       id
@@ -439,6 +646,7 @@ export const createMedicalConsultation = `mutation CreateMedicalConsultation($in
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -477,9 +685,9 @@ export const createMedicalConsultation = `mutation CreateMedicalConsultation($in
     secretary
     details
     date_created
-    date_of_medical_consultation
+    date_of_medical_appointment
     state
-    consultation_position
+    position
     consult_cost
     read_secretary
     read_company
@@ -488,8 +696,8 @@ export const createMedicalConsultation = `mutation CreateMedicalConsultation($in
   }
 }
 `;
-export const updateMedicalConsultation = `mutation UpdateMedicalConsultation($input: UpdateMedicalConsultationInput!) {
-  updateMedicalConsultation(input: $input) {
+export const updateMedicalAppointment = `mutation UpdateMedicalAppointment($input: UpdateMedicalAppointmentInput!) {
+  updateMedicalAppointment(input: $input) {
     id
     location {
       id
@@ -515,6 +723,7 @@ export const updateMedicalConsultation = `mutation UpdateMedicalConsultation($in
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -553,9 +762,9 @@ export const updateMedicalConsultation = `mutation UpdateMedicalConsultation($in
     secretary
     details
     date_created
-    date_of_medical_consultation
+    date_of_medical_appointment
     state
-    consultation_position
+    position
     consult_cost
     read_secretary
     read_company
@@ -564,8 +773,8 @@ export const updateMedicalConsultation = `mutation UpdateMedicalConsultation($in
   }
 }
 `;
-export const deleteMedicalConsultation = `mutation DeleteMedicalConsultation($input: DeleteMedicalConsultationInput!) {
-  deleteMedicalConsultation(input: $input) {
+export const deleteMedicalAppointment = `mutation DeleteMedicalAppointment($input: DeleteMedicalAppointmentInput!) {
+  deleteMedicalAppointment(input: $input) {
     id
     location {
       id
@@ -591,6 +800,7 @@ export const deleteMedicalConsultation = `mutation DeleteMedicalConsultation($in
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -629,9 +839,9 @@ export const deleteMedicalConsultation = `mutation DeleteMedicalConsultation($in
     secretary
     details
     date_created
-    date_of_medical_consultation
+    date_of_medical_appointment
     state
-    consultation_position
+    position
     consult_cost
     read_secretary
     read_company

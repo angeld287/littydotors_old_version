@@ -77,6 +77,7 @@ type Patient
     username: String
     email: String
     phone: String
+    phone_id: String
     weight: String
     height: String
     size: String
@@ -180,9 +181,9 @@ type MedicalAppointments
     secretary: String
     details: String
     date_created: String
-    date_of_medical_consultation: String
+    date_of_medical_appointment: String
     state: State
-    consultation_position: Int
+    position: Int
     consult_cost: String
     read_secretary: Boolean
     read_company: Boolean

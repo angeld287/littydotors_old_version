@@ -1,11 +1,11 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateMedicalConsultation = `subscription OnCreateMedicalConsultation(
+export const onCreateMedicalAppointment = `subscription OnCreateMedicalAppointment(
   $doctorname: String
   $secretary: String
 ) {
-  onCreateMedicalConsultation(doctorname: $doctorname, secretary: $secretary) {
+  onCreateMedicalAppointment(doctorname: $doctorname, secretary: $secretary) {
     id
     location {
       id
@@ -31,6 +31,7 @@ export const onCreateMedicalConsultation = `subscription OnCreateMedicalConsulta
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -69,9 +70,9 @@ export const onCreateMedicalConsultation = `subscription OnCreateMedicalConsulta
     secretary
     details
     date_created
-    date_of_medical_consultation
+    date_of_medical_appointment
     state
-    consultation_position
+    position
     consult_cost
     read_secretary
     read_company
@@ -80,14 +81,14 @@ export const onCreateMedicalConsultation = `subscription OnCreateMedicalConsulta
   }
 }
 `;
-export const onUpdateMedicalConsultation = `subscription OnUpdateMedicalConsultation(
+export const onUpdateMedicalAppointment = `subscription OnUpdateMedicalAppointment(
   $read_secretary: Boolean
   $read_company: Boolean
   $read_client: Boolean
   $doctorname: String
   $secretary: String
 ) {
-  onUpdateMedicalConsultation(
+  onUpdateMedicalAppointment(
     read_secretary: $read_secretary
     read_company: $read_company
     read_client: $read_client
@@ -119,6 +120,7 @@ export const onUpdateMedicalConsultation = `subscription OnUpdateMedicalConsulta
       username
       email
       phone
+      phone_id
       weight
       height
       size
@@ -157,9 +159,9 @@ export const onUpdateMedicalConsultation = `subscription OnUpdateMedicalConsulta
     secretary
     details
     date_created
-    date_of_medical_consultation
+    date_of_medical_appointment
     state
-    consultation_position
+    position
     consult_cost
     read_secretary
     read_company
@@ -171,6 +173,15 @@ export const onUpdateMedicalConsultation = `subscription OnUpdateMedicalConsulta
 export const onCreateConsultingRoom = `subscription OnCreateConsultingRoom {
   onCreateConsultingRoom {
     id
+    modules {
+      items {
+        id
+        name
+        image
+        description
+      }
+      nextToken
+    }
     doctor {
       id
       name
@@ -203,6 +214,15 @@ export const onCreateConsultingRoom = `subscription OnCreateConsultingRoom {
 export const onUpdateConsultingRoom = `subscription OnUpdateConsultingRoom {
   onUpdateConsultingRoom {
     id
+    modules {
+      items {
+        id
+        name
+        image
+        description
+      }
+      nextToken
+    }
     doctor {
       id
       name
@@ -235,6 +255,15 @@ export const onUpdateConsultingRoom = `subscription OnUpdateConsultingRoom {
 export const onDeleteConsultingRoom = `subscription OnDeleteConsultingRoom {
   onDeleteConsultingRoom {
     id
+    modules {
+      items {
+        id
+        name
+        image
+        description
+      }
+      nextToken
+    }
     doctor {
       id
       name
@@ -328,6 +357,9 @@ export const onCreateDoctor = `subscription OnCreateDoctor {
     sex
     consultingroom {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -365,6 +397,9 @@ export const onUpdateDoctor = `subscription OnUpdateDoctor {
     sex
     consultingroom {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -402,6 +437,9 @@ export const onDeleteDoctor = `subscription OnDeleteDoctor {
     sex
     consultingroom {
       id
+      modules {
+        nextToken
+      }
       doctor {
         id
         name
@@ -436,6 +474,7 @@ export const onCreatePatient = `subscription OnCreatePatient {
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -451,6 +490,7 @@ export const onUpdatePatient = `subscription OnUpdatePatient {
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -466,6 +506,7 @@ export const onDeletePatient = `subscription OnDeletePatient {
     username
     email
     phone
+    phone_id
     weight
     height
     size
@@ -576,6 +617,162 @@ export const onUpdateConfirmation = `subscription OnUpdateConfirmation {
 export const onDeleteConfirmation = `subscription OnDeleteConfirmation {
   onDeleteConfirmation {
     id
+  }
+}
+`;
+export const onCreateModule = `subscription OnCreateModule {
+  onCreateModule {
+    id
+    name
+    fields {
+      items {
+        id
+        name
+      }
+      nextToken
+    }
+    image
+    description
+  }
+}
+`;
+export const onUpdateModule = `subscription OnUpdateModule {
+  onUpdateModule {
+    id
+    name
+    fields {
+      items {
+        id
+        name
+      }
+      nextToken
+    }
+    image
+    description
+  }
+}
+`;
+export const onDeleteModule = `subscription OnDeleteModule {
+  onDeleteModule {
+    id
+    name
+    fields {
+      items {
+        id
+        name
+      }
+      nextToken
+    }
+    image
+    description
+  }
+}
+`;
+export const onCreateDoctorCustomModuleProps = `subscription OnCreateDoctorCustomModuleProps {
+  onCreateDoctorCustomModuleProps {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
+export const onUpdateDoctorCustomModuleProps = `subscription OnUpdateDoctorCustomModuleProps {
+  onUpdateDoctorCustomModuleProps {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
+export const onDeleteDoctorCustomModuleProps = `subscription OnDeleteDoctorCustomModuleProps {
+  onDeleteDoctorCustomModuleProps {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
+export const onCreateField = `subscription OnCreateField {
+  onCreateField {
+    id
+    name
+  }
+}
+`;
+export const onUpdateField = `subscription OnUpdateField {
+  onUpdateField {
+    id
+    name
+  }
+}
+`;
+export const onDeleteField = `subscription OnDeleteField {
+  onDeleteField {
+    id
+    name
+  }
+}
+`;
+export const onCreateDoctorCustomFieldProps = `subscription OnCreateDoctorCustomFieldProps {
+  onCreateDoctorCustomFieldProps {
+    id
+    name
+    required
+    visible
+    field {
+      id
+      name
+    }
+  }
+}
+`;
+export const onUpdateDoctorCustomFieldProps = `subscription OnUpdateDoctorCustomFieldProps {
+  onUpdateDoctorCustomFieldProps {
+    id
+    name
+    required
+    visible
+    field {
+      id
+      name
+    }
+  }
+}
+`;
+export const onDeleteDoctorCustomFieldProps = `subscription OnDeleteDoctorCustomFieldProps {
+  onDeleteDoctorCustomFieldProps {
+    id
+    name
+    required
+    visible
+    field {
+      id
+      name
+    }
   }
 }
 `;

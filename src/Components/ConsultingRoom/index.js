@@ -4,9 +4,9 @@ import { MDBContainer, MDBCardHeader, MDBIcon, MDBMedia, MDBBtn, /* MDBInput, */
 import { API, graphqlOperation } from 'aws-amplify';
 
 import { getConsultingRoom } from '../../graphql/queries';
-import { listMedicalConsultations } from '../../graphql/queries';
+import { listMedicalAppointments } from '../../graphql/queries';
 
-import { createMedicalConsultation } from '../../graphql/mutations';
+import { createMedicalAppointment } from '../../graphql/mutations';
 import EnumState from './EnumState.ts'
 
 const updateByPropertyName = (propertyName, value) => () => ({
@@ -38,14 +38,14 @@ class ConsultingRoom extends Component {
       })).then( result =>{
           this.setState({ consultingRoom: result.data.getConsultingRoom})
 
-          API.graphql(graphqlOperation(listMedicalConsultations, {
+          API.graphql(graphqlOperation(listMedicalAppointments, {
               filter: {
                 secretary: {
                   eq: result.data.getConsultingRoom.secretary
                 }
               }
           })).then( result =>{
-              this.setState({ consultations: result.data.listMedicalConsultations.items})
+              this.setState({ consultations: result.data.listMedicalAppointments.items})
           }).catch( err => {
             console.log(err)
           });
@@ -75,7 +75,7 @@ class ConsultingRoom extends Component {
           medicalConsultationDoctorId: this.state.consultingRoom.doctor.id,
           secretary: this.state.consultingRoom.secretary,
           details: this.state.details,
-          date_of_medical_consultation: "undefined",
+          date_of_medical_appointment: "undefined",
           state: EnumState.INSERTED
         }
     }
@@ -97,7 +97,7 @@ class ConsultingRoom extends Component {
                 <td>1</td>
                 <td>{item.secretary}</td>
                 <td>{item.state}</td>
-                <td>{item.date_of_medical_consultation}</td>
+                <td>{item.date_of_medical_appointment}</td>
             </tr>
     )
 
