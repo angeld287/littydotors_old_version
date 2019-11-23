@@ -59,7 +59,7 @@ class Details extends Component {
     createRejection = (id, patient, doctor, secretary) => {
         const patientPhoneId = (this.props.ItemData !== null && this.props.ItemData.patient !== null) ? (this.props.ItemData.patient.phone_id) : (null);
         const object = {
-                        medicalConsultationRejectionId: id,
+                        medicalAppointmentRejectionId: id,
                         description: this.state.rejectionReason,
                         doctor: doctor,
                         secretary: secretary,
@@ -85,7 +85,7 @@ class Details extends Component {
         const consult_date = (this.props.ItemData !== null) ? (this.props.ItemData.date_of_medical_appointment) : (null);
         const date = moment(consult_date).format('YYYY-DD-MM')
         const object = {
-                        medicalConsultationNotificationId: id,
+                        medicalAppointmentNotificationId: id,
                         state: state,
                         doctor: doctor,
                         secretary: secretary,
@@ -199,7 +199,7 @@ class Details extends Component {
                             <MDBNavLink to="#" style={{height: 20}} className={ this.state.activeItemClassicTabs1 === "1" ? "active" : "" } onClick={(e) => {
                                 this.changeTab(e, "1")
                             }} >
-                                Consulta
+                                Cita
                             </MDBNavLink>
                         </MDBNavItem>
                         <MDBNavItem>

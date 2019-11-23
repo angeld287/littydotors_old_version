@@ -499,6 +499,60 @@ export const deleteModule = `mutation DeleteModule($input: DeleteModuleInput!) {
   }
 }
 `;
+export const createDoctorCustomModuleProps = `mutation CreateDoctorCustomModuleProps(
+  $input: CreateDoctorCustomModulePropsInput!
+) {
+  createDoctorCustomModuleProps(input: $input) {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
+export const updateDoctorCustomModuleProps = `mutation UpdateDoctorCustomModuleProps(
+  $input: UpdateDoctorCustomModulePropsInput!
+) {
+  updateDoctorCustomModuleProps(input: $input) {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
+export const deleteDoctorCustomModuleProps = `mutation DeleteDoctorCustomModuleProps(
+  $input: DeleteDoctorCustomModulePropsInput!
+) {
+  deleteDoctorCustomModuleProps(input: $input) {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
 export const createField = `mutation CreateField($input: CreateFieldInput!) {
   createField(input: $input) {
     id

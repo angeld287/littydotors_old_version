@@ -10,7 +10,7 @@ class List extends Component {
     this.state = {
       activeItem: "1",
       redirect: false,
-      consultations: null,
+      appointments: null,
       selectedItem: "0",
     };
 
@@ -39,7 +39,7 @@ class List extends Component {
   }
 
   render(){
-    const {selectedItem, data} = this.props.Consultations
+    const {selectedItem, data} = this.props.Appointments
 
     const lista = (data !== null)?([].concat(data)
     .sort((a, b) => new Date(...a.date_created.split('-').reverse()) - new Date(...b.date_created.split('-').reverse()))

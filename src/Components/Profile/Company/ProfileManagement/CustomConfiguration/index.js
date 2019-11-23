@@ -3,69 +3,64 @@ import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalF
 'mdbreact';
 import Card from './Card'
 
+import Module from './Module';
+
+import { API, graphqlOperation } from 'aws-amplify';
+
+import { getModule, listDoctorCustomFieldPropss } from './../../../../../graphql/queries';
+
 class ModalPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             OpenModal: false,
             item: null,
+            fields: null,
+            module: null,
         }
         this.toggleOpen = this.toggleOpen.bind(this)
         this.toggleClose = this.toggleClose.bind(this)
     }
 
 toggleOpen = (item) => {
-    this.setState({item: item, OpenModal: true})
+    this.GetModuleDetails(item)
+}
+
+GetModuleDetails = (item) => {
+  API.graphql(graphqlOperation(getModule, {id: item.module_id})).then( result =>{
+      const fieldsCharged = result.data.getModule.fields.items;
+      this.setState({item: item, OpenModal: true, fields: fieldsCharged})
+  })
 }
 
 toggleClose = () => {
     this.setState({item: null, OpenModal: false})
 }
+ 
 
 render() {
-    const { item } = this.state;
+    const { item, CustomPropsfields } = this.state;
+
+    const fields = this.state.fields;
     const name = (item != null) ? item.name : "no data"
+
+    const childProps = {
+      ...this.props.childProps,
+      fields
+    }
+
   return (
       <MDBContainer>
-        <Card childProps={this.props.childProps} toggleOpen={this.toggleOpen} toggleClose={this.toggleClose}/>
+        <Card childProps={this.props.childProps} toggleOpen={this.toggleOpen}/>
 
-        <MDBModal isOpen={this.state.OpenModal} toggle={this.toggleClose}>
-          <MDBModalHeader toggle={this.toggleClose}>MDBModal title</MDBModalHeader>
+        <MDBModal isOpen={this.state.OpenModal} toggle={this.toggleClose} fullHeight position="top">
+          <MDBModalHeader toggle={this.toggleClose}>{name}</MDBModalHeader>
 
           <MDBModalBody>
             <MDBContainer fluid className="text-white">
-              <MDBRow>
-                <MDBCol md="4" className="bg-info">.col-md-4</MDBCol>
-                <MDBCol md="4" className="ml-auto bg-info">{name}</MDBCol>
-              </MDBRow>
-              <br />
-              <MDBRow>
-                <MDBCol md="3" className="ml-auto bg-info">.col-md-3 .ml-auto</MDBCol>
-                <MDBCol md="2" className="ml-auto bg-info">.col-md-2 .ml-auto</MDBCol>
-              </MDBRow>
-              <MDBRow>
-                <MDBCol md="6" className="ml-5 bg-info">.col-md-6 .ml-5</MDBCol>
-              </MDBRow>
-              <br />
-              <MDBRow>
-                <MDBCol sm="9" className="bg-info">
-                  Level 1: .col-sm-9
-                  <MDBRow>
-                    <MDBCol sm="6" className="bg-info">
-                      Level 2: .col-8 .col-sm-6
-                    </MDBCol>
-                    <MDBCol sm="6" className="bg-info">
-                      Level 2: .col-4 .col-sm-6
-                    </MDBCol>
-                  </MDBRow>
-                </MDBCol>
-              </MDBRow>
+                <Module childProps={childProps} toggleClose={this.toggleClose}/>
             </MDBContainer>
           </MDBModalBody>
-          <MDBModalFooter>
-            <MDBBtn color="secondary" onClick={this.toggleClose}>Close</MDBBtn>
-            <MDBBtn color="primary">Save changes</MDBBtn>
-          </MDBModalFooter>
         </MDBModal>
       </MDBContainer>
     );

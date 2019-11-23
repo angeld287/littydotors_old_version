@@ -27,7 +27,7 @@ export const listConsultingRoomsSecretary = `query ListConsultingRooms(
 `;
 
 export const listMedicalAppointmentReports = `query listMedicalAppointments(
-  $filter: ModelMedicalAppointmentsFilterInput
+  $filter: ModelMedicalAppointmentFilterInput
   $limit: Int
   $nextToken: String
 ) {
@@ -43,7 +43,7 @@ export const listMedicalAppointmentReports = `query listMedicalAppointments(
 }`;
 
 export const listMedicalAppointments = `query listMedicalAppointments(
-  $filter: ModelMedicalAppointmentsFilterInput
+  $filter: ModelMedicalAppointmentFilterInput
   $limit: Int
   $nextToken: String
 ) {

@@ -14,7 +14,7 @@ import { onCreateMedicalAppointment, onUpdateMedicalAppointment } from './../../
 import { updateMedicalAppointment, createRejection, createNotification } from './../../graphql/mutations';
 import { listMedicalAppointments } from './../../graphql/custom-queries';
 
-class ConsultationsManagement extends Component {
+class MedicalAppointmentsManagement extends Component {
   constructor(props) {
     super(props);
 
@@ -22,26 +22,26 @@ class ConsultationsManagement extends Component {
       activeItemClassicTabs1: "1",
       activeItemClassicTabs2: "1",
       redirect: false,
-      consultations: null,
+      appointments: null,
       ItemData: null,
       selectedItem: null,
-      insertedConsultations: null,
-      approvedConsultations: null,
-      confirmedConsultations: null,
-      presentConsultations: null,
-      inProcessConsultations: null,
-      finishedConsultations: null,
-      rejectedConsultations: null,
-      canceledConsultations: null,
+      insertedAppointments: null,
+      approvedAppointments: null,
+      confirmedAppointments: null,
+      presentAppointments: null,
+      inProcessAppointments: null,
+      finishedAppointments: null,
+      rejectedAppointments: null,
+      canceledAppointments: null,
     };
 
     this._isMounted = false;
 
     this.changeState = this.changeState.bind(this);
-    this.GetConsultationsList = this.GetConsultationsList.bind(this);
+    this.GetAppointmentsList = this.GetAppointmentsList.bind(this);
     this.ActiveElement = this.ActiveElement.bind(this);
     this.updateMedicalAppointmentData = this.updateMedicalAppointmentData.bind(this);
-    this.updateFieldFromConsultations = this.updateFieldFromConsultations.bind(this);
+    this.updateFieldFromAppointments = this.updateFieldFromAppointments.bind(this);
     this.createRejection = this.createRejection.bind(this);
   }
 
@@ -52,7 +52,7 @@ class ConsultationsManagement extends Component {
     if (this.state.activeItemClassicTabs1 !== tab) {
       this.setState({ activeItemClassicTabs1: tab, activeItemClassicTabs2: tab})
       this.setState({ItemData: null, selectedItem: null});
-      this.GetConsultationsList();
+      this.GetAppointmentsList();
     }
   }
 
@@ -75,17 +75,17 @@ class ConsultationsManagement extends Component {
       next: MedicalConsultation => {
         const consultation = MedicalConsultation.value.data.onCreateMedicalAppointment
 
-        if (this.state.consultations !== null) {
-          const consultations = [
-            ...this.state.consultations.filter(r => {
+        if (this.state.appointments !== null) {
+          const appointments = [
+            ...this.state.appointments.filter(r => {
               return (
                 r.id !== consultation.id
               )
             }),
             consultation
           ]
-          this.setState({ consultations });
-          this.SetConsultationsList();
+          this.setState({ appointments });
+          this.SetAppointmentsList();
         }
       }
     })
@@ -102,11 +102,11 @@ class ConsultationsManagement extends Component {
     ).subscribe({
       next: MedicalConsultation => {
         const consultation = MedicalConsultation.value.data.onUpdateMedicalAppointment
-        if (this.state.consultations !== null) {
-          this.state.consultations.splice(this.state.consultations.findIndex(v => v.id === consultation.id), 1);
+        if (this.state.appointments !== null) {
+          this.state.appointments.splice(this.state.appointments.findIndex(v => v.id === consultation.id), 1);
         
-          const consultations = [
-            ...this.state.consultations.filter(r => {
+          const appointments = [
+            ...this.state.appointments.filter(r => {
               return (
                 r.id !== consultation.id
               )
@@ -114,8 +114,8 @@ class ConsultationsManagement extends Component {
             consultation
           ]
           
-          this.setState({ consultations });
-          this.SetConsultationsList();
+          this.setState({ appointments });
+          this.SetAppointmentsList();
         }
       }
     })
@@ -125,8 +125,8 @@ class ConsultationsManagement extends Component {
     if(this.props.childProps.state.user_roll === 'client'){
           this.setState({ redirect: true });
     }
-    if (this.state.consultations === null) {
-      this.GetConsultationsList(); 
+    if (this.state.appointments === null) {
+      this.GetAppointmentsList(); 
     }
   }
   componentWillUnmount() {
@@ -134,7 +134,7 @@ class ConsultationsManagement extends Component {
     this._isMounted = false;
   }
 
-  GetConsultationsList = () => {
+  GetAppointmentsList = () => {
     var prev_date = new Date();
     prev_date.setDate(prev_date.getDate() - 1);
     API.graphql(graphqlOperation(listMedicalAppointments, {
@@ -147,68 +147,68 @@ class ConsultationsManagement extends Component {
       limit: 100
     })).then( result =>{
         
-        this.setState({consultations: result.data.listMedicalAppointments.items});
-        this.SetConsultationsList();
+        this.setState({appointments: result.data.listMedicalAppointments.items});
+        this.SetAppointmentsList();
 
     }).catch( err => {
         console.warn(err)
     });
   }
 
-  SetConsultationsList = () => {
-    const items = this.state.consultations;
+  SetAppointmentsList = () => {
+    const items = this.state.appointments;
 
-    let insertedConsultations = items.filter(obj => {return obj.state === "INSERTED"})
-    let approvedConsultations = items.filter(obj => {return obj.state === "APPROVED"})
-    let confirmedConsultations = items.filter(obj => {return obj.state === "CONFIRMED"})
-    let presentConsultations = items.filter(obj => {return obj.state === "PRESENT"})
-    let inProcessConsultations = items.filter(obj => {return obj.state === "IN_PROCESS"})
-    let finishedConsultations = items.filter(obj => {return obj.state === "FINISHED"})
-    let rejectedConsultations = items.filter(obj => {return obj.state === "REJECTED"})
-    let canceledConsultations = items.filter(obj => {return obj.state === "CANCELED"})
+    let insertedAppointments = items.filter(obj => {return obj.state === "INSERTED"})
+    let approvedAppointments = items.filter(obj => {return obj.state === "APPROVED"})
+    let confirmedAppointments = items.filter(obj => {return obj.state === "CONFIRMED"})
+    let presentAppointments = items.filter(obj => {return obj.state === "PRESENT"})
+    let inProcessAppointments = items.filter(obj => {return obj.state === "IN_PROCESS"})
+    let finishedAppointments = items.filter(obj => {return obj.state === "FINISHED"})
+    let rejectedAppointments = items.filter(obj => {return obj.state === "REJECTED"})
+    let canceledAppointments = items.filter(obj => {return obj.state === "CANCELED"})
 
     this.setState(
       { 
-        insertedConsultations: insertedConsultations,
-        approvedConsultations: approvedConsultations,
-        confirmedConsultations: confirmedConsultations,
-        presentConsultations: presentConsultations,
-        inProcessConsultations: inProcessConsultations,
-        finishedConsultations: finishedConsultations,
-        rejectedConsultations: rejectedConsultations,
-        canceledConsultations: canceledConsultations
+        insertedAppointments: insertedAppointments,
+        approvedAppointments: approvedAppointments,
+        confirmedAppointments: confirmedAppointments,
+        presentAppointments: presentAppointments,
+        inProcessAppointments: inProcessAppointments,
+        finishedAppointments: finishedAppointments,
+        rejectedAppointments: rejectedAppointments,
+        canceledAppointments: canceledAppointments
       })
   }
 
   updateMedicalAppointmentData = async (object, update) =>{
     await API.graphql(graphqlOperation(updateMedicalAppointment, {input: object}))
     .then( result =>{
-      this.updateFieldFromConsultations(object, update);
+      this.updateFieldFromAppointments(object, update);
     });
   }
 
-  updateFieldFromConsultations = (object, update) => {
+  updateFieldFromAppointments = (object, update) => {
     switch(update) {
         case 'read':
             if (this.props.childProps.state.user_roll === 'company') {
               const read_company = object.read_company
               this.setState({
-                consultations: this.state.consultations.map(el => (el.id === object.id ? Object.assign({}, el, { read_company }) : el))
+                appointments: this.state.appointments.map(el => (el.id === object.id ? Object.assign({}, el, { read_company }) : el))
               });
             }else if (this.props.childProps.state.user_roll === 'secretary') {
               const read_secretary = object.read_secretary
               this.setState({
-                consultations: this.state.consultations.map(el => (el.id === object.id ? Object.assign({}, el, { read_secretary }) : el))
+                appointments: this.state.appointments.map(el => (el.id === object.id ? Object.assign({}, el, { read_secretary }) : el))
               }); 
             }
-            this.SetConsultationsList();
+            this.SetAppointmentsList();
             break;
         case 'state':
             const state = object.state
             this.setState({
-              consultations: this.state.consultations.map(el => (el.id === object.id ? Object.assign({}, el, { state }) : el))
+              appointments: this.state.appointments.map(el => (el.id === object.id ? Object.assign({}, el, { state }) : el))
             });
-            this.SetConsultationsList();
+            this.SetAppointmentsList();
             this.setState({ItemData: null, selectedItem: null});
             break;  
         default:
@@ -219,28 +219,28 @@ class ConsultationsManagement extends Component {
   createRejection = async (object) => {
     await API.graphql(graphqlOperation(createRejection, {input: object}))
     .then( result =>{
-      //this.updateFieldFromConsultations(object, update);
+      //this.updateFieldFromAppointments(object, update);
     });
   }
 
   createNotification = async (object) => {
     await API.graphql(graphqlOperation(createNotification, {input: object}))
     .then( result =>{
-      //this.updateFieldFromConsultations(object, update);
+      //this.updateFieldFromAppointments(object, update);
     });
   }
 
   render() {
     const {redirect, ItemData, selectedItem} = this.state
 
-    const insertedConsultations = {selectedItem: selectedItem, data: this.state.insertedConsultations}
-    const approvedConsultations = {selectedItem: selectedItem, data: this.state.approvedConsultations}
-    const confirmedConsultations = {selectedItem: selectedItem, data: this.state.confirmedConsultations}
-    const presentConsultations = {selectedItem: selectedItem, data: this.state.presentConsultations}
-    const inProcessConsultations = {selectedItem: selectedItem, data: this.state.inProcessConsultations}
-    const finishedConsultations = {selectedItem: selectedItem, data: this.state.finishedConsultations}
-    const rejectedConsultations = {selectedItem: selectedItem, data: this.state.rejectedConsultations}
-    const canceledConsultations = {selectedItem: selectedItem, data: this.state.canceledConsultations}
+    const insertedAppointments = {selectedItem: selectedItem, data: this.state.insertedAppointments}
+    const approvedAppointments = {selectedItem: selectedItem, data: this.state.approvedAppointments}
+    const confirmedAppointments = {selectedItem: selectedItem, data: this.state.confirmedAppointments}
+    const presentAppointments = {selectedItem: selectedItem, data: this.state.presentAppointments}
+    const inProcessAppointments = {selectedItem: selectedItem, data: this.state.inProcessAppointments}
+    const finishedAppointments = {selectedItem: selectedItem, data: this.state.finishedAppointments}
+    const rejectedAppointments = {selectedItem: selectedItem, data: this.state.rejectedAppointments}
+    const canceledAppointments = {selectedItem: selectedItem, data: this.state.canceledAppointments}
 
     return (
       <MDBContainer className="classic-tabs">
@@ -310,7 +310,7 @@ class ConsultationsManagement extends Component {
               <MDBContainer>
                   <MDBRow>
                     <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
-                      <List Consultations={insertedConsultations}
+                      <List Appointments={insertedAppointments}
                             childProps={this.props.childProps}
                             ActiveElement={this.ActiveElement}
                             updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
@@ -327,7 +327,7 @@ class ConsultationsManagement extends Component {
               <MDBContainer>
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
-                    <List Consultations={approvedConsultations}
+                    <List Appointments={approvedAppointments}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
@@ -344,7 +344,7 @@ class ConsultationsManagement extends Component {
               <MDBContainer>
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
-                    <List Consultations={confirmedConsultations}
+                    <List Appointments={confirmedAppointments}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
@@ -360,7 +360,7 @@ class ConsultationsManagement extends Component {
               <MDBContainer>
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
-                    <List Consultations={presentConsultations}
+                    <List Appointments={presentAppointments}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
@@ -376,7 +376,7 @@ class ConsultationsManagement extends Component {
               <MDBContainer>
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
-                    <List Consultations={inProcessConsultations}
+                    <List Appointments={inProcessAppointments}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
@@ -392,7 +392,7 @@ class ConsultationsManagement extends Component {
               <MDBContainer>
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
-                    <List Consultations={finishedConsultations}
+                    <List Appointments={finishedAppointments}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
@@ -408,7 +408,7 @@ class ConsultationsManagement extends Component {
               <MDBContainer>
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
-                    <List Consultations={rejectedConsultations}
+                    <List Appointments={rejectedAppointments}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
@@ -424,7 +424,7 @@ class ConsultationsManagement extends Component {
               <MDBContainer>
                 <MDBRow>
                   <MDBCol md="9" lg="4" xl="5" className="mx-auto mt-3">
-                    <List Consultations={canceledConsultations}
+                    <List Appointments={canceledAppointments}
                           childProps={this.props.childProps}
                           ActiveElement={this.ActiveElement}
                           updateMedicalAppointmentData={this.updateMedicalAppointmentData}/>
@@ -446,4 +446,4 @@ class ConsultationsManagement extends Component {
   }
 }
 
-export default ConsultationsManagement;
+export default MedicalAppointmentsManagement;

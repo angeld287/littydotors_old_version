@@ -668,6 +668,54 @@ export const onDeleteModule = `subscription OnDeleteModule {
   }
 }
 `;
+export const onCreateDoctorCustomModuleProps = `subscription OnCreateDoctorCustomModuleProps {
+  onCreateDoctorCustomModuleProps {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
+export const onUpdateDoctorCustomModuleProps = `subscription OnUpdateDoctorCustomModuleProps {
+  onUpdateDoctorCustomModuleProps {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
+export const onDeleteDoctorCustomModuleProps = `subscription OnDeleteDoctorCustomModuleProps {
+  onDeleteDoctorCustomModuleProps {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
 export const onCreateField = `subscription OnCreateField {
   onCreateField {
     id

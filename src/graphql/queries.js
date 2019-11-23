@@ -365,6 +365,46 @@ export const listModules = `query ListModules(
   }
 }
 `;
+export const getDoctorCustomModuleProps = `query GetDoctorCustomModuleProps($id: ID!) {
+  getDoctorCustomModuleProps(id: $id) {
+    id
+    active
+    module {
+      id
+      name
+      fields {
+        nextToken
+      }
+      image
+      description
+    }
+  }
+}
+`;
+export const listDoctorCustomModulePropss = `query ListDoctorCustomModulePropss(
+  $filter: ModelDoctorCustomModulePropsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDoctorCustomModulePropss(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      active
+      module {
+        id
+        name
+        image
+        description
+      }
+    }
+    nextToken
+  }
+}
+`;
 export const getField = `query GetField($id: ID!) {
   getField(id: $id) {
     id

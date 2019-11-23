@@ -173,6 +173,20 @@ type Module
     description: String
 }
 
+type DoctorCustomModuleProps
+    @model 
+    @auth(rules: [
+        # Defaults to use the "owner" field.
+        { allow: owner },
+        { allow: groups, groups: ["company"], operations: [read] },
+        { allow: groups, groups: ["client"], operations: [read] },
+        { allow: groups, groups: ["secretary"], operations: [read] },
+    ]) {
+    id: ID!
+    active: Boolean
+    module: Module @connection
+}
+
 type Field
     @model 
     @auth(rules: [

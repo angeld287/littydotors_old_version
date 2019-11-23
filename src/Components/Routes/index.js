@@ -9,7 +9,7 @@ import {
 import AuthComponent from '../Authentication/AuthComponent';
 import Profile from '../Profile';
 import ConfigureProfile from '../Profile/Company/ProfileManagement/ConfigureProfile';
-import ConsultationsManagement from '../ConsultationsManagement';
+import MedicalAppointmentsManagement from '../MedicalAppointmentsManagement';
 import Reports from '../Profile/Company/Reports';
 import Error from '../Error'
 import IntroductionPage from '../IntroductionPage';
@@ -47,8 +47,8 @@ export const Routes = ({ childProps }) => (
     />
     <ProtectedRoute
       exact
-      path="/consultationsmanagement"
-      render={() => <ConsultationsManagement childProps={childProps}/>}
+      path="/medicalappointmentsmanagement"
+      render={() => <MedicalAppointmentsManagement childProps={childProps}/>}
       props={childProps}
     />
     <ProtectedRouteCompany

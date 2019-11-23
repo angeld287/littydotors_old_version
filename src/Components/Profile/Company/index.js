@@ -6,7 +6,7 @@ import GeneralInformations from './ProfileManagement/GeneralInformations';
 import PaymentInformation from './ProfileManagement/PaymentInformations';
 import SubscriptionManagement from './ProfileManagement/SubscriptionManagement';
 import Modal from './ProfileManagement/CustomConfiguration/';
-import { listModules } from '../../../graphql/queries';
+import { listModules, listDoctorCustomModulePropss } from '../../../graphql/queries';
 import { API, graphqlOperation } from 'aws-amplify';
 import Card from './ProfileManagement/CustomConfiguration/Card'
 
@@ -31,15 +31,43 @@ toggleVerticalPills = tab => () => {
     if(tab === '4' && this.state.subscriptionData === null){
       this.GetSubscriptionData();
     }
-    if(tab === '5'){
+    if(tab === '5' && this.state.listModules === null){
       this.GetModulesList();
     }
   }
 }
 
 GetModulesList = () => {
-  API.graphql(graphqlOperation(listModules)).then( result =>{
-    this.setState({listModules: result.data.listModules.items});
+  API.graphql(graphqlOperation(listModules)).then( moduleResult =>{
+    const moduleObjects = [];
+    const dbmodules = moduleResult.data.listModules.items;
+    API.graphql(graphqlOperation(listDoctorCustomModulePropss)).then( customModulePropsResult =>{
+      const DoctorCustomPropsModules = customModulePropsResult.data.listDoctorCustomModulePropss.items;
+      [].concat(dbmodules).map((_module, f) => {
+            const cProp = DoctorCustomPropsModules.find(item => item.module.id === _module.id);
+            if(cProp === undefined){
+                const module_result = {
+                    id: undefined,
+                    module_id:_module.id,
+                    name: _module.name,
+                    active: false,
+                    registred_in_cloud: false
+                };
+                moduleObjects.push(module_result);
+            }else{
+                const module_result = {
+                    id: cProp.id,
+                    module_id: _module.id,
+                    name: _module.name,
+                    active: cProp.active,
+                    registred_in_cloud: true
+                };
+                moduleObjects.push(module_result);
+            }
+          this.setState({listModules: moduleObjects });
+          localStorage.setItem("Modules", JSON.stringify(moduleObjects));
+      })
+    }) 
   })
 }
 
