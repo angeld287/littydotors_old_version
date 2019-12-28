@@ -78,9 +78,9 @@ class CustomSignIn extends Component {
         { this.props.authState === 'signIn' && 
           <MDBContainer>
             <MDBRow>
-              <MDBCol md="10" lg="7" xl="7" className="mx-auto mt-3">
+              {/*<MDBCol md="10" lg="7" xl="7" className="mx-auto mt-3">
                 <ServiceInfo/>
-              </MDBCol>
+              </MDBCol> */}
               <MDBCol md="9" lg="7" xl="5" className="mx-auto mt-3">
                 <MDBCard>
                   <MDBCardBody className="mx-4">
