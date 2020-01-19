@@ -15,8 +15,8 @@ import Error from '../Error'
 import IntroductionPage from '../IntroductionPage';
 //import Inicio from './Components/IntroductionPage/Inicio';
 //import CustomrequireNewPassword from './Components/Authentication/RequireNewPassword';
-//import DoctorSearch from './Components/DoctorSearch';
-//import ConsultingRoom from './Components/ConsultingRoom';
+import ConsultationProcess from '../Consultations/ConsultationProcess';
+import Consultations from '../Consultations/index';
 
 export const Routes = ({ childProps }) => (
   <Switch>
@@ -70,6 +70,8 @@ export const Routes = ({ childProps }) => (
       props={childProps}
     />
     <Route exact path="/about" render={() => <div>About Content</div>} />*/}
+    <Route exact path="/consultations" render={() => <Consultations childProps={childProps} />} />
+    <Route exact path="/consultations/process/:patient" render={() => <ConsultationProcess childProps={childProps} />} />
   </Switch>
 );
 
