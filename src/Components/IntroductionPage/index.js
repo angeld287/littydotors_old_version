@@ -76,7 +76,7 @@ class IntroductionPage extends Component {
               <MDBRow>
                 <div className="white-text text-center text-md-left col-md-6 mt-xl-5 mb-5">
                   <h1 className="h1-responsive font-weight-bold mt-sm-5">
-                    Angel Daniel Angeles Toribio{" "}
+                    Litty Doctors{" "}
                   </h1>
                   <hr className="hr-light" />
                   <h6 className="mb-4">
