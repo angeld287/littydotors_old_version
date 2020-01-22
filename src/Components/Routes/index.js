@@ -99,7 +99,7 @@ export const ProtectedRouteCompany = ({ render: C, props: childProps, ...rest })
     {...rest}
     render={rProps =>
       (childProps.isLoggedIn) ? (
-          (childProps.state.user_roll === "company") ? (
+          (childProps.state.user_roll === "doctor") ? (
             <C {...rProps} {...childProps} />
           ) : (<Redirect to="/profile"/>)
       ) : (

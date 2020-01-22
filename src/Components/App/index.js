@@ -42,7 +42,7 @@ export default class App extends Component {
     Auth.currentSession().then(data => {
       const roll = data.accessToken.payload['cognito:groups'][0];
       this.setState({user_roll: roll})
-      if (roll === 'company') {
+      if (roll === 'doctor') {
         API.graphql(graphqlOperation(listConsultingRooms)).then( result =>{
             this.setState({
                 id: result.data.listConsultingRooms.items[0].id,
