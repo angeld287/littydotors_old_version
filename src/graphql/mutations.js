@@ -298,54 +298,6 @@ export const deleteDoctor = `mutation DeleteDoctor($input: DeleteDoctorInput!) {
   }
 }
 `;
-export const createPatient = `mutation CreatePatient($input: CreatePatientInput!) {
-  createPatient(input: $input) {
-    id
-    name
-    username
-    email
-    phone
-    phone_id
-    weight
-    height
-    size
-    age
-    birthdate
-  }
-}
-`;
-export const updatePatient = `mutation UpdatePatient($input: UpdatePatientInput!) {
-  updatePatient(input: $input) {
-    id
-    name
-    username
-    email
-    phone
-    phone_id
-    weight
-    height
-    size
-    age
-    birthdate
-  }
-}
-`;
-export const deletePatient = `mutation DeletePatient($input: DeletePatientInput!) {
-  deletePatient(input: $input) {
-    id
-    name
-    username
-    email
-    phone
-    phone_id
-    weight
-    height
-    size
-    age
-    birthdate
-  }
-}
-`;
 export const createRejection = `mutation CreateRejection($input: CreateRejectionInput!) {
   createRejection(input: $input) {
     id
@@ -652,6 +604,9 @@ export const createMedicalAppointment = `mutation CreateMedicalAppointment($inpu
       size
       age
       birthdate
+      patientHistory {
+        id
+      }
     }
     rejection {
       items {
@@ -690,7 +645,7 @@ export const createMedicalAppointment = `mutation CreateMedicalAppointment($inpu
     position
     consult_cost
     read_secretary
-    read_company
+    read_doctor
     read_client
     createdAt
   }
@@ -729,6 +684,9 @@ export const updateMedicalAppointment = `mutation UpdateMedicalAppointment($inpu
       size
       age
       birthdate
+      patientHistory {
+        id
+      }
     }
     rejection {
       items {
@@ -767,7 +725,7 @@ export const updateMedicalAppointment = `mutation UpdateMedicalAppointment($inpu
     position
     consult_cost
     read_secretary
-    read_company
+    read_doctor
     read_client
     createdAt
   }
@@ -806,6 +764,9 @@ export const deleteMedicalAppointment = `mutation DeleteMedicalAppointment($inpu
       size
       age
       birthdate
+      patientHistory {
+        id
+      }
     }
     rejection {
       items {
@@ -844,9 +805,1794 @@ export const deleteMedicalAppointment = `mutation DeleteMedicalAppointment($inpu
     position
     consult_cost
     read_secretary
-    read_company
+    read_doctor
     read_client
     createdAt
+  }
+}
+`;
+export const createMedicalHistory = `mutation CreateMedicalHistory($input: CreateMedicalHistoryInput!) {
+  createMedicalHistory(input: $input) {
+    id
+    reason
+    patient {
+      id
+      name
+      username
+      email
+      phone
+      phone_id
+      weight
+      height
+      size
+      age
+      birthdate
+      patientHistory {
+        id
+      }
+    }
+    physicalExploration {
+      id
+      general_exploration
+      vitalsigns {
+        id
+        blood_pressure
+        Breathing
+        Pulse
+        Temperature
+      }
+      regionalExploration {
+        id
+        head
+        neck
+        thorax
+        abdomen
+        members
+        genitals
+        others
+      }
+    }
+    postConsultationsActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const updateMedicalHistory = `mutation UpdateMedicalHistory($input: UpdateMedicalHistoryInput!) {
+  updateMedicalHistory(input: $input) {
+    id
+    reason
+    patient {
+      id
+      name
+      username
+      email
+      phone
+      phone_id
+      weight
+      height
+      size
+      age
+      birthdate
+      patientHistory {
+        id
+      }
+    }
+    physicalExploration {
+      id
+      general_exploration
+      vitalsigns {
+        id
+        blood_pressure
+        Breathing
+        Pulse
+        Temperature
+      }
+      regionalExploration {
+        id
+        head
+        neck
+        thorax
+        abdomen
+        members
+        genitals
+        others
+      }
+    }
+    postConsultationsActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const deleteMedicalHistory = `mutation DeleteMedicalHistory($input: DeleteMedicalHistoryInput!) {
+  deleteMedicalHistory(input: $input) {
+    id
+    reason
+    patient {
+      id
+      name
+      username
+      email
+      phone
+      phone_id
+      weight
+      height
+      size
+      age
+      birthdate
+      patientHistory {
+        id
+      }
+    }
+    physicalExploration {
+      id
+      general_exploration
+      vitalsigns {
+        id
+        blood_pressure
+        Breathing
+        Pulse
+        Temperature
+      }
+      regionalExploration {
+        id
+        head
+        neck
+        thorax
+        abdomen
+        members
+        genitals
+        others
+      }
+    }
+    postConsultationsActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const createPatient = `mutation CreatePatient($input: CreatePatientInput!) {
+  createPatient(input: $input) {
+    id
+    name
+    username
+    email
+    phone
+    phone_id
+    weight
+    height
+    size
+    age
+    birthdate
+    patientHistory {
+      id
+      nonPathologicalHistory {
+        id
+      }
+      pathologicalHistory {
+        id
+      }
+      familyHistory {
+        id
+      }
+      gynecoObstetricHistory {
+        id
+        menarche
+        sexual_development
+        menstrual_rhythm
+        sex_life
+        deliveries
+        abortions
+        caesarean_sections
+        contraceptive_method
+      }
+    }
+  }
+}
+`;
+export const updatePatient = `mutation UpdatePatient($input: UpdatePatientInput!) {
+  updatePatient(input: $input) {
+    id
+    name
+    username
+    email
+    phone
+    phone_id
+    weight
+    height
+    size
+    age
+    birthdate
+    patientHistory {
+      id
+      nonPathologicalHistory {
+        id
+      }
+      pathologicalHistory {
+        id
+      }
+      familyHistory {
+        id
+      }
+      gynecoObstetricHistory {
+        id
+        menarche
+        sexual_development
+        menstrual_rhythm
+        sex_life
+        deliveries
+        abortions
+        caesarean_sections
+        contraceptive_method
+      }
+    }
+  }
+}
+`;
+export const deletePatient = `mutation DeletePatient($input: DeletePatientInput!) {
+  deletePatient(input: $input) {
+    id
+    name
+    username
+    email
+    phone
+    phone_id
+    weight
+    height
+    size
+    age
+    birthdate
+    patientHistory {
+      id
+      nonPathologicalHistory {
+        id
+      }
+      pathologicalHistory {
+        id
+      }
+      familyHistory {
+        id
+      }
+      gynecoObstetricHistory {
+        id
+        menarche
+        sexual_development
+        menstrual_rhythm
+        sex_life
+        deliveries
+        abortions
+        caesarean_sections
+        contraceptive_method
+      }
+    }
+  }
+}
+`;
+export const createPatientHistory = `mutation CreatePatientHistory($input: CreatePatientHistoryInput!) {
+  createPatientHistory(input: $input) {
+    id
+    nonPathologicalHistory {
+      id
+      alcohol {
+        id
+        active
+        frequency
+        comment
+      }
+      smoking {
+        id
+        active
+        frequency
+        comment
+      }
+      drugs {
+        id
+        active
+        frequency
+        comment
+      }
+      immunizations {
+        id
+        active
+        frequency
+        comment
+      }
+    }
+    pathologicalHistory {
+      id
+      surgicalInterventions {
+        nextToken
+      }
+      patientMedications {
+        nextToken
+      }
+      patientAllergies {
+        nextToken
+      }
+    }
+    familyHistory {
+      id
+    }
+    gynecoObstetricHistory {
+      id
+      menarche
+      sexual_development
+      menstrual_rhythm
+      sex_life
+      deliveries
+      abortions
+      caesarean_sections
+      contraceptive_method
+    }
+  }
+}
+`;
+export const updatePatientHistory = `mutation UpdatePatientHistory($input: UpdatePatientHistoryInput!) {
+  updatePatientHistory(input: $input) {
+    id
+    nonPathologicalHistory {
+      id
+      alcohol {
+        id
+        active
+        frequency
+        comment
+      }
+      smoking {
+        id
+        active
+        frequency
+        comment
+      }
+      drugs {
+        id
+        active
+        frequency
+        comment
+      }
+      immunizations {
+        id
+        active
+        frequency
+        comment
+      }
+    }
+    pathologicalHistory {
+      id
+      surgicalInterventions {
+        nextToken
+      }
+      patientMedications {
+        nextToken
+      }
+      patientAllergies {
+        nextToken
+      }
+    }
+    familyHistory {
+      id
+    }
+    gynecoObstetricHistory {
+      id
+      menarche
+      sexual_development
+      menstrual_rhythm
+      sex_life
+      deliveries
+      abortions
+      caesarean_sections
+      contraceptive_method
+    }
+  }
+}
+`;
+export const deletePatientHistory = `mutation DeletePatientHistory($input: DeletePatientHistoryInput!) {
+  deletePatientHistory(input: $input) {
+    id
+    nonPathologicalHistory {
+      id
+      alcohol {
+        id
+        active
+        frequency
+        comment
+      }
+      smoking {
+        id
+        active
+        frequency
+        comment
+      }
+      drugs {
+        id
+        active
+        frequency
+        comment
+      }
+      immunizations {
+        id
+        active
+        frequency
+        comment
+      }
+    }
+    pathologicalHistory {
+      id
+      surgicalInterventions {
+        nextToken
+      }
+      patientMedications {
+        nextToken
+      }
+      patientAllergies {
+        nextToken
+      }
+    }
+    familyHistory {
+      id
+    }
+    gynecoObstetricHistory {
+      id
+      menarche
+      sexual_development
+      menstrual_rhythm
+      sex_life
+      deliveries
+      abortions
+      caesarean_sections
+      contraceptive_method
+    }
+  }
+}
+`;
+export const createNonPathologicalHistory = `mutation CreateNonPathologicalHistory(
+  $input: CreateNonPathologicalHistoryInput!
+) {
+  createNonPathologicalHistory(input: $input) {
+    id
+    alcohol {
+      id
+      active
+      frequency
+      comment
+    }
+    smoking {
+      id
+      active
+      frequency
+      comment
+    }
+    drugs {
+      id
+      active
+      frequency
+      comment
+    }
+    immunizations {
+      id
+      active
+      frequency
+      comment
+    }
+  }
+}
+`;
+export const updateNonPathologicalHistory = `mutation UpdateNonPathologicalHistory(
+  $input: UpdateNonPathologicalHistoryInput!
+) {
+  updateNonPathologicalHistory(input: $input) {
+    id
+    alcohol {
+      id
+      active
+      frequency
+      comment
+    }
+    smoking {
+      id
+      active
+      frequency
+      comment
+    }
+    drugs {
+      id
+      active
+      frequency
+      comment
+    }
+    immunizations {
+      id
+      active
+      frequency
+      comment
+    }
+  }
+}
+`;
+export const deleteNonPathologicalHistory = `mutation DeleteNonPathologicalHistory(
+  $input: DeleteNonPathologicalHistoryInput!
+) {
+  deleteNonPathologicalHistory(input: $input) {
+    id
+    alcohol {
+      id
+      active
+      frequency
+      comment
+    }
+    smoking {
+      id
+      active
+      frequency
+      comment
+    }
+    drugs {
+      id
+      active
+      frequency
+      comment
+    }
+    immunizations {
+      id
+      active
+      frequency
+      comment
+    }
+  }
+}
+`;
+export const createNonPathologicalActivities = `mutation CreateNonPathologicalActivities(
+  $input: CreateNonPathologicalActivitiesInput!
+) {
+  createNonPathologicalActivities(input: $input) {
+    id
+    active
+    frequency
+    comment
+  }
+}
+`;
+export const updateNonPathologicalActivities = `mutation UpdateNonPathologicalActivities(
+  $input: UpdateNonPathologicalActivitiesInput!
+) {
+  updateNonPathologicalActivities(input: $input) {
+    id
+    active
+    frequency
+    comment
+  }
+}
+`;
+export const deleteNonPathologicalActivities = `mutation DeleteNonPathologicalActivities(
+  $input: DeleteNonPathologicalActivitiesInput!
+) {
+  deleteNonPathologicalActivities(input: $input) {
+    id
+    active
+    frequency
+    comment
+  }
+}
+`;
+export const createPathologicalHistory = `mutation CreatePathologicalHistory($input: CreatePathologicalHistoryInput!) {
+  createPathologicalHistory(input: $input) {
+    id
+    surgicalInterventions {
+      items {
+        id
+      }
+      nextToken
+    }
+    patientMedications {
+      items {
+        id
+      }
+      nextToken
+    }
+    patientAllergies {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const updatePathologicalHistory = `mutation UpdatePathologicalHistory($input: UpdatePathologicalHistoryInput!) {
+  updatePathologicalHistory(input: $input) {
+    id
+    surgicalInterventions {
+      items {
+        id
+      }
+      nextToken
+    }
+    patientMedications {
+      items {
+        id
+      }
+      nextToken
+    }
+    patientAllergies {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const deletePathologicalHistory = `mutation DeletePathologicalHistory($input: DeletePathologicalHistoryInput!) {
+  deletePathologicalHistory(input: $input) {
+    id
+    surgicalInterventions {
+      items {
+        id
+      }
+      nextToken
+    }
+    patientMedications {
+      items {
+        id
+      }
+      nextToken
+    }
+    patientAllergies {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createFamilyHistory = `mutation CreateFamilyHistory($input: CreateFamilyHistoryInput!) {
+  createFamilyHistory(input: $input) {
+    id
+  }
+}
+`;
+export const updateFamilyHistory = `mutation UpdateFamilyHistory($input: UpdateFamilyHistoryInput!) {
+  updateFamilyHistory(input: $input) {
+    id
+  }
+}
+`;
+export const deleteFamilyHistory = `mutation DeleteFamilyHistory($input: DeleteFamilyHistoryInput!) {
+  deleteFamilyHistory(input: $input) {
+    id
+  }
+}
+`;
+export const createFamilyDetails = `mutation CreateFamilyDetails($input: CreateFamilyDetailsInput!) {
+  createFamilyDetails(input: $input) {
+    id
+    alive
+    diseases {
+      id
+      name
+    }
+    comment
+  }
+}
+`;
+export const updateFamilyDetails = `mutation UpdateFamilyDetails($input: UpdateFamilyDetailsInput!) {
+  updateFamilyDetails(input: $input) {
+    id
+    alive
+    diseases {
+      id
+      name
+    }
+    comment
+  }
+}
+`;
+export const deleteFamilyDetails = `mutation DeleteFamilyDetails($input: DeleteFamilyDetailsInput!) {
+  deleteFamilyDetails(input: $input) {
+    id
+    alive
+    diseases {
+      id
+      name
+    }
+    comment
+  }
+}
+`;
+export const createDiseases = `mutation CreateDiseases($input: CreateDiseasesInput!) {
+  createDiseases(input: $input) {
+    id
+    name
+  }
+}
+`;
+export const updateDiseases = `mutation UpdateDiseases($input: UpdateDiseasesInput!) {
+  updateDiseases(input: $input) {
+    id
+    name
+  }
+}
+`;
+export const deleteDiseases = `mutation DeleteDiseases($input: DeleteDiseasesInput!) {
+  deleteDiseases(input: $input) {
+    id
+    name
+  }
+}
+`;
+export const createGynecoObstetricHistory = `mutation CreateGynecoObstetricHistory(
+  $input: CreateGynecoObstetricHistoryInput!
+) {
+  createGynecoObstetricHistory(input: $input) {
+    id
+    menarche
+    sexual_development
+    menstrual_rhythm
+    sex_life
+    deliveries
+    abortions
+    caesarean_sections
+    contraceptive_method
+  }
+}
+`;
+export const updateGynecoObstetricHistory = `mutation UpdateGynecoObstetricHistory(
+  $input: UpdateGynecoObstetricHistoryInput!
+) {
+  updateGynecoObstetricHistory(input: $input) {
+    id
+    menarche
+    sexual_development
+    menstrual_rhythm
+    sex_life
+    deliveries
+    abortions
+    caesarean_sections
+    contraceptive_method
+  }
+}
+`;
+export const deleteGynecoObstetricHistory = `mutation DeleteGynecoObstetricHistory(
+  $input: DeleteGynecoObstetricHistoryInput!
+) {
+  deleteGynecoObstetricHistory(input: $input) {
+    id
+    menarche
+    sexual_development
+    menstrual_rhythm
+    sex_life
+    deliveries
+    abortions
+    caesarean_sections
+    contraceptive_method
+  }
+}
+`;
+export const createAllergies = `mutation CreateAllergies($input: CreateAllergiesInput!) {
+  createAllergies(input: $input) {
+    id
+    name
+    patients {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const updateAllergies = `mutation UpdateAllergies($input: UpdateAllergiesInput!) {
+  updateAllergies(input: $input) {
+    id
+    name
+    patients {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const deleteAllergies = `mutation DeleteAllergies($input: DeleteAllergiesInput!) {
+  deleteAllergies(input: $input) {
+    id
+    name
+    patients {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createPatientAllergies = `mutation CreatePatientAllergies($input: CreatePatientAllergiesInput!) {
+  createPatientAllergies(input: $input) {
+    id
+    pathologicalHistory {
+      id
+      surgicalInterventions {
+        nextToken
+      }
+      patientMedications {
+        nextToken
+      }
+      patientAllergies {
+        nextToken
+      }
+    }
+    allergies {
+      id
+      name
+      patients {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const updatePatientAllergies = `mutation UpdatePatientAllergies($input: UpdatePatientAllergiesInput!) {
+  updatePatientAllergies(input: $input) {
+    id
+    pathologicalHistory {
+      id
+      surgicalInterventions {
+        nextToken
+      }
+      patientMedications {
+        nextToken
+      }
+      patientAllergies {
+        nextToken
+      }
+    }
+    allergies {
+      id
+      name
+      patients {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const deletePatientAllergies = `mutation DeletePatientAllergies($input: DeletePatientAllergiesInput!) {
+  deletePatientAllergies(input: $input) {
+    id
+    pathologicalHistory {
+      id
+      surgicalInterventions {
+        nextToken
+      }
+      patientMedications {
+        nextToken
+      }
+      patientAllergies {
+        nextToken
+      }
+    }
+    allergies {
+      id
+      name
+      patients {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const createPatientMedications = `mutation CreatePatientMedications($input: CreatePatientMedicationsInput!) {
+  createPatientMedications(input: $input) {
+    id
+    pathologicalHistory {
+      id
+      surgicalInterventions {
+        nextToken
+      }
+      patientMedications {
+        nextToken
+      }
+      patientAllergies {
+        nextToken
+      }
+    }
+    medications {
+      id
+      name
+      patients {
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const updatePatientMedications = `mutation UpdatePatientMedications($input: UpdatePatientMedicationsInput!) {
+  updatePatientMedications(input: $input) {
+    id
+    pathologicalHistory {
+      id
+      surgicalInterventions {
+        nextToken
+      }
+      patientMedications {
+        nextToken
+      }
+      patientAllergies {
+        nextToken
+      }
+    }
+    medications {
+      id
+      name
+      patients {
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const deletePatientMedications = `mutation DeletePatientMedications($input: DeletePatientMedicationsInput!) {
+  deletePatientMedications(input: $input) {
+    id
+    pathologicalHistory {
+      id
+      surgicalInterventions {
+        nextToken
+      }
+      patientMedications {
+        nextToken
+      }
+      patientAllergies {
+        nextToken
+      }
+    }
+    medications {
+      id
+      name
+      patients {
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const createMedicines = `mutation CreateMedicines($input: CreateMedicinesInput!) {
+  createMedicines(input: $input) {
+    id
+    name
+    patients {
+      items {
+        id
+      }
+      nextToken
+    }
+    code
+    drug_concentration
+    chemical_composition
+    mp {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const updateMedicines = `mutation UpdateMedicines($input: UpdateMedicinesInput!) {
+  updateMedicines(input: $input) {
+    id
+    name
+    patients {
+      items {
+        id
+      }
+      nextToken
+    }
+    code
+    drug_concentration
+    chemical_composition
+    mp {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const deleteMedicines = `mutation DeleteMedicines($input: DeleteMedicinesInput!) {
+  deleteMedicines(input: $input) {
+    id
+    name
+    patients {
+      items {
+        id
+      }
+      nextToken
+    }
+    code
+    drug_concentration
+    chemical_composition
+    mp {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createPostConsultationsActivities = `mutation CreatePostConsultationsActivities(
+  $input: CreatePostConsultationsActivitiesInput!
+) {
+  createPostConsultationsActivities(input: $input) {
+    id
+    medicalPrescriptions {
+      items {
+        id
+      }
+      nextToken
+    }
+    medicalAnalysis {
+      items {
+        id
+      }
+      nextToken
+    }
+    surgicalIntervention {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const updatePostConsultationsActivities = `mutation UpdatePostConsultationsActivities(
+  $input: UpdatePostConsultationsActivitiesInput!
+) {
+  updatePostConsultationsActivities(input: $input) {
+    id
+    medicalPrescriptions {
+      items {
+        id
+      }
+      nextToken
+    }
+    medicalAnalysis {
+      items {
+        id
+      }
+      nextToken
+    }
+    surgicalIntervention {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const deletePostConsultationsActivities = `mutation DeletePostConsultationsActivities(
+  $input: DeletePostConsultationsActivitiesInput!
+) {
+  deletePostConsultationsActivities(input: $input) {
+    id
+    medicalPrescriptions {
+      items {
+        id
+      }
+      nextToken
+    }
+    medicalAnalysis {
+      items {
+        id
+      }
+      nextToken
+    }
+    surgicalIntervention {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createMedicalPrescriptions = `mutation CreateMedicalPrescriptions($input: CreateMedicalPrescriptionsInput!) {
+  createMedicalPrescriptions(input: $input) {
+    id
+    date
+    frequency
+    duration
+    medications {
+      items {
+        id
+      }
+      nextToken
+    }
+    pca {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const updateMedicalPrescriptions = `mutation UpdateMedicalPrescriptions($input: UpdateMedicalPrescriptionsInput!) {
+  updateMedicalPrescriptions(input: $input) {
+    id
+    date
+    frequency
+    duration
+    medications {
+      items {
+        id
+      }
+      nextToken
+    }
+    pca {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const deleteMedicalPrescriptions = `mutation DeleteMedicalPrescriptions($input: DeleteMedicalPrescriptionsInput!) {
+  deleteMedicalPrescriptions(input: $input) {
+    id
+    date
+    frequency
+    duration
+    medications {
+      items {
+        id
+      }
+      nextToken
+    }
+    pca {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createPostConsultActMedicalPres = `mutation CreatePostConsultActMedicalPres(
+  $input: CreatePostConsultActMedicalPresInput!
+) {
+  createPostConsultActMedicalPres(input: $input) {
+    id
+    pcActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+    medicalPrescriptions {
+      id
+      date
+      frequency
+      duration
+      medications {
+        nextToken
+      }
+      pca {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const updatePostConsultActMedicalPres = `mutation UpdatePostConsultActMedicalPres(
+  $input: UpdatePostConsultActMedicalPresInput!
+) {
+  updatePostConsultActMedicalPres(input: $input) {
+    id
+    pcActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+    medicalPrescriptions {
+      id
+      date
+      frequency
+      duration
+      medications {
+        nextToken
+      }
+      pca {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const deletePostConsultActMedicalPres = `mutation DeletePostConsultActMedicalPres(
+  $input: DeletePostConsultActMedicalPresInput!
+) {
+  deletePostConsultActMedicalPres(input: $input) {
+    id
+    pcActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+    medicalPrescriptions {
+      id
+      date
+      frequency
+      duration
+      medications {
+        nextToken
+      }
+      pca {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const createMedicalPrescriptionsMedications = `mutation CreateMedicalPrescriptionsMedications(
+  $input: CreateMedicalPrescriptionsMedicationsInput!
+) {
+  createMedicalPrescriptionsMedications(input: $input) {
+    id
+    medicalPrescriptions {
+      id
+      date
+      frequency
+      duration
+      medications {
+        nextToken
+      }
+      pca {
+        nextToken
+      }
+    }
+    medications {
+      id
+      name
+      patients {
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const updateMedicalPrescriptionsMedications = `mutation UpdateMedicalPrescriptionsMedications(
+  $input: UpdateMedicalPrescriptionsMedicationsInput!
+) {
+  updateMedicalPrescriptionsMedications(input: $input) {
+    id
+    medicalPrescriptions {
+      id
+      date
+      frequency
+      duration
+      medications {
+        nextToken
+      }
+      pca {
+        nextToken
+      }
+    }
+    medications {
+      id
+      name
+      patients {
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const deleteMedicalPrescriptionsMedications = `mutation DeleteMedicalPrescriptionsMedications(
+  $input: DeleteMedicalPrescriptionsMedicationsInput!
+) {
+  deleteMedicalPrescriptionsMedications(input: $input) {
+    id
+    medicalPrescriptions {
+      id
+      date
+      frequency
+      duration
+      medications {
+        nextToken
+      }
+      pca {
+        nextToken
+      }
+    }
+    medications {
+      id
+      name
+      patients {
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const createPostConsultActMedAnalysis = `mutation CreatePostConsultActMedAnalysis(
+  $input: CreatePostConsultActMedAnalysisInput!
+) {
+  createPostConsultActMedAnalysis(input: $input) {
+    id
+    pcActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+    medicalAnalysis {
+      id
+      name
+      code
+      medicalAnalysis {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const updatePostConsultActMedAnalysis = `mutation UpdatePostConsultActMedAnalysis(
+  $input: UpdatePostConsultActMedAnalysisInput!
+) {
+  updatePostConsultActMedAnalysis(input: $input) {
+    id
+    pcActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+    medicalAnalysis {
+      id
+      name
+      code
+      medicalAnalysis {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const deletePostConsultActMedAnalysis = `mutation DeletePostConsultActMedAnalysis(
+  $input: DeletePostConsultActMedAnalysisInput!
+) {
+  deletePostConsultActMedAnalysis(input: $input) {
+    id
+    pcActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+    medicalAnalysis {
+      id
+      name
+      code
+      medicalAnalysis {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const createMedicalAnalysis = `mutation CreateMedicalAnalysis($input: CreateMedicalAnalysisInput!) {
+  createMedicalAnalysis(input: $input) {
+    id
+    name
+    code
+    medicalAnalysis {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const updateMedicalAnalysis = `mutation UpdateMedicalAnalysis($input: UpdateMedicalAnalysisInput!) {
+  updateMedicalAnalysis(input: $input) {
+    id
+    name
+    code
+    medicalAnalysis {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const deleteMedicalAnalysis = `mutation DeleteMedicalAnalysis($input: DeleteMedicalAnalysisInput!) {
+  deleteMedicalAnalysis(input: $input) {
+    id
+    name
+    code
+    medicalAnalysis {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createPostConsultActSurgicalInt = `mutation CreatePostConsultActSurgicalInt(
+  $input: CreatePostConsultActSurgicalIntInput!
+) {
+  createPostConsultActSurgicalInt(input: $input) {
+    id
+    pcActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+    surgicalIntervention {
+      id
+      surgicalIntervention {
+        id
+      }
+    }
+  }
+}
+`;
+export const updatePostConsultActSurgicalInt = `mutation UpdatePostConsultActSurgicalInt(
+  $input: UpdatePostConsultActSurgicalIntInput!
+) {
+  updatePostConsultActSurgicalInt(input: $input) {
+    id
+    pcActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+    surgicalIntervention {
+      id
+      surgicalIntervention {
+        id
+      }
+    }
+  }
+}
+`;
+export const deletePostConsultActSurgicalInt = `mutation DeletePostConsultActSurgicalInt(
+  $input: DeletePostConsultActSurgicalIntInput!
+) {
+  deletePostConsultActSurgicalInt(input: $input) {
+    id
+    pcActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+    surgicalIntervention {
+      id
+      surgicalIntervention {
+        id
+      }
+    }
+  }
+}
+`;
+export const createSurgicalIntervention = `mutation CreateSurgicalIntervention($input: CreateSurgicalInterventionInput!) {
+  createSurgicalIntervention(input: $input) {
+    id
+    surgicalIntervention {
+      id
+      pcActivities {
+        id
+      }
+      surgicalIntervention {
+        id
+      }
+    }
+  }
+}
+`;
+export const updateSurgicalIntervention = `mutation UpdateSurgicalIntervention($input: UpdateSurgicalInterventionInput!) {
+  updateSurgicalIntervention(input: $input) {
+    id
+    surgicalIntervention {
+      id
+      pcActivities {
+        id
+      }
+      surgicalIntervention {
+        id
+      }
+    }
+  }
+}
+`;
+export const deleteSurgicalIntervention = `mutation DeleteSurgicalIntervention($input: DeleteSurgicalInterventionInput!) {
+  deleteSurgicalIntervention(input: $input) {
+    id
+    surgicalIntervention {
+      id
+      pcActivities {
+        id
+      }
+      surgicalIntervention {
+        id
+      }
+    }
+  }
+}
+`;
+export const createPhysicalExploration = `mutation CreatePhysicalExploration($input: CreatePhysicalExplorationInput!) {
+  createPhysicalExploration(input: $input) {
+    id
+    general_exploration
+    vitalsigns {
+      id
+      blood_pressure
+      Breathing
+      Pulse
+      Temperature
+    }
+    regionalExploration {
+      id
+      head
+      neck
+      thorax
+      abdomen
+      members
+      genitals
+      others
+    }
+  }
+}
+`;
+export const updatePhysicalExploration = `mutation UpdatePhysicalExploration($input: UpdatePhysicalExplorationInput!) {
+  updatePhysicalExploration(input: $input) {
+    id
+    general_exploration
+    vitalsigns {
+      id
+      blood_pressure
+      Breathing
+      Pulse
+      Temperature
+    }
+    regionalExploration {
+      id
+      head
+      neck
+      thorax
+      abdomen
+      members
+      genitals
+      others
+    }
+  }
+}
+`;
+export const deletePhysicalExploration = `mutation DeletePhysicalExploration($input: DeletePhysicalExplorationInput!) {
+  deletePhysicalExploration(input: $input) {
+    id
+    general_exploration
+    vitalsigns {
+      id
+      blood_pressure
+      Breathing
+      Pulse
+      Temperature
+    }
+    regionalExploration {
+      id
+      head
+      neck
+      thorax
+      abdomen
+      members
+      genitals
+      others
+    }
+  }
+}
+`;
+export const createVitalSigns = `mutation CreateVitalSigns($input: CreateVitalSignsInput!) {
+  createVitalSigns(input: $input) {
+    id
+    blood_pressure
+    Breathing
+    Pulse
+    Temperature
+  }
+}
+`;
+export const updateVitalSigns = `mutation UpdateVitalSigns($input: UpdateVitalSignsInput!) {
+  updateVitalSigns(input: $input) {
+    id
+    blood_pressure
+    Breathing
+    Pulse
+    Temperature
+  }
+}
+`;
+export const deleteVitalSigns = `mutation DeleteVitalSigns($input: DeleteVitalSignsInput!) {
+  deleteVitalSigns(input: $input) {
+    id
+    blood_pressure
+    Breathing
+    Pulse
+    Temperature
+  }
+}
+`;
+export const createRegionalExploration = `mutation CreateRegionalExploration($input: CreateRegionalExplorationInput!) {
+  createRegionalExploration(input: $input) {
+    id
+    head
+    neck
+    thorax
+    abdomen
+    members
+    genitals
+    others
+  }
+}
+`;
+export const updateRegionalExploration = `mutation UpdateRegionalExploration($input: UpdateRegionalExplorationInput!) {
+  updateRegionalExploration(input: $input) {
+    id
+    head
+    neck
+    thorax
+    abdomen
+    members
+    genitals
+    others
+  }
+}
+`;
+export const deleteRegionalExploration = `mutation DeleteRegionalExploration($input: DeleteRegionalExplorationInput!) {
+  deleteRegionalExploration(input: $input) {
+    id
+    head
+    neck
+    thorax
+    abdomen
+    members
+    genitals
+    others
   }
 }
 `;

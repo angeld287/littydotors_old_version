@@ -36,7 +36,7 @@ const useConsultationProcess = () => {
         const createMedicalConsultation = async () => {
 
             try {
-                setFormActivePanel(0)
+                setFormActivePanel(1)
             } catch (error) {
                 setLoading(false);
                 setError(true);

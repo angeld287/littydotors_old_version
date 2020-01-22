@@ -193,45 +193,6 @@ export const listDoctors = `query ListDoctors(
   }
 }
 `;
-export const getPatient = `query GetPatient($id: ID!) {
-  getPatient(id: $id) {
-    id
-    name
-    username
-    email
-    phone
-    phone_id
-    weight
-    height
-    size
-    age
-    birthdate
-  }
-}
-`;
-export const listPatients = `query ListPatients(
-  $filter: ModelPatientFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listPatients(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      name
-      username
-      email
-      phone
-      phone_id
-      weight
-      height
-      size
-      age
-      birthdate
-    }
-    nextToken
-  }
-}
-`;
 export const getRejection = `query GetRejection($id: ID!) {
   getRejection(id: $id) {
     id
@@ -496,6 +457,9 @@ export const getMedicalAppointment = `query GetMedicalAppointment($id: ID!) {
       size
       age
       birthdate
+      patientHistory {
+        id
+      }
     }
     rejection {
       items {
@@ -534,7 +498,7 @@ export const getMedicalAppointment = `query GetMedicalAppointment($id: ID!) {
     position
     consult_cost
     read_secretary
-    read_company
+    read_doctor
     read_client
     createdAt
   }
@@ -600,9 +564,878 @@ export const listMedicalAppointments = `query ListMedicalAppointments(
       position
       consult_cost
       read_secretary
-      read_company
+      read_doctor
       read_client
       createdAt
+    }
+    nextToken
+  }
+}
+`;
+export const getMedicalHistory = `query GetMedicalHistory($id: ID!) {
+  getMedicalHistory(id: $id) {
+    id
+    reason
+    patient {
+      id
+      name
+      username
+      email
+      phone
+      phone_id
+      weight
+      height
+      size
+      age
+      birthdate
+      patientHistory {
+        id
+      }
+    }
+    physicalExploration {
+      id
+      general_exploration
+      vitalsigns {
+        id
+        blood_pressure
+        Breathing
+        Pulse
+        Temperature
+      }
+      regionalExploration {
+        id
+        head
+        neck
+        thorax
+        abdomen
+        members
+        genitals
+        others
+      }
+    }
+    postConsultationsActivities {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const listMedicalHistorys = `query ListMedicalHistorys(
+  $filter: ModelMedicalHistoryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listMedicalHistorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      reason
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+      }
+      physicalExploration {
+        id
+        general_exploration
+      }
+      postConsultationsActivities {
+        id
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getPatient = `query GetPatient($id: ID!) {
+  getPatient(id: $id) {
+    id
+    name
+    username
+    email
+    phone
+    phone_id
+    weight
+    height
+    size
+    age
+    birthdate
+    patientHistory {
+      id
+      nonPathologicalHistory {
+        id
+      }
+      pathologicalHistory {
+        id
+      }
+      familyHistory {
+        id
+      }
+      gynecoObstetricHistory {
+        id
+        menarche
+        sexual_development
+        menstrual_rhythm
+        sex_life
+        deliveries
+        abortions
+        caesarean_sections
+        contraceptive_method
+      }
+    }
+  }
+}
+`;
+export const listPatients = `query ListPatients(
+  $filter: ModelPatientFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPatients(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      username
+      email
+      phone
+      phone_id
+      weight
+      height
+      size
+      age
+      birthdate
+      patientHistory {
+        id
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getPatientHistory = `query GetPatientHistory($id: ID!) {
+  getPatientHistory(id: $id) {
+    id
+    nonPathologicalHistory {
+      id
+      alcohol {
+        id
+        active
+        frequency
+        comment
+      }
+      smoking {
+        id
+        active
+        frequency
+        comment
+      }
+      drugs {
+        id
+        active
+        frequency
+        comment
+      }
+      immunizations {
+        id
+        active
+        frequency
+        comment
+      }
+    }
+    pathologicalHistory {
+      id
+      surgicalInterventions {
+        nextToken
+      }
+      patientMedications {
+        nextToken
+      }
+      patientAllergies {
+        nextToken
+      }
+    }
+    familyHistory {
+      id
+    }
+    gynecoObstetricHistory {
+      id
+      menarche
+      sexual_development
+      menstrual_rhythm
+      sex_life
+      deliveries
+      abortions
+      caesarean_sections
+      contraceptive_method
+    }
+  }
+}
+`;
+export const listPatientHistorys = `query ListPatientHistorys(
+  $filter: ModelPatientHistoryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPatientHistorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      nonPathologicalHistory {
+        id
+      }
+      pathologicalHistory {
+        id
+      }
+      familyHistory {
+        id
+      }
+      gynecoObstetricHistory {
+        id
+        menarche
+        sexual_development
+        menstrual_rhythm
+        sex_life
+        deliveries
+        abortions
+        caesarean_sections
+        contraceptive_method
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getNonPathologicalHistory = `query GetNonPathologicalHistory($id: ID!) {
+  getNonPathologicalHistory(id: $id) {
+    id
+    alcohol {
+      id
+      active
+      frequency
+      comment
+    }
+    smoking {
+      id
+      active
+      frequency
+      comment
+    }
+    drugs {
+      id
+      active
+      frequency
+      comment
+    }
+    immunizations {
+      id
+      active
+      frequency
+      comment
+    }
+  }
+}
+`;
+export const listNonPathologicalHistorys = `query ListNonPathologicalHistorys(
+  $filter: ModelNonPathologicalHistoryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listNonPathologicalHistorys(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      alcohol {
+        id
+        active
+        frequency
+        comment
+      }
+      smoking {
+        id
+        active
+        frequency
+        comment
+      }
+      drugs {
+        id
+        active
+        frequency
+        comment
+      }
+      immunizations {
+        id
+        active
+        frequency
+        comment
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getNonPathologicalActivities = `query GetNonPathologicalActivities($id: ID!) {
+  getNonPathologicalActivities(id: $id) {
+    id
+    active
+    frequency
+    comment
+  }
+}
+`;
+export const listNonPathologicalActivitiess = `query ListNonPathologicalActivitiess(
+  $filter: ModelNonPathologicalActivitiesFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listNonPathologicalActivitiess(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      active
+      frequency
+      comment
+    }
+    nextToken
+  }
+}
+`;
+export const getPathologicalHistory = `query GetPathologicalHistory($id: ID!) {
+  getPathologicalHistory(id: $id) {
+    id
+    surgicalInterventions {
+      items {
+        id
+      }
+      nextToken
+    }
+    patientMedications {
+      items {
+        id
+      }
+      nextToken
+    }
+    patientAllergies {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const listPathologicalHistorys = `query ListPathologicalHistorys(
+  $filter: ModelPathologicalHistoryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPathologicalHistorys(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      surgicalInterventions {
+        nextToken
+      }
+      patientMedications {
+        nextToken
+      }
+      patientAllergies {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getFamilyHistory = `query GetFamilyHistory($id: ID!) {
+  getFamilyHistory(id: $id) {
+    id
+  }
+}
+`;
+export const listFamilyHistorys = `query ListFamilyHistorys(
+  $filter: ModelFamilyHistoryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFamilyHistorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+    }
+    nextToken
+  }
+}
+`;
+export const getFamilyDetails = `query GetFamilyDetails($id: ID!) {
+  getFamilyDetails(id: $id) {
+    id
+    alive
+    diseases {
+      id
+      name
+    }
+    comment
+  }
+}
+`;
+export const listFamilyDetailss = `query ListFamilyDetailss(
+  $filter: ModelFamilyDetailsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFamilyDetailss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      alive
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    nextToken
+  }
+}
+`;
+export const getDiseases = `query GetDiseases($id: ID!) {
+  getDiseases(id: $id) {
+    id
+    name
+  }
+}
+`;
+export const listDiseasess = `query ListDiseasess(
+  $filter: ModelDiseasesFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDiseasess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+    }
+    nextToken
+  }
+}
+`;
+export const getGynecoObstetricHistory = `query GetGynecoObstetricHistory($id: ID!) {
+  getGynecoObstetricHistory(id: $id) {
+    id
+    menarche
+    sexual_development
+    menstrual_rhythm
+    sex_life
+    deliveries
+    abortions
+    caesarean_sections
+    contraceptive_method
+  }
+}
+`;
+export const listGynecoObstetricHistorys = `query ListGynecoObstetricHistorys(
+  $filter: ModelGynecoObstetricHistoryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listGynecoObstetricHistorys(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      menarche
+      sexual_development
+      menstrual_rhythm
+      sex_life
+      deliveries
+      abortions
+      caesarean_sections
+      contraceptive_method
+    }
+    nextToken
+  }
+}
+`;
+export const getAllergies = `query GetAllergies($id: ID!) {
+  getAllergies(id: $id) {
+    id
+    name
+    patients {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const listAllergiess = `query ListAllergiess(
+  $filter: ModelAllergiesFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAllergiess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      patients {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getMedicines = `query GetMedicines($id: ID!) {
+  getMedicines(id: $id) {
+    id
+    name
+    patients {
+      items {
+        id
+      }
+      nextToken
+    }
+    code
+    drug_concentration
+    chemical_composition
+    mp {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const listMediciness = `query ListMediciness(
+  $filter: ModelMedicinesFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listMediciness(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      patients {
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getPostConsultationsActivities = `query GetPostConsultationsActivities($id: ID!) {
+  getPostConsultationsActivities(id: $id) {
+    id
+    medicalPrescriptions {
+      items {
+        id
+      }
+      nextToken
+    }
+    medicalAnalysis {
+      items {
+        id
+      }
+      nextToken
+    }
+    surgicalIntervention {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const listPostConsultationsActivitiess = `query ListPostConsultationsActivitiess(
+  $filter: ModelPostConsultationsActivitiesFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPostConsultationsActivitiess(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      medicalPrescriptions {
+        nextToken
+      }
+      medicalAnalysis {
+        nextToken
+      }
+      surgicalIntervention {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getMedicalPrescriptions = `query GetMedicalPrescriptions($id: ID!) {
+  getMedicalPrescriptions(id: $id) {
+    id
+    date
+    frequency
+    duration
+    medications {
+      items {
+        id
+      }
+      nextToken
+    }
+    pca {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const listMedicalPrescriptionss = `query ListMedicalPrescriptionss(
+  $filter: ModelMedicalPrescriptionsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listMedicalPrescriptionss(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      date
+      frequency
+      duration
+      medications {
+        nextToken
+      }
+      pca {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getMedicalAnalysis = `query GetMedicalAnalysis($id: ID!) {
+  getMedicalAnalysis(id: $id) {
+    id
+    name
+    code
+    medicalAnalysis {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const listMedicalAnalysiss = `query ListMedicalAnalysiss(
+  $filter: ModelMedicalAnalysisFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listMedicalAnalysiss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      code
+      medicalAnalysis {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getSurgicalIntervention = `query GetSurgicalIntervention($id: ID!) {
+  getSurgicalIntervention(id: $id) {
+    id
+    surgicalIntervention {
+      id
+      pcActivities {
+        id
+      }
+      surgicalIntervention {
+        id
+      }
+    }
+  }
+}
+`;
+export const listSurgicalInterventions = `query ListSurgicalInterventions(
+  $filter: ModelSurgicalInterventionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listSurgicalInterventions(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      surgicalIntervention {
+        id
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getPhysicalExploration = `query GetPhysicalExploration($id: ID!) {
+  getPhysicalExploration(id: $id) {
+    id
+    general_exploration
+    vitalsigns {
+      id
+      blood_pressure
+      Breathing
+      Pulse
+      Temperature
+    }
+    regionalExploration {
+      id
+      head
+      neck
+      thorax
+      abdomen
+      members
+      genitals
+      others
+    }
+  }
+}
+`;
+export const listPhysicalExplorations = `query ListPhysicalExplorations(
+  $filter: ModelPhysicalExplorationFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPhysicalExplorations(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      general_exploration
+      vitalsigns {
+        id
+        blood_pressure
+        Breathing
+        Pulse
+        Temperature
+      }
+      regionalExploration {
+        id
+        head
+        neck
+        thorax
+        abdomen
+        members
+        genitals
+        others
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getVitalSigns = `query GetVitalSigns($id: ID!) {
+  getVitalSigns(id: $id) {
+    id
+    blood_pressure
+    Breathing
+    Pulse
+    Temperature
+  }
+}
+`;
+export const listVitalSignss = `query ListVitalSignss(
+  $filter: ModelVitalSignsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listVitalSignss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      blood_pressure
+      Breathing
+      Pulse
+      Temperature
+    }
+    nextToken
+  }
+}
+`;
+export const getRegionalExploration = `query GetRegionalExploration($id: ID!) {
+  getRegionalExploration(id: $id) {
+    id
+    head
+    neck
+    thorax
+    abdomen
+    members
+    genitals
+    others
+  }
+}
+`;
+export const listRegionalExplorations = `query ListRegionalExplorations(
+  $filter: ModelRegionalExplorationFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRegionalExplorations(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      head
+      neck
+      thorax
+      abdomen
+      members
+      genitals
+      others
     }
     nextToken
   }

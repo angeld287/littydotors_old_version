@@ -10,18 +10,17 @@ const ConsultationProcess = () => {
 
   return (
     <MDBContainer>
-        <h2 className="text-center font-weight-bold pt-4 pb-5 mb-2"><strong>Proceso de Consulta Medica</strong></h2>
+        <h2 className="text-center font-weight-bold pt-4 pb-5 mb-2"><strong>Historia Clinica</strong></h2>
         <MDBStepper icon>
-          <MDBStep icon="user" stepName="Paciente" onClick={swapFormActive(0)}></MDBStep>
-          <MDBStep icon="folder-open" stepName="Antecedentes" onClick={swapFormActive(1)}></MDBStep>
-          <MDBStep icon="clipboard-list" stepName="Historia Clinica" onClick={swapFormActive(2)}></MDBStep>
+          <MDBStep icon="user" stepName="Paciente" onClick={swapFormActive(1)}></MDBStep>
+          <MDBStep icon="folder-open" stepName="Antecedentes" onClick={swapFormActive(2)}></MDBStep>
           <MDBStep icon="stethoscope" stepName="Examen Medico" onClick={swapFormActive(3)}></MDBStep>
           <MDBStep icon="prescription-bottle-alt" stepName="Prescripciones y Estudios" onClick={swapFormActive(4)}></MDBStep>
         </MDBStepper>
 
         <form role="form" action="" method="post">
           <MDBRow>
-            {formActivePanel === 0 &&
+            {formActivePanel === 1 &&
               (<MDBCol md="12">
                 <h3 className="font-weight-bold pl-0 my-4">
                   <strong>Paciente</strong>
@@ -38,10 +37,10 @@ const ConsultationProcess = () => {
                   </MDBCard>
                 </MDBCol>
                 <br/>
-                <MDBBtn color="mdb-color" rounded className="float-right" onClick={handleNextPrevClick(1)}>next</MDBBtn>
+                <MDBBtn color="mdb-color" rounded className="float-right" onClick={handleNextPrevClick(2)}>next</MDBBtn>
               </MDBCol>)}
 
-            {formActivePanel === 1 &&
+            {formActivePanel === 2 &&
             (<MDBCol md="12">
               <h3 className="font-weight-bold pl-0 my-4">
                 <strong>Antecedentes</strong>
@@ -85,34 +84,13 @@ const ConsultationProcess = () => {
               <MDBInput type="checkbox" label="Madre Viva" className="mt-4" />
               <MDBInput label="Enfermedades que padece" className="mt-4" />
               <br/>
-              <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(0)}>previous</MDBBtn>
-              <MDBBtn color="mdb-color" rounded className="float-right" onClick={handleNextPrevClick(2)}>next</MDBBtn>
-            </MDBCol>)}
-
-            {formActivePanel == 2 &&
-            (<MDBCol md="12">
-              <h3 className="font-weight-bold pl-0 my-4"><strong>Historia Clinica</strong></h3>
-              <MDBInput label="First Name" className="mt-3" autoFocus={calculateAutofocus} />
-              <MDBInput label="Second Name" className="mt-3" />
-              <MDBInput label="I want to receive newsletter" type="checkbox" id="checkbox2" />
-              <MDBInput label="Surname" className="mt-3" />
-              <MDBInput label="Address" type="textarea" rows="2" />
-
-              <MDBInput label="I want to receive newsletter" type="checkbox" id="checkbox2" />
-
-              <MDBInput label="I want to receive newsletter" type="checkbox" id="checkbox2" />
-              <MDBInput label="I want to receive newsletter" type="checkbox" id="checkbox2" />
-              <br/>
               <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(1)}>previous</MDBBtn>
               <MDBBtn color="mdb-color" rounded className="float-right" onClick={handleNextPrevClick(3)}>next</MDBBtn>
             </MDBCol>)}
 
             {formActivePanel == 3 &&
             (<MDBCol md="12">
-              <h3 className="font-weight-bold pl-0 my-4"><strong>Examen Medico</strong></h3>
-              <h5 className="font-weight-bold pl-0 my-4">
-                <strong>Exploracion Fisica</strong>
-              </h5>
+              <h3 className="font-weight-bold pl-0 my-4"><strong>Exploracion Fisica</strong></h3>
               <MDBInput label="First Name" className="mt-3" autoFocus={calculateAutofocus} />
               <MDBInput label="Second Name" className="mt-3" />
               <MDBInput label="Surname" className="mt-3" />

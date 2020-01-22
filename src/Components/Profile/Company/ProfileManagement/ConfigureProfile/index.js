@@ -81,7 +81,7 @@ class ConfigureProfile extends Component {
 
   redirect = () => {
       if((this.props.childProps.state.stripe_subscription_id !== 'undefined' && this.props.childProps.state.stripe_subscription_id !== undefined && this.props.childProps.state.stripe_subscription_id !== '' && 
-          this.props.childProps.state.stripe_subscription_id !== null) || (this.props.childProps.state.user_roll !== 'company' && this.props.childProps.state.user_roll !== '' && this.props.childProps.state.user_roll !== 'undefined' && this.props.childProps.state.user_roll !== undefined && this.props.childProps.state.user_roll !== null)){
+          this.props.childProps.state.stripe_subscription_id !== null) || (this.props.childProps.state.user_roll !== 'doctor' && this.props.childProps.state.user_roll !== '' && this.props.childProps.state.user_roll !== 'undefined' && this.props.childProps.state.user_roll !== undefined && this.props.childProps.state.user_roll !== null)){
       
             this.setState({ redirect: true });
       }
