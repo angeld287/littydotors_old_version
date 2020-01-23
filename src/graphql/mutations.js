@@ -840,6 +840,9 @@ export const createMedicalHistory = `mutation CreateMedicalHistory($input: Creat
         Breathing
         Pulse
         Temperature
+        doctor
+        secretary
+        patient
       }
       regionalExploration {
         id
@@ -850,7 +853,13 @@ export const createMedicalHistory = `mutation CreateMedicalHistory($input: Creat
         members
         genitals
         others
+        doctor
+        secretary
+        patient
       }
+      doctor
+      secretary
+      patient
     }
     postConsultationsActivities {
       id
@@ -860,10 +869,13 @@ export const createMedicalHistory = `mutation CreateMedicalHistory($input: Creat
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patientname
   }
 }
 `;
@@ -896,6 +908,9 @@ export const updateMedicalHistory = `mutation UpdateMedicalHistory($input: Updat
         Breathing
         Pulse
         Temperature
+        doctor
+        secretary
+        patient
       }
       regionalExploration {
         id
@@ -906,7 +921,13 @@ export const updateMedicalHistory = `mutation UpdateMedicalHistory($input: Updat
         members
         genitals
         others
+        doctor
+        secretary
+        patient
       }
+      doctor
+      secretary
+      patient
     }
     postConsultationsActivities {
       id
@@ -916,10 +937,13 @@ export const updateMedicalHistory = `mutation UpdateMedicalHistory($input: Updat
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patientname
   }
 }
 `;
@@ -952,6 +976,9 @@ export const deleteMedicalHistory = `mutation DeleteMedicalHistory($input: Delet
         Breathing
         Pulse
         Temperature
+        doctor
+        secretary
+        patient
       }
       regionalExploration {
         id
@@ -962,7 +989,13 @@ export const deleteMedicalHistory = `mutation DeleteMedicalHistory($input: Delet
         members
         genitals
         others
+        doctor
+        secretary
+        patient
       }
+      doctor
+      secretary
+      patient
     }
     postConsultationsActivities {
       id
@@ -972,10 +1005,13 @@ export const deleteMedicalHistory = `mutation DeleteMedicalHistory($input: Delet
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patientname
   }
 }
 `;
@@ -1140,6 +1176,42 @@ export const createPatientHistory = `mutation CreatePatientHistory($input: Creat
     }
     familyHistory {
       id
+      father {
+        id
+        alive
+        relationship
+        comment
+      }
+      mother {
+        id
+        alive
+        relationship
+        comment
+      }
+      brothers {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        comment
+      }
+      other {
+        id
+        alive
+        relationship
+        comment
+      }
     }
     gynecoObstetricHistory {
       id
@@ -1199,6 +1271,42 @@ export const updatePatientHistory = `mutation UpdatePatientHistory($input: Updat
     }
     familyHistory {
       id
+      father {
+        id
+        alive
+        relationship
+        comment
+      }
+      mother {
+        id
+        alive
+        relationship
+        comment
+      }
+      brothers {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        comment
+      }
+      other {
+        id
+        alive
+        relationship
+        comment
+      }
     }
     gynecoObstetricHistory {
       id
@@ -1258,6 +1366,42 @@ export const deletePatientHistory = `mutation DeletePatientHistory($input: Delet
     }
     familyHistory {
       id
+      father {
+        id
+        alive
+        relationship
+        comment
+      }
+      mother {
+        id
+        alive
+        relationship
+        comment
+      }
+      brothers {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        comment
+      }
+      other {
+        id
+        alive
+        relationship
+        comment
+      }
     }
     gynecoObstetricHistory {
       id
@@ -1408,6 +1552,7 @@ export const createPathologicalHistory = `mutation CreatePathologicalHistory($in
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -1432,6 +1577,7 @@ export const updatePathologicalHistory = `mutation UpdatePathologicalHistory($in
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -1456,6 +1602,7 @@ export const deletePathologicalHistory = `mutation DeletePathologicalHistory($in
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -1477,18 +1624,198 @@ export const deletePathologicalHistory = `mutation DeletePathologicalHistory($in
 export const createFamilyHistory = `mutation CreateFamilyHistory($input: CreateFamilyHistoryInput!) {
   createFamilyHistory(input: $input) {
     id
+    father {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    mother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    brothers {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandfather {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandmother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    other {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
   }
 }
 `;
 export const updateFamilyHistory = `mutation UpdateFamilyHistory($input: UpdateFamilyHistoryInput!) {
   updateFamilyHistory(input: $input) {
     id
+    father {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    mother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    brothers {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandfather {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandmother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    other {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
   }
 }
 `;
 export const deleteFamilyHistory = `mutation DeleteFamilyHistory($input: DeleteFamilyHistoryInput!) {
   deleteFamilyHistory(input: $input) {
     id
+    father {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    mother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    brothers {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandfather {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandmother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    other {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
   }
 }
 `;
@@ -1496,6 +1823,7 @@ export const createFamilyDetails = `mutation CreateFamilyDetails($input: CreateF
   createFamilyDetails(input: $input) {
     id
     alive
+    relationship
     diseases {
       id
       name
@@ -1508,6 +1836,7 @@ export const updateFamilyDetails = `mutation UpdateFamilyDetails($input: UpdateF
   updateFamilyDetails(input: $input) {
     id
     alive
+    relationship
     diseases {
       id
       name
@@ -1520,6 +1849,7 @@ export const deleteFamilyDetails = `mutation DeleteFamilyDetails($input: DeleteF
   deleteFamilyDetails(input: $input) {
     id
     alive
+    relationship
     diseases {
       id
       name
@@ -1878,21 +2208,22 @@ export const createPostConsultationsActivities = `mutation CreatePostConsultatio
     medicalPrescriptions {
       items {
         id
+        state
+        date
       }
       nextToken
     }
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
     }
-    surgicalIntervention {
-      items {
-        id
-      }
-      nextToken
-    }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1904,21 +2235,22 @@ export const updatePostConsultationsActivities = `mutation UpdatePostConsultatio
     medicalPrescriptions {
       items {
         id
+        state
+        date
       }
       nextToken
     }
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
     }
-    surgicalIntervention {
-      items {
-        id
-      }
-      nextToken
-    }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1930,21 +2262,22 @@ export const deletePostConsultationsActivities = `mutation DeletePostConsultatio
     medicalPrescriptions {
       items {
         id
+        state
+        date
       }
       nextToken
     }
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
     }
-    surgicalIntervention {
-      items {
-        id
-      }
-      nextToken
-    }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1963,9 +2296,14 @@ export const createMedicalPrescriptions = `mutation CreateMedicalPrescriptions($
     pca {
       items {
         id
+        state
+        date
       }
       nextToken
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1984,9 +2322,14 @@ export const updateMedicalPrescriptions = `mutation UpdateMedicalPrescriptions($
     pca {
       items {
         id
+        state
+        date
       }
       nextToken
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2005,9 +2348,14 @@ export const deleteMedicalPrescriptions = `mutation DeleteMedicalPrescriptions($
     pca {
       items {
         id
+        state
+        date
       }
       nextToken
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2016,6 +2364,8 @@ export const createPostConsultActMedicalPres = `mutation CreatePostConsultActMed
 ) {
   createPostConsultActMedicalPres(input: $input) {
     id
+    state
+    date
     pcActivities {
       id
       medicalPrescriptions {
@@ -2024,9 +2374,9 @@ export const createPostConsultActMedicalPres = `mutation CreatePostConsultActMed
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
     medicalPrescriptions {
       id
@@ -2039,6 +2389,9 @@ export const createPostConsultActMedicalPres = `mutation CreatePostConsultActMed
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
   }
 }
@@ -2048,6 +2401,8 @@ export const updatePostConsultActMedicalPres = `mutation UpdatePostConsultActMed
 ) {
   updatePostConsultActMedicalPres(input: $input) {
     id
+    state
+    date
     pcActivities {
       id
       medicalPrescriptions {
@@ -2056,9 +2411,9 @@ export const updatePostConsultActMedicalPres = `mutation UpdatePostConsultActMed
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
     medicalPrescriptions {
       id
@@ -2071,6 +2426,9 @@ export const updatePostConsultActMedicalPres = `mutation UpdatePostConsultActMed
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
   }
 }
@@ -2080,6 +2438,8 @@ export const deletePostConsultActMedicalPres = `mutation DeletePostConsultActMed
 ) {
   deletePostConsultActMedicalPres(input: $input) {
     id
+    state
+    date
     pcActivities {
       id
       medicalPrescriptions {
@@ -2088,9 +2448,9 @@ export const deletePostConsultActMedicalPres = `mutation DeletePostConsultActMed
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
     medicalPrescriptions {
       id
@@ -2103,6 +2463,9 @@ export const deletePostConsultActMedicalPres = `mutation DeletePostConsultActMed
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
   }
 }
@@ -2123,6 +2486,9 @@ export const createMedicalPrescriptionsMedications = `mutation CreateMedicalPres
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
     medications {
       id
@@ -2156,6 +2522,9 @@ export const updateMedicalPrescriptionsMedications = `mutation UpdateMedicalPres
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
     medications {
       id
@@ -2189,6 +2558,9 @@ export const deleteMedicalPrescriptionsMedications = `mutation DeleteMedicalPres
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
     medications {
       id
@@ -2211,6 +2583,8 @@ export const createPostConsultActMedAnalysis = `mutation CreatePostConsultActMed
 ) {
   createPostConsultActMedAnalysis(input: $input) {
     id
+    state
+    date
     pcActivities {
       id
       medicalPrescriptions {
@@ -2219,9 +2593,9 @@ export const createPostConsultActMedAnalysis = `mutation CreatePostConsultActMed
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
     medicalAnalysis {
       id
@@ -2239,6 +2613,8 @@ export const updatePostConsultActMedAnalysis = `mutation UpdatePostConsultActMed
 ) {
   updatePostConsultActMedAnalysis(input: $input) {
     id
+    state
+    date
     pcActivities {
       id
       medicalPrescriptions {
@@ -2247,9 +2623,9 @@ export const updatePostConsultActMedAnalysis = `mutation UpdatePostConsultActMed
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
     medicalAnalysis {
       id
@@ -2267,6 +2643,8 @@ export const deletePostConsultActMedAnalysis = `mutation DeletePostConsultActMed
 ) {
   deletePostConsultActMedAnalysis(input: $input) {
     id
+    state
+    date
     pcActivities {
       id
       medicalPrescriptions {
@@ -2275,9 +2653,9 @@ export const deletePostConsultActMedAnalysis = `mutation DeletePostConsultActMed
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
     medicalAnalysis {
       id
@@ -2298,6 +2676,8 @@ export const createMedicalAnalysis = `mutation CreateMedicalAnalysis($input: Cre
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
     }
@@ -2312,6 +2692,8 @@ export const updateMedicalAnalysis = `mutation UpdateMedicalAnalysis($input: Upd
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
     }
@@ -2326,86 +2708,10 @@ export const deleteMedicalAnalysis = `mutation DeleteMedicalAnalysis($input: Del
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
-    }
-  }
-}
-`;
-export const createPostConsultActSurgicalInt = `mutation CreatePostConsultActSurgicalInt(
-  $input: CreatePostConsultActSurgicalIntInput!
-) {
-  createPostConsultActSurgicalInt(input: $input) {
-    id
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
-        nextToken
-      }
-    }
-    surgicalIntervention {
-      id
-      surgicalIntervention {
-        id
-      }
-    }
-  }
-}
-`;
-export const updatePostConsultActSurgicalInt = `mutation UpdatePostConsultActSurgicalInt(
-  $input: UpdatePostConsultActSurgicalIntInput!
-) {
-  updatePostConsultActSurgicalInt(input: $input) {
-    id
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
-        nextToken
-      }
-    }
-    surgicalIntervention {
-      id
-      surgicalIntervention {
-        id
-      }
-    }
-  }
-}
-`;
-export const deletePostConsultActSurgicalInt = `mutation DeletePostConsultActSurgicalInt(
-  $input: DeletePostConsultActSurgicalIntInput!
-) {
-  deletePostConsultActSurgicalInt(input: $input) {
-    id
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
-        nextToken
-      }
-    }
-    surgicalIntervention {
-      id
-      surgicalIntervention {
-        id
-      }
     }
   }
 }
@@ -2413,45 +2719,21 @@ export const deletePostConsultActSurgicalInt = `mutation DeletePostConsultActSur
 export const createSurgicalIntervention = `mutation CreateSurgicalIntervention($input: CreateSurgicalInterventionInput!) {
   createSurgicalIntervention(input: $input) {
     id
-    surgicalIntervention {
-      id
-      pcActivities {
-        id
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;
 export const updateSurgicalIntervention = `mutation UpdateSurgicalIntervention($input: UpdateSurgicalInterventionInput!) {
   updateSurgicalIntervention(input: $input) {
     id
-    surgicalIntervention {
-      id
-      pcActivities {
-        id
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;
 export const deleteSurgicalIntervention = `mutation DeleteSurgicalIntervention($input: DeleteSurgicalInterventionInput!) {
   deleteSurgicalIntervention(input: $input) {
     id
-    surgicalIntervention {
-      id
-      pcActivities {
-        id
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;
@@ -2465,6 +2747,9 @@ export const createPhysicalExploration = `mutation CreatePhysicalExploration($in
       Breathing
       Pulse
       Temperature
+      doctor
+      secretary
+      patient
     }
     regionalExploration {
       id
@@ -2475,7 +2760,13 @@ export const createPhysicalExploration = `mutation CreatePhysicalExploration($in
       members
       genitals
       others
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2489,6 +2780,9 @@ export const updatePhysicalExploration = `mutation UpdatePhysicalExploration($in
       Breathing
       Pulse
       Temperature
+      doctor
+      secretary
+      patient
     }
     regionalExploration {
       id
@@ -2499,7 +2793,13 @@ export const updatePhysicalExploration = `mutation UpdatePhysicalExploration($in
       members
       genitals
       others
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2513,6 +2813,9 @@ export const deletePhysicalExploration = `mutation DeletePhysicalExploration($in
       Breathing
       Pulse
       Temperature
+      doctor
+      secretary
+      patient
     }
     regionalExploration {
       id
@@ -2523,7 +2826,13 @@ export const deletePhysicalExploration = `mutation DeletePhysicalExploration($in
       members
       genitals
       others
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2534,6 +2843,9 @@ export const createVitalSigns = `mutation CreateVitalSigns($input: CreateVitalSi
     Breathing
     Pulse
     Temperature
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2544,6 +2856,9 @@ export const updateVitalSigns = `mutation UpdateVitalSigns($input: UpdateVitalSi
     Breathing
     Pulse
     Temperature
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2554,6 +2869,9 @@ export const deleteVitalSigns = `mutation DeleteVitalSigns($input: DeleteVitalSi
     Breathing
     Pulse
     Temperature
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2567,6 +2885,9 @@ export const createRegionalExploration = `mutation CreateRegionalExploration($in
     members
     genitals
     others
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2580,6 +2901,9 @@ export const updateRegionalExploration = `mutation UpdateRegionalExploration($in
     members
     genitals
     others
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2593,6 +2917,9 @@ export const deleteRegionalExploration = `mutation DeleteRegionalExploration($in
     members
     genitals
     others
+    doctor
+    secretary
+    patient
   }
 }
 `;

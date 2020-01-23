@@ -763,6 +763,9 @@ export const onCreateMedicalHistory = `subscription OnCreateMedicalHistory {
         Breathing
         Pulse
         Temperature
+        doctor
+        secretary
+        patient
       }
       regionalExploration {
         id
@@ -773,7 +776,13 @@ export const onCreateMedicalHistory = `subscription OnCreateMedicalHistory {
         members
         genitals
         others
+        doctor
+        secretary
+        patient
       }
+      doctor
+      secretary
+      patient
     }
     postConsultationsActivities {
       id
@@ -783,10 +792,13 @@ export const onCreateMedicalHistory = `subscription OnCreateMedicalHistory {
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patientname
   }
 }
 `;
@@ -819,6 +831,9 @@ export const onUpdateMedicalHistory = `subscription OnUpdateMedicalHistory {
         Breathing
         Pulse
         Temperature
+        doctor
+        secretary
+        patient
       }
       regionalExploration {
         id
@@ -829,7 +844,13 @@ export const onUpdateMedicalHistory = `subscription OnUpdateMedicalHistory {
         members
         genitals
         others
+        doctor
+        secretary
+        patient
       }
+      doctor
+      secretary
+      patient
     }
     postConsultationsActivities {
       id
@@ -839,10 +860,13 @@ export const onUpdateMedicalHistory = `subscription OnUpdateMedicalHistory {
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patientname
   }
 }
 `;
@@ -875,6 +899,9 @@ export const onDeleteMedicalHistory = `subscription OnDeleteMedicalHistory {
         Breathing
         Pulse
         Temperature
+        doctor
+        secretary
+        patient
       }
       regionalExploration {
         id
@@ -885,7 +912,13 @@ export const onDeleteMedicalHistory = `subscription OnDeleteMedicalHistory {
         members
         genitals
         others
+        doctor
+        secretary
+        patient
       }
+      doctor
+      secretary
+      patient
     }
     postConsultationsActivities {
       id
@@ -895,10 +928,13 @@ export const onDeleteMedicalHistory = `subscription OnDeleteMedicalHistory {
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patientname
   }
 }
 `;
@@ -1063,6 +1099,42 @@ export const onCreatePatientHistory = `subscription OnCreatePatientHistory {
     }
     familyHistory {
       id
+      father {
+        id
+        alive
+        relationship
+        comment
+      }
+      mother {
+        id
+        alive
+        relationship
+        comment
+      }
+      brothers {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        comment
+      }
+      other {
+        id
+        alive
+        relationship
+        comment
+      }
     }
     gynecoObstetricHistory {
       id
@@ -1122,6 +1194,42 @@ export const onUpdatePatientHistory = `subscription OnUpdatePatientHistory {
     }
     familyHistory {
       id
+      father {
+        id
+        alive
+        relationship
+        comment
+      }
+      mother {
+        id
+        alive
+        relationship
+        comment
+      }
+      brothers {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        comment
+      }
+      other {
+        id
+        alive
+        relationship
+        comment
+      }
     }
     gynecoObstetricHistory {
       id
@@ -1181,6 +1289,42 @@ export const onDeletePatientHistory = `subscription OnDeletePatientHistory {
     }
     familyHistory {
       id
+      father {
+        id
+        alive
+        relationship
+        comment
+      }
+      mother {
+        id
+        alive
+        relationship
+        comment
+      }
+      brothers {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        comment
+      }
+      other {
+        id
+        alive
+        relationship
+        comment
+      }
     }
     gynecoObstetricHistory {
       id
@@ -1319,6 +1463,7 @@ export const onCreatePathologicalHistory = `subscription OnCreatePathologicalHis
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -1343,6 +1488,7 @@ export const onUpdatePathologicalHistory = `subscription OnUpdatePathologicalHis
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -1367,6 +1513,7 @@ export const onDeletePathologicalHistory = `subscription OnDeletePathologicalHis
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -1388,18 +1535,198 @@ export const onDeletePathologicalHistory = `subscription OnDeletePathologicalHis
 export const onCreateFamilyHistory = `subscription OnCreateFamilyHistory {
   onCreateFamilyHistory {
     id
+    father {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    mother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    brothers {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandfather {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandmother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    other {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
   }
 }
 `;
 export const onUpdateFamilyHistory = `subscription OnUpdateFamilyHistory {
   onUpdateFamilyHistory {
     id
+    father {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    mother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    brothers {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandfather {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandmother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    other {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
   }
 }
 `;
 export const onDeleteFamilyHistory = `subscription OnDeleteFamilyHistory {
   onDeleteFamilyHistory {
     id
+    father {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    mother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    brothers {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandfather {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandmother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    other {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
   }
 }
 `;
@@ -1407,6 +1734,7 @@ export const onCreateFamilyDetails = `subscription OnCreateFamilyDetails {
   onCreateFamilyDetails {
     id
     alive
+    relationship
     diseases {
       id
       name
@@ -1419,6 +1747,7 @@ export const onUpdateFamilyDetails = `subscription OnUpdateFamilyDetails {
   onUpdateFamilyDetails {
     id
     alive
+    relationship
     diseases {
       id
       name
@@ -1431,6 +1760,7 @@ export const onDeleteFamilyDetails = `subscription OnDeleteFamilyDetails {
   onDeleteFamilyDetails {
     id
     alive
+    relationship
     diseases {
       id
       name
@@ -1781,21 +2111,22 @@ export const onCreatePostConsultationsActivities = `subscription OnCreatePostCon
     medicalPrescriptions {
       items {
         id
+        state
+        date
       }
       nextToken
     }
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
     }
-    surgicalIntervention {
-      items {
-        id
-      }
-      nextToken
-    }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1805,21 +2136,22 @@ export const onUpdatePostConsultationsActivities = `subscription OnUpdatePostCon
     medicalPrescriptions {
       items {
         id
+        state
+        date
       }
       nextToken
     }
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
     }
-    surgicalIntervention {
-      items {
-        id
-      }
-      nextToken
-    }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1829,21 +2161,22 @@ export const onDeletePostConsultationsActivities = `subscription OnDeletePostCon
     medicalPrescriptions {
       items {
         id
+        state
+        date
       }
       nextToken
     }
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
     }
-    surgicalIntervention {
-      items {
-        id
-      }
-      nextToken
-    }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1862,9 +2195,14 @@ export const onCreateMedicalPrescriptions = `subscription OnCreateMedicalPrescri
     pca {
       items {
         id
+        state
+        date
       }
       nextToken
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1883,9 +2221,14 @@ export const onUpdateMedicalPrescriptions = `subscription OnUpdateMedicalPrescri
     pca {
       items {
         id
+        state
+        date
       }
       nextToken
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1904,15 +2247,22 @@ export const onDeleteMedicalPrescriptions = `subscription OnDeleteMedicalPrescri
     pca {
       items {
         id
+        state
+        date
       }
       nextToken
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
 export const onCreatePostConsultActMedicalPres = `subscription OnCreatePostConsultActMedicalPres {
   onCreatePostConsultActMedicalPres {
     id
+    state
+    date
     pcActivities {
       id
       medicalPrescriptions {
@@ -1921,9 +2271,9 @@ export const onCreatePostConsultActMedicalPres = `subscription OnCreatePostConsu
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
     medicalPrescriptions {
       id
@@ -1936,6 +2286,9 @@ export const onCreatePostConsultActMedicalPres = `subscription OnCreatePostConsu
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
   }
 }
@@ -1943,6 +2296,8 @@ export const onCreatePostConsultActMedicalPres = `subscription OnCreatePostConsu
 export const onUpdatePostConsultActMedicalPres = `subscription OnUpdatePostConsultActMedicalPres {
   onUpdatePostConsultActMedicalPres {
     id
+    state
+    date
     pcActivities {
       id
       medicalPrescriptions {
@@ -1951,9 +2306,9 @@ export const onUpdatePostConsultActMedicalPres = `subscription OnUpdatePostConsu
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
     medicalPrescriptions {
       id
@@ -1966,6 +2321,9 @@ export const onUpdatePostConsultActMedicalPres = `subscription OnUpdatePostConsu
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
   }
 }
@@ -1973,6 +2331,8 @@ export const onUpdatePostConsultActMedicalPres = `subscription OnUpdatePostConsu
 export const onDeletePostConsultActMedicalPres = `subscription OnDeletePostConsultActMedicalPres {
   onDeletePostConsultActMedicalPres {
     id
+    state
+    date
     pcActivities {
       id
       medicalPrescriptions {
@@ -1981,9 +2341,9 @@ export const onDeletePostConsultActMedicalPres = `subscription OnDeletePostConsu
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
     medicalPrescriptions {
       id
@@ -1996,6 +2356,9 @@ export const onDeletePostConsultActMedicalPres = `subscription OnDeletePostConsu
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
   }
 }
@@ -2014,6 +2377,9 @@ export const onCreateMedicalPrescriptionsMedications = `subscription OnCreateMed
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
     medications {
       id
@@ -2045,6 +2411,9 @@ export const onUpdateMedicalPrescriptionsMedications = `subscription OnUpdateMed
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
     medications {
       id
@@ -2076,6 +2445,9 @@ export const onDeleteMedicalPrescriptionsMedications = `subscription OnDeleteMed
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
     medications {
       id
@@ -2096,6 +2468,8 @@ export const onDeleteMedicalPrescriptionsMedications = `subscription OnDeleteMed
 export const onCreatePostConsultActMedAnalysis = `subscription OnCreatePostConsultActMedAnalysis {
   onCreatePostConsultActMedAnalysis {
     id
+    state
+    date
     pcActivities {
       id
       medicalPrescriptions {
@@ -2104,9 +2478,9 @@ export const onCreatePostConsultActMedAnalysis = `subscription OnCreatePostConsu
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
     medicalAnalysis {
       id
@@ -2122,6 +2496,8 @@ export const onCreatePostConsultActMedAnalysis = `subscription OnCreatePostConsu
 export const onUpdatePostConsultActMedAnalysis = `subscription OnUpdatePostConsultActMedAnalysis {
   onUpdatePostConsultActMedAnalysis {
     id
+    state
+    date
     pcActivities {
       id
       medicalPrescriptions {
@@ -2130,9 +2506,9 @@ export const onUpdatePostConsultActMedAnalysis = `subscription OnUpdatePostConsu
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
     medicalAnalysis {
       id
@@ -2148,6 +2524,8 @@ export const onUpdatePostConsultActMedAnalysis = `subscription OnUpdatePostConsu
 export const onDeletePostConsultActMedAnalysis = `subscription OnDeletePostConsultActMedAnalysis {
   onDeletePostConsultActMedAnalysis {
     id
+    state
+    date
     pcActivities {
       id
       medicalPrescriptions {
@@ -2156,9 +2534,9 @@ export const onDeletePostConsultActMedAnalysis = `subscription OnDeletePostConsu
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
+      doctor
+      secretary
+      patient
     }
     medicalAnalysis {
       id
@@ -2179,6 +2557,8 @@ export const onCreateMedicalAnalysis = `subscription OnCreateMedicalAnalysis {
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
     }
@@ -2193,6 +2573,8 @@ export const onUpdateMedicalAnalysis = `subscription OnUpdateMedicalAnalysis {
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
     }
@@ -2207,80 +2589,10 @@ export const onDeleteMedicalAnalysis = `subscription OnDeleteMedicalAnalysis {
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
-    }
-  }
-}
-`;
-export const onCreatePostConsultActSurgicalInt = `subscription OnCreatePostConsultActSurgicalInt {
-  onCreatePostConsultActSurgicalInt {
-    id
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
-        nextToken
-      }
-    }
-    surgicalIntervention {
-      id
-      surgicalIntervention {
-        id
-      }
-    }
-  }
-}
-`;
-export const onUpdatePostConsultActSurgicalInt = `subscription OnUpdatePostConsultActSurgicalInt {
-  onUpdatePostConsultActSurgicalInt {
-    id
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
-        nextToken
-      }
-    }
-    surgicalIntervention {
-      id
-      surgicalIntervention {
-        id
-      }
-    }
-  }
-}
-`;
-export const onDeletePostConsultActSurgicalInt = `subscription OnDeletePostConsultActSurgicalInt {
-  onDeletePostConsultActSurgicalInt {
-    id
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
-        nextToken
-      }
-    }
-    surgicalIntervention {
-      id
-      surgicalIntervention {
-        id
-      }
     }
   }
 }
@@ -2288,45 +2600,21 @@ export const onDeletePostConsultActSurgicalInt = `subscription OnDeletePostConsu
 export const onCreateSurgicalIntervention = `subscription OnCreateSurgicalIntervention {
   onCreateSurgicalIntervention {
     id
-    surgicalIntervention {
-      id
-      pcActivities {
-        id
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;
 export const onUpdateSurgicalIntervention = `subscription OnUpdateSurgicalIntervention {
   onUpdateSurgicalIntervention {
     id
-    surgicalIntervention {
-      id
-      pcActivities {
-        id
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;
 export const onDeleteSurgicalIntervention = `subscription OnDeleteSurgicalIntervention {
   onDeleteSurgicalIntervention {
     id
-    surgicalIntervention {
-      id
-      pcActivities {
-        id
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;
@@ -2340,6 +2628,9 @@ export const onCreatePhysicalExploration = `subscription OnCreatePhysicalExplora
       Breathing
       Pulse
       Temperature
+      doctor
+      secretary
+      patient
     }
     regionalExploration {
       id
@@ -2350,7 +2641,13 @@ export const onCreatePhysicalExploration = `subscription OnCreatePhysicalExplora
       members
       genitals
       others
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2364,6 +2661,9 @@ export const onUpdatePhysicalExploration = `subscription OnUpdatePhysicalExplora
       Breathing
       Pulse
       Temperature
+      doctor
+      secretary
+      patient
     }
     regionalExploration {
       id
@@ -2374,7 +2674,13 @@ export const onUpdatePhysicalExploration = `subscription OnUpdatePhysicalExplora
       members
       genitals
       others
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2388,6 +2694,9 @@ export const onDeletePhysicalExploration = `subscription OnDeletePhysicalExplora
       Breathing
       Pulse
       Temperature
+      doctor
+      secretary
+      patient
     }
     regionalExploration {
       id
@@ -2398,7 +2707,13 @@ export const onDeletePhysicalExploration = `subscription OnDeletePhysicalExplora
       members
       genitals
       others
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2409,6 +2724,9 @@ export const onCreateVitalSigns = `subscription OnCreateVitalSigns {
     Breathing
     Pulse
     Temperature
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2419,6 +2737,9 @@ export const onUpdateVitalSigns = `subscription OnUpdateVitalSigns {
     Breathing
     Pulse
     Temperature
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2429,6 +2750,9 @@ export const onDeleteVitalSigns = `subscription OnDeleteVitalSigns {
     Breathing
     Pulse
     Temperature
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2442,6 +2766,9 @@ export const onCreateRegionalExploration = `subscription OnCreateRegionalExplora
     members
     genitals
     others
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2455,6 +2782,9 @@ export const onUpdateRegionalExploration = `subscription OnUpdateRegionalExplora
     members
     genitals
     others
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -2468,6 +2798,9 @@ export const onDeleteRegionalExploration = `subscription OnDeleteRegionalExplora
     members
     genitals
     others
+    doctor
+    secretary
+    patient
   }
 }
 `;
