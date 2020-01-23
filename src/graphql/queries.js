@@ -601,6 +601,9 @@ export const getMedicalHistory = `query GetMedicalHistory($id: ID!) {
         Breathing
         Pulse
         Temperature
+        doctor
+        secretary
+        patient
       }
       regionalExploration {
         id
@@ -611,7 +614,13 @@ export const getMedicalHistory = `query GetMedicalHistory($id: ID!) {
         members
         genitals
         others
+        doctor
+        secretary
+        patient
       }
+      doctor
+      secretary
+      patient
     }
     postConsultationsActivities {
       id
@@ -624,7 +633,13 @@ export const getMedicalHistory = `query GetMedicalHistory($id: ID!) {
       surgicalIntervention {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patientname
   }
 }
 `;
@@ -653,10 +668,19 @@ export const listMedicalHistorys = `query ListMedicalHistorys(
       physicalExploration {
         id
         general_exploration
+        doctor
+        secretary
+        patient
       }
       postConsultationsActivities {
         id
+        doctor
+        secretary
+        patient
       }
+      doctor
+      secretary
+      patientname
     }
     nextToken
   }
@@ -771,6 +795,42 @@ export const getPatientHistory = `query GetPatientHistory($id: ID!) {
     }
     familyHistory {
       id
+      father {
+        id
+        alive
+        relationship
+        comment
+      }
+      mother {
+        id
+        alive
+        relationship
+        comment
+      }
+      brothers {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        comment
+      }
+      other {
+        id
+        alive
+        relationship
+        comment
+      }
     }
     gynecoObstetricHistory {
       id
@@ -972,6 +1032,66 @@ export const listPathologicalHistorys = `query ListPathologicalHistorys(
 export const getFamilyHistory = `query GetFamilyHistory($id: ID!) {
   getFamilyHistory(id: $id) {
     id
+    father {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    mother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    brothers {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandfather {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    grandmother {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
+    other {
+      id
+      alive
+      relationship
+      diseases {
+        id
+        name
+      }
+      comment
+    }
   }
 }
 `;
@@ -983,6 +1103,42 @@ export const listFamilyHistorys = `query ListFamilyHistorys(
   listFamilyHistorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      father {
+        id
+        alive
+        relationship
+        comment
+      }
+      mother {
+        id
+        alive
+        relationship
+        comment
+      }
+      brothers {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        comment
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        comment
+      }
+      other {
+        id
+        alive
+        relationship
+        comment
+      }
     }
     nextToken
   }
@@ -992,6 +1148,7 @@ export const getFamilyDetails = `query GetFamilyDetails($id: ID!) {
   getFamilyDetails(id: $id) {
     id
     alive
+    relationship
     diseases {
       id
       name
@@ -1009,6 +1166,7 @@ export const listFamilyDetailss = `query ListFamilyDetailss(
     items {
       id
       alive
+      relationship
       diseases {
         id
         name
@@ -1160,21 +1318,30 @@ export const getPostConsultationsActivities = `query GetPostConsultationsActivit
     medicalPrescriptions {
       items {
         id
+        state
+        date
       }
       nextToken
     }
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
     }
     surgicalIntervention {
       items {
         id
+        state
+        date
       }
       nextToken
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1199,6 +1366,9 @@ export const listPostConsultationsActivitiess = `query ListPostConsultationsActi
       surgicalIntervention {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
     nextToken
   }
@@ -1219,9 +1389,14 @@ export const getMedicalPrescriptions = `query GetMedicalPrescriptions($id: ID!) 
     pca {
       items {
         id
+        state
+        date
       }
       nextToken
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1246,6 +1421,9 @@ export const listMedicalPrescriptionss = `query ListMedicalPrescriptionss(
       pca {
         nextToken
       }
+      doctor
+      secretary
+      patient
     }
     nextToken
   }
@@ -1259,6 +1437,8 @@ export const getMedicalAnalysis = `query GetMedicalAnalysis($id: ID!) {
     medicalAnalysis {
       items {
         id
+        state
+        date
       }
       nextToken
     }
@@ -1288,8 +1468,13 @@ export const getSurgicalIntervention = `query GetSurgicalIntervention($id: ID!) 
     id
     surgicalIntervention {
       id
+      state
+      date
       pcActivities {
         id
+        doctor
+        secretary
+        patient
       }
       surgicalIntervention {
         id
@@ -1312,6 +1497,8 @@ export const listSurgicalInterventions = `query ListSurgicalInterventions(
       id
       surgicalIntervention {
         id
+        state
+        date
       }
     }
     nextToken
@@ -1328,6 +1515,9 @@ export const getPhysicalExploration = `query GetPhysicalExploration($id: ID!) {
       Breathing
       Pulse
       Temperature
+      doctor
+      secretary
+      patient
     }
     regionalExploration {
       id
@@ -1338,7 +1528,13 @@ export const getPhysicalExploration = `query GetPhysicalExploration($id: ID!) {
       members
       genitals
       others
+      doctor
+      secretary
+      patient
     }
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1361,6 +1557,9 @@ export const listPhysicalExplorations = `query ListPhysicalExplorations(
         Breathing
         Pulse
         Temperature
+        doctor
+        secretary
+        patient
       }
       regionalExploration {
         id
@@ -1371,7 +1570,13 @@ export const listPhysicalExplorations = `query ListPhysicalExplorations(
         members
         genitals
         others
+        doctor
+        secretary
+        patient
       }
+      doctor
+      secretary
+      patient
     }
     nextToken
   }
@@ -1384,6 +1589,9 @@ export const getVitalSigns = `query GetVitalSigns($id: ID!) {
     Breathing
     Pulse
     Temperature
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1399,6 +1607,9 @@ export const listVitalSignss = `query ListVitalSignss(
       Breathing
       Pulse
       Temperature
+      doctor
+      secretary
+      patient
     }
     nextToken
   }
@@ -1414,6 +1625,9 @@ export const getRegionalExploration = `query GetRegionalExploration($id: ID!) {
     members
     genitals
     others
+    doctor
+    secretary
+    patient
   }
 }
 `;
@@ -1436,6 +1650,9 @@ export const listRegionalExplorations = `query ListRegionalExplorations(
       members
       genitals
       others
+      doctor
+      secretary
+      patient
     }
     nextToken
   }

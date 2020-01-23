@@ -244,14 +244,18 @@ type MedicalHistory
         # Admin users can access any operation.
         { allow: groups, groups: ["admin"] },
 
-        { allow: groups, groups: ["doctor"], operations: [update, read] }
-        { allow: groups, groups: ["secretary"], operations: [read] }
+        { allow: owner, ownerField: "secretary", operations: [read] },
+        { allow: owner, ownerField: "doctor", operations: [update, read] },
+        { allow: owner, ownerField: "patientname", operations: [read] },
     ]) {
     id: ID!
     reason: String
     patient: Patient @connection
     physicalExploration: PhysicalExploration @connection
     postConsultationsActivities: PostConsultationsActivities @connection
+    doctor: String
+    secretary: String
+    patientname: String
 }
 
 type Patient 
@@ -368,6 +372,12 @@ type FamilyHistory
         { allow: groups, groups: ["secretary"], operations: [read] }
     ]) {
     id: ID!
+    father: FamilyDetails @connection
+    mother: FamilyDetails @connection
+    brothers: FamilyDetails @connection
+    grandfather: FamilyDetails @connection
+    grandmother: FamilyDetails @connection
+    other: FamilyDetails @connection
 }
 
 type FamilyDetails 
@@ -384,6 +394,7 @@ type FamilyDetails
     ]) {
     id: ID!
     alive: Boolean
+    relationship: String
     diseases: Diseases @connection
     comment: String
 }
@@ -486,13 +497,17 @@ type PostConsultationsActivities
         # Admin users can access any operation.
         { allow: groups, groups: ["admin"] },
 
-        { allow: groups, groups: ["doctor"], operations: [update, read] }
-        { allow: groups, groups: ["secretary"], operations: [read] }
+        { allow: owner, ownerField: "secretary", operations: [read] },
+        { allow: owner, ownerField: "doctor", operations: [update, read] },
+        { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
     medicalPrescriptions: [PostConsultActMedicalPres] @connection(name: "pcamp")
     medicalAnalysis: [PostConsultActMedAnalysis] @connection(name: "pcama")
     surgicalIntervention: [PostConsultActSurgicalInt] @connection(name: "pcasi")
+    doctor: String
+    secretary: String
+    patient: String
 }
 
 type MedicalPrescriptions
@@ -504,8 +519,9 @@ type MedicalPrescriptions
         # Admin users can access any operation.
         { allow: groups, groups: ["admin"] },
 
-        { allow: groups, groups: ["doctor"], operations: [update, read] }
-        { allow: groups, groups: ["secretary"], operations: [read] }
+        { allow: owner, ownerField: "secretary", operations: [read] },
+        { allow: owner, ownerField: "doctor", operations: [update, read] },
+        { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
     date: String
@@ -513,10 +529,15 @@ type MedicalPrescriptions
     duration: String
     medications: [MedicalPrescriptionsMedications] @connection(name: "mpm")
     pca: [PostConsultActMedicalPres] @connection(name: "mppca")
+    doctor: String
+    secretary: String
+    patient: String
 }
 
 type PostConsultActMedicalPres @model(queries: null) {
   id: ID!
+  state: State # se colocara un estado que espesificara si la receta se completo o no
+  date: String
   pcActivities: PostConsultationsActivities @connection(name: "pcamp")
   medicalPrescriptions: MedicalPrescriptions @connection(name: "mppca")
 }
@@ -529,6 +550,8 @@ type MedicalPrescriptionsMedications @model(queries: null) {
 
 type PostConsultActMedAnalysis @model(queries: null) {
   id: ID!
+  state: State # se colocara un estado que espesificara si el analisis se realizo o no
+  date: String
   pcActivities: PostConsultationsActivities @connection(name: "pcama")
   medicalAnalysis: MedicalAnalysis @connection(name: "mapca")
 }
@@ -553,6 +576,8 @@ type MedicalAnalysis
 
 type PostConsultActSurgicalInt @model(queries: null) {
   id: ID!
+  state: State # se colocara un estado que espesificara si la sirugia se realizo o no
+  date: String
   pcActivities: PostConsultationsActivities @connection(name: "pcasi")
   surgicalIntervention: SurgicalIntervention @connection(name: "sipca")
 }
@@ -582,13 +607,17 @@ type PhysicalExploration
         # Admin users can access any operation.
         { allow: groups, groups: ["admin"] },
 
-        { allow: groups, groups: ["doctor"], operations: [update, read] }
-        { allow: groups, groups: ["secretary"], operations: [read] }
+        { allow: owner, ownerField: "secretary", operations: [read] },
+        { allow: owner, ownerField: "doctor", operations: [update, read] },
+        { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
     general_exploration: String
     vitalsigns: VitalSigns @connection
     regionalExploration: RegionalExploration @connection
+    doctor: String
+    secretary: String
+    patient: String
 }
 
 type VitalSigns
@@ -600,14 +629,18 @@ type VitalSigns
         # Admin users can access any operation.
         { allow: groups, groups: ["admin"] },
 
-        { allow: groups, groups: ["doctor"], operations: [update, read] }
-        { allow: groups, groups: ["secretary"], operations: [read] }
+        { allow: owner, ownerField: "secretary", operations: [read] },
+        { allow: owner, ownerField: "doctor", operations: [update, read] },
+        { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
     blood_pressure: String
     Breathing: String
     Pulse: String
     Temperature: String
+    doctor: String
+    secretary: String
+    patient: String
 }
 
 type RegionalExploration
@@ -619,8 +652,9 @@ type RegionalExploration
         # Admin users can access any operation.
         { allow: groups, groups: ["admin"] },
 
-        { allow: groups, groups: ["doctor"], operations: [update, read] }
-        { allow: groups, groups: ["secretary"], operations: [read] }
+        { allow: owner, ownerField: "secretary", operations: [read] },
+        { allow: owner, ownerField: "doctor", operations: [update, read] },
+        { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
     head: String
@@ -630,4 +664,7 @@ type RegionalExploration
     members: String
     genitals: String
     others: String
+    doctor: String
+    secretary: String
+    patient: String
 }
