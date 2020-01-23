@@ -792,9 +792,6 @@ export const onCreateMedicalHistory = `subscription OnCreateMedicalHistory {
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -863,9 +860,6 @@ export const onUpdateMedicalHistory = `subscription OnUpdateMedicalHistory {
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -932,9 +926,6 @@ export const onDeleteMedicalHistory = `subscription OnDeleteMedicalHistory {
         nextToken
       }
       medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
         nextToken
       }
       doctor
@@ -1472,6 +1463,7 @@ export const onCreatePathologicalHistory = `subscription OnCreatePathologicalHis
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -1496,6 +1488,7 @@ export const onUpdatePathologicalHistory = `subscription OnUpdatePathologicalHis
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -1520,6 +1513,7 @@ export const onDeletePathologicalHistory = `subscription OnDeletePathologicalHis
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -2130,14 +2124,6 @@ export const onCreatePostConsultationsActivities = `subscription OnCreatePostCon
       }
       nextToken
     }
-    surgicalIntervention {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
     doctor
     secretary
     patient
@@ -2163,14 +2149,6 @@ export const onUpdatePostConsultationsActivities = `subscription OnUpdatePostCon
       }
       nextToken
     }
-    surgicalIntervention {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
     doctor
     secretary
     patient
@@ -2189,14 +2167,6 @@ export const onDeletePostConsultationsActivities = `subscription OnDeletePostCon
       nextToken
     }
     medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    surgicalIntervention {
       items {
         id
         state
@@ -2301,9 +2271,6 @@ export const onCreatePostConsultActMedicalPres = `subscription OnCreatePostConsu
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -2339,9 +2306,6 @@ export const onUpdatePostConsultActMedicalPres = `subscription OnUpdatePostConsu
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -2375,9 +2339,6 @@ export const onDeletePostConsultActMedicalPres = `subscription OnDeletePostConsu
         nextToken
       }
       medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
         nextToken
       }
       doctor
@@ -2517,9 +2478,6 @@ export const onCreatePostConsultActMedAnalysis = `subscription OnCreatePostConsu
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -2548,9 +2506,6 @@ export const onUpdatePostConsultActMedAnalysis = `subscription OnUpdatePostConsu
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -2577,9 +2532,6 @@ export const onDeletePostConsultActMedAnalysis = `subscription OnDeletePostConsu
         nextToken
       }
       medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
         nextToken
       }
       doctor
@@ -2645,156 +2597,24 @@ export const onDeleteMedicalAnalysis = `subscription OnDeleteMedicalAnalysis {
   }
 }
 `;
-export const onCreatePostConsultActSurgicalInt = `subscription OnCreatePostConsultActSurgicalInt {
-  onCreatePostConsultActSurgicalInt {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    surgicalIntervention {
-      id
-      surgicalIntervention {
-        id
-        state
-        date
-      }
-    }
-  }
-}
-`;
-export const onUpdatePostConsultActSurgicalInt = `subscription OnUpdatePostConsultActSurgicalInt {
-  onUpdatePostConsultActSurgicalInt {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    surgicalIntervention {
-      id
-      surgicalIntervention {
-        id
-        state
-        date
-      }
-    }
-  }
-}
-`;
-export const onDeletePostConsultActSurgicalInt = `subscription OnDeletePostConsultActSurgicalInt {
-  onDeletePostConsultActSurgicalInt {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    surgicalIntervention {
-      id
-      surgicalIntervention {
-        id
-        state
-        date
-      }
-    }
-  }
-}
-`;
 export const onCreateSurgicalIntervention = `subscription OnCreateSurgicalIntervention {
   onCreateSurgicalIntervention {
     id
-    surgicalIntervention {
-      id
-      state
-      date
-      pcActivities {
-        id
-        doctor
-        secretary
-        patient
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;
 export const onUpdateSurgicalIntervention = `subscription OnUpdateSurgicalIntervention {
   onUpdateSurgicalIntervention {
     id
-    surgicalIntervention {
-      id
-      state
-      date
-      pcActivities {
-        id
-        doctor
-        secretary
-        patient
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;
 export const onDeleteSurgicalIntervention = `subscription OnDeleteSurgicalIntervention {
   onDeleteSurgicalIntervention {
     id
-    surgicalIntervention {
-      id
-      state
-      date
-      pcActivities {
-        id
-        doctor
-        secretary
-        patient
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;

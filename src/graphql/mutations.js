@@ -869,9 +869,6 @@ export const createMedicalHistory = `mutation CreateMedicalHistory($input: Creat
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -940,9 +937,6 @@ export const updateMedicalHistory = `mutation UpdateMedicalHistory($input: Updat
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -1009,9 +1003,6 @@ export const deleteMedicalHistory = `mutation DeleteMedicalHistory($input: Delet
         nextToken
       }
       medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
         nextToken
       }
       doctor
@@ -1561,6 +1552,7 @@ export const createPathologicalHistory = `mutation CreatePathologicalHistory($in
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -1585,6 +1577,7 @@ export const updatePathologicalHistory = `mutation UpdatePathologicalHistory($in
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -1609,6 +1602,7 @@ export const deletePathologicalHistory = `mutation DeletePathologicalHistory($in
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -2227,14 +2221,6 @@ export const createPostConsultationsActivities = `mutation CreatePostConsultatio
       }
       nextToken
     }
-    surgicalIntervention {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
     doctor
     secretary
     patient
@@ -2262,14 +2248,6 @@ export const updatePostConsultationsActivities = `mutation UpdatePostConsultatio
       }
       nextToken
     }
-    surgicalIntervention {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
     doctor
     secretary
     patient
@@ -2290,14 +2268,6 @@ export const deletePostConsultationsActivities = `mutation DeletePostConsultatio
       nextToken
     }
     medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    surgicalIntervention {
       items {
         id
         state
@@ -2404,9 +2374,6 @@ export const createPostConsultActMedicalPres = `mutation CreatePostConsultActMed
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -2444,9 +2411,6 @@ export const updatePostConsultActMedicalPres = `mutation UpdatePostConsultActMed
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -2482,9 +2446,6 @@ export const deletePostConsultActMedicalPres = `mutation DeletePostConsultActMed
         nextToken
       }
       medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
         nextToken
       }
       doctor
@@ -2632,9 +2593,6 @@ export const createPostConsultActMedAnalysis = `mutation CreatePostConsultActMed
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -2665,9 +2623,6 @@ export const updatePostConsultActMedAnalysis = `mutation UpdatePostConsultActMed
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -2696,9 +2651,6 @@ export const deletePostConsultActMedAnalysis = `mutation DeletePostConsultActMed
         nextToken
       }
       medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
         nextToken
       }
       doctor
@@ -2764,162 +2716,24 @@ export const deleteMedicalAnalysis = `mutation DeleteMedicalAnalysis($input: Del
   }
 }
 `;
-export const createPostConsultActSurgicalInt = `mutation CreatePostConsultActSurgicalInt(
-  $input: CreatePostConsultActSurgicalIntInput!
-) {
-  createPostConsultActSurgicalInt(input: $input) {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    surgicalIntervention {
-      id
-      surgicalIntervention {
-        id
-        state
-        date
-      }
-    }
-  }
-}
-`;
-export const updatePostConsultActSurgicalInt = `mutation UpdatePostConsultActSurgicalInt(
-  $input: UpdatePostConsultActSurgicalIntInput!
-) {
-  updatePostConsultActSurgicalInt(input: $input) {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    surgicalIntervention {
-      id
-      surgicalIntervention {
-        id
-        state
-        date
-      }
-    }
-  }
-}
-`;
-export const deletePostConsultActSurgicalInt = `mutation DeletePostConsultActSurgicalInt(
-  $input: DeletePostConsultActSurgicalIntInput!
-) {
-  deletePostConsultActSurgicalInt(input: $input) {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    surgicalIntervention {
-      id
-      surgicalIntervention {
-        id
-        state
-        date
-      }
-    }
-  }
-}
-`;
 export const createSurgicalIntervention = `mutation CreateSurgicalIntervention($input: CreateSurgicalInterventionInput!) {
   createSurgicalIntervention(input: $input) {
     id
-    surgicalIntervention {
-      id
-      state
-      date
-      pcActivities {
-        id
-        doctor
-        secretary
-        patient
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;
 export const updateSurgicalIntervention = `mutation UpdateSurgicalIntervention($input: UpdateSurgicalInterventionInput!) {
   updateSurgicalIntervention(input: $input) {
     id
-    surgicalIntervention {
-      id
-      state
-      date
-      pcActivities {
-        id
-        doctor
-        secretary
-        patient
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;
 export const deleteSurgicalIntervention = `mutation DeleteSurgicalIntervention($input: DeleteSurgicalInterventionInput!) {
   deleteSurgicalIntervention(input: $input) {
     id
-    surgicalIntervention {
-      id
-      state
-      date
-      pcActivities {
-        id
-        doctor
-        secretary
-        patient
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;

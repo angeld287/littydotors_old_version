@@ -630,9 +630,6 @@ export const getMedicalHistory = `query GetMedicalHistory($id: ID!) {
       medicalAnalysis {
         nextToken
       }
-      surgicalIntervention {
-        nextToken
-      }
       doctor
       secretary
       patient
@@ -985,6 +982,7 @@ export const getPathologicalHistory = `query GetPathologicalHistory($id: ID!) {
     surgicalInterventions {
       items {
         id
+        name
       }
       nextToken
     }
@@ -1331,14 +1329,6 @@ export const getPostConsultationsActivities = `query GetPostConsultationsActivit
       }
       nextToken
     }
-    surgicalIntervention {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
     doctor
     secretary
     patient
@@ -1361,9 +1351,6 @@ export const listPostConsultationsActivitiess = `query ListPostConsultationsActi
         nextToken
       }
       medicalAnalysis {
-        nextToken
-      }
-      surgicalIntervention {
         nextToken
       }
       doctor
@@ -1466,20 +1453,7 @@ export const listMedicalAnalysiss = `query ListMedicalAnalysiss(
 export const getSurgicalIntervention = `query GetSurgicalIntervention($id: ID!) {
   getSurgicalIntervention(id: $id) {
     id
-    surgicalIntervention {
-      id
-      state
-      date
-      pcActivities {
-        id
-        doctor
-        secretary
-        patient
-      }
-      surgicalIntervention {
-        id
-      }
-    }
+    name
   }
 }
 `;
@@ -1495,11 +1469,7 @@ export const listSurgicalInterventions = `query ListSurgicalInterventions(
   ) {
     items {
       id
-      surgicalIntervention {
-        id
-        state
-        date
-      }
+      name
     }
     nextToken
   }
