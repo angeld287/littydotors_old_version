@@ -180,7 +180,7 @@ type MedicalConsultation
     ]) {
     id: ID!
     doctor: Doctor @connection
-    #postConsultationsActivities: PostConsultationsActivities @connection
+    postConsultationsActivities: PostConsultationsActivities @connection
     medicalHistory: MedicalHistory @connection
     doctorname: String
     secretary: String
@@ -205,7 +205,6 @@ type MedicalHistory
     reason: String
     patient: Patient @connection
     physicalExploration: PhysicalExploration @connection
-    postConsultationsActivities: PostConsultationsActivities @connection
     doctor: String
     secretary: String
     patientname: String
@@ -557,6 +556,7 @@ type SurgicalIntervention
         { allow: groups, groups: ["secretary"], operations: [read] }
     ]) {
     id: ID!
+    name: String
     surgicalIntervention: [PostConsultActSurgicalInt] @connection(name: "sipca")
 }
 

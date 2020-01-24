@@ -53,11 +53,11 @@ export default class App extends Component {
                 email: result.data.listConsultingRooms.items[0].doctor.email,
                 location: result.data.listConsultingRooms.items[0].location.name,
                 secretary: result.data.listConsultingRooms.items[0].secretary,
-                stripe_source_token: result.data.listConsultingRooms.items[0].stripe.source_token,
-                stripe_plan_id: result.data.listConsultingRooms.items[0].stripe.plan_id,
-                stripe_plan_name: result.data.listConsultingRooms.items[0].stripe.plan_name,
-                stripe_customer_id: result.data.listConsultingRooms.items[0].stripe.customer_id,
-                stripe_subscription_id: result.data.listConsultingRooms.items[0].stripe.subscription_id,
+                //stripe_source_token: result.data.listConsultingRooms.items[0].stripe.source_token,
+                //stripe_plan_id: result.data.listConsultingRooms.items[0].stripe.plan_id,
+                //stripe_plan_name: result.data.listConsultingRooms.items[0].stripe.plan_name,
+                //stripe_customer_id: result.data.listConsultingRooms.items[0].stripe.customer_id,
+                //stripe_subscription_id: result.data.listConsultingRooms.items[0].stripe.subscription_id,
             });
         }).catch( err => {
           this.setState({

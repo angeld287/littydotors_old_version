@@ -1,109 +1,318 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateMedicalAppointment = `subscription OnCreateMedicalAppointment(
-  $doctorname: String
-  $secretary: String
-) {
-  onCreateMedicalAppointment(doctorname: $doctorname, secretary: $secretary) {
-    id
-    location {
-      id
-      name
-    }
-    doctor {
-      id
-      name
-      username
-      email
-      speciality
-      sex
-      consultingroom {
-        id
-        secretary
-      }
-      image
-    }
-    doctorname
-    patient {
-      id
-      name
-      username
-      email
-      phone
-      phone_id
-      weight
-      height
-      size
-      age
-      birthdate
-      patientHistory {
-        id
-      }
-    }
-    rejection {
-      items {
-        id
-        description
-        doctor
-        secretary
-        patient
-        createdAt
-      }
-      nextToken
-    }
-    cancelation {
-      id
-      description
-    }
-    notification {
-      items {
-        id
-        state
-        doctor
-        secretary
-        patient
-        createdAt
-      }
-      nextToken
-    }
-    confirmation {
-      id
-    }
-    secretary
-    details
-    date_created
-    date_of_medical_appointment
-    state
-    position
-    consult_cost
-    read_secretary
-    read_doctor
-    read_client
-    createdAt
-  }
-}
-`;
-export const onUpdateMedicalAppointment = `subscription OnUpdateMedicalAppointment(
-  $read_secretary: Boolean
-  $read_doctor: Boolean
-  $read_client: Boolean
-  $doctorname: String
-  $secretary: String
-) {
-  onUpdateMedicalAppointment(
-    read_secretary: $read_secretary
-    read_doctor: $read_doctor
-    read_client: $read_client
-    doctorname: $doctorname
-    secretary: $secretary
+export const onCreateMedicalAppointment = /* GraphQL */ `
+  subscription OnCreateMedicalAppointment(
+    $doctorname: String
+    $secretary: String
   ) {
-    id
-    location {
+    onCreateMedicalAppointment(doctorname: $doctorname, secretary: $secretary) {
+      id
+      location {
+        id
+        name
+        owner
+      }
+      doctor {
+        id
+        name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
+      }
+      doctorname
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      rejection {
+        items {
+          id
+          description
+          doctor
+          secretary
+          patient
+          createdAt
+          owner
+        }
+        nextToken
+      }
+      cancelation {
+        id
+        description
+        owner
+      }
+      notification {
+        items {
+          id
+          state
+          doctor
+          secretary
+          patient
+          createdAt
+          owner
+        }
+        nextToken
+      }
+      confirmation {
+        id
+        owner
+      }
+      secretary
+      details
+      date_created
+      date_of_medical_appointment
+      state
+      position
+      consult_cost
+      read_secretary
+      read_doctor
+      read_client
+      createdAt
+    }
+  }
+`;
+export const onUpdateMedicalAppointment = /* GraphQL */ `
+  subscription OnUpdateMedicalAppointment(
+    $read_secretary: Boolean
+    $read_doctor: Boolean
+    $read_client: Boolean
+    $doctorname: String
+    $secretary: String
+  ) {
+    onUpdateMedicalAppointment(
+      read_secretary: $read_secretary
+      read_doctor: $read_doctor
+      read_client: $read_client
+      doctorname: $doctorname
+      secretary: $secretary
+    ) {
+      id
+      location {
+        id
+        name
+        owner
+      }
+      doctor {
+        id
+        name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
+      }
+      doctorname
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      rejection {
+        items {
+          id
+          description
+          doctor
+          secretary
+          patient
+          createdAt
+          owner
+        }
+        nextToken
+      }
+      cancelation {
+        id
+        description
+        owner
+      }
+      notification {
+        items {
+          id
+          state
+          doctor
+          secretary
+          patient
+          createdAt
+          owner
+        }
+        nextToken
+      }
+      confirmation {
+        id
+        owner
+      }
+      secretary
+      details
+      date_created
+      date_of_medical_appointment
+      state
+      position
+      consult_cost
+      read_secretary
+      read_doctor
+      read_client
+      createdAt
+    }
+  }
+`;
+export const onCreateConsultingRoom = /* GraphQL */ `
+  subscription OnCreateConsultingRoom($owner: String) {
+    onCreateConsultingRoom(owner: $owner) {
+      id
+      doctor {
+        id
+        name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
+      }
+      secretary
+      location {
+        id
+        name
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onUpdateConsultingRoom = /* GraphQL */ `
+  subscription OnUpdateConsultingRoom($owner: String) {
+    onUpdateConsultingRoom(owner: $owner) {
+      id
+      doctor {
+        id
+        name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
+      }
+      secretary
+      location {
+        id
+        name
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onDeleteConsultingRoom = /* GraphQL */ `
+  subscription OnDeleteConsultingRoom($owner: String) {
+    onDeleteConsultingRoom(owner: $owner) {
+      id
+      doctor {
+        id
+        name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
+      }
+      secretary
+      location {
+        id
+        name
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onCreateLocation = /* GraphQL */ `
+  subscription OnCreateLocation($owner: String!) {
+    onCreateLocation(owner: $owner) {
       id
       name
+      owner
     }
-    doctor {
+  }
+`;
+export const onUpdateLocation = /* GraphQL */ `
+  subscription OnUpdateLocation($owner: String!) {
+    onUpdateLocation(owner: $owner) {
+      id
+      name
+      owner
+    }
+  }
+`;
+export const onDeleteLocation = /* GraphQL */ `
+  subscription OnDeleteLocation($owner: String!) {
+    onDeleteLocation(owner: $owner) {
+      id
+      name
+      owner
+    }
+  }
+`;
+export const onCreateDoctor = /* GraphQL */ `
+  subscription OnCreateDoctor($owner: String) {
+    onCreateDoctor(owner: $owner) {
       id
       name
       username
@@ -112,12 +321,640 @@ export const onUpdateMedicalAppointment = `subscription OnUpdateMedicalAppointme
       sex
       consultingroom {
         id
+        doctor {
+          id
+          name
+          username
+          email
+          speciality
+          sex
+          image
+          owner
+        }
         secretary
+        location {
+          id
+          name
+          owner
+        }
+        owner
       }
       image
+      owner
     }
-    doctorname
-    patient {
+  }
+`;
+export const onUpdateDoctor = /* GraphQL */ `
+  subscription OnUpdateDoctor($owner: String) {
+    onUpdateDoctor(owner: $owner) {
+      id
+      name
+      username
+      email
+      speciality
+      sex
+      consultingroom {
+        id
+        doctor {
+          id
+          name
+          username
+          email
+          speciality
+          sex
+          image
+          owner
+        }
+        secretary
+        location {
+          id
+          name
+          owner
+        }
+        owner
+      }
+      image
+      owner
+    }
+  }
+`;
+export const onDeleteDoctor = /* GraphQL */ `
+  subscription OnDeleteDoctor($owner: String) {
+    onDeleteDoctor(owner: $owner) {
+      id
+      name
+      username
+      email
+      speciality
+      sex
+      consultingroom {
+        id
+        doctor {
+          id
+          name
+          username
+          email
+          speciality
+          sex
+          image
+          owner
+        }
+        secretary
+        location {
+          id
+          name
+          owner
+        }
+        owner
+      }
+      image
+      owner
+    }
+  }
+`;
+export const onCreateRejection = /* GraphQL */ `
+  subscription OnCreateRejection($owner: String) {
+    onCreateRejection(owner: $owner) {
+      id
+      description
+      doctor
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const onUpdateRejection = /* GraphQL */ `
+  subscription OnUpdateRejection($owner: String) {
+    onUpdateRejection(owner: $owner) {
+      id
+      description
+      doctor
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const onDeleteRejection = /* GraphQL */ `
+  subscription OnDeleteRejection($owner: String) {
+    onDeleteRejection(owner: $owner) {
+      id
+      description
+      doctor
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const onCreateCancelation = /* GraphQL */ `
+  subscription OnCreateCancelation($owner: String) {
+    onCreateCancelation(owner: $owner) {
+      id
+      description
+      owner
+    }
+  }
+`;
+export const onUpdateCancelation = /* GraphQL */ `
+  subscription OnUpdateCancelation($owner: String) {
+    onUpdateCancelation(owner: $owner) {
+      id
+      description
+      owner
+    }
+  }
+`;
+export const onDeleteCancelation = /* GraphQL */ `
+  subscription OnDeleteCancelation($owner: String) {
+    onDeleteCancelation(owner: $owner) {
+      id
+      description
+      owner
+    }
+  }
+`;
+export const onCreateNotification = /* GraphQL */ `
+  subscription OnCreateNotification($owner: String) {
+    onCreateNotification(owner: $owner) {
+      id
+      state
+      doctor
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const onUpdateNotification = /* GraphQL */ `
+  subscription OnUpdateNotification($owner: String) {
+    onUpdateNotification(owner: $owner) {
+      id
+      state
+      doctor
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const onDeleteNotification = /* GraphQL */ `
+  subscription OnDeleteNotification($owner: String) {
+    onDeleteNotification(owner: $owner) {
+      id
+      state
+      doctor
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const onCreateConfirmation = /* GraphQL */ `
+  subscription OnCreateConfirmation($owner: String) {
+    onCreateConfirmation(owner: $owner) {
+      id
+      owner
+    }
+  }
+`;
+export const onUpdateConfirmation = /* GraphQL */ `
+  subscription OnUpdateConfirmation($owner: String) {
+    onUpdateConfirmation(owner: $owner) {
+      id
+      owner
+    }
+  }
+`;
+export const onDeleteConfirmation = /* GraphQL */ `
+  subscription OnDeleteConfirmation($owner: String) {
+    onDeleteConfirmation(owner: $owner) {
+      id
+      owner
+    }
+  }
+`;
+export const onCreateMedicalConsultation = /* GraphQL */ `
+  subscription OnCreateMedicalConsultation($owner: String) {
+    onCreateMedicalConsultation(owner: $owner) {
+      id
+      doctor {
+        id
+        name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
+      }
+      postConsultationsActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalHistory {
+        id
+        reason
+        patient {
+          id
+          name
+          username
+          email
+          phone
+          phone_id
+          weight
+          height
+          size
+          age
+          birthdate
+          owner
+        }
+        physicalExploration {
+          id
+          general_exploration
+          doctor
+          secretary
+          patient
+          owner
+        }
+        doctor
+        secretary
+        patientname
+        owner
+      }
+      doctorname
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const onUpdateMedicalConsultation = /* GraphQL */ `
+  subscription OnUpdateMedicalConsultation(
+    $owner: String
+    $doctorname: String
+  ) {
+    onUpdateMedicalConsultation(owner: $owner, doctorname: $doctorname) {
+      id
+      doctor {
+        id
+        name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
+      }
+      postConsultationsActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalHistory {
+        id
+        reason
+        patient {
+          id
+          name
+          username
+          email
+          phone
+          phone_id
+          weight
+          height
+          size
+          age
+          birthdate
+          owner
+        }
+        physicalExploration {
+          id
+          general_exploration
+          doctor
+          secretary
+          patient
+          owner
+        }
+        doctor
+        secretary
+        patientname
+        owner
+      }
+      doctorname
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const onDeleteMedicalConsultation = /* GraphQL */ `
+  subscription OnDeleteMedicalConsultation($owner: String) {
+    onDeleteMedicalConsultation(owner: $owner) {
+      id
+      doctor {
+        id
+        name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
+      }
+      postConsultationsActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalHistory {
+        id
+        reason
+        patient {
+          id
+          name
+          username
+          email
+          phone
+          phone_id
+          weight
+          height
+          size
+          age
+          birthdate
+          owner
+        }
+        physicalExploration {
+          id
+          general_exploration
+          doctor
+          secretary
+          patient
+          owner
+        }
+        doctor
+        secretary
+        patientname
+        owner
+      }
+      doctorname
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const onCreateMedicalHistory = /* GraphQL */ `
+  subscription OnCreateMedicalHistory($owner: String) {
+    onCreateMedicalHistory(owner: $owner) {
+      id
+      reason
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      physicalExploration {
+        id
+        general_exploration
+        vitalsigns {
+          id
+          blood_pressure
+          Breathing
+          Pulse
+          Temperature
+          doctor
+          secretary
+          patient
+          owner
+        }
+        regionalExploration {
+          id
+          head
+          neck
+          thorax
+          abdomen
+          members
+          genitals
+          others
+          doctor
+          secretary
+          patient
+          owner
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      doctor
+      secretary
+      patientname
+      owner
+    }
+  }
+`;
+export const onUpdateMedicalHistory = /* GraphQL */ `
+  subscription OnUpdateMedicalHistory($owner: String, $doctor: String) {
+    onUpdateMedicalHistory(owner: $owner, doctor: $doctor) {
+      id
+      reason
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      physicalExploration {
+        id
+        general_exploration
+        vitalsigns {
+          id
+          blood_pressure
+          Breathing
+          Pulse
+          Temperature
+          doctor
+          secretary
+          patient
+          owner
+        }
+        regionalExploration {
+          id
+          head
+          neck
+          thorax
+          abdomen
+          members
+          genitals
+          others
+          doctor
+          secretary
+          patient
+          owner
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      doctor
+      secretary
+      patientname
+      owner
+    }
+  }
+`;
+export const onDeleteMedicalHistory = /* GraphQL */ `
+  subscription OnDeleteMedicalHistory($owner: String) {
+    onDeleteMedicalHistory(owner: $owner) {
+      id
+      reason
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      physicalExploration {
+        id
+        general_exploration
+        vitalsigns {
+          id
+          blood_pressure
+          Breathing
+          Pulse
+          Temperature
+          doctor
+          secretary
+          patient
+          owner
+        }
+        regionalExploration {
+          id
+          head
+          neck
+          thorax
+          abdomen
+          members
+          genitals
+          others
+          doctor
+          secretary
+          patient
+          owner
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      doctor
+      secretary
+      patientname
+      owner
+    }
+  }
+`;
+export const onCreatePatient = /* GraphQL */ `
+  subscription OnCreatePatient($owner: String) {
+    onCreatePatient(owner: $owner) {
       id
       name
       username
@@ -131,630 +968,2201 @@ export const onUpdateMedicalAppointment = `subscription OnUpdateMedicalAppointme
       birthdate
       patientHistory {
         id
+        nonPathologicalHistory {
+          id
+          owner
+        }
+        pathologicalHistory {
+          id
+          owner
+        }
+        familyHistory {
+          id
+          owner
+        }
+        gynecoObstetricHistory {
+          id
+          menarche
+          sexual_development
+          menstrual_rhythm
+          sex_life
+          deliveries
+          abortions
+          caesarean_sections
+          contraceptive_method
+          owner
+        }
+        owner
       }
+      owner
     }
-    rejection {
-      items {
-        id
-        description
-        doctor
-        secretary
-        patient
-        createdAt
-      }
-      nextToken
-    }
-    cancelation {
+  }
+`;
+export const onUpdatePatient = /* GraphQL */ `
+  subscription OnUpdatePatient($owner: String) {
+    onUpdatePatient(owner: $owner) {
       id
-      description
+      name
+      username
+      email
+      phone
+      phone_id
+      weight
+      height
+      size
+      age
+      birthdate
+      patientHistory {
+        id
+        nonPathologicalHistory {
+          id
+          owner
+        }
+        pathologicalHistory {
+          id
+          owner
+        }
+        familyHistory {
+          id
+          owner
+        }
+        gynecoObstetricHistory {
+          id
+          menarche
+          sexual_development
+          menstrual_rhythm
+          sex_life
+          deliveries
+          abortions
+          caesarean_sections
+          contraceptive_method
+          owner
+        }
+        owner
+      }
+      owner
     }
-    notification {
-      items {
+  }
+`;
+export const onDeletePatient = /* GraphQL */ `
+  subscription OnDeletePatient($owner: String) {
+    onDeletePatient(owner: $owner) {
+      id
+      name
+      username
+      email
+      phone
+      phone_id
+      weight
+      height
+      size
+      age
+      birthdate
+      patientHistory {
+        id
+        nonPathologicalHistory {
+          id
+          owner
+        }
+        pathologicalHistory {
+          id
+          owner
+        }
+        familyHistory {
+          id
+          owner
+        }
+        gynecoObstetricHistory {
+          id
+          menarche
+          sexual_development
+          menstrual_rhythm
+          sex_life
+          deliveries
+          abortions
+          caesarean_sections
+          contraceptive_method
+          owner
+        }
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onCreatePatientHistory = /* GraphQL */ `
+  subscription OnCreatePatientHistory($owner: String) {
+    onCreatePatientHistory(owner: $owner) {
+      id
+      nonPathologicalHistory {
+        id
+        alcohol {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        smoking {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        drugs {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        immunizations {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        owner
+      }
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      familyHistory {
+        id
+        father {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        mother {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        brothers {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        grandfather {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        grandmother {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        other {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        owner
+      }
+      gynecoObstetricHistory {
+        id
+        menarche
+        sexual_development
+        menstrual_rhythm
+        sex_life
+        deliveries
+        abortions
+        caesarean_sections
+        contraceptive_method
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onUpdatePatientHistory = /* GraphQL */ `
+  subscription OnUpdatePatientHistory($owner: String) {
+    onUpdatePatientHistory(owner: $owner) {
+      id
+      nonPathologicalHistory {
+        id
+        alcohol {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        smoking {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        drugs {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        immunizations {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        owner
+      }
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      familyHistory {
+        id
+        father {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        mother {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        brothers {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        grandfather {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        grandmother {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        other {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        owner
+      }
+      gynecoObstetricHistory {
+        id
+        menarche
+        sexual_development
+        menstrual_rhythm
+        sex_life
+        deliveries
+        abortions
+        caesarean_sections
+        contraceptive_method
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onDeletePatientHistory = /* GraphQL */ `
+  subscription OnDeletePatientHistory($owner: String) {
+    onDeletePatientHistory(owner: $owner) {
+      id
+      nonPathologicalHistory {
+        id
+        alcohol {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        smoking {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        drugs {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        immunizations {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        owner
+      }
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      familyHistory {
+        id
+        father {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        mother {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        brothers {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        grandfather {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        grandmother {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        other {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        owner
+      }
+      gynecoObstetricHistory {
+        id
+        menarche
+        sexual_development
+        menstrual_rhythm
+        sex_life
+        deliveries
+        abortions
+        caesarean_sections
+        contraceptive_method
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onCreateNonPathologicalHistory = /* GraphQL */ `
+  subscription OnCreateNonPathologicalHistory($owner: String) {
+    onCreateNonPathologicalHistory(owner: $owner) {
+      id
+      alcohol {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      smoking {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      drugs {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      immunizations {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onUpdateNonPathologicalHistory = /* GraphQL */ `
+  subscription OnUpdateNonPathologicalHistory($owner: String) {
+    onUpdateNonPathologicalHistory(owner: $owner) {
+      id
+      alcohol {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      smoking {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      drugs {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      immunizations {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onDeleteNonPathologicalHistory = /* GraphQL */ `
+  subscription OnDeleteNonPathologicalHistory($owner: String) {
+    onDeleteNonPathologicalHistory(owner: $owner) {
+      id
+      alcohol {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      smoking {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      drugs {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      immunizations {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onCreateNonPathologicalActivities = /* GraphQL */ `
+  subscription OnCreateNonPathologicalActivities($owner: String) {
+    onCreateNonPathologicalActivities(owner: $owner) {
+      id
+      active
+      frequency
+      comment
+      owner
+    }
+  }
+`;
+export const onUpdateNonPathologicalActivities = /* GraphQL */ `
+  subscription OnUpdateNonPathologicalActivities($owner: String) {
+    onUpdateNonPathologicalActivities(owner: $owner) {
+      id
+      active
+      frequency
+      comment
+      owner
+    }
+  }
+`;
+export const onDeleteNonPathologicalActivities = /* GraphQL */ `
+  subscription OnDeleteNonPathologicalActivities($owner: String) {
+    onDeleteNonPathologicalActivities(owner: $owner) {
+      id
+      active
+      frequency
+      comment
+      owner
+    }
+  }
+`;
+export const onCreatePathologicalHistory = /* GraphQL */ `
+  subscription OnCreatePathologicalHistory($owner: String) {
+    onCreatePathologicalHistory(owner: $owner) {
+      id
+      surgicalInterventions {
+        items {
+          id
+          name
+          owner
+        }
+        nextToken
+      }
+      patientMedications {
+        items {
+          id
+        }
+        nextToken
+      }
+      patientAllergies {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onUpdatePathologicalHistory = /* GraphQL */ `
+  subscription OnUpdatePathologicalHistory($owner: String) {
+    onUpdatePathologicalHistory(owner: $owner) {
+      id
+      surgicalInterventions {
+        items {
+          id
+          name
+          owner
+        }
+        nextToken
+      }
+      patientMedications {
+        items {
+          id
+        }
+        nextToken
+      }
+      patientAllergies {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onDeletePathologicalHistory = /* GraphQL */ `
+  subscription OnDeletePathologicalHistory($owner: String) {
+    onDeletePathologicalHistory(owner: $owner) {
+      id
+      surgicalInterventions {
+        items {
+          id
+          name
+          owner
+        }
+        nextToken
+      }
+      patientMedications {
+        items {
+          id
+        }
+        nextToken
+      }
+      patientAllergies {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onCreateFamilyHistory = /* GraphQL */ `
+  subscription OnCreateFamilyHistory($owner: String) {
+    onCreateFamilyHistory(owner: $owner) {
+      id
+      father {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      mother {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      brothers {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      other {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onUpdateFamilyHistory = /* GraphQL */ `
+  subscription OnUpdateFamilyHistory($owner: String) {
+    onUpdateFamilyHistory(owner: $owner) {
+      id
+      father {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      mother {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      brothers {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      other {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onDeleteFamilyHistory = /* GraphQL */ `
+  subscription OnDeleteFamilyHistory($owner: String) {
+    onDeleteFamilyHistory(owner: $owner) {
+      id
+      father {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      mother {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      brothers {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      other {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const onCreateFamilyDetails = /* GraphQL */ `
+  subscription OnCreateFamilyDetails($owner: String) {
+    onCreateFamilyDetails(owner: $owner) {
+      id
+      alive
+      relationship
+      diseases {
+        items {
+          id
+        }
+        nextToken
+      }
+      comment
+      owner
+    }
+  }
+`;
+export const onUpdateFamilyDetails = /* GraphQL */ `
+  subscription OnUpdateFamilyDetails($owner: String) {
+    onUpdateFamilyDetails(owner: $owner) {
+      id
+      alive
+      relationship
+      diseases {
+        items {
+          id
+        }
+        nextToken
+      }
+      comment
+      owner
+    }
+  }
+`;
+export const onDeleteFamilyDetails = /* GraphQL */ `
+  subscription OnDeleteFamilyDetails($owner: String) {
+    onDeleteFamilyDetails(owner: $owner) {
+      id
+      alive
+      relationship
+      diseases {
+        items {
+          id
+        }
+        nextToken
+      }
+      comment
+      owner
+    }
+  }
+`;
+export const onCreateFamilyDetailsDiseases = /* GraphQL */ `
+  subscription OnCreateFamilyDetailsDiseases {
+    onCreateFamilyDetailsDiseases {
+      id
+      family {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      diseases {
+        id
+        name
+        familyDetails {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onUpdateFamilyDetailsDiseases = /* GraphQL */ `
+  subscription OnUpdateFamilyDetailsDiseases {
+    onUpdateFamilyDetailsDiseases {
+      id
+      family {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      diseases {
+        id
+        name
+        familyDetails {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onDeleteFamilyDetailsDiseases = /* GraphQL */ `
+  subscription OnDeleteFamilyDetailsDiseases {
+    onDeleteFamilyDetailsDiseases {
+      id
+      family {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      diseases {
+        id
+        name
+        familyDetails {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onCreateDiseases = /* GraphQL */ `
+  subscription OnCreateDiseases($owner: String) {
+    onCreateDiseases(owner: $owner) {
+      id
+      name
+      familyDetails {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onUpdateDiseases = /* GraphQL */ `
+  subscription OnUpdateDiseases($owner: String) {
+    onUpdateDiseases(owner: $owner) {
+      id
+      name
+      familyDetails {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onDeleteDiseases = /* GraphQL */ `
+  subscription OnDeleteDiseases($owner: String) {
+    onDeleteDiseases(owner: $owner) {
+      id
+      name
+      familyDetails {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onCreateGynecoObstetricHistory = /* GraphQL */ `
+  subscription OnCreateGynecoObstetricHistory($owner: String) {
+    onCreateGynecoObstetricHistory(owner: $owner) {
+      id
+      menarche
+      sexual_development
+      menstrual_rhythm
+      sex_life
+      deliveries
+      abortions
+      caesarean_sections
+      contraceptive_method
+      owner
+    }
+  }
+`;
+export const onUpdateGynecoObstetricHistory = /* GraphQL */ `
+  subscription OnUpdateGynecoObstetricHistory($owner: String) {
+    onUpdateGynecoObstetricHistory(owner: $owner) {
+      id
+      menarche
+      sexual_development
+      menstrual_rhythm
+      sex_life
+      deliveries
+      abortions
+      caesarean_sections
+      contraceptive_method
+      owner
+    }
+  }
+`;
+export const onDeleteGynecoObstetricHistory = /* GraphQL */ `
+  subscription OnDeleteGynecoObstetricHistory($owner: String) {
+    onDeleteGynecoObstetricHistory(owner: $owner) {
+      id
+      menarche
+      sexual_development
+      menstrual_rhythm
+      sex_life
+      deliveries
+      abortions
+      caesarean_sections
+      contraceptive_method
+      owner
+    }
+  }
+`;
+export const onCreateAllergies = /* GraphQL */ `
+  subscription OnCreateAllergies($owner: String) {
+    onCreateAllergies(owner: $owner) {
+      id
+      name
+      patients {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onUpdateAllergies = /* GraphQL */ `
+  subscription OnUpdateAllergies($owner: String) {
+    onUpdateAllergies(owner: $owner) {
+      id
+      name
+      patients {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onDeleteAllergies = /* GraphQL */ `
+  subscription OnDeleteAllergies($owner: String) {
+    onDeleteAllergies(owner: $owner) {
+      id
+      name
+      patients {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onCreatePatientAllergies = /* GraphQL */ `
+  subscription OnCreatePatientAllergies {
+    onCreatePatientAllergies {
+      id
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      allergies {
+        id
+        name
+        patients {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onUpdatePatientAllergies = /* GraphQL */ `
+  subscription OnUpdatePatientAllergies {
+    onUpdatePatientAllergies {
+      id
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      allergies {
+        id
+        name
+        patients {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onDeletePatientAllergies = /* GraphQL */ `
+  subscription OnDeletePatientAllergies {
+    onDeletePatientAllergies {
+      id
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      allergies {
+        id
+        name
+        patients {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onCreatePatientMedications = /* GraphQL */ `
+  subscription OnCreatePatientMedications {
+    onCreatePatientMedications {
+      id
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      medications {
+        id
+        name
+        patients {
+          nextToken
+        }
+        code
+        drug_concentration
+        chemical_composition
+        mp {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onUpdatePatientMedications = /* GraphQL */ `
+  subscription OnUpdatePatientMedications {
+    onUpdatePatientMedications {
+      id
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      medications {
+        id
+        name
+        patients {
+          nextToken
+        }
+        code
+        drug_concentration
+        chemical_composition
+        mp {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onDeletePatientMedications = /* GraphQL */ `
+  subscription OnDeletePatientMedications {
+    onDeletePatientMedications {
+      id
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      medications {
+        id
+        name
+        patients {
+          nextToken
+        }
+        code
+        drug_concentration
+        chemical_composition
+        mp {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onCreateMedicines = /* GraphQL */ `
+  subscription OnCreateMedicines($owner: String) {
+    onCreateMedicines(owner: $owner) {
+      id
+      name
+      patients {
+        items {
+          id
+        }
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onUpdateMedicines = /* GraphQL */ `
+  subscription OnUpdateMedicines($owner: String) {
+    onUpdateMedicines(owner: $owner) {
+      id
+      name
+      patients {
+        items {
+          id
+        }
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onDeleteMedicines = /* GraphQL */ `
+  subscription OnDeleteMedicines($owner: String) {
+    onDeleteMedicines(owner: $owner) {
+      id
+      name
+      patients {
+        items {
+          id
+        }
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onCreatePostConsultationsActivities = /* GraphQL */ `
+  subscription OnCreatePostConsultationsActivities($owner: String) {
+    onCreatePostConsultationsActivities(owner: $owner) {
+      id
+      medicalPrescriptions {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      medicalAnalysis {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      surgicalIntervention {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const onUpdatePostConsultationsActivities = /* GraphQL */ `
+  subscription OnUpdatePostConsultationsActivities(
+    $owner: String
+    $doctor: String
+  ) {
+    onUpdatePostConsultationsActivities(owner: $owner, doctor: $doctor) {
+      id
+      medicalPrescriptions {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      medicalAnalysis {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      surgicalIntervention {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const onDeletePostConsultationsActivities = /* GraphQL */ `
+  subscription OnDeletePostConsultationsActivities($owner: String) {
+    onDeletePostConsultationsActivities(owner: $owner) {
+      id
+      medicalPrescriptions {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      medicalAnalysis {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      surgicalIntervention {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const onCreateMedicalPrescriptions = /* GraphQL */ `
+  subscription OnCreateMedicalPrescriptions($owner: String) {
+    onCreateMedicalPrescriptions(owner: $owner) {
+      id
+      date
+      frequency
+      duration
+      medications {
+        items {
+          id
+        }
+        nextToken
+      }
+      pca {
         id
         state
+        date
+        pcActivities {
+          id
+          doctor
+          secretary
+          patient
+          owner
+        }
+        medicalPrescriptions {
+          id
+          date
+          frequency
+          duration
+          doctor
+          secretary
+          patient
+          owner
+        }
+      }
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const onUpdateMedicalPrescriptions = /* GraphQL */ `
+  subscription OnUpdateMedicalPrescriptions($owner: String, $doctor: String) {
+    onUpdateMedicalPrescriptions(owner: $owner, doctor: $doctor) {
+      id
+      date
+      frequency
+      duration
+      medications {
+        items {
+          id
+        }
+        nextToken
+      }
+      pca {
+        id
+        state
+        date
+        pcActivities {
+          id
+          doctor
+          secretary
+          patient
+          owner
+        }
+        medicalPrescriptions {
+          id
+          date
+          frequency
+          duration
+          doctor
+          secretary
+          patient
+          owner
+        }
+      }
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const onDeleteMedicalPrescriptions = /* GraphQL */ `
+  subscription OnDeleteMedicalPrescriptions($owner: String) {
+    onDeleteMedicalPrescriptions(owner: $owner) {
+      id
+      date
+      frequency
+      duration
+      medications {
+        items {
+          id
+        }
+        nextToken
+      }
+      pca {
+        id
+        state
+        date
+        pcActivities {
+          id
+          doctor
+          secretary
+          patient
+          owner
+        }
+        medicalPrescriptions {
+          id
+          date
+          frequency
+          duration
+          doctor
+          secretary
+          patient
+          owner
+        }
+      }
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const onCreatePostConsultActMedicalPres = /* GraphQL */ `
+  subscription OnCreatePostConsultActMedicalPres {
+    onCreatePostConsultActMedicalPres {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
         doctor
         secretary
         patient
-        createdAt
+        owner
       }
-      nextToken
-    }
-    confirmation {
-      id
-    }
-    secretary
-    details
-    date_created
-    date_of_medical_appointment
-    state
-    position
-    consult_cost
-    read_secretary
-    read_doctor
-    read_client
-    createdAt
-  }
-}
-`;
-export const onCreateConsultingRoom = `subscription OnCreateConsultingRoom {
-  onCreateConsultingRoom {
-    id
-    modules {
-      items {
+      medicalPrescriptions {
         id
-        name
-        image
-        description
-      }
-      nextToken
-    }
-    doctor {
-      id
-      name
-      username
-      email
-      speciality
-      sex
-      consultingroom {
-        id
+        date
+        frequency
+        duration
+        medications {
+          nextToken
+        }
+        pca {
+          id
+          state
+          date
+        }
+        doctor
         secretary
+        patient
+        owner
       }
-      image
-    }
-    stripe {
-      id
-      source_token
-      plan_id
-      plan_name
-      customer_id
-      subscription_id
-    }
-    secretary
-    location {
-      id
-      name
     }
   }
-}
 `;
-export const onUpdateConsultingRoom = `subscription OnUpdateConsultingRoom {
-  onUpdateConsultingRoom {
-    id
-    modules {
-      items {
-        id
-        name
-        image
-        description
-      }
-      nextToken
-    }
-    doctor {
+export const onUpdatePostConsultActMedicalPres = /* GraphQL */ `
+  subscription OnUpdatePostConsultActMedicalPres {
+    onUpdatePostConsultActMedicalPres {
       id
-      name
-      username
-      email
-      speciality
-      sex
-      consultingroom {
+      state
+      date
+      pcActivities {
         id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
         secretary
+        patient
+        owner
       }
-      image
-    }
-    stripe {
-      id
-      source_token
-      plan_id
-      plan_name
-      customer_id
-      subscription_id
-    }
-    secretary
-    location {
-      id
-      name
-    }
-  }
-}
-`;
-export const onDeleteConsultingRoom = `subscription OnDeleteConsultingRoom {
-  onDeleteConsultingRoom {
-    id
-    modules {
-      items {
+      medicalPrescriptions {
         id
-        name
-        image
-        description
-      }
-      nextToken
-    }
-    doctor {
-      id
-      name
-      username
-      email
-      speciality
-      sex
-      consultingroom {
-        id
+        date
+        frequency
+        duration
+        medications {
+          nextToken
+        }
+        pca {
+          id
+          state
+          date
+        }
+        doctor
         secretary
+        patient
+        owner
       }
-      image
     }
-    stripe {
+  }
+`;
+export const onDeletePostConsultActMedicalPres = /* GraphQL */ `
+  subscription OnDeletePostConsultActMedicalPres {
+    onDeletePostConsultActMedicalPres {
       id
-      source_token
-      plan_id
-      plan_name
-      customer_id
-      subscription_id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalPrescriptions {
+        id
+        date
+        frequency
+        duration
+        medications {
+          nextToken
+        }
+        pca {
+          id
+          state
+          date
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
     }
-    secretary
-    location {
+  }
+`;
+export const onCreateMedicalPrescriptionsMedications = /* GraphQL */ `
+  subscription OnCreateMedicalPrescriptionsMedications {
+    onCreateMedicalPrescriptionsMedications {
+      id
+      medicalPrescriptions {
+        id
+        date
+        frequency
+        duration
+        medications {
+          nextToken
+        }
+        pca {
+          id
+          state
+          date
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medications {
+        id
+        name
+        patients {
+          nextToken
+        }
+        code
+        drug_concentration
+        chemical_composition
+        mp {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onUpdateMedicalPrescriptionsMedications = /* GraphQL */ `
+  subscription OnUpdateMedicalPrescriptionsMedications {
+    onUpdateMedicalPrescriptionsMedications {
+      id
+      medicalPrescriptions {
+        id
+        date
+        frequency
+        duration
+        medications {
+          nextToken
+        }
+        pca {
+          id
+          state
+          date
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medications {
+        id
+        name
+        patients {
+          nextToken
+        }
+        code
+        drug_concentration
+        chemical_composition
+        mp {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onDeleteMedicalPrescriptionsMedications = /* GraphQL */ `
+  subscription OnDeleteMedicalPrescriptionsMedications {
+    onDeleteMedicalPrescriptionsMedications {
+      id
+      medicalPrescriptions {
+        id
+        date
+        frequency
+        duration
+        medications {
+          nextToken
+        }
+        pca {
+          id
+          state
+          date
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medications {
+        id
+        name
+        patients {
+          nextToken
+        }
+        code
+        drug_concentration
+        chemical_composition
+        mp {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onCreatePostConsultActMedAnalysis = /* GraphQL */ `
+  subscription OnCreatePostConsultActMedAnalysis {
+    onCreatePostConsultActMedAnalysis {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalAnalysis {
+        id
+        name
+        code
+        medicalAnalysis {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onUpdatePostConsultActMedAnalysis = /* GraphQL */ `
+  subscription OnUpdatePostConsultActMedAnalysis {
+    onUpdatePostConsultActMedAnalysis {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalAnalysis {
+        id
+        name
+        code
+        medicalAnalysis {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onDeletePostConsultActMedAnalysis = /* GraphQL */ `
+  subscription OnDeletePostConsultActMedAnalysis {
+    onDeletePostConsultActMedAnalysis {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalAnalysis {
+        id
+        name
+        code
+        medicalAnalysis {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onCreateMedicalAnalysis = /* GraphQL */ `
+  subscription OnCreateMedicalAnalysis($owner: String) {
+    onCreateMedicalAnalysis(owner: $owner) {
       id
       name
-    }
-  }
-}
-`;
-export const onCreateLocation = `subscription OnCreateLocation {
-  onCreateLocation {
-    id
-    name
-  }
-}
-`;
-export const onUpdateLocation = `subscription OnUpdateLocation {
-  onUpdateLocation {
-    id
-    name
-  }
-}
-`;
-export const onDeleteLocation = `subscription OnDeleteLocation {
-  onDeleteLocation {
-    id
-    name
-  }
-}
-`;
-export const onCreateStripe = `subscription OnCreateStripe {
-  onCreateStripe {
-    id
-    source_token
-    plan_id
-    plan_name
-    customer_id
-    subscription_id
-  }
-}
-`;
-export const onUpdateStripe = `subscription OnUpdateStripe {
-  onUpdateStripe {
-    id
-    source_token
-    plan_id
-    plan_name
-    customer_id
-    subscription_id
-  }
-}
-`;
-export const onDeleteStripe = `subscription OnDeleteStripe {
-  onDeleteStripe {
-    id
-    source_token
-    plan_id
-    plan_name
-    customer_id
-    subscription_id
-  }
-}
-`;
-export const onCreateDoctor = `subscription OnCreateDoctor {
-  onCreateDoctor {
-    id
-    name
-    username
-    email
-    speciality
-    sex
-    consultingroom {
-      id
-      modules {
+      code
+      medicalAnalysis {
+        items {
+          id
+          state
+          date
+        }
         nextToken
       }
-      doctor {
-        id
-        name
-        username
-        email
-        speciality
-        sex
-        image
-      }
-      stripe {
-        id
-        source_token
-        plan_id
-        plan_name
-        customer_id
-        subscription_id
-      }
-      secretary
-      location {
-        id
-        name
-      }
+      owner
     }
-    image
   }
-}
 `;
-export const onUpdateDoctor = `subscription OnUpdateDoctor {
-  onUpdateDoctor {
-    id
-    name
-    username
-    email
-    speciality
-    sex
-    consultingroom {
+export const onUpdateMedicalAnalysis = /* GraphQL */ `
+  subscription OnUpdateMedicalAnalysis($owner: String) {
+    onUpdateMedicalAnalysis(owner: $owner) {
       id
-      modules {
+      name
+      code
+      medicalAnalysis {
+        items {
+          id
+          state
+          date
+        }
         nextToken
       }
-      doctor {
-        id
-        name
-        username
-        email
-        speciality
-        sex
-        image
-      }
-      stripe {
-        id
-        source_token
-        plan_id
-        plan_name
-        customer_id
-        subscription_id
-      }
-      secretary
-      location {
-        id
-        name
-      }
+      owner
     }
-    image
   }
-}
 `;
-export const onDeleteDoctor = `subscription OnDeleteDoctor {
-  onDeleteDoctor {
-    id
-    name
-    username
-    email
-    speciality
-    sex
-    consultingroom {
+export const onDeleteMedicalAnalysis = /* GraphQL */ `
+  subscription OnDeleteMedicalAnalysis($owner: String) {
+    onDeleteMedicalAnalysis(owner: $owner) {
       id
-      modules {
+      name
+      code
+      medicalAnalysis {
+        items {
+          id
+          state
+          date
+        }
         nextToken
       }
-      doctor {
+      owner
+    }
+  }
+`;
+export const onCreatePostConsultActSurgicalInt = /* GraphQL */ `
+  subscription OnCreatePostConsultActSurgicalInt {
+    onCreatePostConsultActSurgicalInt {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      surgicalIntervention {
         id
         name
-        username
-        email
-        speciality
-        sex
-        image
-      }
-      stripe {
-        id
-        source_token
-        plan_id
-        plan_name
-        customer_id
-        subscription_id
-      }
-      secretary
-      location {
-        id
-        name
+        surgicalIntervention {
+          nextToken
+        }
+        owner
       }
     }
-    image
   }
-}
 `;
-export const onCreateRejection = `subscription OnCreateRejection {
-  onCreateRejection {
-    id
-    description
-    doctor
-    secretary
-    patient
-    createdAt
-  }
-}
-`;
-export const onUpdateRejection = `subscription OnUpdateRejection {
-  onUpdateRejection {
-    id
-    description
-    doctor
-    secretary
-    patient
-    createdAt
-  }
-}
-`;
-export const onDeleteRejection = `subscription OnDeleteRejection {
-  onDeleteRejection {
-    id
-    description
-    doctor
-    secretary
-    patient
-    createdAt
-  }
-}
-`;
-export const onCreateCancelation = `subscription OnCreateCancelation {
-  onCreateCancelation {
-    id
-    description
-  }
-}
-`;
-export const onUpdateCancelation = `subscription OnUpdateCancelation {
-  onUpdateCancelation {
-    id
-    description
-  }
-}
-`;
-export const onDeleteCancelation = `subscription OnDeleteCancelation {
-  onDeleteCancelation {
-    id
-    description
-  }
-}
-`;
-export const onCreateNotification = `subscription OnCreateNotification {
-  onCreateNotification {
-    id
-    state
-    doctor
-    secretary
-    patient
-    createdAt
-  }
-}
-`;
-export const onUpdateNotification = `subscription OnUpdateNotification {
-  onUpdateNotification {
-    id
-    state
-    doctor
-    secretary
-    patient
-    createdAt
-  }
-}
-`;
-export const onDeleteNotification = `subscription OnDeleteNotification {
-  onDeleteNotification {
-    id
-    state
-    doctor
-    secretary
-    patient
-    createdAt
-  }
-}
-`;
-export const onCreateConfirmation = `subscription OnCreateConfirmation {
-  onCreateConfirmation {
-    id
-  }
-}
-`;
-export const onUpdateConfirmation = `subscription OnUpdateConfirmation {
-  onUpdateConfirmation {
-    id
-  }
-}
-`;
-export const onDeleteConfirmation = `subscription OnDeleteConfirmation {
-  onDeleteConfirmation {
-    id
-  }
-}
-`;
-export const onCreateModule = `subscription OnCreateModule {
-  onCreateModule {
-    id
-    name
-    fields {
-      items {
+export const onUpdatePostConsultActSurgicalInt = /* GraphQL */ `
+  subscription OnUpdatePostConsultActSurgicalInt {
+    onUpdatePostConsultActSurgicalInt {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      surgicalIntervention {
         id
         name
+        surgicalIntervention {
+          nextToken
+        }
+        owner
       }
-      nextToken
     }
-    image
-    description
   }
-}
 `;
-export const onUpdateModule = `subscription OnUpdateModule {
-  onUpdateModule {
-    id
-    name
-    fields {
-      items {
+export const onDeletePostConsultActSurgicalInt = /* GraphQL */ `
+  subscription OnDeletePostConsultActSurgicalInt {
+    onDeletePostConsultActSurgicalInt {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      surgicalIntervention {
         id
         name
+        surgicalIntervention {
+          nextToken
+        }
+        owner
       }
-      nextToken
     }
-    image
-    description
   }
-}
 `;
-export const onDeleteModule = `subscription OnDeleteModule {
-  onDeleteModule {
-    id
-    name
-    fields {
-      items {
-        id
-        name
-      }
-      nextToken
-    }
-    image
-    description
-  }
-}
-`;
-export const onCreateDoctorCustomModuleProps = `subscription OnCreateDoctorCustomModuleProps {
-  onCreateDoctorCustomModuleProps {
-    id
-    active
-    module {
+export const onCreateSurgicalIntervention = /* GraphQL */ `
+  subscription OnCreateSurgicalIntervention($owner: String) {
+    onCreateSurgicalIntervention(owner: $owner) {
       id
       name
-      fields {
+      surgicalIntervention {
+        items {
+          id
+          state
+          date
+        }
         nextToken
       }
-      image
-      description
+      owner
     }
   }
-}
 `;
-export const onUpdateDoctorCustomModuleProps = `subscription OnUpdateDoctorCustomModuleProps {
-  onUpdateDoctorCustomModuleProps {
-    id
-    active
-    module {
+export const onUpdateSurgicalIntervention = /* GraphQL */ `
+  subscription OnUpdateSurgicalIntervention($owner: String) {
+    onUpdateSurgicalIntervention(owner: $owner) {
       id
       name
-      fields {
+      surgicalIntervention {
+        items {
+          id
+          state
+          date
+        }
         nextToken
       }
-      image
-      description
+      owner
     }
   }
-}
 `;
-export const onDeleteDoctorCustomModuleProps = `subscription OnDeleteDoctorCustomModuleProps {
-  onDeleteDoctorCustomModuleProps {
-    id
-    active
-    module {
+export const onDeleteSurgicalIntervention = /* GraphQL */ `
+  subscription OnDeleteSurgicalIntervention($owner: String) {
+    onDeleteSurgicalIntervention(owner: $owner) {
       id
       name
-      fields {
+      surgicalIntervention {
+        items {
+          id
+          state
+          date
+        }
         nextToken
       }
-      image
-      description
+      owner
     }
   }
-}
 `;
-export const onCreateField = `subscription OnCreateField {
-  onCreateField {
-    id
-    name
-  }
-}
-`;
-export const onUpdateField = `subscription OnUpdateField {
-  onUpdateField {
-    id
-    name
-  }
-}
-`;
-export const onDeleteField = `subscription OnDeleteField {
-  onDeleteField {
-    id
-    name
-  }
-}
-`;
-export const onCreateDoctorCustomFieldProps = `subscription OnCreateDoctorCustomFieldProps {
-  onCreateDoctorCustomFieldProps {
-    id
-    name
-    required
-    visible
-    field {
-      id
-      name
-    }
-  }
-}
-`;
-export const onUpdateDoctorCustomFieldProps = `subscription OnUpdateDoctorCustomFieldProps {
-  onUpdateDoctorCustomFieldProps {
-    id
-    name
-    required
-    visible
-    field {
-      id
-      name
-    }
-  }
-}
-`;
-export const onDeleteDoctorCustomFieldProps = `subscription OnDeleteDoctorCustomFieldProps {
-  onDeleteDoctorCustomFieldProps {
-    id
-    name
-    required
-    visible
-    field {
-      id
-      name
-    }
-  }
-}
-`;
-export const onCreateMedicalHistory = `subscription OnCreateMedicalHistory {
-  onCreateMedicalHistory {
-    id
-    reason
-    patient {
-      id
-      name
-      username
-      email
-      phone
-      phone_id
-      weight
-      height
-      size
-      age
-      birthdate
-      patientHistory {
-        id
-      }
-    }
-    physicalExploration {
+export const onCreatePhysicalExploration = /* GraphQL */ `
+  subscription OnCreatePhysicalExploration($owner: String) {
+    onCreatePhysicalExploration(owner: $owner) {
       id
       general_exploration
       vitalsigns {
@@ -766,6 +3174,7 @@ export const onCreateMedicalHistory = `subscription OnCreateMedicalHistory {
         doctor
         secretary
         patient
+        owner
       }
       regionalExploration {
         id
@@ -779,50 +3188,18 @@ export const onCreateMedicalHistory = `subscription OnCreateMedicalHistory {
         doctor
         secretary
         patient
+        owner
       }
       doctor
       secretary
       patient
+      owner
     }
-    postConsultationsActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    doctor
-    secretary
-    patientname
   }
-}
 `;
-export const onUpdateMedicalHistory = `subscription OnUpdateMedicalHistory {
-  onUpdateMedicalHistory {
-    id
-    reason
-    patient {
-      id
-      name
-      username
-      email
-      phone
-      phone_id
-      weight
-      height
-      size
-      age
-      birthdate
-      patientHistory {
-        id
-      }
-    }
-    physicalExploration {
+export const onUpdatePhysicalExploration = /* GraphQL */ `
+  subscription OnUpdatePhysicalExploration($owner: String, $doctor: String) {
+    onUpdatePhysicalExploration(owner: $owner, doctor: $doctor) {
       id
       general_exploration
       vitalsigns {
@@ -834,6 +3211,7 @@ export const onUpdateMedicalHistory = `subscription OnUpdateMedicalHistory {
         doctor
         secretary
         patient
+        owner
       }
       regionalExploration {
         id
@@ -847,50 +3225,18 @@ export const onUpdateMedicalHistory = `subscription OnUpdateMedicalHistory {
         doctor
         secretary
         patient
+        owner
       }
       doctor
       secretary
       patient
+      owner
     }
-    postConsultationsActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    doctor
-    secretary
-    patientname
   }
-}
 `;
-export const onDeleteMedicalHistory = `subscription OnDeleteMedicalHistory {
-  onDeleteMedicalHistory {
-    id
-    reason
-    patient {
-      id
-      name
-      username
-      email
-      phone
-      phone_id
-      weight
-      height
-      size
-      age
-      birthdate
-      patientHistory {
-        id
-      }
-    }
-    physicalExploration {
+export const onDeletePhysicalExploration = /* GraphQL */ `
+  subscription OnDeletePhysicalExploration($owner: String) {
+    onDeletePhysicalExploration(owner: $owner) {
       id
       general_exploration
       vitalsigns {
@@ -902,6 +3248,7 @@ export const onDeleteMedicalHistory = `subscription OnDeleteMedicalHistory {
         doctor
         secretary
         patient
+        owner
       }
       regionalExploration {
         id
@@ -915,1714 +3262,18 @@ export const onDeleteMedicalHistory = `subscription OnDeleteMedicalHistory {
         doctor
         secretary
         patient
+        owner
       }
       doctor
       secretary
       patient
-    }
-    postConsultationsActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    doctor
-    secretary
-    patientname
-  }
-}
-`;
-export const onCreatePatient = `subscription OnCreatePatient {
-  onCreatePatient {
-    id
-    name
-    username
-    email
-    phone
-    phone_id
-    weight
-    height
-    size
-    age
-    birthdate
-    patientHistory {
-      id
-      nonPathologicalHistory {
-        id
-      }
-      pathologicalHistory {
-        id
-      }
-      familyHistory {
-        id
-      }
-      gynecoObstetricHistory {
-        id
-        menarche
-        sexual_development
-        menstrual_rhythm
-        sex_life
-        deliveries
-        abortions
-        caesarean_sections
-        contraceptive_method
-      }
+      owner
     }
   }
-}
 `;
-export const onUpdatePatient = `subscription OnUpdatePatient {
-  onUpdatePatient {
-    id
-    name
-    username
-    email
-    phone
-    phone_id
-    weight
-    height
-    size
-    age
-    birthdate
-    patientHistory {
-      id
-      nonPathologicalHistory {
-        id
-      }
-      pathologicalHistory {
-        id
-      }
-      familyHistory {
-        id
-      }
-      gynecoObstetricHistory {
-        id
-        menarche
-        sexual_development
-        menstrual_rhythm
-        sex_life
-        deliveries
-        abortions
-        caesarean_sections
-        contraceptive_method
-      }
-    }
-  }
-}
-`;
-export const onDeletePatient = `subscription OnDeletePatient {
-  onDeletePatient {
-    id
-    name
-    username
-    email
-    phone
-    phone_id
-    weight
-    height
-    size
-    age
-    birthdate
-    patientHistory {
-      id
-      nonPathologicalHistory {
-        id
-      }
-      pathologicalHistory {
-        id
-      }
-      familyHistory {
-        id
-      }
-      gynecoObstetricHistory {
-        id
-        menarche
-        sexual_development
-        menstrual_rhythm
-        sex_life
-        deliveries
-        abortions
-        caesarean_sections
-        contraceptive_method
-      }
-    }
-  }
-}
-`;
-export const onCreatePatientHistory = `subscription OnCreatePatientHistory {
-  onCreatePatientHistory {
-    id
-    nonPathologicalHistory {
-      id
-      alcohol {
-        id
-        active
-        frequency
-        comment
-      }
-      smoking {
-        id
-        active
-        frequency
-        comment
-      }
-      drugs {
-        id
-        active
-        frequency
-        comment
-      }
-      immunizations {
-        id
-        active
-        frequency
-        comment
-      }
-    }
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    familyHistory {
-      id
-      father {
-        id
-        alive
-        relationship
-        comment
-      }
-      mother {
-        id
-        alive
-        relationship
-        comment
-      }
-      brothers {
-        id
-        alive
-        relationship
-        comment
-      }
-      grandfather {
-        id
-        alive
-        relationship
-        comment
-      }
-      grandmother {
-        id
-        alive
-        relationship
-        comment
-      }
-      other {
-        id
-        alive
-        relationship
-        comment
-      }
-    }
-    gynecoObstetricHistory {
-      id
-      menarche
-      sexual_development
-      menstrual_rhythm
-      sex_life
-      deliveries
-      abortions
-      caesarean_sections
-      contraceptive_method
-    }
-  }
-}
-`;
-export const onUpdatePatientHistory = `subscription OnUpdatePatientHistory {
-  onUpdatePatientHistory {
-    id
-    nonPathologicalHistory {
-      id
-      alcohol {
-        id
-        active
-        frequency
-        comment
-      }
-      smoking {
-        id
-        active
-        frequency
-        comment
-      }
-      drugs {
-        id
-        active
-        frequency
-        comment
-      }
-      immunizations {
-        id
-        active
-        frequency
-        comment
-      }
-    }
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    familyHistory {
-      id
-      father {
-        id
-        alive
-        relationship
-        comment
-      }
-      mother {
-        id
-        alive
-        relationship
-        comment
-      }
-      brothers {
-        id
-        alive
-        relationship
-        comment
-      }
-      grandfather {
-        id
-        alive
-        relationship
-        comment
-      }
-      grandmother {
-        id
-        alive
-        relationship
-        comment
-      }
-      other {
-        id
-        alive
-        relationship
-        comment
-      }
-    }
-    gynecoObstetricHistory {
-      id
-      menarche
-      sexual_development
-      menstrual_rhythm
-      sex_life
-      deliveries
-      abortions
-      caesarean_sections
-      contraceptive_method
-    }
-  }
-}
-`;
-export const onDeletePatientHistory = `subscription OnDeletePatientHistory {
-  onDeletePatientHistory {
-    id
-    nonPathologicalHistory {
-      id
-      alcohol {
-        id
-        active
-        frequency
-        comment
-      }
-      smoking {
-        id
-        active
-        frequency
-        comment
-      }
-      drugs {
-        id
-        active
-        frequency
-        comment
-      }
-      immunizations {
-        id
-        active
-        frequency
-        comment
-      }
-    }
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    familyHistory {
-      id
-      father {
-        id
-        alive
-        relationship
-        comment
-      }
-      mother {
-        id
-        alive
-        relationship
-        comment
-      }
-      brothers {
-        id
-        alive
-        relationship
-        comment
-      }
-      grandfather {
-        id
-        alive
-        relationship
-        comment
-      }
-      grandmother {
-        id
-        alive
-        relationship
-        comment
-      }
-      other {
-        id
-        alive
-        relationship
-        comment
-      }
-    }
-    gynecoObstetricHistory {
-      id
-      menarche
-      sexual_development
-      menstrual_rhythm
-      sex_life
-      deliveries
-      abortions
-      caesarean_sections
-      contraceptive_method
-    }
-  }
-}
-`;
-export const onCreateNonPathologicalHistory = `subscription OnCreateNonPathologicalHistory {
-  onCreateNonPathologicalHistory {
-    id
-    alcohol {
-      id
-      active
-      frequency
-      comment
-    }
-    smoking {
-      id
-      active
-      frequency
-      comment
-    }
-    drugs {
-      id
-      active
-      frequency
-      comment
-    }
-    immunizations {
-      id
-      active
-      frequency
-      comment
-    }
-  }
-}
-`;
-export const onUpdateNonPathologicalHistory = `subscription OnUpdateNonPathologicalHistory {
-  onUpdateNonPathologicalHistory {
-    id
-    alcohol {
-      id
-      active
-      frequency
-      comment
-    }
-    smoking {
-      id
-      active
-      frequency
-      comment
-    }
-    drugs {
-      id
-      active
-      frequency
-      comment
-    }
-    immunizations {
-      id
-      active
-      frequency
-      comment
-    }
-  }
-}
-`;
-export const onDeleteNonPathologicalHistory = `subscription OnDeleteNonPathologicalHistory {
-  onDeleteNonPathologicalHistory {
-    id
-    alcohol {
-      id
-      active
-      frequency
-      comment
-    }
-    smoking {
-      id
-      active
-      frequency
-      comment
-    }
-    drugs {
-      id
-      active
-      frequency
-      comment
-    }
-    immunizations {
-      id
-      active
-      frequency
-      comment
-    }
-  }
-}
-`;
-export const onCreateNonPathologicalActivities = `subscription OnCreateNonPathologicalActivities {
-  onCreateNonPathologicalActivities {
-    id
-    active
-    frequency
-    comment
-  }
-}
-`;
-export const onUpdateNonPathologicalActivities = `subscription OnUpdateNonPathologicalActivities {
-  onUpdateNonPathologicalActivities {
-    id
-    active
-    frequency
-    comment
-  }
-}
-`;
-export const onDeleteNonPathologicalActivities = `subscription OnDeleteNonPathologicalActivities {
-  onDeleteNonPathologicalActivities {
-    id
-    active
-    frequency
-    comment
-  }
-}
-`;
-export const onCreatePathologicalHistory = `subscription OnCreatePathologicalHistory {
-  onCreatePathologicalHistory {
-    id
-    surgicalInterventions {
-      items {
-        id
-        name
-      }
-      nextToken
-    }
-    patientMedications {
-      items {
-        id
-      }
-      nextToken
-    }
-    patientAllergies {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onUpdatePathologicalHistory = `subscription OnUpdatePathologicalHistory {
-  onUpdatePathologicalHistory {
-    id
-    surgicalInterventions {
-      items {
-        id
-        name
-      }
-      nextToken
-    }
-    patientMedications {
-      items {
-        id
-      }
-      nextToken
-    }
-    patientAllergies {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onDeletePathologicalHistory = `subscription OnDeletePathologicalHistory {
-  onDeletePathologicalHistory {
-    id
-    surgicalInterventions {
-      items {
-        id
-        name
-      }
-      nextToken
-    }
-    patientMedications {
-      items {
-        id
-      }
-      nextToken
-    }
-    patientAllergies {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onCreateFamilyHistory = `subscription OnCreateFamilyHistory {
-  onCreateFamilyHistory {
-    id
-    father {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    mother {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    brothers {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    grandfather {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    grandmother {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    other {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-  }
-}
-`;
-export const onUpdateFamilyHistory = `subscription OnUpdateFamilyHistory {
-  onUpdateFamilyHistory {
-    id
-    father {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    mother {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    brothers {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    grandfather {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    grandmother {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    other {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-  }
-}
-`;
-export const onDeleteFamilyHistory = `subscription OnDeleteFamilyHistory {
-  onDeleteFamilyHistory {
-    id
-    father {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    mother {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    brothers {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    grandfather {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    grandmother {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    other {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-  }
-}
-`;
-export const onCreateFamilyDetails = `subscription OnCreateFamilyDetails {
-  onCreateFamilyDetails {
-    id
-    alive
-    relationship
-    diseases {
-      id
-      name
-    }
-    comment
-  }
-}
-`;
-export const onUpdateFamilyDetails = `subscription OnUpdateFamilyDetails {
-  onUpdateFamilyDetails {
-    id
-    alive
-    relationship
-    diseases {
-      id
-      name
-    }
-    comment
-  }
-}
-`;
-export const onDeleteFamilyDetails = `subscription OnDeleteFamilyDetails {
-  onDeleteFamilyDetails {
-    id
-    alive
-    relationship
-    diseases {
-      id
-      name
-    }
-    comment
-  }
-}
-`;
-export const onCreateDiseases = `subscription OnCreateDiseases {
-  onCreateDiseases {
-    id
-    name
-  }
-}
-`;
-export const onUpdateDiseases = `subscription OnUpdateDiseases {
-  onUpdateDiseases {
-    id
-    name
-  }
-}
-`;
-export const onDeleteDiseases = `subscription OnDeleteDiseases {
-  onDeleteDiseases {
-    id
-    name
-  }
-}
-`;
-export const onCreateGynecoObstetricHistory = `subscription OnCreateGynecoObstetricHistory {
-  onCreateGynecoObstetricHistory {
-    id
-    menarche
-    sexual_development
-    menstrual_rhythm
-    sex_life
-    deliveries
-    abortions
-    caesarean_sections
-    contraceptive_method
-  }
-}
-`;
-export const onUpdateGynecoObstetricHistory = `subscription OnUpdateGynecoObstetricHistory {
-  onUpdateGynecoObstetricHistory {
-    id
-    menarche
-    sexual_development
-    menstrual_rhythm
-    sex_life
-    deliveries
-    abortions
-    caesarean_sections
-    contraceptive_method
-  }
-}
-`;
-export const onDeleteGynecoObstetricHistory = `subscription OnDeleteGynecoObstetricHistory {
-  onDeleteGynecoObstetricHistory {
-    id
-    menarche
-    sexual_development
-    menstrual_rhythm
-    sex_life
-    deliveries
-    abortions
-    caesarean_sections
-    contraceptive_method
-  }
-}
-`;
-export const onCreateAllergies = `subscription OnCreateAllergies {
-  onCreateAllergies {
-    id
-    name
-    patients {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onUpdateAllergies = `subscription OnUpdateAllergies {
-  onUpdateAllergies {
-    id
-    name
-    patients {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onDeleteAllergies = `subscription OnDeleteAllergies {
-  onDeleteAllergies {
-    id
-    name
-    patients {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onCreatePatientAllergies = `subscription OnCreatePatientAllergies {
-  onCreatePatientAllergies {
-    id
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    allergies {
-      id
-      name
-      patients {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const onUpdatePatientAllergies = `subscription OnUpdatePatientAllergies {
-  onUpdatePatientAllergies {
-    id
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    allergies {
-      id
-      name
-      patients {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const onDeletePatientAllergies = `subscription OnDeletePatientAllergies {
-  onDeletePatientAllergies {
-    id
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    allergies {
-      id
-      name
-      patients {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const onCreatePatientMedications = `subscription OnCreatePatientMedications {
-  onCreatePatientMedications {
-    id
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    medications {
-      id
-      name
-      patients {
-        nextToken
-      }
-      code
-      drug_concentration
-      chemical_composition
-      mp {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const onUpdatePatientMedications = `subscription OnUpdatePatientMedications {
-  onUpdatePatientMedications {
-    id
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    medications {
-      id
-      name
-      patients {
-        nextToken
-      }
-      code
-      drug_concentration
-      chemical_composition
-      mp {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const onDeletePatientMedications = `subscription OnDeletePatientMedications {
-  onDeletePatientMedications {
-    id
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    medications {
-      id
-      name
-      patients {
-        nextToken
-      }
-      code
-      drug_concentration
-      chemical_composition
-      mp {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const onCreateMedicines = `subscription OnCreateMedicines {
-  onCreateMedicines {
-    id
-    name
-    patients {
-      items {
-        id
-      }
-      nextToken
-    }
-    code
-    drug_concentration
-    chemical_composition
-    mp {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onUpdateMedicines = `subscription OnUpdateMedicines {
-  onUpdateMedicines {
-    id
-    name
-    patients {
-      items {
-        id
-      }
-      nextToken
-    }
-    code
-    drug_concentration
-    chemical_composition
-    mp {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onDeleteMedicines = `subscription OnDeleteMedicines {
-  onDeleteMedicines {
-    id
-    name
-    patients {
-      items {
-        id
-      }
-      nextToken
-    }
-    code
-    drug_concentration
-    chemical_composition
-    mp {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onCreatePostConsultationsActivities = `subscription OnCreatePostConsultationsActivities {
-  onCreatePostConsultationsActivities {
-    id
-    medicalPrescriptions {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const onUpdatePostConsultationsActivities = `subscription OnUpdatePostConsultationsActivities {
-  onUpdatePostConsultationsActivities {
-    id
-    medicalPrescriptions {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const onDeletePostConsultationsActivities = `subscription OnDeletePostConsultationsActivities {
-  onDeletePostConsultationsActivities {
-    id
-    medicalPrescriptions {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const onCreateMedicalPrescriptions = `subscription OnCreateMedicalPrescriptions {
-  onCreateMedicalPrescriptions {
-    id
-    date
-    frequency
-    duration
-    medications {
-      items {
-        id
-      }
-      nextToken
-    }
-    pca {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const onUpdateMedicalPrescriptions = `subscription OnUpdateMedicalPrescriptions {
-  onUpdateMedicalPrescriptions {
-    id
-    date
-    frequency
-    duration
-    medications {
-      items {
-        id
-      }
-      nextToken
-    }
-    pca {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const onDeleteMedicalPrescriptions = `subscription OnDeleteMedicalPrescriptions {
-  onDeleteMedicalPrescriptions {
-    id
-    date
-    frequency
-    duration
-    medications {
-      items {
-        id
-      }
-      nextToken
-    }
-    pca {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const onCreatePostConsultActMedicalPres = `subscription OnCreatePostConsultActMedicalPres {
-  onCreatePostConsultActMedicalPres {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medicalPrescriptions {
-      id
-      date
-      frequency
-      duration
-      medications {
-        nextToken
-      }
-      pca {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-  }
-}
-`;
-export const onUpdatePostConsultActMedicalPres = `subscription OnUpdatePostConsultActMedicalPres {
-  onUpdatePostConsultActMedicalPres {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medicalPrescriptions {
-      id
-      date
-      frequency
-      duration
-      medications {
-        nextToken
-      }
-      pca {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-  }
-}
-`;
-export const onDeletePostConsultActMedicalPres = `subscription OnDeletePostConsultActMedicalPres {
-  onDeletePostConsultActMedicalPres {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medicalPrescriptions {
-      id
-      date
-      frequency
-      duration
-      medications {
-        nextToken
-      }
-      pca {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-  }
-}
-`;
-export const onCreateMedicalPrescriptionsMedications = `subscription OnCreateMedicalPrescriptionsMedications {
-  onCreateMedicalPrescriptionsMedications {
-    id
-    medicalPrescriptions {
-      id
-      date
-      frequency
-      duration
-      medications {
-        nextToken
-      }
-      pca {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medications {
-      id
-      name
-      patients {
-        nextToken
-      }
-      code
-      drug_concentration
-      chemical_composition
-      mp {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const onUpdateMedicalPrescriptionsMedications = `subscription OnUpdateMedicalPrescriptionsMedications {
-  onUpdateMedicalPrescriptionsMedications {
-    id
-    medicalPrescriptions {
-      id
-      date
-      frequency
-      duration
-      medications {
-        nextToken
-      }
-      pca {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medications {
-      id
-      name
-      patients {
-        nextToken
-      }
-      code
-      drug_concentration
-      chemical_composition
-      mp {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const onDeleteMedicalPrescriptionsMedications = `subscription OnDeleteMedicalPrescriptionsMedications {
-  onDeleteMedicalPrescriptionsMedications {
-    id
-    medicalPrescriptions {
-      id
-      date
-      frequency
-      duration
-      medications {
-        nextToken
-      }
-      pca {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medications {
-      id
-      name
-      patients {
-        nextToken
-      }
-      code
-      drug_concentration
-      chemical_composition
-      mp {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const onCreatePostConsultActMedAnalysis = `subscription OnCreatePostConsultActMedAnalysis {
-  onCreatePostConsultActMedAnalysis {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medicalAnalysis {
-      id
-      name
-      code
-      medicalAnalysis {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const onUpdatePostConsultActMedAnalysis = `subscription OnUpdatePostConsultActMedAnalysis {
-  onUpdatePostConsultActMedAnalysis {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medicalAnalysis {
-      id
-      name
-      code
-      medicalAnalysis {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const onDeletePostConsultActMedAnalysis = `subscription OnDeletePostConsultActMedAnalysis {
-  onDeletePostConsultActMedAnalysis {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medicalAnalysis {
-      id
-      name
-      code
-      medicalAnalysis {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const onCreateMedicalAnalysis = `subscription OnCreateMedicalAnalysis {
-  onCreateMedicalAnalysis {
-    id
-    name
-    code
-    medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onUpdateMedicalAnalysis = `subscription OnUpdateMedicalAnalysis {
-  onUpdateMedicalAnalysis {
-    id
-    name
-    code
-    medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onDeleteMedicalAnalysis = `subscription OnDeleteMedicalAnalysis {
-  onDeleteMedicalAnalysis {
-    id
-    name
-    code
-    medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onCreateSurgicalIntervention = `subscription OnCreateSurgicalIntervention {
-  onCreateSurgicalIntervention {
-    id
-    name
-  }
-}
-`;
-export const onUpdateSurgicalIntervention = `subscription OnUpdateSurgicalIntervention {
-  onUpdateSurgicalIntervention {
-    id
-    name
-  }
-}
-`;
-export const onDeleteSurgicalIntervention = `subscription OnDeleteSurgicalIntervention {
-  onDeleteSurgicalIntervention {
-    id
-    name
-  }
-}
-`;
-export const onCreatePhysicalExploration = `subscription OnCreatePhysicalExploration {
-  onCreatePhysicalExploration {
-    id
-    general_exploration
-    vitalsigns {
+export const onCreateVitalSigns = /* GraphQL */ `
+  subscription OnCreateVitalSigns($owner: String) {
+    onCreateVitalSigns(owner: $owner) {
       id
       blood_pressure
       Breathing
@@ -2631,8 +3282,43 @@ export const onCreatePhysicalExploration = `subscription OnCreatePhysicalExplora
       doctor
       secretary
       patient
+      owner
     }
-    regionalExploration {
+  }
+`;
+export const onUpdateVitalSigns = /* GraphQL */ `
+  subscription OnUpdateVitalSigns($owner: String, $doctor: String) {
+    onUpdateVitalSigns(owner: $owner, doctor: $doctor) {
+      id
+      blood_pressure
+      Breathing
+      Pulse
+      Temperature
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const onDeleteVitalSigns = /* GraphQL */ `
+  subscription OnDeleteVitalSigns($owner: String) {
+    onDeleteVitalSigns(owner: $owner) {
+      id
+      blood_pressure
+      Breathing
+      Pulse
+      Temperature
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const onCreateRegionalExploration = /* GraphQL */ `
+  subscription OnCreateRegionalExploration($owner: String) {
+    onCreateRegionalExploration(owner: $owner) {
       id
       head
       neck
@@ -2644,28 +3330,13 @@ export const onCreatePhysicalExploration = `subscription OnCreatePhysicalExplora
       doctor
       secretary
       patient
+      owner
     }
-    doctor
-    secretary
-    patient
   }
-}
 `;
-export const onUpdatePhysicalExploration = `subscription OnUpdatePhysicalExploration {
-  onUpdatePhysicalExploration {
-    id
-    general_exploration
-    vitalsigns {
-      id
-      blood_pressure
-      Breathing
-      Pulse
-      Temperature
-      doctor
-      secretary
-      patient
-    }
-    regionalExploration {
+export const onUpdateRegionalExploration = /* GraphQL */ `
+  subscription OnUpdateRegionalExploration($owner: String, $doctor: String) {
+    onUpdateRegionalExploration(owner: $owner, doctor: $doctor) {
       id
       head
       neck
@@ -2677,28 +3348,13 @@ export const onUpdatePhysicalExploration = `subscription OnUpdatePhysicalExplora
       doctor
       secretary
       patient
+      owner
     }
-    doctor
-    secretary
-    patient
   }
-}
 `;
-export const onDeletePhysicalExploration = `subscription OnDeletePhysicalExploration {
-  onDeletePhysicalExploration {
-    id
-    general_exploration
-    vitalsigns {
-      id
-      blood_pressure
-      Breathing
-      Pulse
-      Temperature
-      doctor
-      secretary
-      patient
-    }
-    regionalExploration {
+export const onDeleteRegionalExploration = /* GraphQL */ `
+  subscription OnDeleteRegionalExploration($owner: String) {
+    onDeleteRegionalExploration(owner: $owner) {
       id
       head
       neck
@@ -2710,97 +3366,7 @@ export const onDeletePhysicalExploration = `subscription OnDeletePhysicalExplora
       doctor
       secretary
       patient
+      owner
     }
-    doctor
-    secretary
-    patient
   }
-}
-`;
-export const onCreateVitalSigns = `subscription OnCreateVitalSigns {
-  onCreateVitalSigns {
-    id
-    blood_pressure
-    Breathing
-    Pulse
-    Temperature
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const onUpdateVitalSigns = `subscription OnUpdateVitalSigns {
-  onUpdateVitalSigns {
-    id
-    blood_pressure
-    Breathing
-    Pulse
-    Temperature
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const onDeleteVitalSigns = `subscription OnDeleteVitalSigns {
-  onDeleteVitalSigns {
-    id
-    blood_pressure
-    Breathing
-    Pulse
-    Temperature
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const onCreateRegionalExploration = `subscription OnCreateRegionalExploration {
-  onCreateRegionalExploration {
-    id
-    head
-    neck
-    thorax
-    abdomen
-    members
-    genitals
-    others
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const onUpdateRegionalExploration = `subscription OnUpdateRegionalExploration {
-  onUpdateRegionalExploration {
-    id
-    head
-    neck
-    thorax
-    abdomen
-    members
-    genitals
-    others
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const onDeleteRegionalExploration = `subscription OnDeleteRegionalExploration {
-  onDeleteRegionalExploration {
-    id
-    head
-    neck
-    thorax
-    abdomen
-    members
-    genitals
-    others
-    doctor
-    secretary
-    patient
-  }
-}
 `;

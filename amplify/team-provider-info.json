@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-littydoctors-dev-202732-authRole",
+            "UnauthRoleArn": "arn:aws:iam::846928963573:role/amplify-littydoctors-dev-202732-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::846928963573:role/amplify-littydoctors-dev-202732-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-littydoctors-dev-202732-deployment",
+            "UnauthRoleName": "amplify-littydoctors-dev-202732-unauthRole",
+            "StackName": "amplify-littydoctors-dev-202732",
+            "StackId": "arn:aws:cloudformation:us-east-1:846928963573:stack/amplify-littydoctors-dev-202732/51a1f8e0-3e40-11ea-96ca-0eac0ccc6c9d",
+            "AmplifyAppId": "d331uie6fizjvh"
+        },
+        "categories": {
+            "auth": {
+                "littydoctors976a7757": {}
+            }
+        }
+    }
+}

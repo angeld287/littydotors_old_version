@@ -1,19 +1,144 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createConsultingRoom = `mutation CreateConsultingRoom($input: CreateConsultingRoomInput!) {
-  createConsultingRoom(input: $input) {
-    id
-    modules {
-      items {
+export const createConsultingRoom = /* GraphQL */ `
+  mutation CreateConsultingRoom(
+    $input: CreateConsultingRoomInput!
+    $condition: ModelConsultingRoomConditionInput
+  ) {
+    createConsultingRoom(input: $input, condition: $condition) {
+      id
+      doctor {
         id
         name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
         image
-        description
+        owner
       }
-      nextToken
+      secretary
+      location {
+        id
+        name
+        owner
+      }
+      owner
     }
-    doctor {
+  }
+`;
+export const updateConsultingRoom = /* GraphQL */ `
+  mutation UpdateConsultingRoom(
+    $input: UpdateConsultingRoomInput!
+    $condition: ModelConsultingRoomConditionInput
+  ) {
+    updateConsultingRoom(input: $input, condition: $condition) {
+      id
+      doctor {
+        id
+        name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
+      }
+      secretary
+      location {
+        id
+        name
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const deleteConsultingRoom = /* GraphQL */ `
+  mutation DeleteConsultingRoom(
+    $input: DeleteConsultingRoomInput!
+    $condition: ModelConsultingRoomConditionInput
+  ) {
+    deleteConsultingRoom(input: $input, condition: $condition) {
+      id
+      doctor {
+        id
+        name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
+      }
+      secretary
+      location {
+        id
+        name
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const createLocation = /* GraphQL */ `
+  mutation CreateLocation(
+    $input: CreateLocationInput!
+    $condition: ModelLocationConditionInput
+  ) {
+    createLocation(input: $input, condition: $condition) {
+      id
+      name
+      owner
+    }
+  }
+`;
+export const updateLocation = /* GraphQL */ `
+  mutation UpdateLocation(
+    $input: UpdateLocationInput!
+    $condition: ModelLocationConditionInput
+  ) {
+    updateLocation(input: $input, condition: $condition) {
+      id
+      name
+      owner
+    }
+  }
+`;
+export const deleteLocation = /* GraphQL */ `
+  mutation DeleteLocation(
+    $input: DeleteLocationInput!
+    $condition: ModelLocationConditionInput
+  ) {
+    deleteLocation(input: $input, condition: $condition) {
+      id
+      name
+      owner
+    }
+  }
+`;
+export const createDoctor = /* GraphQL */ `
+  mutation CreateDoctor(
+    $input: CreateDoctorInput!
+    $condition: ModelDoctorConditionInput
+  ) {
+    createDoctor(input: $input, condition: $condition) {
       id
       name
       username
@@ -22,39 +147,35 @@ export const createConsultingRoom = `mutation CreateConsultingRoom($input: Creat
       sex
       consultingroom {
         id
+        doctor {
+          id
+          name
+          username
+          email
+          speciality
+          sex
+          image
+          owner
+        }
         secretary
+        location {
+          id
+          name
+          owner
+        }
+        owner
       }
       image
-    }
-    stripe {
-      id
-      source_token
-      plan_id
-      plan_name
-      customer_id
-      subscription_id
-    }
-    secretary
-    location {
-      id
-      name
+      owner
     }
   }
-}
 `;
-export const updateConsultingRoom = `mutation UpdateConsultingRoom($input: UpdateConsultingRoomInput!) {
-  updateConsultingRoom(input: $input) {
-    id
-    modules {
-      items {
-        id
-        name
-        image
-        description
-      }
-      nextToken
-    }
-    doctor {
+export const updateDoctor = /* GraphQL */ `
+  mutation UpdateDoctor(
+    $input: UpdateDoctorInput!
+    $condition: ModelDoctorConditionInput
+  ) {
+    updateDoctor(input: $input, condition: $condition) {
       id
       name
       username
@@ -63,39 +184,35 @@ export const updateConsultingRoom = `mutation UpdateConsultingRoom($input: Updat
       sex
       consultingroom {
         id
+        doctor {
+          id
+          name
+          username
+          email
+          speciality
+          sex
+          image
+          owner
+        }
         secretary
+        location {
+          id
+          name
+          owner
+        }
+        owner
       }
       image
-    }
-    stripe {
-      id
-      source_token
-      plan_id
-      plan_name
-      customer_id
-      subscription_id
-    }
-    secretary
-    location {
-      id
-      name
+      owner
     }
   }
-}
 `;
-export const deleteConsultingRoom = `mutation DeleteConsultingRoom($input: DeleteConsultingRoomInput!) {
-  deleteConsultingRoom(input: $input) {
-    id
-    modules {
-      items {
-        id
-        name
-        image
-        description
-      }
-      nextToken
-    }
-    doctor {
+export const deleteDoctor = /* GraphQL */ `
+  mutation DeleteDoctor(
+    $input: DeleteDoctorInput!
+    $condition: ModelDoctorConditionInput
+  ) {
+    deleteDoctor(input: $input, condition: $condition) {
       id
       name
       username
@@ -104,92 +221,205 @@ export const deleteConsultingRoom = `mutation DeleteConsultingRoom($input: Delet
       sex
       consultingroom {
         id
+        doctor {
+          id
+          name
+          username
+          email
+          speciality
+          sex
+          image
+          owner
+        }
         secretary
+        location {
+          id
+          name
+          owner
+        }
+        owner
       }
       image
-    }
-    stripe {
-      id
-      source_token
-      plan_id
-      plan_name
-      customer_id
-      subscription_id
-    }
-    secretary
-    location {
-      id
-      name
+      owner
     }
   }
-}
 `;
-export const createLocation = `mutation CreateLocation($input: CreateLocationInput!) {
-  createLocation(input: $input) {
-    id
-    name
-  }
-}
-`;
-export const updateLocation = `mutation UpdateLocation($input: UpdateLocationInput!) {
-  updateLocation(input: $input) {
-    id
-    name
-  }
-}
-`;
-export const deleteLocation = `mutation DeleteLocation($input: DeleteLocationInput!) {
-  deleteLocation(input: $input) {
-    id
-    name
-  }
-}
-`;
-export const createStripe = `mutation CreateStripe($input: CreateStripeInput!) {
-  createStripe(input: $input) {
-    id
-    source_token
-    plan_id
-    plan_name
-    customer_id
-    subscription_id
-  }
-}
-`;
-export const updateStripe = `mutation UpdateStripe($input: UpdateStripeInput!) {
-  updateStripe(input: $input) {
-    id
-    source_token
-    plan_id
-    plan_name
-    customer_id
-    subscription_id
-  }
-}
-`;
-export const deleteStripe = `mutation DeleteStripe($input: DeleteStripeInput!) {
-  deleteStripe(input: $input) {
-    id
-    source_token
-    plan_id
-    plan_name
-    customer_id
-    subscription_id
-  }
-}
-`;
-export const createDoctor = `mutation CreateDoctor($input: CreateDoctorInput!) {
-  createDoctor(input: $input) {
-    id
-    name
-    username
-    email
-    speciality
-    sex
-    consultingroom {
+export const createRejection = /* GraphQL */ `
+  mutation CreateRejection(
+    $input: CreateRejectionInput!
+    $condition: ModelRejectionConditionInput
+  ) {
+    createRejection(input: $input, condition: $condition) {
       id
-      modules {
-        nextToken
+      description
+      doctor
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const updateRejection = /* GraphQL */ `
+  mutation UpdateRejection(
+    $input: UpdateRejectionInput!
+    $condition: ModelRejectionConditionInput
+  ) {
+    updateRejection(input: $input, condition: $condition) {
+      id
+      description
+      doctor
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const deleteRejection = /* GraphQL */ `
+  mutation DeleteRejection(
+    $input: DeleteRejectionInput!
+    $condition: ModelRejectionConditionInput
+  ) {
+    deleteRejection(input: $input, condition: $condition) {
+      id
+      description
+      doctor
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const createCancelation = /* GraphQL */ `
+  mutation CreateCancelation(
+    $input: CreateCancelationInput!
+    $condition: ModelCancelationConditionInput
+  ) {
+    createCancelation(input: $input, condition: $condition) {
+      id
+      description
+      owner
+    }
+  }
+`;
+export const updateCancelation = /* GraphQL */ `
+  mutation UpdateCancelation(
+    $input: UpdateCancelationInput!
+    $condition: ModelCancelationConditionInput
+  ) {
+    updateCancelation(input: $input, condition: $condition) {
+      id
+      description
+      owner
+    }
+  }
+`;
+export const deleteCancelation = /* GraphQL */ `
+  mutation DeleteCancelation(
+    $input: DeleteCancelationInput!
+    $condition: ModelCancelationConditionInput
+  ) {
+    deleteCancelation(input: $input, condition: $condition) {
+      id
+      description
+      owner
+    }
+  }
+`;
+export const createNotification = /* GraphQL */ `
+  mutation CreateNotification(
+    $input: CreateNotificationInput!
+    $condition: ModelNotificationConditionInput
+  ) {
+    createNotification(input: $input, condition: $condition) {
+      id
+      state
+      doctor
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const updateNotification = /* GraphQL */ `
+  mutation UpdateNotification(
+    $input: UpdateNotificationInput!
+    $condition: ModelNotificationConditionInput
+  ) {
+    updateNotification(input: $input, condition: $condition) {
+      id
+      state
+      doctor
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const deleteNotification = /* GraphQL */ `
+  mutation DeleteNotification(
+    $input: DeleteNotificationInput!
+    $condition: ModelNotificationConditionInput
+  ) {
+    deleteNotification(input: $input, condition: $condition) {
+      id
+      state
+      doctor
+      secretary
+      patient
+      createdAt
+      owner
+    }
+  }
+`;
+export const createConfirmation = /* GraphQL */ `
+  mutation CreateConfirmation(
+    $input: CreateConfirmationInput!
+    $condition: ModelConfirmationConditionInput
+  ) {
+    createConfirmation(input: $input, condition: $condition) {
+      id
+      owner
+    }
+  }
+`;
+export const updateConfirmation = /* GraphQL */ `
+  mutation UpdateConfirmation(
+    $input: UpdateConfirmationInput!
+    $condition: ModelConfirmationConditionInput
+  ) {
+    updateConfirmation(input: $input, condition: $condition) {
+      id
+      owner
+    }
+  }
+`;
+export const deleteConfirmation = /* GraphQL */ `
+  mutation DeleteConfirmation(
+    $input: DeleteConfirmationInput!
+    $condition: ModelConfirmationConditionInput
+  ) {
+    deleteConfirmation(input: $input, condition: $condition) {
+      id
+      owner
+    }
+  }
+`;
+export const createMedicalAppointment = /* GraphQL */ `
+  mutation CreateMedicalAppointment(
+    $input: CreateMedicalAppointmentInput!
+    $condition: ModelMedicalAppointmentConditionInput
+  ) {
+    createMedicalAppointment(input: $input, condition: $condition) {
+      id
+      location {
+        id
+        name
+        owner
       }
       doctor {
         id
@@ -198,38 +428,91 @@ export const createDoctor = `mutation CreateDoctor($input: CreateDoctorInput!) {
         email
         speciality
         sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
         image
+        owner
       }
-      stripe {
+      doctorname
+      patient {
         id
-        source_token
-        plan_id
-        plan_name
-        customer_id
-        subscription_id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      rejection {
+        items {
+          id
+          description
+          doctor
+          secretary
+          patient
+          createdAt
+          owner
+        }
+        nextToken
+      }
+      cancelation {
+        id
+        description
+        owner
+      }
+      notification {
+        items {
+          id
+          state
+          doctor
+          secretary
+          patient
+          createdAt
+          owner
+        }
+        nextToken
+      }
+      confirmation {
+        id
+        owner
       }
       secretary
+      details
+      date_created
+      date_of_medical_appointment
+      state
+      position
+      consult_cost
+      read_secretary
+      read_doctor
+      read_client
+      createdAt
+    }
+  }
+`;
+export const updateMedicalAppointment = /* GraphQL */ `
+  mutation UpdateMedicalAppointment(
+    $input: UpdateMedicalAppointmentInput!
+    $condition: ModelMedicalAppointmentConditionInput
+  ) {
+    updateMedicalAppointment(input: $input, condition: $condition) {
+      id
       location {
         id
         name
-      }
-    }
-    image
-  }
-}
-`;
-export const updateDoctor = `mutation UpdateDoctor($input: UpdateDoctorInput!) {
-  updateDoctor(input: $input) {
-    id
-    name
-    username
-    email
-    speciality
-    sex
-    consultingroom {
-      id
-      modules {
-        nextToken
+        owner
       }
       doctor {
         id
@@ -238,38 +521,91 @@ export const updateDoctor = `mutation UpdateDoctor($input: UpdateDoctorInput!) {
         email
         speciality
         sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
         image
+        owner
       }
-      stripe {
+      doctorname
+      patient {
         id
-        source_token
-        plan_id
-        plan_name
-        customer_id
-        subscription_id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      rejection {
+        items {
+          id
+          description
+          doctor
+          secretary
+          patient
+          createdAt
+          owner
+        }
+        nextToken
+      }
+      cancelation {
+        id
+        description
+        owner
+      }
+      notification {
+        items {
+          id
+          state
+          doctor
+          secretary
+          patient
+          createdAt
+          owner
+        }
+        nextToken
+      }
+      confirmation {
+        id
+        owner
       }
       secretary
+      details
+      date_created
+      date_of_medical_appointment
+      state
+      position
+      consult_cost
+      read_secretary
+      read_doctor
+      read_client
+      createdAt
+    }
+  }
+`;
+export const deleteMedicalAppointment = /* GraphQL */ `
+  mutation DeleteMedicalAppointment(
+    $input: DeleteMedicalAppointmentInput!
+    $condition: ModelMedicalAppointmentConditionInput
+  ) {
+    deleteMedicalAppointment(input: $input, condition: $condition) {
+      id
       location {
         id
         name
-      }
-    }
-    image
-  }
-}
-`;
-export const deleteDoctor = `mutation DeleteDoctor($input: DeleteDoctorInput!) {
-  deleteDoctor(input: $input) {
-    id
-    name
-    username
-    email
-    speciality
-    sex
-    consultingroom {
-      id
-      modules {
-        nextToken
+        owner
       }
       doctor {
         id
@@ -278,560 +614,2924 @@ export const deleteDoctor = `mutation DeleteDoctor($input: DeleteDoctorInput!) {
         email
         speciality
         sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
         image
+        owner
       }
-      stripe {
+      doctorname
+      patient {
         id
-        source_token
-        plan_id
-        plan_name
-        customer_id
-        subscription_id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      rejection {
+        items {
+          id
+          description
+          doctor
+          secretary
+          patient
+          createdAt
+          owner
+        }
+        nextToken
+      }
+      cancelation {
+        id
+        description
+        owner
+      }
+      notification {
+        items {
+          id
+          state
+          doctor
+          secretary
+          patient
+          createdAt
+          owner
+        }
+        nextToken
+      }
+      confirmation {
+        id
+        owner
       }
       secretary
-      location {
+      details
+      date_created
+      date_of_medical_appointment
+      state
+      position
+      consult_cost
+      read_secretary
+      read_doctor
+      read_client
+      createdAt
+    }
+  }
+`;
+export const createMedicalConsultation = /* GraphQL */ `
+  mutation CreateMedicalConsultation(
+    $input: CreateMedicalConsultationInput!
+    $condition: ModelMedicalConsultationConditionInput
+  ) {
+    createMedicalConsultation(input: $input, condition: $condition) {
+      id
+      doctor {
         id
         name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
       }
+      postConsultationsActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalHistory {
+        id
+        reason
+        patient {
+          id
+          name
+          username
+          email
+          phone
+          phone_id
+          weight
+          height
+          size
+          age
+          birthdate
+          owner
+        }
+        physicalExploration {
+          id
+          general_exploration
+          doctor
+          secretary
+          patient
+          owner
+        }
+        doctor
+        secretary
+        patientname
+        owner
+      }
+      doctorname
+      secretary
+      patient
+      createdAt
+      owner
     }
-    image
   }
-}
 `;
-export const createRejection = `mutation CreateRejection($input: CreateRejectionInput!) {
-  createRejection(input: $input) {
-    id
-    description
-    doctor
-    secretary
-    patient
-    createdAt
-  }
-}
-`;
-export const updateRejection = `mutation UpdateRejection($input: UpdateRejectionInput!) {
-  updateRejection(input: $input) {
-    id
-    description
-    doctor
-    secretary
-    patient
-    createdAt
-  }
-}
-`;
-export const deleteRejection = `mutation DeleteRejection($input: DeleteRejectionInput!) {
-  deleteRejection(input: $input) {
-    id
-    description
-    doctor
-    secretary
-    patient
-    createdAt
-  }
-}
-`;
-export const createCancelation = `mutation CreateCancelation($input: CreateCancelationInput!) {
-  createCancelation(input: $input) {
-    id
-    description
-  }
-}
-`;
-export const updateCancelation = `mutation UpdateCancelation($input: UpdateCancelationInput!) {
-  updateCancelation(input: $input) {
-    id
-    description
-  }
-}
-`;
-export const deleteCancelation = `mutation DeleteCancelation($input: DeleteCancelationInput!) {
-  deleteCancelation(input: $input) {
-    id
-    description
-  }
-}
-`;
-export const createNotification = `mutation CreateNotification($input: CreateNotificationInput!) {
-  createNotification(input: $input) {
-    id
-    state
-    doctor
-    secretary
-    patient
-    createdAt
-  }
-}
-`;
-export const updateNotification = `mutation UpdateNotification($input: UpdateNotificationInput!) {
-  updateNotification(input: $input) {
-    id
-    state
-    doctor
-    secretary
-    patient
-    createdAt
-  }
-}
-`;
-export const deleteNotification = `mutation DeleteNotification($input: DeleteNotificationInput!) {
-  deleteNotification(input: $input) {
-    id
-    state
-    doctor
-    secretary
-    patient
-    createdAt
-  }
-}
-`;
-export const createConfirmation = `mutation CreateConfirmation($input: CreateConfirmationInput!) {
-  createConfirmation(input: $input) {
-    id
-  }
-}
-`;
-export const updateConfirmation = `mutation UpdateConfirmation($input: UpdateConfirmationInput!) {
-  updateConfirmation(input: $input) {
-    id
-  }
-}
-`;
-export const deleteConfirmation = `mutation DeleteConfirmation($input: DeleteConfirmationInput!) {
-  deleteConfirmation(input: $input) {
-    id
-  }
-}
-`;
-export const createModule = `mutation CreateModule($input: CreateModuleInput!) {
-  createModule(input: $input) {
-    id
-    name
-    fields {
-      items {
+export const updateMedicalConsultation = /* GraphQL */ `
+  mutation UpdateMedicalConsultation(
+    $input: UpdateMedicalConsultationInput!
+    $condition: ModelMedicalConsultationConditionInput
+  ) {
+    updateMedicalConsultation(input: $input, condition: $condition) {
+      id
+      doctor {
         id
         name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
       }
-      nextToken
+      postConsultationsActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalHistory {
+        id
+        reason
+        patient {
+          id
+          name
+          username
+          email
+          phone
+          phone_id
+          weight
+          height
+          size
+          age
+          birthdate
+          owner
+        }
+        physicalExploration {
+          id
+          general_exploration
+          doctor
+          secretary
+          patient
+          owner
+        }
+        doctor
+        secretary
+        patientname
+        owner
+      }
+      doctorname
+      secretary
+      patient
+      createdAt
+      owner
     }
-    image
-    description
   }
-}
 `;
-export const updateModule = `mutation UpdateModule($input: UpdateModuleInput!) {
-  updateModule(input: $input) {
-    id
-    name
-    fields {
-      items {
+export const deleteMedicalConsultation = /* GraphQL */ `
+  mutation DeleteMedicalConsultation(
+    $input: DeleteMedicalConsultationInput!
+    $condition: ModelMedicalConsultationConditionInput
+  ) {
+    deleteMedicalConsultation(input: $input, condition: $condition) {
+      id
+      doctor {
         id
         name
+        username
+        email
+        speciality
+        sex
+        consultingroom {
+          id
+          secretary
+          owner
+        }
+        image
+        owner
       }
-      nextToken
+      postConsultationsActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalHistory {
+        id
+        reason
+        patient {
+          id
+          name
+          username
+          email
+          phone
+          phone_id
+          weight
+          height
+          size
+          age
+          birthdate
+          owner
+        }
+        physicalExploration {
+          id
+          general_exploration
+          doctor
+          secretary
+          patient
+          owner
+        }
+        doctor
+        secretary
+        patientname
+        owner
+      }
+      doctorname
+      secretary
+      patient
+      createdAt
+      owner
     }
-    image
-    description
   }
-}
 `;
-export const deleteModule = `mutation DeleteModule($input: DeleteModuleInput!) {
-  deleteModule(input: $input) {
-    id
-    name
-    fields {
-      items {
+export const createMedicalHistory = /* GraphQL */ `
+  mutation CreateMedicalHistory(
+    $input: CreateMedicalHistoryInput!
+    $condition: ModelMedicalHistoryConditionInput
+  ) {
+    createMedicalHistory(input: $input, condition: $condition) {
+      id
+      reason
+      patient {
         id
         name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
       }
-      nextToken
+      physicalExploration {
+        id
+        general_exploration
+        vitalsigns {
+          id
+          blood_pressure
+          Breathing
+          Pulse
+          Temperature
+          doctor
+          secretary
+          patient
+          owner
+        }
+        regionalExploration {
+          id
+          head
+          neck
+          thorax
+          abdomen
+          members
+          genitals
+          others
+          doctor
+          secretary
+          patient
+          owner
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      doctor
+      secretary
+      patientname
+      owner
     }
-    image
-    description
   }
-}
 `;
-export const createDoctorCustomModuleProps = `mutation CreateDoctorCustomModuleProps(
-  $input: CreateDoctorCustomModulePropsInput!
-) {
-  createDoctorCustomModuleProps(input: $input) {
-    id
-    active
-    module {
+export const updateMedicalHistory = /* GraphQL */ `
+  mutation UpdateMedicalHistory(
+    $input: UpdateMedicalHistoryInput!
+    $condition: ModelMedicalHistoryConditionInput
+  ) {
+    updateMedicalHistory(input: $input, condition: $condition) {
+      id
+      reason
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      physicalExploration {
+        id
+        general_exploration
+        vitalsigns {
+          id
+          blood_pressure
+          Breathing
+          Pulse
+          Temperature
+          doctor
+          secretary
+          patient
+          owner
+        }
+        regionalExploration {
+          id
+          head
+          neck
+          thorax
+          abdomen
+          members
+          genitals
+          others
+          doctor
+          secretary
+          patient
+          owner
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      doctor
+      secretary
+      patientname
+      owner
+    }
+  }
+`;
+export const deleteMedicalHistory = /* GraphQL */ `
+  mutation DeleteMedicalHistory(
+    $input: DeleteMedicalHistoryInput!
+    $condition: ModelMedicalHistoryConditionInput
+  ) {
+    deleteMedicalHistory(input: $input, condition: $condition) {
+      id
+      reason
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      physicalExploration {
+        id
+        general_exploration
+        vitalsigns {
+          id
+          blood_pressure
+          Breathing
+          Pulse
+          Temperature
+          doctor
+          secretary
+          patient
+          owner
+        }
+        regionalExploration {
+          id
+          head
+          neck
+          thorax
+          abdomen
+          members
+          genitals
+          others
+          doctor
+          secretary
+          patient
+          owner
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      doctor
+      secretary
+      patientname
+      owner
+    }
+  }
+`;
+export const createPatient = /* GraphQL */ `
+  mutation CreatePatient(
+    $input: CreatePatientInput!
+    $condition: ModelPatientConditionInput
+  ) {
+    createPatient(input: $input, condition: $condition) {
       id
       name
-      fields {
+      username
+      email
+      phone
+      phone_id
+      weight
+      height
+      size
+      age
+      birthdate
+      patientHistory {
+        id
+        nonPathologicalHistory {
+          id
+          owner
+        }
+        pathologicalHistory {
+          id
+          owner
+        }
+        familyHistory {
+          id
+          owner
+        }
+        gynecoObstetricHistory {
+          id
+          menarche
+          sexual_development
+          menstrual_rhythm
+          sex_life
+          deliveries
+          abortions
+          caesarean_sections
+          contraceptive_method
+          owner
+        }
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const updatePatient = /* GraphQL */ `
+  mutation UpdatePatient(
+    $input: UpdatePatientInput!
+    $condition: ModelPatientConditionInput
+  ) {
+    updatePatient(input: $input, condition: $condition) {
+      id
+      name
+      username
+      email
+      phone
+      phone_id
+      weight
+      height
+      size
+      age
+      birthdate
+      patientHistory {
+        id
+        nonPathologicalHistory {
+          id
+          owner
+        }
+        pathologicalHistory {
+          id
+          owner
+        }
+        familyHistory {
+          id
+          owner
+        }
+        gynecoObstetricHistory {
+          id
+          menarche
+          sexual_development
+          menstrual_rhythm
+          sex_life
+          deliveries
+          abortions
+          caesarean_sections
+          contraceptive_method
+          owner
+        }
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const deletePatient = /* GraphQL */ `
+  mutation DeletePatient(
+    $input: DeletePatientInput!
+    $condition: ModelPatientConditionInput
+  ) {
+    deletePatient(input: $input, condition: $condition) {
+      id
+      name
+      username
+      email
+      phone
+      phone_id
+      weight
+      height
+      size
+      age
+      birthdate
+      patientHistory {
+        id
+        nonPathologicalHistory {
+          id
+          owner
+        }
+        pathologicalHistory {
+          id
+          owner
+        }
+        familyHistory {
+          id
+          owner
+        }
+        gynecoObstetricHistory {
+          id
+          menarche
+          sexual_development
+          menstrual_rhythm
+          sex_life
+          deliveries
+          abortions
+          caesarean_sections
+          contraceptive_method
+          owner
+        }
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const createPatientHistory = /* GraphQL */ `
+  mutation CreatePatientHistory(
+    $input: CreatePatientHistoryInput!
+    $condition: ModelPatientHistoryConditionInput
+  ) {
+    createPatientHistory(input: $input, condition: $condition) {
+      id
+      nonPathologicalHistory {
+        id
+        alcohol {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        smoking {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        drugs {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        immunizations {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        owner
+      }
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      familyHistory {
+        id
+        father {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        mother {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        brothers {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        grandfather {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        grandmother {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        other {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        owner
+      }
+      gynecoObstetricHistory {
+        id
+        menarche
+        sexual_development
+        menstrual_rhythm
+        sex_life
+        deliveries
+        abortions
+        caesarean_sections
+        contraceptive_method
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const updatePatientHistory = /* GraphQL */ `
+  mutation UpdatePatientHistory(
+    $input: UpdatePatientHistoryInput!
+    $condition: ModelPatientHistoryConditionInput
+  ) {
+    updatePatientHistory(input: $input, condition: $condition) {
+      id
+      nonPathologicalHistory {
+        id
+        alcohol {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        smoking {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        drugs {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        immunizations {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        owner
+      }
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      familyHistory {
+        id
+        father {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        mother {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        brothers {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        grandfather {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        grandmother {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        other {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        owner
+      }
+      gynecoObstetricHistory {
+        id
+        menarche
+        sexual_development
+        menstrual_rhythm
+        sex_life
+        deliveries
+        abortions
+        caesarean_sections
+        contraceptive_method
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const deletePatientHistory = /* GraphQL */ `
+  mutation DeletePatientHistory(
+    $input: DeletePatientHistoryInput!
+    $condition: ModelPatientHistoryConditionInput
+  ) {
+    deletePatientHistory(input: $input, condition: $condition) {
+      id
+      nonPathologicalHistory {
+        id
+        alcohol {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        smoking {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        drugs {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        immunizations {
+          id
+          active
+          frequency
+          comment
+          owner
+        }
+        owner
+      }
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      familyHistory {
+        id
+        father {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        mother {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        brothers {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        grandfather {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        grandmother {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        other {
+          id
+          alive
+          relationship
+          comment
+          owner
+        }
+        owner
+      }
+      gynecoObstetricHistory {
+        id
+        menarche
+        sexual_development
+        menstrual_rhythm
+        sex_life
+        deliveries
+        abortions
+        caesarean_sections
+        contraceptive_method
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const createNonPathologicalHistory = /* GraphQL */ `
+  mutation CreateNonPathologicalHistory(
+    $input: CreateNonPathologicalHistoryInput!
+    $condition: ModelNonPathologicalHistoryConditionInput
+  ) {
+    createNonPathologicalHistory(input: $input, condition: $condition) {
+      id
+      alcohol {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      smoking {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      drugs {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      immunizations {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const updateNonPathologicalHistory = /* GraphQL */ `
+  mutation UpdateNonPathologicalHistory(
+    $input: UpdateNonPathologicalHistoryInput!
+    $condition: ModelNonPathologicalHistoryConditionInput
+  ) {
+    updateNonPathologicalHistory(input: $input, condition: $condition) {
+      id
+      alcohol {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      smoking {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      drugs {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      immunizations {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const deleteNonPathologicalHistory = /* GraphQL */ `
+  mutation DeleteNonPathologicalHistory(
+    $input: DeleteNonPathologicalHistoryInput!
+    $condition: ModelNonPathologicalHistoryConditionInput
+  ) {
+    deleteNonPathologicalHistory(input: $input, condition: $condition) {
+      id
+      alcohol {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      smoking {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      drugs {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      immunizations {
+        id
+        active
+        frequency
+        comment
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const createNonPathologicalActivities = /* GraphQL */ `
+  mutation CreateNonPathologicalActivities(
+    $input: CreateNonPathologicalActivitiesInput!
+    $condition: ModelNonPathologicalActivitiesConditionInput
+  ) {
+    createNonPathologicalActivities(input: $input, condition: $condition) {
+      id
+      active
+      frequency
+      comment
+      owner
+    }
+  }
+`;
+export const updateNonPathologicalActivities = /* GraphQL */ `
+  mutation UpdateNonPathologicalActivities(
+    $input: UpdateNonPathologicalActivitiesInput!
+    $condition: ModelNonPathologicalActivitiesConditionInput
+  ) {
+    updateNonPathologicalActivities(input: $input, condition: $condition) {
+      id
+      active
+      frequency
+      comment
+      owner
+    }
+  }
+`;
+export const deleteNonPathologicalActivities = /* GraphQL */ `
+  mutation DeleteNonPathologicalActivities(
+    $input: DeleteNonPathologicalActivitiesInput!
+    $condition: ModelNonPathologicalActivitiesConditionInput
+  ) {
+    deleteNonPathologicalActivities(input: $input, condition: $condition) {
+      id
+      active
+      frequency
+      comment
+      owner
+    }
+  }
+`;
+export const createPathologicalHistory = /* GraphQL */ `
+  mutation CreatePathologicalHistory(
+    $input: CreatePathologicalHistoryInput!
+    $condition: ModelPathologicalHistoryConditionInput
+  ) {
+    createPathologicalHistory(input: $input, condition: $condition) {
+      id
+      surgicalInterventions {
+        items {
+          id
+          name
+          owner
+        }
         nextToken
       }
-      image
-      description
-    }
-  }
-}
-`;
-export const updateDoctorCustomModuleProps = `mutation UpdateDoctorCustomModuleProps(
-  $input: UpdateDoctorCustomModulePropsInput!
-) {
-  updateDoctorCustomModuleProps(input: $input) {
-    id
-    active
-    module {
-      id
-      name
-      fields {
+      patientMedications {
+        items {
+          id
+        }
         nextToken
       }
-      image
-      description
-    }
-  }
-}
-`;
-export const deleteDoctorCustomModuleProps = `mutation DeleteDoctorCustomModuleProps(
-  $input: DeleteDoctorCustomModulePropsInput!
-) {
-  deleteDoctorCustomModuleProps(input: $input) {
-    id
-    active
-    module {
-      id
-      name
-      fields {
+      patientAllergies {
+        items {
+          id
+        }
         nextToken
       }
-      image
-      description
+      owner
     }
   }
-}
 `;
-export const createField = `mutation CreateField($input: CreateFieldInput!) {
-  createField(input: $input) {
-    id
-    name
-  }
-}
-`;
-export const updateField = `mutation UpdateField($input: UpdateFieldInput!) {
-  updateField(input: $input) {
-    id
-    name
-  }
-}
-`;
-export const deleteField = `mutation DeleteField($input: DeleteFieldInput!) {
-  deleteField(input: $input) {
-    id
-    name
-  }
-}
-`;
-export const createDoctorCustomFieldProps = `mutation CreateDoctorCustomFieldProps(
-  $input: CreateDoctorCustomFieldPropsInput!
-) {
-  createDoctorCustomFieldProps(input: $input) {
-    id
-    name
-    required
-    visible
-    field {
+export const updatePathologicalHistory = /* GraphQL */ `
+  mutation UpdatePathologicalHistory(
+    $input: UpdatePathologicalHistoryInput!
+    $condition: ModelPathologicalHistoryConditionInput
+  ) {
+    updatePathologicalHistory(input: $input, condition: $condition) {
       id
-      name
-    }
-  }
-}
-`;
-export const updateDoctorCustomFieldProps = `mutation UpdateDoctorCustomFieldProps(
-  $input: UpdateDoctorCustomFieldPropsInput!
-) {
-  updateDoctorCustomFieldProps(input: $input) {
-    id
-    name
-    required
-    visible
-    field {
-      id
-      name
-    }
-  }
-}
-`;
-export const deleteDoctorCustomFieldProps = `mutation DeleteDoctorCustomFieldProps(
-  $input: DeleteDoctorCustomFieldPropsInput!
-) {
-  deleteDoctorCustomFieldProps(input: $input) {
-    id
-    name
-    required
-    visible
-    field {
-      id
-      name
-    }
-  }
-}
-`;
-export const createMedicalAppointment = `mutation CreateMedicalAppointment($input: CreateMedicalAppointmentInput!) {
-  createMedicalAppointment(input: $input) {
-    id
-    location {
-      id
-      name
-    }
-    doctor {
-      id
-      name
-      username
-      email
-      speciality
-      sex
-      consultingroom {
-        id
-        secretary
+      surgicalInterventions {
+        items {
+          id
+          name
+          owner
+        }
+        nextToken
       }
-      image
+      patientMedications {
+        items {
+          id
+        }
+        nextToken
+      }
+      patientAllergies {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
     }
-    doctorname
-    patient {
+  }
+`;
+export const deletePathologicalHistory = /* GraphQL */ `
+  mutation DeletePathologicalHistory(
+    $input: DeletePathologicalHistoryInput!
+    $condition: ModelPathologicalHistoryConditionInput
+  ) {
+    deletePathologicalHistory(input: $input, condition: $condition) {
+      id
+      surgicalInterventions {
+        items {
+          id
+          name
+          owner
+        }
+        nextToken
+      }
+      patientMedications {
+        items {
+          id
+        }
+        nextToken
+      }
+      patientAllergies {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const createFamilyHistory = /* GraphQL */ `
+  mutation CreateFamilyHistory(
+    $input: CreateFamilyHistoryInput!
+    $condition: ModelFamilyHistoryConditionInput
+  ) {
+    createFamilyHistory(input: $input, condition: $condition) {
+      id
+      father {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      mother {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      brothers {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      other {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const updateFamilyHistory = /* GraphQL */ `
+  mutation UpdateFamilyHistory(
+    $input: UpdateFamilyHistoryInput!
+    $condition: ModelFamilyHistoryConditionInput
+  ) {
+    updateFamilyHistory(input: $input, condition: $condition) {
+      id
+      father {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      mother {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      brothers {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      other {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const deleteFamilyHistory = /* GraphQL */ `
+  mutation DeleteFamilyHistory(
+    $input: DeleteFamilyHistoryInput!
+    $condition: ModelFamilyHistoryConditionInput
+  ) {
+    deleteFamilyHistory(input: $input, condition: $condition) {
+      id
+      father {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      mother {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      brothers {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      grandfather {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      grandmother {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      other {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      owner
+    }
+  }
+`;
+export const createFamilyDetails = /* GraphQL */ `
+  mutation CreateFamilyDetails(
+    $input: CreateFamilyDetailsInput!
+    $condition: ModelFamilyDetailsConditionInput
+  ) {
+    createFamilyDetails(input: $input, condition: $condition) {
+      id
+      alive
+      relationship
+      diseases {
+        items {
+          id
+        }
+        nextToken
+      }
+      comment
+      owner
+    }
+  }
+`;
+export const updateFamilyDetails = /* GraphQL */ `
+  mutation UpdateFamilyDetails(
+    $input: UpdateFamilyDetailsInput!
+    $condition: ModelFamilyDetailsConditionInput
+  ) {
+    updateFamilyDetails(input: $input, condition: $condition) {
+      id
+      alive
+      relationship
+      diseases {
+        items {
+          id
+        }
+        nextToken
+      }
+      comment
+      owner
+    }
+  }
+`;
+export const deleteFamilyDetails = /* GraphQL */ `
+  mutation DeleteFamilyDetails(
+    $input: DeleteFamilyDetailsInput!
+    $condition: ModelFamilyDetailsConditionInput
+  ) {
+    deleteFamilyDetails(input: $input, condition: $condition) {
+      id
+      alive
+      relationship
+      diseases {
+        items {
+          id
+        }
+        nextToken
+      }
+      comment
+      owner
+    }
+  }
+`;
+export const createFamilyDetailsDiseases = /* GraphQL */ `
+  mutation CreateFamilyDetailsDiseases(
+    $input: CreateFamilyDetailsDiseasesInput!
+    $condition: ModelFamilyDetailsDiseasesConditionInput
+  ) {
+    createFamilyDetailsDiseases(input: $input, condition: $condition) {
+      id
+      family {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      diseases {
+        id
+        name
+        familyDetails {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const updateFamilyDetailsDiseases = /* GraphQL */ `
+  mutation UpdateFamilyDetailsDiseases(
+    $input: UpdateFamilyDetailsDiseasesInput!
+    $condition: ModelFamilyDetailsDiseasesConditionInput
+  ) {
+    updateFamilyDetailsDiseases(input: $input, condition: $condition) {
+      id
+      family {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      diseases {
+        id
+        name
+        familyDetails {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const deleteFamilyDetailsDiseases = /* GraphQL */ `
+  mutation DeleteFamilyDetailsDiseases(
+    $input: DeleteFamilyDetailsDiseasesInput!
+    $condition: ModelFamilyDetailsDiseasesConditionInput
+  ) {
+    deleteFamilyDetailsDiseases(input: $input, condition: $condition) {
+      id
+      family {
+        id
+        alive
+        relationship
+        diseases {
+          nextToken
+        }
+        comment
+        owner
+      }
+      diseases {
+        id
+        name
+        familyDetails {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const createDiseases = /* GraphQL */ `
+  mutation CreateDiseases(
+    $input: CreateDiseasesInput!
+    $condition: ModelDiseasesConditionInput
+  ) {
+    createDiseases(input: $input, condition: $condition) {
       id
       name
-      username
-      email
-      phone
-      phone_id
-      weight
-      height
-      size
-      age
-      birthdate
-      patientHistory {
-        id
+      familyDetails {
+        items {
+          id
+        }
+        nextToken
       }
+      owner
     }
-    rejection {
-      items {
-        id
-        description
-        doctor
-        secretary
-        patient
-        createdAt
-      }
-      nextToken
-    }
-    cancelation {
+  }
+`;
+export const updateDiseases = /* GraphQL */ `
+  mutation UpdateDiseases(
+    $input: UpdateDiseasesInput!
+    $condition: ModelDiseasesConditionInput
+  ) {
+    updateDiseases(input: $input, condition: $condition) {
       id
-      description
+      name
+      familyDetails {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
     }
-    notification {
-      items {
+  }
+`;
+export const deleteDiseases = /* GraphQL */ `
+  mutation DeleteDiseases(
+    $input: DeleteDiseasesInput!
+    $condition: ModelDiseasesConditionInput
+  ) {
+    deleteDiseases(input: $input, condition: $condition) {
+      id
+      name
+      familyDetails {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const createGynecoObstetricHistory = /* GraphQL */ `
+  mutation CreateGynecoObstetricHistory(
+    $input: CreateGynecoObstetricHistoryInput!
+    $condition: ModelGynecoObstetricHistoryConditionInput
+  ) {
+    createGynecoObstetricHistory(input: $input, condition: $condition) {
+      id
+      menarche
+      sexual_development
+      menstrual_rhythm
+      sex_life
+      deliveries
+      abortions
+      caesarean_sections
+      contraceptive_method
+      owner
+    }
+  }
+`;
+export const updateGynecoObstetricHistory = /* GraphQL */ `
+  mutation UpdateGynecoObstetricHistory(
+    $input: UpdateGynecoObstetricHistoryInput!
+    $condition: ModelGynecoObstetricHistoryConditionInput
+  ) {
+    updateGynecoObstetricHistory(input: $input, condition: $condition) {
+      id
+      menarche
+      sexual_development
+      menstrual_rhythm
+      sex_life
+      deliveries
+      abortions
+      caesarean_sections
+      contraceptive_method
+      owner
+    }
+  }
+`;
+export const deleteGynecoObstetricHistory = /* GraphQL */ `
+  mutation DeleteGynecoObstetricHistory(
+    $input: DeleteGynecoObstetricHistoryInput!
+    $condition: ModelGynecoObstetricHistoryConditionInput
+  ) {
+    deleteGynecoObstetricHistory(input: $input, condition: $condition) {
+      id
+      menarche
+      sexual_development
+      menstrual_rhythm
+      sex_life
+      deliveries
+      abortions
+      caesarean_sections
+      contraceptive_method
+      owner
+    }
+  }
+`;
+export const createAllergies = /* GraphQL */ `
+  mutation CreateAllergies(
+    $input: CreateAllergiesInput!
+    $condition: ModelAllergiesConditionInput
+  ) {
+    createAllergies(input: $input, condition: $condition) {
+      id
+      name
+      patients {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const updateAllergies = /* GraphQL */ `
+  mutation UpdateAllergies(
+    $input: UpdateAllergiesInput!
+    $condition: ModelAllergiesConditionInput
+  ) {
+    updateAllergies(input: $input, condition: $condition) {
+      id
+      name
+      patients {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const deleteAllergies = /* GraphQL */ `
+  mutation DeleteAllergies(
+    $input: DeleteAllergiesInput!
+    $condition: ModelAllergiesConditionInput
+  ) {
+    deleteAllergies(input: $input, condition: $condition) {
+      id
+      name
+      patients {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const createPatientAllergies = /* GraphQL */ `
+  mutation CreatePatientAllergies(
+    $input: CreatePatientAllergiesInput!
+    $condition: ModelPatientAllergiesConditionInput
+  ) {
+    createPatientAllergies(input: $input, condition: $condition) {
+      id
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      allergies {
+        id
+        name
+        patients {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const updatePatientAllergies = /* GraphQL */ `
+  mutation UpdatePatientAllergies(
+    $input: UpdatePatientAllergiesInput!
+    $condition: ModelPatientAllergiesConditionInput
+  ) {
+    updatePatientAllergies(input: $input, condition: $condition) {
+      id
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      allergies {
+        id
+        name
+        patients {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const deletePatientAllergies = /* GraphQL */ `
+  mutation DeletePatientAllergies(
+    $input: DeletePatientAllergiesInput!
+    $condition: ModelPatientAllergiesConditionInput
+  ) {
+    deletePatientAllergies(input: $input, condition: $condition) {
+      id
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      allergies {
+        id
+        name
+        patients {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const createPatientMedications = /* GraphQL */ `
+  mutation CreatePatientMedications(
+    $input: CreatePatientMedicationsInput!
+    $condition: ModelPatientMedicationsConditionInput
+  ) {
+    createPatientMedications(input: $input, condition: $condition) {
+      id
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      medications {
+        id
+        name
+        patients {
+          nextToken
+        }
+        code
+        drug_concentration
+        chemical_composition
+        mp {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const updatePatientMedications = /* GraphQL */ `
+  mutation UpdatePatientMedications(
+    $input: UpdatePatientMedicationsInput!
+    $condition: ModelPatientMedicationsConditionInput
+  ) {
+    updatePatientMedications(input: $input, condition: $condition) {
+      id
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      medications {
+        id
+        name
+        patients {
+          nextToken
+        }
+        code
+        drug_concentration
+        chemical_composition
+        mp {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const deletePatientMedications = /* GraphQL */ `
+  mutation DeletePatientMedications(
+    $input: DeletePatientMedicationsInput!
+    $condition: ModelPatientMedicationsConditionInput
+  ) {
+    deletePatientMedications(input: $input, condition: $condition) {
+      id
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      medications {
+        id
+        name
+        patients {
+          nextToken
+        }
+        code
+        drug_concentration
+        chemical_composition
+        mp {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const createMedicines = /* GraphQL */ `
+  mutation CreateMedicines(
+    $input: CreateMedicinesInput!
+    $condition: ModelMedicinesConditionInput
+  ) {
+    createMedicines(input: $input, condition: $condition) {
+      id
+      name
+      patients {
+        items {
+          id
+        }
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const updateMedicines = /* GraphQL */ `
+  mutation UpdateMedicines(
+    $input: UpdateMedicinesInput!
+    $condition: ModelMedicinesConditionInput
+  ) {
+    updateMedicines(input: $input, condition: $condition) {
+      id
+      name
+      patients {
+        items {
+          id
+        }
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const deleteMedicines = /* GraphQL */ `
+  mutation DeleteMedicines(
+    $input: DeleteMedicinesInput!
+    $condition: ModelMedicinesConditionInput
+  ) {
+    deleteMedicines(input: $input, condition: $condition) {
+      id
+      name
+      patients {
+        items {
+          id
+        }
+        nextToken
+      }
+      code
+      drug_concentration
+      chemical_composition
+      mp {
+        items {
+          id
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const createPostConsultationsActivities = /* GraphQL */ `
+  mutation CreatePostConsultationsActivities(
+    $input: CreatePostConsultationsActivitiesInput!
+    $condition: ModelPostConsultationsActivitiesConditionInput
+  ) {
+    createPostConsultationsActivities(input: $input, condition: $condition) {
+      id
+      medicalPrescriptions {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      medicalAnalysis {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      surgicalIntervention {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const updatePostConsultationsActivities = /* GraphQL */ `
+  mutation UpdatePostConsultationsActivities(
+    $input: UpdatePostConsultationsActivitiesInput!
+    $condition: ModelPostConsultationsActivitiesConditionInput
+  ) {
+    updatePostConsultationsActivities(input: $input, condition: $condition) {
+      id
+      medicalPrescriptions {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      medicalAnalysis {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      surgicalIntervention {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const deletePostConsultationsActivities = /* GraphQL */ `
+  mutation DeletePostConsultationsActivities(
+    $input: DeletePostConsultationsActivitiesInput!
+    $condition: ModelPostConsultationsActivitiesConditionInput
+  ) {
+    deletePostConsultationsActivities(input: $input, condition: $condition) {
+      id
+      medicalPrescriptions {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      medicalAnalysis {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      surgicalIntervention {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const createMedicalPrescriptions = /* GraphQL */ `
+  mutation CreateMedicalPrescriptions(
+    $input: CreateMedicalPrescriptionsInput!
+    $condition: ModelMedicalPrescriptionsConditionInput
+  ) {
+    createMedicalPrescriptions(input: $input, condition: $condition) {
+      id
+      date
+      frequency
+      duration
+      medications {
+        items {
+          id
+        }
+        nextToken
+      }
+      pca {
         id
         state
-        doctor
-        secretary
-        patient
-        createdAt
+        date
+        pcActivities {
+          id
+          doctor
+          secretary
+          patient
+          owner
+        }
+        medicalPrescriptions {
+          id
+          date
+          frequency
+          duration
+          doctor
+          secretary
+          patient
+          owner
+        }
       }
-      nextToken
+      doctor
+      secretary
+      patient
+      owner
     }
-    confirmation {
-      id
-    }
-    secretary
-    details
-    date_created
-    date_of_medical_appointment
-    state
-    position
-    consult_cost
-    read_secretary
-    read_doctor
-    read_client
-    createdAt
   }
-}
 `;
-export const updateMedicalAppointment = `mutation UpdateMedicalAppointment($input: UpdateMedicalAppointmentInput!) {
-  updateMedicalAppointment(input: $input) {
-    id
-    location {
+export const updateMedicalPrescriptions = /* GraphQL */ `
+  mutation UpdateMedicalPrescriptions(
+    $input: UpdateMedicalPrescriptionsInput!
+    $condition: ModelMedicalPrescriptionsConditionInput
+  ) {
+    updateMedicalPrescriptions(input: $input, condition: $condition) {
       id
-      name
-    }
-    doctor {
-      id
-      name
-      username
-      email
-      speciality
-      sex
-      consultingroom {
-        id
-        secretary
+      date
+      frequency
+      duration
+      medications {
+        items {
+          id
+        }
+        nextToken
       }
-      image
-    }
-    doctorname
-    patient {
-      id
-      name
-      username
-      email
-      phone
-      phone_id
-      weight
-      height
-      size
-      age
-      birthdate
-      patientHistory {
-        id
-      }
-    }
-    rejection {
-      items {
-        id
-        description
-        doctor
-        secretary
-        patient
-        createdAt
-      }
-      nextToken
-    }
-    cancelation {
-      id
-      description
-    }
-    notification {
-      items {
+      pca {
         id
         state
-        doctor
-        secretary
-        patient
-        createdAt
+        date
+        pcActivities {
+          id
+          doctor
+          secretary
+          patient
+          owner
+        }
+        medicalPrescriptions {
+          id
+          date
+          frequency
+          duration
+          doctor
+          secretary
+          patient
+          owner
+        }
       }
-      nextToken
+      doctor
+      secretary
+      patient
+      owner
     }
-    confirmation {
-      id
-    }
-    secretary
-    details
-    date_created
-    date_of_medical_appointment
-    state
-    position
-    consult_cost
-    read_secretary
-    read_doctor
-    read_client
-    createdAt
   }
-}
 `;
-export const deleteMedicalAppointment = `mutation DeleteMedicalAppointment($input: DeleteMedicalAppointmentInput!) {
-  deleteMedicalAppointment(input: $input) {
-    id
-    location {
+export const deleteMedicalPrescriptions = /* GraphQL */ `
+  mutation DeleteMedicalPrescriptions(
+    $input: DeleteMedicalPrescriptionsInput!
+    $condition: ModelMedicalPrescriptionsConditionInput
+  ) {
+    deleteMedicalPrescriptions(input: $input, condition: $condition) {
       id
-      name
-    }
-    doctor {
-      id
-      name
-      username
-      email
-      speciality
-      sex
-      consultingroom {
-        id
-        secretary
+      date
+      frequency
+      duration
+      medications {
+        items {
+          id
+        }
+        nextToken
       }
-      image
-    }
-    doctorname
-    patient {
-      id
-      name
-      username
-      email
-      phone
-      phone_id
-      weight
-      height
-      size
-      age
-      birthdate
-      patientHistory {
-        id
-      }
-    }
-    rejection {
-      items {
-        id
-        description
-        doctor
-        secretary
-        patient
-        createdAt
-      }
-      nextToken
-    }
-    cancelation {
-      id
-      description
-    }
-    notification {
-      items {
+      pca {
         id
         state
+        date
+        pcActivities {
+          id
+          doctor
+          secretary
+          patient
+          owner
+        }
+        medicalPrescriptions {
+          id
+          date
+          frequency
+          duration
+          doctor
+          secretary
+          patient
+          owner
+        }
+      }
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const createPostConsultActMedicalPres = /* GraphQL */ `
+  mutation CreatePostConsultActMedicalPres(
+    $input: CreatePostConsultActMedicalPresInput!
+    $condition: ModelPostConsultActMedicalPresConditionInput
+  ) {
+    createPostConsultActMedicalPres(input: $input, condition: $condition) {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
         doctor
         secretary
         patient
-        createdAt
+        owner
       }
-      nextToken
+      medicalPrescriptions {
+        id
+        date
+        frequency
+        duration
+        medications {
+          nextToken
+        }
+        pca {
+          id
+          state
+          date
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
     }
-    confirmation {
-      id
-    }
-    secretary
-    details
-    date_created
-    date_of_medical_appointment
-    state
-    position
-    consult_cost
-    read_secretary
-    read_doctor
-    read_client
-    createdAt
   }
-}
 `;
-export const createMedicalHistory = `mutation CreateMedicalHistory($input: CreateMedicalHistoryInput!) {
-  createMedicalHistory(input: $input) {
-    id
-    reason
-    patient {
+export const updatePostConsultActMedicalPres = /* GraphQL */ `
+  mutation UpdatePostConsultActMedicalPres(
+    $input: UpdatePostConsultActMedicalPresInput!
+    $condition: ModelPostConsultActMedicalPresConditionInput
+  ) {
+    updatePostConsultActMedicalPres(input: $input, condition: $condition) {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalPrescriptions {
+        id
+        date
+        frequency
+        duration
+        medications {
+          nextToken
+        }
+        pca {
+          id
+          state
+          date
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+    }
+  }
+`;
+export const deletePostConsultActMedicalPres = /* GraphQL */ `
+  mutation DeletePostConsultActMedicalPres(
+    $input: DeletePostConsultActMedicalPresInput!
+    $condition: ModelPostConsultActMedicalPresConditionInput
+  ) {
+    deletePostConsultActMedicalPres(input: $input, condition: $condition) {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalPrescriptions {
+        id
+        date
+        frequency
+        duration
+        medications {
+          nextToken
+        }
+        pca {
+          id
+          state
+          date
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+    }
+  }
+`;
+export const createMedicalPrescriptionsMedications = /* GraphQL */ `
+  mutation CreateMedicalPrescriptionsMedications(
+    $input: CreateMedicalPrescriptionsMedicationsInput!
+    $condition: ModelMedicalPrescriptionsMedicationsConditionInput
+  ) {
+    createMedicalPrescriptionsMedications(
+      input: $input
+      condition: $condition
+    ) {
+      id
+      medicalPrescriptions {
+        id
+        date
+        frequency
+        duration
+        medications {
+          nextToken
+        }
+        pca {
+          id
+          state
+          date
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medications {
+        id
+        name
+        patients {
+          nextToken
+        }
+        code
+        drug_concentration
+        chemical_composition
+        mp {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const updateMedicalPrescriptionsMedications = /* GraphQL */ `
+  mutation UpdateMedicalPrescriptionsMedications(
+    $input: UpdateMedicalPrescriptionsMedicationsInput!
+    $condition: ModelMedicalPrescriptionsMedicationsConditionInput
+  ) {
+    updateMedicalPrescriptionsMedications(
+      input: $input
+      condition: $condition
+    ) {
+      id
+      medicalPrescriptions {
+        id
+        date
+        frequency
+        duration
+        medications {
+          nextToken
+        }
+        pca {
+          id
+          state
+          date
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medications {
+        id
+        name
+        patients {
+          nextToken
+        }
+        code
+        drug_concentration
+        chemical_composition
+        mp {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const deleteMedicalPrescriptionsMedications = /* GraphQL */ `
+  mutation DeleteMedicalPrescriptionsMedications(
+    $input: DeleteMedicalPrescriptionsMedicationsInput!
+    $condition: ModelMedicalPrescriptionsMedicationsConditionInput
+  ) {
+    deleteMedicalPrescriptionsMedications(
+      input: $input
+      condition: $condition
+    ) {
+      id
+      medicalPrescriptions {
+        id
+        date
+        frequency
+        duration
+        medications {
+          nextToken
+        }
+        pca {
+          id
+          state
+          date
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medications {
+        id
+        name
+        patients {
+          nextToken
+        }
+        code
+        drug_concentration
+        chemical_composition
+        mp {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const createPostConsultActMedAnalysis = /* GraphQL */ `
+  mutation CreatePostConsultActMedAnalysis(
+    $input: CreatePostConsultActMedAnalysisInput!
+    $condition: ModelPostConsultActMedAnalysisConditionInput
+  ) {
+    createPostConsultActMedAnalysis(input: $input, condition: $condition) {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalAnalysis {
+        id
+        name
+        code
+        medicalAnalysis {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const updatePostConsultActMedAnalysis = /* GraphQL */ `
+  mutation UpdatePostConsultActMedAnalysis(
+    $input: UpdatePostConsultActMedAnalysisInput!
+    $condition: ModelPostConsultActMedAnalysisConditionInput
+  ) {
+    updatePostConsultActMedAnalysis(input: $input, condition: $condition) {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalAnalysis {
+        id
+        name
+        code
+        medicalAnalysis {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const deletePostConsultActMedAnalysis = /* GraphQL */ `
+  mutation DeletePostConsultActMedAnalysis(
+    $input: DeletePostConsultActMedAnalysisInput!
+    $condition: ModelPostConsultActMedAnalysisConditionInput
+  ) {
+    deletePostConsultActMedAnalysis(input: $input, condition: $condition) {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      medicalAnalysis {
+        id
+        name
+        code
+        medicalAnalysis {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const createMedicalAnalysis = /* GraphQL */ `
+  mutation CreateMedicalAnalysis(
+    $input: CreateMedicalAnalysisInput!
+    $condition: ModelMedicalAnalysisConditionInput
+  ) {
+    createMedicalAnalysis(input: $input, condition: $condition) {
       id
       name
-      username
-      email
-      phone
-      phone_id
-      weight
-      height
-      size
-      age
-      birthdate
-      patientHistory {
+      code
+      medicalAnalysis {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const updateMedicalAnalysis = /* GraphQL */ `
+  mutation UpdateMedicalAnalysis(
+    $input: UpdateMedicalAnalysisInput!
+    $condition: ModelMedicalAnalysisConditionInput
+  ) {
+    updateMedicalAnalysis(input: $input, condition: $condition) {
+      id
+      name
+      code
+      medicalAnalysis {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const deleteMedicalAnalysis = /* GraphQL */ `
+  mutation DeleteMedicalAnalysis(
+    $input: DeleteMedicalAnalysisInput!
+    $condition: ModelMedicalAnalysisConditionInput
+  ) {
+    deleteMedicalAnalysis(input: $input, condition: $condition) {
+      id
+      name
+      code
+      medicalAnalysis {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const createPostConsultActSurgicalInt = /* GraphQL */ `
+  mutation CreatePostConsultActSurgicalInt(
+    $input: CreatePostConsultActSurgicalIntInput!
+    $condition: ModelPostConsultActSurgicalIntConditionInput
+  ) {
+    createPostConsultActSurgicalInt(input: $input, condition: $condition) {
+      id
+      state
+      date
+      pcActivities {
         id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      surgicalIntervention {
+        id
+        name
+        surgicalIntervention {
+          nextToken
+        }
+        owner
       }
     }
-    physicalExploration {
+  }
+`;
+export const updatePostConsultActSurgicalInt = /* GraphQL */ `
+  mutation UpdatePostConsultActSurgicalInt(
+    $input: UpdatePostConsultActSurgicalIntInput!
+    $condition: ModelPostConsultActSurgicalIntConditionInput
+  ) {
+    updatePostConsultActSurgicalInt(input: $input, condition: $condition) {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      surgicalIntervention {
+        id
+        name
+        surgicalIntervention {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const deletePostConsultActSurgicalInt = /* GraphQL */ `
+  mutation DeletePostConsultActSurgicalInt(
+    $input: DeletePostConsultActSurgicalIntInput!
+    $condition: ModelPostConsultActSurgicalIntConditionInput
+  ) {
+    deletePostConsultActSurgicalInt(input: $input, condition: $condition) {
+      id
+      state
+      date
+      pcActivities {
+        id
+        medicalPrescriptions {
+          nextToken
+        }
+        medicalAnalysis {
+          nextToken
+        }
+        surgicalIntervention {
+          nextToken
+        }
+        doctor
+        secretary
+        patient
+        owner
+      }
+      surgicalIntervention {
+        id
+        name
+        surgicalIntervention {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const createSurgicalIntervention = /* GraphQL */ `
+  mutation CreateSurgicalIntervention(
+    $input: CreateSurgicalInterventionInput!
+    $condition: ModelSurgicalInterventionConditionInput
+  ) {
+    createSurgicalIntervention(input: $input, condition: $condition) {
+      id
+      name
+      surgicalIntervention {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const updateSurgicalIntervention = /* GraphQL */ `
+  mutation UpdateSurgicalIntervention(
+    $input: UpdateSurgicalInterventionInput!
+    $condition: ModelSurgicalInterventionConditionInput
+  ) {
+    updateSurgicalIntervention(input: $input, condition: $condition) {
+      id
+      name
+      surgicalIntervention {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const deleteSurgicalIntervention = /* GraphQL */ `
+  mutation DeleteSurgicalIntervention(
+    $input: DeleteSurgicalInterventionInput!
+    $condition: ModelSurgicalInterventionConditionInput
+  ) {
+    deleteSurgicalIntervention(input: $input, condition: $condition) {
+      id
+      name
+      surgicalIntervention {
+        items {
+          id
+          state
+          date
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const createPhysicalExploration = /* GraphQL */ `
+  mutation CreatePhysicalExploration(
+    $input: CreatePhysicalExplorationInput!
+    $condition: ModelPhysicalExplorationConditionInput
+  ) {
+    createPhysicalExploration(input: $input, condition: $condition) {
       id
       general_exploration
       vitalsigns {
@@ -843,6 +3543,7 @@ export const createMedicalHistory = `mutation CreateMedicalHistory($input: Creat
         doctor
         secretary
         patient
+        owner
       }
       regionalExploration {
         id
@@ -856,50 +3557,21 @@ export const createMedicalHistory = `mutation CreateMedicalHistory($input: Creat
         doctor
         secretary
         patient
+        owner
       }
       doctor
       secretary
       patient
+      owner
     }
-    postConsultationsActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    doctor
-    secretary
-    patientname
   }
-}
 `;
-export const updateMedicalHistory = `mutation UpdateMedicalHistory($input: UpdateMedicalHistoryInput!) {
-  updateMedicalHistory(input: $input) {
-    id
-    reason
-    patient {
-      id
-      name
-      username
-      email
-      phone
-      phone_id
-      weight
-      height
-      size
-      age
-      birthdate
-      patientHistory {
-        id
-      }
-    }
-    physicalExploration {
+export const updatePhysicalExploration = /* GraphQL */ `
+  mutation UpdatePhysicalExploration(
+    $input: UpdatePhysicalExplorationInput!
+    $condition: ModelPhysicalExplorationConditionInput
+  ) {
+    updatePhysicalExploration(input: $input, condition: $condition) {
       id
       general_exploration
       vitalsigns {
@@ -911,6 +3583,7 @@ export const updateMedicalHistory = `mutation UpdateMedicalHistory($input: Updat
         doctor
         secretary
         patient
+        owner
       }
       regionalExploration {
         id
@@ -924,50 +3597,21 @@ export const updateMedicalHistory = `mutation UpdateMedicalHistory($input: Updat
         doctor
         secretary
         patient
+        owner
       }
       doctor
       secretary
       patient
+      owner
     }
-    postConsultationsActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    doctor
-    secretary
-    patientname
   }
-}
 `;
-export const deleteMedicalHistory = `mutation DeleteMedicalHistory($input: DeleteMedicalHistoryInput!) {
-  deleteMedicalHistory(input: $input) {
-    id
-    reason
-    patient {
-      id
-      name
-      username
-      email
-      phone
-      phone_id
-      weight
-      height
-      size
-      age
-      birthdate
-      patientHistory {
-        id
-      }
-    }
-    physicalExploration {
+export const deletePhysicalExploration = /* GraphQL */ `
+  mutation DeletePhysicalExploration(
+    $input: DeletePhysicalExplorationInput!
+    $condition: ModelPhysicalExplorationConditionInput
+  ) {
+    deletePhysicalExploration(input: $input, condition: $condition) {
       id
       general_exploration
       vitalsigns {
@@ -979,6 +3623,7 @@ export const deleteMedicalHistory = `mutation DeleteMedicalHistory($input: Delet
         doctor
         secretary
         patient
+        owner
       }
       regionalExploration {
         id
@@ -992,1756 +3637,21 @@ export const deleteMedicalHistory = `mutation DeleteMedicalHistory($input: Delet
         doctor
         secretary
         patient
+        owner
       }
       doctor
       secretary
       patient
-    }
-    postConsultationsActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    doctor
-    secretary
-    patientname
-  }
-}
-`;
-export const createPatient = `mutation CreatePatient($input: CreatePatientInput!) {
-  createPatient(input: $input) {
-    id
-    name
-    username
-    email
-    phone
-    phone_id
-    weight
-    height
-    size
-    age
-    birthdate
-    patientHistory {
-      id
-      nonPathologicalHistory {
-        id
-      }
-      pathologicalHistory {
-        id
-      }
-      familyHistory {
-        id
-      }
-      gynecoObstetricHistory {
-        id
-        menarche
-        sexual_development
-        menstrual_rhythm
-        sex_life
-        deliveries
-        abortions
-        caesarean_sections
-        contraceptive_method
-      }
+      owner
     }
   }
-}
 `;
-export const updatePatient = `mutation UpdatePatient($input: UpdatePatientInput!) {
-  updatePatient(input: $input) {
-    id
-    name
-    username
-    email
-    phone
-    phone_id
-    weight
-    height
-    size
-    age
-    birthdate
-    patientHistory {
-      id
-      nonPathologicalHistory {
-        id
-      }
-      pathologicalHistory {
-        id
-      }
-      familyHistory {
-        id
-      }
-      gynecoObstetricHistory {
-        id
-        menarche
-        sexual_development
-        menstrual_rhythm
-        sex_life
-        deliveries
-        abortions
-        caesarean_sections
-        contraceptive_method
-      }
-    }
-  }
-}
-`;
-export const deletePatient = `mutation DeletePatient($input: DeletePatientInput!) {
-  deletePatient(input: $input) {
-    id
-    name
-    username
-    email
-    phone
-    phone_id
-    weight
-    height
-    size
-    age
-    birthdate
-    patientHistory {
-      id
-      nonPathologicalHistory {
-        id
-      }
-      pathologicalHistory {
-        id
-      }
-      familyHistory {
-        id
-      }
-      gynecoObstetricHistory {
-        id
-        menarche
-        sexual_development
-        menstrual_rhythm
-        sex_life
-        deliveries
-        abortions
-        caesarean_sections
-        contraceptive_method
-      }
-    }
-  }
-}
-`;
-export const createPatientHistory = `mutation CreatePatientHistory($input: CreatePatientHistoryInput!) {
-  createPatientHistory(input: $input) {
-    id
-    nonPathologicalHistory {
-      id
-      alcohol {
-        id
-        active
-        frequency
-        comment
-      }
-      smoking {
-        id
-        active
-        frequency
-        comment
-      }
-      drugs {
-        id
-        active
-        frequency
-        comment
-      }
-      immunizations {
-        id
-        active
-        frequency
-        comment
-      }
-    }
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    familyHistory {
-      id
-      father {
-        id
-        alive
-        relationship
-        comment
-      }
-      mother {
-        id
-        alive
-        relationship
-        comment
-      }
-      brothers {
-        id
-        alive
-        relationship
-        comment
-      }
-      grandfather {
-        id
-        alive
-        relationship
-        comment
-      }
-      grandmother {
-        id
-        alive
-        relationship
-        comment
-      }
-      other {
-        id
-        alive
-        relationship
-        comment
-      }
-    }
-    gynecoObstetricHistory {
-      id
-      menarche
-      sexual_development
-      menstrual_rhythm
-      sex_life
-      deliveries
-      abortions
-      caesarean_sections
-      contraceptive_method
-    }
-  }
-}
-`;
-export const updatePatientHistory = `mutation UpdatePatientHistory($input: UpdatePatientHistoryInput!) {
-  updatePatientHistory(input: $input) {
-    id
-    nonPathologicalHistory {
-      id
-      alcohol {
-        id
-        active
-        frequency
-        comment
-      }
-      smoking {
-        id
-        active
-        frequency
-        comment
-      }
-      drugs {
-        id
-        active
-        frequency
-        comment
-      }
-      immunizations {
-        id
-        active
-        frequency
-        comment
-      }
-    }
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    familyHistory {
-      id
-      father {
-        id
-        alive
-        relationship
-        comment
-      }
-      mother {
-        id
-        alive
-        relationship
-        comment
-      }
-      brothers {
-        id
-        alive
-        relationship
-        comment
-      }
-      grandfather {
-        id
-        alive
-        relationship
-        comment
-      }
-      grandmother {
-        id
-        alive
-        relationship
-        comment
-      }
-      other {
-        id
-        alive
-        relationship
-        comment
-      }
-    }
-    gynecoObstetricHistory {
-      id
-      menarche
-      sexual_development
-      menstrual_rhythm
-      sex_life
-      deliveries
-      abortions
-      caesarean_sections
-      contraceptive_method
-    }
-  }
-}
-`;
-export const deletePatientHistory = `mutation DeletePatientHistory($input: DeletePatientHistoryInput!) {
-  deletePatientHistory(input: $input) {
-    id
-    nonPathologicalHistory {
-      id
-      alcohol {
-        id
-        active
-        frequency
-        comment
-      }
-      smoking {
-        id
-        active
-        frequency
-        comment
-      }
-      drugs {
-        id
-        active
-        frequency
-        comment
-      }
-      immunizations {
-        id
-        active
-        frequency
-        comment
-      }
-    }
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    familyHistory {
-      id
-      father {
-        id
-        alive
-        relationship
-        comment
-      }
-      mother {
-        id
-        alive
-        relationship
-        comment
-      }
-      brothers {
-        id
-        alive
-        relationship
-        comment
-      }
-      grandfather {
-        id
-        alive
-        relationship
-        comment
-      }
-      grandmother {
-        id
-        alive
-        relationship
-        comment
-      }
-      other {
-        id
-        alive
-        relationship
-        comment
-      }
-    }
-    gynecoObstetricHistory {
-      id
-      menarche
-      sexual_development
-      menstrual_rhythm
-      sex_life
-      deliveries
-      abortions
-      caesarean_sections
-      contraceptive_method
-    }
-  }
-}
-`;
-export const createNonPathologicalHistory = `mutation CreateNonPathologicalHistory(
-  $input: CreateNonPathologicalHistoryInput!
-) {
-  createNonPathologicalHistory(input: $input) {
-    id
-    alcohol {
-      id
-      active
-      frequency
-      comment
-    }
-    smoking {
-      id
-      active
-      frequency
-      comment
-    }
-    drugs {
-      id
-      active
-      frequency
-      comment
-    }
-    immunizations {
-      id
-      active
-      frequency
-      comment
-    }
-  }
-}
-`;
-export const updateNonPathologicalHistory = `mutation UpdateNonPathologicalHistory(
-  $input: UpdateNonPathologicalHistoryInput!
-) {
-  updateNonPathologicalHistory(input: $input) {
-    id
-    alcohol {
-      id
-      active
-      frequency
-      comment
-    }
-    smoking {
-      id
-      active
-      frequency
-      comment
-    }
-    drugs {
-      id
-      active
-      frequency
-      comment
-    }
-    immunizations {
-      id
-      active
-      frequency
-      comment
-    }
-  }
-}
-`;
-export const deleteNonPathologicalHistory = `mutation DeleteNonPathologicalHistory(
-  $input: DeleteNonPathologicalHistoryInput!
-) {
-  deleteNonPathologicalHistory(input: $input) {
-    id
-    alcohol {
-      id
-      active
-      frequency
-      comment
-    }
-    smoking {
-      id
-      active
-      frequency
-      comment
-    }
-    drugs {
-      id
-      active
-      frequency
-      comment
-    }
-    immunizations {
-      id
-      active
-      frequency
-      comment
-    }
-  }
-}
-`;
-export const createNonPathologicalActivities = `mutation CreateNonPathologicalActivities(
-  $input: CreateNonPathologicalActivitiesInput!
-) {
-  createNonPathologicalActivities(input: $input) {
-    id
-    active
-    frequency
-    comment
-  }
-}
-`;
-export const updateNonPathologicalActivities = `mutation UpdateNonPathologicalActivities(
-  $input: UpdateNonPathologicalActivitiesInput!
-) {
-  updateNonPathologicalActivities(input: $input) {
-    id
-    active
-    frequency
-    comment
-  }
-}
-`;
-export const deleteNonPathologicalActivities = `mutation DeleteNonPathologicalActivities(
-  $input: DeleteNonPathologicalActivitiesInput!
-) {
-  deleteNonPathologicalActivities(input: $input) {
-    id
-    active
-    frequency
-    comment
-  }
-}
-`;
-export const createPathologicalHistory = `mutation CreatePathologicalHistory($input: CreatePathologicalHistoryInput!) {
-  createPathologicalHistory(input: $input) {
-    id
-    surgicalInterventions {
-      items {
-        id
-        name
-      }
-      nextToken
-    }
-    patientMedications {
-      items {
-        id
-      }
-      nextToken
-    }
-    patientAllergies {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const updatePathologicalHistory = `mutation UpdatePathologicalHistory($input: UpdatePathologicalHistoryInput!) {
-  updatePathologicalHistory(input: $input) {
-    id
-    surgicalInterventions {
-      items {
-        id
-        name
-      }
-      nextToken
-    }
-    patientMedications {
-      items {
-        id
-      }
-      nextToken
-    }
-    patientAllergies {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const deletePathologicalHistory = `mutation DeletePathologicalHistory($input: DeletePathologicalHistoryInput!) {
-  deletePathologicalHistory(input: $input) {
-    id
-    surgicalInterventions {
-      items {
-        id
-        name
-      }
-      nextToken
-    }
-    patientMedications {
-      items {
-        id
-      }
-      nextToken
-    }
-    patientAllergies {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const createFamilyHistory = `mutation CreateFamilyHistory($input: CreateFamilyHistoryInput!) {
-  createFamilyHistory(input: $input) {
-    id
-    father {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    mother {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    brothers {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    grandfather {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    grandmother {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    other {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-  }
-}
-`;
-export const updateFamilyHistory = `mutation UpdateFamilyHistory($input: UpdateFamilyHistoryInput!) {
-  updateFamilyHistory(input: $input) {
-    id
-    father {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    mother {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    brothers {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    grandfather {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    grandmother {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    other {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-  }
-}
-`;
-export const deleteFamilyHistory = `mutation DeleteFamilyHistory($input: DeleteFamilyHistoryInput!) {
-  deleteFamilyHistory(input: $input) {
-    id
-    father {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    mother {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    brothers {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    grandfather {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    grandmother {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-    other {
-      id
-      alive
-      relationship
-      diseases {
-        id
-        name
-      }
-      comment
-    }
-  }
-}
-`;
-export const createFamilyDetails = `mutation CreateFamilyDetails($input: CreateFamilyDetailsInput!) {
-  createFamilyDetails(input: $input) {
-    id
-    alive
-    relationship
-    diseases {
-      id
-      name
-    }
-    comment
-  }
-}
-`;
-export const updateFamilyDetails = `mutation UpdateFamilyDetails($input: UpdateFamilyDetailsInput!) {
-  updateFamilyDetails(input: $input) {
-    id
-    alive
-    relationship
-    diseases {
-      id
-      name
-    }
-    comment
-  }
-}
-`;
-export const deleteFamilyDetails = `mutation DeleteFamilyDetails($input: DeleteFamilyDetailsInput!) {
-  deleteFamilyDetails(input: $input) {
-    id
-    alive
-    relationship
-    diseases {
-      id
-      name
-    }
-    comment
-  }
-}
-`;
-export const createDiseases = `mutation CreateDiseases($input: CreateDiseasesInput!) {
-  createDiseases(input: $input) {
-    id
-    name
-  }
-}
-`;
-export const updateDiseases = `mutation UpdateDiseases($input: UpdateDiseasesInput!) {
-  updateDiseases(input: $input) {
-    id
-    name
-  }
-}
-`;
-export const deleteDiseases = `mutation DeleteDiseases($input: DeleteDiseasesInput!) {
-  deleteDiseases(input: $input) {
-    id
-    name
-  }
-}
-`;
-export const createGynecoObstetricHistory = `mutation CreateGynecoObstetricHistory(
-  $input: CreateGynecoObstetricHistoryInput!
-) {
-  createGynecoObstetricHistory(input: $input) {
-    id
-    menarche
-    sexual_development
-    menstrual_rhythm
-    sex_life
-    deliveries
-    abortions
-    caesarean_sections
-    contraceptive_method
-  }
-}
-`;
-export const updateGynecoObstetricHistory = `mutation UpdateGynecoObstetricHistory(
-  $input: UpdateGynecoObstetricHistoryInput!
-) {
-  updateGynecoObstetricHistory(input: $input) {
-    id
-    menarche
-    sexual_development
-    menstrual_rhythm
-    sex_life
-    deliveries
-    abortions
-    caesarean_sections
-    contraceptive_method
-  }
-}
-`;
-export const deleteGynecoObstetricHistory = `mutation DeleteGynecoObstetricHistory(
-  $input: DeleteGynecoObstetricHistoryInput!
-) {
-  deleteGynecoObstetricHistory(input: $input) {
-    id
-    menarche
-    sexual_development
-    menstrual_rhythm
-    sex_life
-    deliveries
-    abortions
-    caesarean_sections
-    contraceptive_method
-  }
-}
-`;
-export const createAllergies = `mutation CreateAllergies($input: CreateAllergiesInput!) {
-  createAllergies(input: $input) {
-    id
-    name
-    patients {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const updateAllergies = `mutation UpdateAllergies($input: UpdateAllergiesInput!) {
-  updateAllergies(input: $input) {
-    id
-    name
-    patients {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const deleteAllergies = `mutation DeleteAllergies($input: DeleteAllergiesInput!) {
-  deleteAllergies(input: $input) {
-    id
-    name
-    patients {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const createPatientAllergies = `mutation CreatePatientAllergies($input: CreatePatientAllergiesInput!) {
-  createPatientAllergies(input: $input) {
-    id
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    allergies {
-      id
-      name
-      patients {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const updatePatientAllergies = `mutation UpdatePatientAllergies($input: UpdatePatientAllergiesInput!) {
-  updatePatientAllergies(input: $input) {
-    id
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    allergies {
-      id
-      name
-      patients {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const deletePatientAllergies = `mutation DeletePatientAllergies($input: DeletePatientAllergiesInput!) {
-  deletePatientAllergies(input: $input) {
-    id
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    allergies {
-      id
-      name
-      patients {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const createPatientMedications = `mutation CreatePatientMedications($input: CreatePatientMedicationsInput!) {
-  createPatientMedications(input: $input) {
-    id
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    medications {
-      id
-      name
-      patients {
-        nextToken
-      }
-      code
-      drug_concentration
-      chemical_composition
-      mp {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const updatePatientMedications = `mutation UpdatePatientMedications($input: UpdatePatientMedicationsInput!) {
-  updatePatientMedications(input: $input) {
-    id
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    medications {
-      id
-      name
-      patients {
-        nextToken
-      }
-      code
-      drug_concentration
-      chemical_composition
-      mp {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const deletePatientMedications = `mutation DeletePatientMedications($input: DeletePatientMedicationsInput!) {
-  deletePatientMedications(input: $input) {
-    id
-    pathologicalHistory {
-      id
-      surgicalInterventions {
-        nextToken
-      }
-      patientMedications {
-        nextToken
-      }
-      patientAllergies {
-        nextToken
-      }
-    }
-    medications {
-      id
-      name
-      patients {
-        nextToken
-      }
-      code
-      drug_concentration
-      chemical_composition
-      mp {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const createMedicines = `mutation CreateMedicines($input: CreateMedicinesInput!) {
-  createMedicines(input: $input) {
-    id
-    name
-    patients {
-      items {
-        id
-      }
-      nextToken
-    }
-    code
-    drug_concentration
-    chemical_composition
-    mp {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const updateMedicines = `mutation UpdateMedicines($input: UpdateMedicinesInput!) {
-  updateMedicines(input: $input) {
-    id
-    name
-    patients {
-      items {
-        id
-      }
-      nextToken
-    }
-    code
-    drug_concentration
-    chemical_composition
-    mp {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const deleteMedicines = `mutation DeleteMedicines($input: DeleteMedicinesInput!) {
-  deleteMedicines(input: $input) {
-    id
-    name
-    patients {
-      items {
-        id
-      }
-      nextToken
-    }
-    code
-    drug_concentration
-    chemical_composition
-    mp {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const createPostConsultationsActivities = `mutation CreatePostConsultationsActivities(
-  $input: CreatePostConsultationsActivitiesInput!
-) {
-  createPostConsultationsActivities(input: $input) {
-    id
-    medicalPrescriptions {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const updatePostConsultationsActivities = `mutation UpdatePostConsultationsActivities(
-  $input: UpdatePostConsultationsActivitiesInput!
-) {
-  updatePostConsultationsActivities(input: $input) {
-    id
-    medicalPrescriptions {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const deletePostConsultationsActivities = `mutation DeletePostConsultationsActivities(
-  $input: DeletePostConsultationsActivitiesInput!
-) {
-  deletePostConsultationsActivities(input: $input) {
-    id
-    medicalPrescriptions {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const createMedicalPrescriptions = `mutation CreateMedicalPrescriptions($input: CreateMedicalPrescriptionsInput!) {
-  createMedicalPrescriptions(input: $input) {
-    id
-    date
-    frequency
-    duration
-    medications {
-      items {
-        id
-      }
-      nextToken
-    }
-    pca {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const updateMedicalPrescriptions = `mutation UpdateMedicalPrescriptions($input: UpdateMedicalPrescriptionsInput!) {
-  updateMedicalPrescriptions(input: $input) {
-    id
-    date
-    frequency
-    duration
-    medications {
-      items {
-        id
-      }
-      nextToken
-    }
-    pca {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const deleteMedicalPrescriptions = `mutation DeleteMedicalPrescriptions($input: DeleteMedicalPrescriptionsInput!) {
-  deleteMedicalPrescriptions(input: $input) {
-    id
-    date
-    frequency
-    duration
-    medications {
-      items {
-        id
-      }
-      nextToken
-    }
-    pca {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const createPostConsultActMedicalPres = `mutation CreatePostConsultActMedicalPres(
-  $input: CreatePostConsultActMedicalPresInput!
-) {
-  createPostConsultActMedicalPres(input: $input) {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medicalPrescriptions {
-      id
-      date
-      frequency
-      duration
-      medications {
-        nextToken
-      }
-      pca {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-  }
-}
-`;
-export const updatePostConsultActMedicalPres = `mutation UpdatePostConsultActMedicalPres(
-  $input: UpdatePostConsultActMedicalPresInput!
-) {
-  updatePostConsultActMedicalPres(input: $input) {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medicalPrescriptions {
-      id
-      date
-      frequency
-      duration
-      medications {
-        nextToken
-      }
-      pca {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-  }
-}
-`;
-export const deletePostConsultActMedicalPres = `mutation DeletePostConsultActMedicalPres(
-  $input: DeletePostConsultActMedicalPresInput!
-) {
-  deletePostConsultActMedicalPres(input: $input) {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medicalPrescriptions {
-      id
-      date
-      frequency
-      duration
-      medications {
-        nextToken
-      }
-      pca {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-  }
-}
-`;
-export const createMedicalPrescriptionsMedications = `mutation CreateMedicalPrescriptionsMedications(
-  $input: CreateMedicalPrescriptionsMedicationsInput!
-) {
-  createMedicalPrescriptionsMedications(input: $input) {
-    id
-    medicalPrescriptions {
-      id
-      date
-      frequency
-      duration
-      medications {
-        nextToken
-      }
-      pca {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medications {
-      id
-      name
-      patients {
-        nextToken
-      }
-      code
-      drug_concentration
-      chemical_composition
-      mp {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const updateMedicalPrescriptionsMedications = `mutation UpdateMedicalPrescriptionsMedications(
-  $input: UpdateMedicalPrescriptionsMedicationsInput!
-) {
-  updateMedicalPrescriptionsMedications(input: $input) {
-    id
-    medicalPrescriptions {
-      id
-      date
-      frequency
-      duration
-      medications {
-        nextToken
-      }
-      pca {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medications {
-      id
-      name
-      patients {
-        nextToken
-      }
-      code
-      drug_concentration
-      chemical_composition
-      mp {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const deleteMedicalPrescriptionsMedications = `mutation DeleteMedicalPrescriptionsMedications(
-  $input: DeleteMedicalPrescriptionsMedicationsInput!
-) {
-  deleteMedicalPrescriptionsMedications(input: $input) {
-    id
-    medicalPrescriptions {
-      id
-      date
-      frequency
-      duration
-      medications {
-        nextToken
-      }
-      pca {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medications {
-      id
-      name
-      patients {
-        nextToken
-      }
-      code
-      drug_concentration
-      chemical_composition
-      mp {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const createPostConsultActMedAnalysis = `mutation CreatePostConsultActMedAnalysis(
-  $input: CreatePostConsultActMedAnalysisInput!
-) {
-  createPostConsultActMedAnalysis(input: $input) {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medicalAnalysis {
-      id
-      name
-      code
-      medicalAnalysis {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const updatePostConsultActMedAnalysis = `mutation UpdatePostConsultActMedAnalysis(
-  $input: UpdatePostConsultActMedAnalysisInput!
-) {
-  updatePostConsultActMedAnalysis(input: $input) {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medicalAnalysis {
-      id
-      name
-      code
-      medicalAnalysis {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const deletePostConsultActMedAnalysis = `mutation DeletePostConsultActMedAnalysis(
-  $input: DeletePostConsultActMedAnalysisInput!
-) {
-  deletePostConsultActMedAnalysis(input: $input) {
-    id
-    state
-    date
-    pcActivities {
-      id
-      medicalPrescriptions {
-        nextToken
-      }
-      medicalAnalysis {
-        nextToken
-      }
-      doctor
-      secretary
-      patient
-    }
-    medicalAnalysis {
-      id
-      name
-      code
-      medicalAnalysis {
-        nextToken
-      }
-    }
-  }
-}
-`;
-export const createMedicalAnalysis = `mutation CreateMedicalAnalysis($input: CreateMedicalAnalysisInput!) {
-  createMedicalAnalysis(input: $input) {
-    id
-    name
-    code
-    medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const updateMedicalAnalysis = `mutation UpdateMedicalAnalysis($input: UpdateMedicalAnalysisInput!) {
-  updateMedicalAnalysis(input: $input) {
-    id
-    name
-    code
-    medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const deleteMedicalAnalysis = `mutation DeleteMedicalAnalysis($input: DeleteMedicalAnalysisInput!) {
-  deleteMedicalAnalysis(input: $input) {
-    id
-    name
-    code
-    medicalAnalysis {
-      items {
-        id
-        state
-        date
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const createSurgicalIntervention = `mutation CreateSurgicalIntervention($input: CreateSurgicalInterventionInput!) {
-  createSurgicalIntervention(input: $input) {
-    id
-    name
-  }
-}
-`;
-export const updateSurgicalIntervention = `mutation UpdateSurgicalIntervention($input: UpdateSurgicalInterventionInput!) {
-  updateSurgicalIntervention(input: $input) {
-    id
-    name
-  }
-}
-`;
-export const deleteSurgicalIntervention = `mutation DeleteSurgicalIntervention($input: DeleteSurgicalInterventionInput!) {
-  deleteSurgicalIntervention(input: $input) {
-    id
-    name
-  }
-}
-`;
-export const createPhysicalExploration = `mutation CreatePhysicalExploration($input: CreatePhysicalExplorationInput!) {
-  createPhysicalExploration(input: $input) {
-    id
-    general_exploration
-    vitalsigns {
+export const createVitalSigns = /* GraphQL */ `
+  mutation CreateVitalSigns(
+    $input: CreateVitalSignsInput!
+    $condition: ModelVitalSignsConditionInput
+  ) {
+    createVitalSigns(input: $input, condition: $condition) {
       id
       blood_pressure
       Breathing
@@ -2750,8 +3660,52 @@ export const createPhysicalExploration = `mutation CreatePhysicalExploration($in
       doctor
       secretary
       patient
+      owner
     }
-    regionalExploration {
+  }
+`;
+export const updateVitalSigns = /* GraphQL */ `
+  mutation UpdateVitalSigns(
+    $input: UpdateVitalSignsInput!
+    $condition: ModelVitalSignsConditionInput
+  ) {
+    updateVitalSigns(input: $input, condition: $condition) {
+      id
+      blood_pressure
+      Breathing
+      Pulse
+      Temperature
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const deleteVitalSigns = /* GraphQL */ `
+  mutation DeleteVitalSigns(
+    $input: DeleteVitalSignsInput!
+    $condition: ModelVitalSignsConditionInput
+  ) {
+    deleteVitalSigns(input: $input, condition: $condition) {
+      id
+      blood_pressure
+      Breathing
+      Pulse
+      Temperature
+      doctor
+      secretary
+      patient
+      owner
+    }
+  }
+`;
+export const createRegionalExploration = /* GraphQL */ `
+  mutation CreateRegionalExploration(
+    $input: CreateRegionalExplorationInput!
+    $condition: ModelRegionalExplorationConditionInput
+  ) {
+    createRegionalExploration(input: $input, condition: $condition) {
       id
       head
       neck
@@ -2763,28 +3717,16 @@ export const createPhysicalExploration = `mutation CreatePhysicalExploration($in
       doctor
       secretary
       patient
+      owner
     }
-    doctor
-    secretary
-    patient
   }
-}
 `;
-export const updatePhysicalExploration = `mutation UpdatePhysicalExploration($input: UpdatePhysicalExplorationInput!) {
-  updatePhysicalExploration(input: $input) {
-    id
-    general_exploration
-    vitalsigns {
-      id
-      blood_pressure
-      Breathing
-      Pulse
-      Temperature
-      doctor
-      secretary
-      patient
-    }
-    regionalExploration {
+export const updateRegionalExploration = /* GraphQL */ `
+  mutation UpdateRegionalExploration(
+    $input: UpdateRegionalExplorationInput!
+    $condition: ModelRegionalExplorationConditionInput
+  ) {
+    updateRegionalExploration(input: $input, condition: $condition) {
       id
       head
       neck
@@ -2796,28 +3738,16 @@ export const updatePhysicalExploration = `mutation UpdatePhysicalExploration($in
       doctor
       secretary
       patient
+      owner
     }
-    doctor
-    secretary
-    patient
   }
-}
 `;
-export const deletePhysicalExploration = `mutation DeletePhysicalExploration($input: DeletePhysicalExplorationInput!) {
-  deletePhysicalExploration(input: $input) {
-    id
-    general_exploration
-    vitalsigns {
-      id
-      blood_pressure
-      Breathing
-      Pulse
-      Temperature
-      doctor
-      secretary
-      patient
-    }
-    regionalExploration {
+export const deleteRegionalExploration = /* GraphQL */ `
+  mutation DeleteRegionalExploration(
+    $input: DeleteRegionalExplorationInput!
+    $condition: ModelRegionalExplorationConditionInput
+  ) {
+    deleteRegionalExploration(input: $input, condition: $condition) {
       id
       head
       neck
@@ -2829,97 +3759,7 @@ export const deletePhysicalExploration = `mutation DeletePhysicalExploration($in
       doctor
       secretary
       patient
+      owner
     }
-    doctor
-    secretary
-    patient
   }
-}
-`;
-export const createVitalSigns = `mutation CreateVitalSigns($input: CreateVitalSignsInput!) {
-  createVitalSigns(input: $input) {
-    id
-    blood_pressure
-    Breathing
-    Pulse
-    Temperature
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const updateVitalSigns = `mutation UpdateVitalSigns($input: UpdateVitalSignsInput!) {
-  updateVitalSigns(input: $input) {
-    id
-    blood_pressure
-    Breathing
-    Pulse
-    Temperature
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const deleteVitalSigns = `mutation DeleteVitalSigns($input: DeleteVitalSignsInput!) {
-  deleteVitalSigns(input: $input) {
-    id
-    blood_pressure
-    Breathing
-    Pulse
-    Temperature
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const createRegionalExploration = `mutation CreateRegionalExploration($input: CreateRegionalExplorationInput!) {
-  createRegionalExploration(input: $input) {
-    id
-    head
-    neck
-    thorax
-    abdomen
-    members
-    genitals
-    others
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const updateRegionalExploration = `mutation UpdateRegionalExploration($input: UpdateRegionalExplorationInput!) {
-  updateRegionalExploration(input: $input) {
-    id
-    head
-    neck
-    thorax
-    abdomen
-    members
-    genitals
-    others
-    doctor
-    secretary
-    patient
-  }
-}
-`;
-export const deleteRegionalExploration = `mutation DeleteRegionalExploration($input: DeleteRegionalExplorationInput!) {
-  deleteRegionalExploration(input: $input) {
-    id
-    head
-    neck
-    thorax
-    abdomen
-    members
-    genitals
-    others
-    doctor
-    secretary
-    patient
-  }
-}
 `;
