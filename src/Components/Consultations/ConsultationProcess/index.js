@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput,
-         MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon,
+         MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker } from "mdbreact";
+import NewPatient from './newPatient'
+
+
 
 import useConsultationProcess from './useConsultationProcess';
 
 const ConsultationProcess = () => {
-  const { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus,
-          formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel } = useConsultationProcess();
+  const { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate,
+          formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName } = useConsultationProcess();
 
   return (
     <MDBContainer>
@@ -26,15 +29,24 @@ const ConsultationProcess = () => {
                   <strong>Paciente</strong>
                 </h3>
                 <MDBCol>
-                  <MDBCard style={{ width: "22rem" }}>
-                    <MDBCardImage className="img-fluid" src="https://www.morpht.com/sites/morpht/files/styles/landscape/public/dalibor-matura_1.jpg" waves />
-                    <MDBCardBody>
-                      <MDBCardTitle>Bartolo Antonio de Jesús Valerio</MDBCardTitle>
-                      <MDBCardText>
-                        34 años, Email: bjesus@gmail.com, Telefono: 809-232-3344
-                      </MDBCardText>
-                    </MDBCardBody>
-                  </MDBCard>
+                  {!createNewPatient &&
+                    (
+                      <MDBCard style={{ width: "22rem" }}>
+                        <MDBCardImage className="img-fluid" src="https://www.morpht.com/sites/morpht/files/styles/landscape/public/dalibor-matura_1.jpg" waves />
+                        <MDBCardBody>
+                          <MDBCardTitle>Bartolo Antonio de Jesús Valerio</MDBCardTitle>
+                          <MDBCardText>
+                            34 años, Email: bjesus@gmail.com, Telefono: 809-232-3344
+                          </MDBCardText>
+                        </MDBCardBody>
+                      </MDBCard>
+                    )
+                  }
+                  {createNewPatient &&
+                    (
+                      <NewPatient/>
+                    )
+                  }
                 </MDBCol>
                 <br/>
                 <MDBBtn color="mdb-color" rounded className="float-right" onClick={handleNextPrevClick(2)}>next</MDBBtn>

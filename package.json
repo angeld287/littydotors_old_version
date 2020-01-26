@@ -13,6 +13,7 @@
     "bootstrap": "^4.3.1",
     "buffer": "^4.2.1",
     "compress.js": "^1.1.2",
+    "date-fns": "^2.0.0-beta.5",
     "graphql-tag": "^2.10.1",
     "jquery": "^1.9.1",
     "lodash": "^4.17.15",
@@ -31,6 +32,7 @@
     "react-places-autocomplete": "^7.2.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.8",
+    "react-select": "^3.0.8",
     "typescript": "^3.3.4000"
   },
   "scripts": {
