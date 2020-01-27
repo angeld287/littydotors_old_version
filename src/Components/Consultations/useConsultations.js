@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import {listPatients} from './../../graphql/queries'
 import { API, graphqlOperation } from 'aws-amplify';
+import { filterByValue } from '../../Functions/filterArray'
 
 
 const useConsultations = () => {
@@ -8,13 +9,17 @@ const useConsultations = () => {
     const [ error, setError ] = useState(false);
     const [ patients, setPatients ] = useState([]);
     const [ patient, setPatient ] = useState({});
+    const [ autoCompleteLoading, setAutoCompleteLoading ] = useState(false);
+    const [ newPatient, setNewPatient ] = useState(false);
+    const [ newPatientName, setNewPatientName ] = useState("");
+
 
     useEffect(() => {
         let didCancel = false;
 
         const fetchPatients = async () => {
-            var patients = [];
-            var patient = {
+            var _patients = [];
+            var _patient = {
                 name: "N/A",
                 age: "00", 
                 image: "https://asociaciondenutriologia.org/img/default_user.png", 
@@ -28,19 +33,19 @@ const useConsultations = () => {
                 
                 if(patientsApi.data.listPatients.items.length > 0){
                     patientsApi.data.listPatients.items.forEach(element => {
-                        const pdata = {name: element.name, age: element.age, image: "https://asociaciondenutriologia.org/img/default_user.png", email: element.email, phone: element.phone};
-                        patients.push(pdata);
+                        const pdata = {id: element.id, name: element.name, age: element.age, image: "https://asociaciondenutriologia.org/img/default_user.png", email: element.email, phone: element.phone};
+                        _patients.push(pdata);
                     });
                 }else{
-                    patients = [
-                        {name: "Bartolo Antonio de Jesús Valerio", age: "34", image: "https://www.morpht.com/sites/morpht/files/styles/landscape/public/dalibor-matura_1.jpg", email: "bjesus@gmail.com", phone: "809-232-3344"},
-                        {name: "Bernarda Abreu Santos", age: "28", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSOHBYH5MlqZjhBsNIZTm66VE7nCfsyuat9wUEi8wIgzlbVJ2E&s", email: "babreu@gmail.com", phone: "829-345-2288"},
-                        {name: "Damaris María Amparo", age: "25", image: "https://www.attractivepartners.co.uk/wp-content/uploads/2017/06/profile.jpg", email: "bjesus@gmail.com", phone: "809-455-3344"},
-                        {name: "Danilo Miguel Gil Burgos", age: "29", image: "https://www.evolutionsociety.org/userdata/news_picupload/pic_sid189-0-norm.jpg", email: "dgil@gmail.com", phone: "809-232-3344"},
-                        {name: "Erickson Miguel Moronta Santos", age: "34", image: "https://www.morpht.com/sites/morpht/files/styles/landscape/public/dalibor-matura_1.jpg", email: "bjesus@gmail.com", phone: "809-232-3344"},
-                        {name: "Dayana Miguelina Mena Gil", age: "28", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSOHBYH5MlqZjhBsNIZTm66VE7nCfsyuat9wUEi8wIgzlbVJ2E&s", email: "babreu@gmail.com", phone: "829-345-2288"},
-                        {name: "Jaqueline Inmaculada Ovalles Valentín", age: "25", image: "https://www.attractivepartners.co.uk/wp-content/uploads/2017/06/profile.jpg", email: "bjesus@gmail.com", phone: "809-455-3344"},
-                        {name: "Félix Blanco", age: "29", image: "https://www.evolutionsociety.org/userdata/news_picupload/pic_sid189-0-norm.jpg", email: "dgil@gmail.com", phone: "809-232-3344"}
+                    _patients = [
+                        {id:"1", name: "Bartolo Antonio de Jesús Valerio", value:"1", label: "Bartolo Antonio de Jesús Valerio", age: "34", image: "https://www.morpht.com/sites/morpht/files/styles/landscape/public/dalibor-matura_1.jpg", email: "bjesus@gmail.com", phone: "809-232-3344"},
+                        {id:"2", name: "Bernarda Abreu Santos", value:"2", label: "Bernarda Abreu Santos", age: "28", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSOHBYH5MlqZjhBsNIZTm66VE7nCfsyuat9wUEi8wIgzlbVJ2E&s", email: "babreu@gmail.com", phone: "829-345-2288"},
+                        {id:"3", name: "Damaris María Amparo", value:"3", label: "Damaris María Amparo", age: "25", image: "https://www.attractivepartners.co.uk/wp-content/uploads/2017/06/profile.jpg", email: "bjesus@gmail.com", phone: "809-455-3344"},
+                        {id:"4", name: "Danilo Miguel Gil Burgos", value:"4", label: "Danilo Miguel Gil Burgos", age: "29", image: "https://www.evolutionsociety.org/userdata/news_picupload/pic_sid189-0-norm.jpg", email: "dgil@gmail.com", phone: "809-232-3344"},
+                        {id:"5", name: "Erickson Miguel Moronta Santos", value:"5", label: "Erickson Miguel Moronta Santos", age: "34", image: "https://www.morpht.com/sites/morpht/files/styles/landscape/public/dalibor-matura_1.jpg", email: "bjesus@gmail.com", phone: "809-232-3344"},
+                        {id:"6", name: "Dayana Miguelina Mena Gil", value:"6", label: "Dayana Miguelina Mena Gil", age: "28", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSOHBYH5MlqZjhBsNIZTm66VE7nCfsyuat9wUEi8wIgzlbVJ2E&s", email: "babreu@gmail.com", phone: "829-345-2288"},
+                        {id:"7", name: "Jaqueline Inmaculada Ovalles Valentín", value:"7", label: "Jaqueline Inmaculada Ovalles Valentín", age: "25", image: "https://www.attractivepartners.co.uk/wp-content/uploads/2017/06/profile.jpg", email: "bjesus@gmail.com", phone: "809-455-3344"},
+                        {id:"8", name: "Félix Blanco", value:"8", label: "Félix Blanco", age: "29", image: "https://www.evolutionsociety.org/userdata/news_picupload/pic_sid189-0-norm.jpg", email: "dgil@gmail.com", phone: "809-232-3344"}
                     ];
                 }
                 
@@ -50,8 +55,8 @@ const useConsultations = () => {
             }
 
             if (!didCancel) {
-                setPatients(patients);
-                setPatient(patient);
+                setPatients(_patients);
+                setPatient(_patient);
                 setLoading(false);
             }
         };
@@ -63,7 +68,36 @@ const useConsultations = () => {
         };
     }, []);
 
-    return { patients, error, loading, setPatients, patient, setPatient };
+    const searchPatient = async (value) => {
+        if (value !== "") {
+            if (filterByValue(patients, value).length === 0) {
+                setAutoCompleteLoading(true);
+                var patientsApi = await API.graphql(graphqlOperation(listPatients, {filter: { name:{ contains: value } }}));
+                if (patientsApi.data.listPatients.items.length > 0) {
+                    setAutoCompleteLoading(false);
+                    setNewPatient(false)
+                }else{
+                    setAutoCompleteLoading(false);
+                    setNewPatient(true)
+                    setNewPatientName(value)
+                }
+            }    
+        }
+    }
+
+    const beginConsultation = (_patient, _new) => {
+        console.log("entro");
+        
+        if (_new) {
+            if (newPatient) {
+                window.location.href = "/consultations/process/null/"+newPatientName;   
+            }
+        }else{
+            window.location.href = "/consultations/process/"+_patient;
+        }   
+    }
+
+    return { patients, error, loading, setPatients, patient, setPatient, beginConsultation, autoCompleteLoading, searchPatient, newPatientName, setNewPatientName};
 };
 
 export default useConsultations;
