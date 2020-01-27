@@ -8,7 +8,7 @@ import NewPatient from './newPatient'
 import useConsultationProcess from './useConsultationProcess';
 
 const ConsultationProcess = () => {
-  const { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate,
+  const { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, setCreateNewPatient,
           formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName } = useConsultationProcess();
 
   return (
@@ -20,8 +20,6 @@ const ConsultationProcess = () => {
           <MDBStep icon="stethoscope" stepName="Examen Medico" onClick={swapFormActive(3)}></MDBStep>
           <MDBStep icon="prescription-bottle-alt" stepName="Prescripciones y Estudios" onClick={swapFormActive(4)}></MDBStep>
         </MDBStepper>
-
-        <form role="form" action="" method="post">
           <MDBRow>
             {formActivePanel === 1 &&
               (<MDBCol md="12">
@@ -44,7 +42,7 @@ const ConsultationProcess = () => {
                   }
                   {createNewPatient &&
                     (
-                      <NewPatient/>
+                      <NewPatient setCreateNewPatient={setCreateNewPatient}/>
                     )
                   }
                 </MDBCol>
@@ -62,7 +60,7 @@ const ConsultationProcess = () => {
               </h5>
               <MDBRow>
                 <MDBCol>
-                  <MDBInput label="Cardiovasculares" type="checkbox" id="checkbox" autoFocus={calculateAutofocus} />
+                  <MDBInput label="Cardiovasculares" type="checkbox" id="checkbox" />
                   <MDBInput label="Pulmonares" type="checkbox" id="checkbox"/>
                   <MDBInput label="Renales" type="checkbox" id="checkbox"/>
                   <MDBInput label="Quirúrgicos" type="checkbox" id="checkbox"/>
@@ -103,10 +101,10 @@ const ConsultationProcess = () => {
             {formActivePanel == 3 &&
             (<MDBCol md="12">
               <h3 className="font-weight-bold pl-0 my-4"><strong>Exploracion Fisica</strong></h3>
-              <MDBInput label="First Name" className="mt-3" autoFocus={calculateAutofocus} />
+              <MDBInput label="First Name" className="mt-3" />
               <MDBInput label="Second Name" className="mt-3" />
               <MDBInput label="Surname" className="mt-3" />
-              <MDBInput label="I agreee to the terms and conditions" type="checkbox" id="checkbox" autoFocus={calculateAutofocus} />
+              <MDBInput label="I agreee to the terms and conditions" type="checkbox" id="checkbox"/>
               <MDBInput label="I want to receive newsletter" type="checkbox" id="checkbox2" />
               <br/>
               <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(2)}>previous</MDBBtn>
@@ -116,7 +114,7 @@ const ConsultationProcess = () => {
             {formActivePanel == 4 &&
             (<MDBCol md="12">
               <h3 className="font-weight-bold pl-0 my-4"><strong>Prescripciones y Estudios</strong></h3>
-              <MDBInput label="I agreee to the terms and conditions" type="checkbox" id="checkbox" autoFocus={calculateAutofocus} />
+              <MDBInput label="I agreee to the terms and conditions" type="checkbox" id="checkbox" />
               <MDBInput label="I want to receive newsletter" type="checkbox" id="checkbox2" />
               <MDBInput label="Second Name" className="mt-3" />
               <MDBInput label="Surname" className="mt-3" />
@@ -125,7 +123,6 @@ const ConsultationProcess = () => {
               <MDBBtn color="success" rounded className="float-right" onClick={handleSubmission}>submit</MDBBtn>
             </MDBCol>)}
           </MDBRow>
-        </form>
       </MDBContainer>
     );
 }

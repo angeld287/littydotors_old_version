@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { useHistory, useParams } from 'react-router-dom';
 
-import useNewPatient from './newPatient/useNewPatient'
-
-
 const useConsultationProcess = () => {
     const [ loading, setLoading ] = useState(true);
     const [ error, setError ] = useState(false);
@@ -14,25 +11,15 @@ const useConsultationProcess = () => {
     const [ formActivePanel, setFormActivePanel ] = useState(0);
     const [ selectedDate, setSelectedDate ] = useState(new Date());
 
-    const { createPatient } = useNewPatient();
-
-
     let { patient, newpatient } = useParams();
 
     const swapFormActive = (param) => (e) => {
         setFormActivePanelChanged(true);
-        if ((param - 1) === 1 && formActivePanel === 1) {
-            createPatient();
-        }
         setFormActivePanel(param);
     }
 
     const handleNextPrevClick = (param) => (e) => {
         setFormActivePanelChanged(true);
-        
-        if ((param - 1) === 1 && formActivePanel === 1) {
-            createPatient();
-        }
         setFormActivePanel(param);
     }
 
@@ -76,7 +63,7 @@ const useConsultationProcess = () => {
     }, []);
 
     return { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate,
-             formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName  };
+             formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName, setCreateNewPatient  };
 };
 
 export default useConsultationProcess;

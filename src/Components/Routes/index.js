@@ -15,6 +15,7 @@ import Error from '../Error'
 import IntroductionPage from '../IntroductionPage';
 import ConsultationProcess from '../Consultations/ConsultationProcess';
 import Consultations from '../Consultations/index';
+import NewPatient from '../Consultations/ConsultationProcess/newPatient';
 
 export const Routes = ({ childProps }) => (
   <Switch>
@@ -28,6 +29,7 @@ export const Routes = ({ childProps }) => (
     <Route exact path="/consultations" render={() => <Consultations childProps={childProps} />} />
     <Route exact path="/consultations/process/:patient" render={() => <ConsultationProcess childProps={childProps} />} />
     <Route exact path="/consultations/process/:patient/:newpatient" render={() => <ConsultationProcess childProps={childProps} />} />
+    <Route exact path="/consultations/patient/new" render={() => <NewPatient childProps={childProps} />} />
   </Switch>
 );
 

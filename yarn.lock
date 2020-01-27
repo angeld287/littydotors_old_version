@@ -9624,6 +9624,11 @@ react-google-maps@^9.4.5:
     scriptjs "^2.5.8"
     warning "^3.0.0"
 
+react-hook-form@3.28.15:
+  version "3.28.15"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-3.28.15.tgz#3402bd2ce9fdfc993adecec7f03c61f71091c7aa"
+  integrity sha512-JRwDNKXesgAj3f0IUUjODbcH3cQEr4FDLYVjjIHWr9D9DV/1TZofL2ZEgFdD/QtUa7zlu1V/4siL+YwbThnf5w==
+
 react-image-crop@^8.2.1:
   version "8.5.0"
   resolved "https://registry.yarnpkg.com/react-image-crop/-/react-image-crop-8.5.0.tgz#566539844c40ad73ed40339c938c3b4eb029c2ef"
@@ -11063,6 +11068,11 @@ svgo@^1.0.0, svgo@^1.2.2:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+sweetalert2@^9.7.0:
+  version "9.7.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.7.0.tgz#4a3c4c9e360169ebcb70c2d648cc47b8f3d6e314"
+  integrity sha512-oGGj9hzl/HFx5I33VQyuYCIr3O1HBpQWB10MGYgzbc/3YWKaViH26U1eqq1N+5wtNlviscRBu+4vhSC/237THw==
 
 symbol-observable@1.2.0, symbol-observable@^1.0.2, symbol-observable@^1.0.3, symbol-observable@^1.0.4, symbol-observable@^1.1.0:
   version "1.2.0"

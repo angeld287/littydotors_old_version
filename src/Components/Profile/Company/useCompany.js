@@ -42,7 +42,6 @@ const useCompany = () => {
                     secretary: companyApi.data.listConsultingRooms.items[0].secretary,
                 };
                 setCompany(company)
-                console.log(companyApi.data.listConsultingRooms.items[0].doctor.username);
                 setSubscriptionData(null);
                 
                 setLoading(false);

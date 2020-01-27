@@ -1,31 +1,104 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon,
+import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner,
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker } from "mdbreact";
 
-
-
 import useNewPatient from './useNewPatient';
+import moment from 'moment';
+import Swal from 'sweetalert2';
 
-const NewPatient = () => {
+const NewPatient = ({ setCreateNewPatient: setCreateNewPatient}) => {
 
-  const { setBirthdate, username, setUsername, name, setName, email, setEmail, phone, setPhone, weight, setWeight, height, setHeight } = useNewPatient();
+  const { register, setBirthdate, username, handleSubmit, formState, setUsername, name, setName, birthdate, newPatient,
+  email, setEmail, phone, setPhone, weight, setWeight, height, setHeight, errors, loading, setLoading } = useNewPatient();
+
+  const onSubmit = (input) => {
+        var date = moment(new Date()).format('YYYY-MM-DD');
+        var bdate = moment(birthdate).format('YYYY-MM-DD');
+
+        if (bdate === date) {
+            Swal.fire('Campo Obligatorio', 'Favor completar el campo Fecha de Nacimiento', 'error');
+            return
+        }else{
+            setLoading(true);
+            input.birthdate = birthdate;
+            newPatient(input);
+            setCreateNewPatient(false);
+            setLoading(false);
+        }
+    }
 
   return (
-           <div className="grey-text">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="grey-text">
              <MDBRow>
                <MDBCol>
-                 <MDBInput onChange={e => {setUsername(e.target.value)}} value={username} label="Nombre de Usuario" icon="user" group type="text" validate error="wrong" success="right"></MDBInput>
-                 <MDBInput onChange={e => {setName(e.target.value)}} value={name} label="Nombre Completo" icon="" group type="text" validate error="wrong" success="right"></MDBInput>
-                 <MDBInput onChange={e => {setEmail(e.target.value)}} value={email} label="Email" icon="envelope" group type="text" validate error="wrong" success="right"></MDBInput>
-                 <MDBInput onChange={e => {setPhone(e.target.value)}} value={phone} label="Telefono" icon="phone" group type="text" validate error="wrong" success="right"></MDBInput>
+                <MDBRow>
+                  <MDBCol md="1" >
+                    <MDBIcon icon="user" size="2x"/>
+                  </MDBCol>
+                  <MDBCol md="11">
+                    <input name="username" placeholder="Nombre de Usuario" autoComplete="off" className="form-control" ref={register({ required: { message: 'Este campo es requerido', value: true } })}/>
+                    {errors.username && <span className="text-danger mb-2">{errors.username.message}</span>}
+                  </MDBCol>
+                </MDBRow>
+								<br />
+								<MDBRow>
+                  <MDBCol md="12">
+                    <input name="name" placeholder="Nombre Completo" autoComplete="off" className="form-control" ref={register({ required: { message: 'Este campo es requerido', value: true } })}/>
+                    {errors.name && <span className="text-danger mb-2">{errors.name.message}</span>}
+                  </MDBCol>
+                </MDBRow>
+								<br />
+                <MDBRow>
+                  <MDBCol md="1" >
+                    <MDBIcon icon="envelope" size="2x"/>
+                  </MDBCol>
+                  <MDBCol md="11">
+                    <input name="email" placeholder="Email" autoComplete="off" className="form-control" ref={register({ required: { message: 'Este campo es requerido', value: true } })}/>
+                    {errors.email && <span className="text-danger mb-2">{errors.email.message}</span>}
+                  </MDBCol>
+                </MDBRow>
+								<br />
+                <MDBRow>
+                  <MDBCol md="1" >
+                    <MDBIcon icon="phone" size="2x"/>
+                  </MDBCol>
+                  <MDBCol md="11">
+                    <input name="phone" placeholder="Telefono" autoComplete="off" className="form-control" ref={register({ required: { message: 'Este campo es requerido', value: true } })}/>
+                    {errors.phone && <span className="text-danger mb-2">{errors.phone.message}</span>}
+                  </MDBCol>
+                </MDBRow>
                </MDBCol>
                <MDBCol>
                  <MDBRow style={{marginLeft: 3}}><MDBIcon icon="birthday-cake" size="2x" style={{marginTop: 20}}/><MDBDatePicker style={{marginLeft: 20}} icon="birthday-cake" getValue={d => setBirthdate(d)} /></MDBRow>
-                 <MDBInput onChange={e => {setWeight(e.target.value)}} value={weight} label="Peso" icon="weight" group type="text" validate error="wrong" success="right"></MDBInput>
-                 <MDBInput onChange={e => {setHeight(e.target.value)}} value={height} label="Altura" icon="pencil-ruler" group type="text" validate error="wrong" success="right"></MDBInput>
+                 <br />
+                  <MDBRow>
+                    <MDBCol md="1" >
+                      <MDBIcon icon="weight" size="2x"/>
+                    </MDBCol>
+                    <MDBCol md="11">
+                      <input name="weight" placeholder="Peso" autoComplete="off" className="form-control" ref={register({ required: { message: 'Este campo es requerido', value: true } })}/>
+                      {errors.weight && <span className="text-danger mb-2">{errors.weight.message}</span>}
+                    </MDBCol>
+                  </MDBRow>
+								<br />
+                <MDBRow>
+                  <MDBCol md="1" >
+                    <MDBIcon icon="envelope" size="2x"/>
+                  </MDBCol>
+                  <MDBCol md="11">
+                    <input name="height" placeholder="Altura" autoComplete="off" className="form-control" ref={register({ required: { message: 'Este campo es requerido', value: true } })}/>
+                    {errors.height && <span className="text-danger mb-2">{errors.height.message}</span>}
+                  </MDBCol>
+                </MDBRow>
                </MDBCol>
              </MDBRow>
-           </div>
+            </div>
+            <div className="text-center py-4 mt-3">
+                  {loading && <MDBBtn className="btn btn-outline-blue" type="submit" disabled={formState.isSubmitting}>Agregar</MDBBtn>}
+                  {!loading && <MDBSpinner small />}
+						</div>
+          </form>
          );
 }
 
