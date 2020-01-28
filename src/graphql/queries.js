@@ -241,6 +241,7 @@ export const getConfirmation = /* GraphQL */ `
   query GetConfirmation($id: ID!) {
     getConfirmation(id: $id) {
       id
+      description
       owner
     }
   }
@@ -254,6 +255,7 @@ export const listConfirmations = /* GraphQL */ `
     listConfirmations(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        description
         owner
       }
       nextToken
@@ -334,6 +336,7 @@ export const getMedicalAppointment = /* GraphQL */ `
       }
       confirmation {
         id
+        description
         owner
       }
       secretary
@@ -406,6 +409,7 @@ export const listMedicalAppointments = /* GraphQL */ `
         }
         confirmation {
           id
+          description
           owner
         }
         secretary
@@ -443,7 +447,7 @@ export const getMedicalConsultation = /* GraphQL */ `
         image
         owner
       }
-      postConsultationsActivities {
+      postConsultationsActivity {
         id
         medicalPrescriptions {
           nextToken
@@ -520,7 +524,7 @@ export const listMedicalConsultations = /* GraphQL */ `
           image
           owner
         }
-        postConsultationsActivities {
+        postConsultationsActivity {
           id
           doctor
           secretary
@@ -571,7 +575,7 @@ export const getMedicalHistory = /* GraphQL */ `
       physicalExploration {
         id
         general_exploration
-        vitalsigns {
+        vitalsign {
           id
           blood_pressure
           Breathing
@@ -957,9 +961,9 @@ export const listNonPathologicalHistorys = /* GraphQL */ `
     }
   }
 `;
-export const getNonPathologicalActivities = /* GraphQL */ `
-  query GetNonPathologicalActivities($id: ID!) {
-    getNonPathologicalActivities(id: $id) {
+export const getNonPathologicalActivity = /* GraphQL */ `
+  query GetNonPathologicalActivity($id: ID!) {
+    getNonPathologicalActivity(id: $id) {
       id
       active
       frequency
@@ -968,13 +972,13 @@ export const getNonPathologicalActivities = /* GraphQL */ `
     }
   }
 `;
-export const listNonPathologicalActivitiess = /* GraphQL */ `
-  query ListNonPathologicalActivitiess(
-    $filter: ModelNonPathologicalActivitiesFilterInput
+export const listNonPathologicalActivitys = /* GraphQL */ `
+  query ListNonPathologicalActivitys(
+    $filter: ModelNonPathologicalActivityFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listNonPathologicalActivitiess(
+    listNonPathologicalActivitys(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -998,6 +1002,7 @@ export const getPathologicalHistory = /* GraphQL */ `
         items {
           id
           name
+          description
           owner
         }
         nextToken
@@ -1209,9 +1214,9 @@ export const listFamilyDetailss = /* GraphQL */ `
     }
   }
 `;
-export const getDiseases = /* GraphQL */ `
-  query GetDiseases($id: ID!) {
-    getDiseases(id: $id) {
+export const getDisease = /* GraphQL */ `
+  query GetDisease($id: ID!) {
+    getDisease(id: $id) {
       id
       name
       familyDetails {
@@ -1224,13 +1229,13 @@ export const getDiseases = /* GraphQL */ `
     }
   }
 `;
-export const listDiseasess = /* GraphQL */ `
-  query ListDiseasess(
-    $filter: ModelDiseasesFilterInput
+export const listDiseases = /* GraphQL */ `
+  query ListDiseases(
+    $filter: ModelDiseaseFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listDiseasess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listDiseases(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
@@ -1286,11 +1291,12 @@ export const listGynecoObstetricHistorys = /* GraphQL */ `
     }
   }
 `;
-export const getAllergies = /* GraphQL */ `
-  query GetAllergies($id: ID!) {
-    getAllergies(id: $id) {
+export const getAllergy = /* GraphQL */ `
+  query GetAllergy($id: ID!) {
+    getAllergy(id: $id) {
       id
       name
+      description
       patients {
         items {
           id
@@ -1301,16 +1307,17 @@ export const getAllergies = /* GraphQL */ `
     }
   }
 `;
-export const listAllergiess = /* GraphQL */ `
-  query ListAllergiess(
-    $filter: ModelAllergiesFilterInput
+export const listAllergys = /* GraphQL */ `
+  query ListAllergys(
+    $filter: ModelAllergyFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listAllergiess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listAllergys(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
+        description
         patients {
           nextToken
         }
@@ -1320,9 +1327,9 @@ export const listAllergiess = /* GraphQL */ `
     }
   }
 `;
-export const getMedicines = /* GraphQL */ `
-  query GetMedicines($id: ID!) {
-    getMedicines(id: $id) {
+export const getMedicine = /* GraphQL */ `
+  query GetMedicine($id: ID!) {
+    getMedicine(id: $id) {
       id
       name
       patients {
@@ -1344,13 +1351,13 @@ export const getMedicines = /* GraphQL */ `
     }
   }
 `;
-export const listMediciness = /* GraphQL */ `
-  query ListMediciness(
-    $filter: ModelMedicinesFilterInput
+export const listMedicines = /* GraphQL */ `
+  query ListMedicines(
+    $filter: ModelMedicineFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listMediciness(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listMedicines(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
@@ -1369,9 +1376,9 @@ export const listMediciness = /* GraphQL */ `
     }
   }
 `;
-export const getPostConsultationsActivities = /* GraphQL */ `
-  query GetPostConsultationsActivities($id: ID!) {
-    getPostConsultationsActivities(id: $id) {
+export const getPostConsultationsActivity = /* GraphQL */ `
+  query GetPostConsultationsActivity($id: ID!) {
+    getPostConsultationsActivity(id: $id) {
       id
       medicalPrescriptions {
         items {
@@ -1404,13 +1411,13 @@ export const getPostConsultationsActivities = /* GraphQL */ `
     }
   }
 `;
-export const listPostConsultationsActivitiess = /* GraphQL */ `
-  query ListPostConsultationsActivitiess(
-    $filter: ModelPostConsultationsActivitiesFilterInput
+export const listPostConsultationsActivitys = /* GraphQL */ `
+  query ListPostConsultationsActivitys(
+    $filter: ModelPostConsultationsActivityFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPostConsultationsActivitiess(
+    listPostConsultationsActivitys(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -1435,9 +1442,9 @@ export const listPostConsultationsActivitiess = /* GraphQL */ `
     }
   }
 `;
-export const getMedicalPrescriptions = /* GraphQL */ `
-  query GetMedicalPrescriptions($id: ID!) {
-    getMedicalPrescriptions(id: $id) {
+export const getMedicalPrescription = /* GraphQL */ `
+  query GetMedicalPrescription($id: ID!) {
+    getMedicalPrescription(id: $id) {
       id
       date
       frequency
@@ -1477,13 +1484,13 @@ export const getMedicalPrescriptions = /* GraphQL */ `
     }
   }
 `;
-export const listMedicalPrescriptionss = /* GraphQL */ `
-  query ListMedicalPrescriptionss(
-    $filter: ModelMedicalPrescriptionsFilterInput
+export const listMedicalPrescriptions = /* GraphQL */ `
+  query ListMedicalPrescriptions(
+    $filter: ModelMedicalPrescriptionFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listMedicalPrescriptionss(
+    listMedicalPrescriptions(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -1557,6 +1564,7 @@ export const getSurgicalIntervention = /* GraphQL */ `
     getSurgicalIntervention(id: $id) {
       id
       name
+      description
       surgicalIntervention {
         items {
           id
@@ -1583,6 +1591,7 @@ export const listSurgicalInterventions = /* GraphQL */ `
       items {
         id
         name
+        description
         surgicalIntervention {
           nextToken
         }
@@ -1597,7 +1606,7 @@ export const getPhysicalExploration = /* GraphQL */ `
     getPhysicalExploration(id: $id) {
       id
       general_exploration
-      vitalsigns {
+      vitalsign {
         id
         blood_pressure
         Breathing
@@ -1643,7 +1652,7 @@ export const listPhysicalExplorations = /* GraphQL */ `
       items {
         id
         general_exploration
-        vitalsigns {
+        vitalsign {
           id
           blood_pressure
           Breathing
@@ -1677,9 +1686,9 @@ export const listPhysicalExplorations = /* GraphQL */ `
     }
   }
 `;
-export const getVitalSigns = /* GraphQL */ `
-  query GetVitalSigns($id: ID!) {
-    getVitalSigns(id: $id) {
+export const getVitalSign = /* GraphQL */ `
+  query GetVitalSign($id: ID!) {
+    getVitalSign(id: $id) {
       id
       blood_pressure
       Breathing
@@ -1692,13 +1701,13 @@ export const getVitalSigns = /* GraphQL */ `
     }
   }
 `;
-export const listVitalSignss = /* GraphQL */ `
-  query ListVitalSignss(
-    $filter: ModelVitalSignsFilterInput
+export const listVitalSigns = /* GraphQL */ `
+  query ListVitalSigns(
+    $filter: ModelVitalSignFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listVitalSignss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listVitalSigns(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         blood_pressure

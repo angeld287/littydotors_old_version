@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "littydoctors976a7757_identitypool_976a7757",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "littyd976a7757",
-    "userPoolName": "littydoctors976a7757_userpool_976a7757",
+    "identityPoolName": "littydoctors0f1e523f_identitypool_0f1e523f",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "littyd0f1e523f",
+    "userPoolName": "littydoctors0f1e523f_userpool_0f1e523f",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "littyd976a7757_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "littyd0f1e523f_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "littydoctors976a7757",
+    "resourceName": "littydoctors0f1e523f",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [

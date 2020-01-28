@@ -180,7 +180,7 @@ type MedicalConsultation
     ]) {
     id: ID!
     doctor: Doctor @connection
-    #postConsultationsActivities: PostConsultationsActivities @connection
+    postConsultationsActivity: PostConsultationsActivity @connection
     medicalHistory: MedicalHistory @connection
     doctorname: String
     secretary: String
@@ -205,7 +205,6 @@ type MedicalHistory
     reason: String
     patient: Patient @connection
     physicalExploration: PhysicalExploration @connection
-    postConsultationsActivities: PostConsultationsActivities @connection
     doctor: String
     secretary: String
     patientname: String
@@ -270,14 +269,14 @@ type NonPathologicalHistory
         { allow: groups, groups: ["secretary"], operations: [read] }
     ]) {
     id: ID!
-    alcohol: NonPathologicalActivities @connection
-    smoking: NonPathologicalActivities @connection
-    drugs: NonPathologicalActivities @connection
-    immunizations: NonPathologicalActivities @connection
+    alcohol: NonPathologicalActivity @connection
+    smoking: NonPathologicalActivity @connection
+    drugs: NonPathologicalActivity @connection
+    immunizations: NonPathologicalActivity @connection
 }
 
 
-type NonPathologicalActivities 
+type NonPathologicalActivity
     @model 
     @auth(rules: [
         # Defaults to use the "owner" field.
@@ -335,7 +334,7 @@ type FamilyHistory
     
 }
 
-type FamilyDetails 
+type FamilyDetails
     @model 
     @auth(rules: [
         # Defaults to use the "owner" field.
@@ -357,10 +356,10 @@ type FamilyDetails
 type FamilyDetailsDiseases @model(queries: null) {
   id: ID!
   family: FamilyDetails @connection(name: "fdd")
-  diseases: Diseases @connection(name: "dfd")
+  diseases: Disease @connection(name: "dfd")
 }
 
-type Diseases
+type Disease
     @model 
     @auth(rules: [
         # Defaults to use the "owner" field.
@@ -400,7 +399,7 @@ type GynecoObstetricHistory
     contraceptive_method: String
 }
 
-type Allergies
+type Allergy
     @model
     @auth(rules: [
         # Defaults to use the "owner" field.
@@ -414,22 +413,23 @@ type Allergies
     ]) {
     id: ID!
     name: String
+    description: String
     patients: [PatientAllergies] @connection(name: "ap")
 }
 
 type PatientAllergies @model(queries: null) {
   id: ID!
   pathologicalHistory: PathologicalHistory @connection(name: "pa")
-  allergies: Allergies @connection(name: "ap")
+  allergies: Allergy @connection(name: "ap")
 }
 
 type PatientMedications @model(queries: null) {
   id: ID!
   pathologicalHistory: PathologicalHistory @connection(name: "pm")
-  medications: Medicines @connection(name: "mp")
+  medications: Medicine @connection(name: "mp")
 }
 
-type Medicines
+type Medicine
     @model 
     @auth(rules: [
         # Defaults to use the "owner" field.
@@ -450,7 +450,7 @@ type Medicines
     mp: [MedicalPrescriptionsMedications] @connection(name: "mmp")
 }
 
-type PostConsultationsActivities
+type PostConsultationsActivity
     @model 
     @auth(rules: [
         # Defaults to use the "owner" field.
@@ -472,7 +472,7 @@ type PostConsultationsActivities
     patient: String
 }
 
-type MedicalPrescriptions
+type MedicalPrescription
     @model 
     @auth(rules: [
         # Defaults to use the "owner" field.
@@ -500,21 +500,21 @@ type PostConsultActMedicalPres @model(queries: null) {
   id: ID!
   state: State # se colocara un estado que espesificara si la receta se completo o no
   date: String
-  pcActivities: PostConsultationsActivities @connection(name: "pcamp")
-  medicalPrescriptions: MedicalPrescriptions @connection(name: "mppca")
+  pcActivities: PostConsultationsActivity @connection(name: "pcamp")
+  medicalPrescriptions: MedicalPrescription @connection(name: "mppca")
 }
 
 type MedicalPrescriptionsMedications @model(queries: null) {
   id: ID!
-  medicalPrescriptions: MedicalPrescriptions @connection(name: "mpm")
-  medications: Medicines @connection(name: "mmp")
+  medicalPrescriptions: MedicalPrescription @connection(name: "mpm")
+  medications: Medicine @connection(name: "mmp")
 }
 
 type PostConsultActMedAnalysis @model(queries: null) {
   id: ID!
   state: State # se colocara un estado que espesificara si el analisis se realizo o no
   date: String
-  pcActivities: PostConsultationsActivities @connection(name: "pcama")
+  pcActivities: PostConsultationsActivity @connection(name: "pcama")
   medicalAnalysis: MedicalAnalysis @connection(name: "mapca")
 }
 
@@ -540,7 +540,7 @@ type PostConsultActSurgicalInt @model(queries: null) {
   id: ID!
   state: State # se colocara un estado que espesificara si la sirugia se realizo o no
   date: String
-  pcActivities: PostConsultationsActivities @connection(name: "pcasi")
+  pcActivities: PostConsultationsActivity @connection(name: "pcasi")
   surgicalIntervention: SurgicalIntervention @connection(name: "sipca")
 }
 
@@ -557,6 +557,8 @@ type SurgicalIntervention
         { allow: groups, groups: ["secretary"], operations: [read] }
     ]) {
     id: ID!
+    name: String
+    description: String
     surgicalIntervention: [PostConsultActSurgicalInt] @connection(name: "sipca")
 }
 
@@ -575,14 +577,14 @@ type PhysicalExploration
     ]) {
     id: ID!
     general_exploration: String
-    vitalsigns: VitalSigns @connection
+    vitalsign: VitalSign @connection
     regionalExploration: RegionalExploration @connection
     doctor: String
     secretary: String
     patient: String
 }
 
-type VitalSigns
+type VitalSign
     @model
     @auth(rules: [
         # Defaults to use the "owner" field.

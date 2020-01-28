@@ -821,7 +821,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getNonPathologicalActivities",
+          "name" : "getNonPathologicalActivity",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -839,20 +839,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "NonPathologicalActivities",
+            "name" : "NonPathologicalActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listNonPathologicalActivitiess",
+          "name" : "listNonPathologicalActivitys",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelNonPathologicalActivitiesFilterInput",
+              "name" : "ModelNonPathologicalActivityFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -877,7 +877,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelNonPathologicalActivitiesConnection",
+            "name" : "ModelNonPathologicalActivityConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1069,7 +1069,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getDiseases",
+          "name" : "getDisease",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -1087,20 +1087,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Diseases",
+            "name" : "Disease",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listDiseasess",
+          "name" : "listDiseases",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelDiseasesFilterInput",
+              "name" : "ModelDiseaseFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -1125,7 +1125,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelDiseasesConnection",
+            "name" : "ModelDiseaseConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1193,7 +1193,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getAllergies",
+          "name" : "getAllergy",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -1211,20 +1211,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Allergies",
+            "name" : "Allergy",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listAllergiess",
+          "name" : "listAllergys",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelAllergiesFilterInput",
+              "name" : "ModelAllergyFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -1249,13 +1249,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelAllergiesConnection",
+            "name" : "ModelAllergyConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getMedicines",
+          "name" : "getMedicine",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -1273,20 +1273,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Medicines",
+            "name" : "Medicine",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listMediciness",
+          "name" : "listMedicines",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicinesFilterInput",
+              "name" : "ModelMedicineFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -1311,13 +1311,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelMedicinesConnection",
+            "name" : "ModelMedicineConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getPostConsultationsActivities",
+          "name" : "getPostConsultationsActivity",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -1335,20 +1335,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "PostConsultationsActivities",
+            "name" : "PostConsultationsActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listPostConsultationsActivitiess",
+          "name" : "listPostConsultationsActivitys",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelPostConsultationsActivitiesFilterInput",
+              "name" : "ModelPostConsultationsActivityFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -1373,13 +1373,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelPostConsultationsActivitiesConnection",
+            "name" : "ModelPostConsultationsActivityConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getMedicalPrescriptions",
+          "name" : "getMedicalPrescription",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -1397,20 +1397,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MedicalPrescriptions",
+            "name" : "MedicalPrescription",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listMedicalPrescriptionss",
+          "name" : "listMedicalPrescriptions",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsFilterInput",
+              "name" : "ModelMedicalPrescriptionFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -1435,7 +1435,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelMedicalPrescriptionsConnection",
+            "name" : "ModelMedicalPrescriptionConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1627,7 +1627,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getVitalSigns",
+          "name" : "getVitalSign",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -1645,20 +1645,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "VitalSigns",
+            "name" : "VitalSign",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listVitalSignss",
+          "name" : "listVitalSigns",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelVitalSignsFilterInput",
+              "name" : "ModelVitalSignFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -1683,7 +1683,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelVitalSignsConnection",
+            "name" : "ModelVitalSignConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -3397,6 +3397,17 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
+          "name" : "description",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
           "name" : "owner",
           "description" : null,
           "args" : [ ],
@@ -3458,6 +3469,15 @@
           "type" : {
             "kind" : "INPUT_OBJECT",
             "name" : "ModelIDInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "description",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -4081,7 +4101,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "NonPathologicalActivities",
+            "name" : "NonPathologicalActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4092,7 +4112,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "NonPathologicalActivities",
+            "name" : "NonPathologicalActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4103,7 +4123,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "NonPathologicalActivities",
+            "name" : "NonPathologicalActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4114,7 +4134,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "NonPathologicalActivities",
+            "name" : "NonPathologicalActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4137,7 +4157,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "NonPathologicalActivities",
+        "name" : "NonPathologicalActivity",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -4445,6 +4465,17 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
+          "name" : "description",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
           "name" : "surgicalIntervention",
           "description" : null,
           "args" : [ {
@@ -4589,7 +4620,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "PostConsultationsActivities",
+            "name" : "PostConsultationsActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4671,7 +4702,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "PostConsultationsActivities",
+        "name" : "PostConsultationsActivity",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -4960,7 +4991,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "PostConsultationsActivities",
+            "name" : "PostConsultationsActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4971,7 +5002,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MedicalPrescriptions",
+            "name" : "MedicalPrescription",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4983,7 +5014,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "MedicalPrescriptions",
+        "name" : "MedicalPrescription",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -5200,7 +5231,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MedicalPrescriptions",
+            "name" : "MedicalPrescription",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -5211,7 +5242,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Medicines",
+            "name" : "Medicine",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -5223,7 +5254,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "Medicines",
+        "name" : "Medicine",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -5465,7 +5496,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Medicines",
+            "name" : "Medicine",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -5780,7 +5811,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "PostConsultationsActivities",
+            "name" : "PostConsultationsActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -6071,6 +6102,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "description",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "and",
           "description" : null,
           "type" : {
@@ -6180,7 +6220,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Allergies",
+            "name" : "Allergy",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -6192,7 +6232,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "Allergies",
+        "name" : "Allergy",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -6211,6 +6251,17 @@
           "deprecationReason" : null
         }, {
           "name" : "name",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "description",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -6623,7 +6674,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Diseases",
+            "name" : "Disease",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -6635,7 +6686,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "Diseases",
+        "name" : "Disease",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -7268,12 +7319,12 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "postConsultationsActivities",
+          "name" : "postConsultationsActivity",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "PostConsultationsActivities",
+            "name" : "PostConsultationsActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -7481,12 +7532,12 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "vitalsigns",
+          "name" : "vitalsign",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "VitalSigns",
+            "name" : "VitalSign",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -7553,7 +7604,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "VitalSigns",
+        "name" : "VitalSign",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -8412,7 +8463,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelNonPathologicalActivitiesConnection",
+        "name" : "ModelNonPathologicalActivityConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -8423,7 +8474,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "NonPathologicalActivities",
+              "name" : "NonPathologicalActivity",
               "ofType" : null
             }
           },
@@ -8447,7 +8498,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelNonPathologicalActivitiesFilterInput",
+        "name" : "ModelNonPathologicalActivityFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -8494,7 +8545,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelNonPathologicalActivitiesFilterInput",
+              "name" : "ModelNonPathologicalActivityFilterInput",
               "ofType" : null
             }
           },
@@ -8507,7 +8558,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelNonPathologicalActivitiesFilterInput",
+              "name" : "ModelNonPathologicalActivityFilterInput",
               "ofType" : null
             }
           },
@@ -8517,7 +8568,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelNonPathologicalActivitiesFilterInput",
+            "name" : "ModelNonPathologicalActivityFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -8818,7 +8869,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelDiseasesConnection",
+        "name" : "ModelDiseaseConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -8829,7 +8880,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "Diseases",
+              "name" : "Disease",
               "ofType" : null
             }
           },
@@ -8853,7 +8904,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelDiseasesFilterInput",
+        "name" : "ModelDiseaseFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -8882,7 +8933,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelDiseasesFilterInput",
+              "name" : "ModelDiseaseFilterInput",
               "ofType" : null
             }
           },
@@ -8895,7 +8946,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelDiseasesFilterInput",
+              "name" : "ModelDiseaseFilterInput",
               "ofType" : null
             }
           },
@@ -8905,7 +8956,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelDiseasesFilterInput",
+            "name" : "ModelDiseaseFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -9075,7 +9126,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelAllergiesConnection",
+        "name" : "ModelAllergyConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -9086,7 +9137,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "Allergies",
+              "name" : "Allergy",
               "ofType" : null
             }
           },
@@ -9110,7 +9161,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelAllergiesFilterInput",
+        "name" : "ModelAllergyFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -9132,6 +9183,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "description",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "and",
           "description" : null,
           "type" : {
@@ -9139,7 +9199,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelAllergiesFilterInput",
+              "name" : "ModelAllergyFilterInput",
               "ofType" : null
             }
           },
@@ -9152,7 +9212,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelAllergiesFilterInput",
+              "name" : "ModelAllergyFilterInput",
               "ofType" : null
             }
           },
@@ -9162,7 +9222,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelAllergiesFilterInput",
+            "name" : "ModelAllergyFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -9172,7 +9232,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelMedicinesConnection",
+        "name" : "ModelMedicineConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -9183,7 +9243,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "Medicines",
+              "name" : "Medicine",
               "ofType" : null
             }
           },
@@ -9207,7 +9267,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelMedicinesFilterInput",
+        "name" : "ModelMedicineFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -9263,7 +9323,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicinesFilterInput",
+              "name" : "ModelMedicineFilterInput",
               "ofType" : null
             }
           },
@@ -9276,7 +9336,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicinesFilterInput",
+              "name" : "ModelMedicineFilterInput",
               "ofType" : null
             }
           },
@@ -9286,7 +9346,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelMedicinesFilterInput",
+            "name" : "ModelMedicineFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -9296,7 +9356,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelPostConsultationsActivitiesConnection",
+        "name" : "ModelPostConsultationsActivityConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -9307,7 +9367,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "PostConsultationsActivities",
+              "name" : "PostConsultationsActivity",
               "ofType" : null
             }
           },
@@ -9331,7 +9391,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelPostConsultationsActivitiesFilterInput",
+        "name" : "ModelPostConsultationsActivityFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -9378,7 +9438,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelPostConsultationsActivitiesFilterInput",
+              "name" : "ModelPostConsultationsActivityFilterInput",
               "ofType" : null
             }
           },
@@ -9391,7 +9451,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelPostConsultationsActivitiesFilterInput",
+              "name" : "ModelPostConsultationsActivityFilterInput",
               "ofType" : null
             }
           },
@@ -9401,7 +9461,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelPostConsultationsActivitiesFilterInput",
+            "name" : "ModelPostConsultationsActivityFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -9411,7 +9471,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelMedicalPrescriptionsConnection",
+        "name" : "ModelMedicalPrescriptionConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -9422,7 +9482,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "MedicalPrescriptions",
+              "name" : "MedicalPrescription",
               "ofType" : null
             }
           },
@@ -9446,7 +9506,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelMedicalPrescriptionsFilterInput",
+        "name" : "ModelMedicalPrescriptionFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -9520,7 +9580,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsFilterInput",
+              "name" : "ModelMedicalPrescriptionFilterInput",
               "ofType" : null
             }
           },
@@ -9533,7 +9593,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsFilterInput",
+              "name" : "ModelMedicalPrescriptionFilterInput",
               "ofType" : null
             }
           },
@@ -9543,7 +9603,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelMedicalPrescriptionsFilterInput",
+            "name" : "ModelMedicalPrescriptionFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -9783,7 +9843,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelVitalSignsConnection",
+        "name" : "ModelVitalSignConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -9794,7 +9854,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "VitalSigns",
+              "name" : "VitalSign",
               "ofType" : null
             }
           },
@@ -9818,7 +9878,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelVitalSignsFilterInput",
+        "name" : "ModelVitalSignFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -9901,7 +9961,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelVitalSignsFilterInput",
+              "name" : "ModelVitalSignFilterInput",
               "ofType" : null
             }
           },
@@ -9914,7 +9974,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelVitalSignsFilterInput",
+              "name" : "ModelVitalSignFilterInput",
               "ofType" : null
             }
           },
@@ -9924,7 +9984,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelVitalSignsFilterInput",
+            "name" : "ModelVitalSignFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -11402,7 +11462,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createNonPathologicalActivities",
+          "name" : "createNonPathologicalActivity",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -11412,7 +11472,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateNonPathologicalActivitiesInput",
+                "name" : "CreateNonPathologicalActivityInput",
                 "ofType" : null
               }
             },
@@ -11422,20 +11482,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelNonPathologicalActivitiesConditionInput",
+              "name" : "ModelNonPathologicalActivityConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "NonPathologicalActivities",
+            "name" : "NonPathologicalActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateNonPathologicalActivities",
+          "name" : "updateNonPathologicalActivity",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -11445,7 +11505,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateNonPathologicalActivitiesInput",
+                "name" : "UpdateNonPathologicalActivityInput",
                 "ofType" : null
               }
             },
@@ -11455,20 +11515,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelNonPathologicalActivitiesConditionInput",
+              "name" : "ModelNonPathologicalActivityConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "NonPathologicalActivities",
+            "name" : "NonPathologicalActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteNonPathologicalActivities",
+          "name" : "deleteNonPathologicalActivity",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -11478,7 +11538,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteNonPathologicalActivitiesInput",
+                "name" : "DeleteNonPathologicalActivityInput",
                 "ofType" : null
               }
             },
@@ -11488,14 +11548,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelNonPathologicalActivitiesConditionInput",
+              "name" : "ModelNonPathologicalActivityConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "NonPathologicalActivities",
+            "name" : "NonPathologicalActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -11897,7 +11957,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createDiseases",
+          "name" : "createDisease",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -11907,7 +11967,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateDiseasesInput",
+                "name" : "CreateDiseaseInput",
                 "ofType" : null
               }
             },
@@ -11917,20 +11977,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelDiseasesConditionInput",
+              "name" : "ModelDiseaseConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Diseases",
+            "name" : "Disease",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateDiseases",
+          "name" : "updateDisease",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -11940,7 +12000,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateDiseasesInput",
+                "name" : "UpdateDiseaseInput",
                 "ofType" : null
               }
             },
@@ -11950,20 +12010,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelDiseasesConditionInput",
+              "name" : "ModelDiseaseConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Diseases",
+            "name" : "Disease",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteDiseases",
+          "name" : "deleteDisease",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -11973,7 +12033,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteDiseasesInput",
+                "name" : "DeleteDiseaseInput",
                 "ofType" : null
               }
             },
@@ -11983,14 +12043,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelDiseasesConditionInput",
+              "name" : "ModelDiseaseConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Diseases",
+            "name" : "Disease",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -12095,7 +12155,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createAllergies",
+          "name" : "createAllergy",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -12105,7 +12165,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateAllergiesInput",
+                "name" : "CreateAllergyInput",
                 "ofType" : null
               }
             },
@@ -12115,20 +12175,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelAllergiesConditionInput",
+              "name" : "ModelAllergyConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Allergies",
+            "name" : "Allergy",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateAllergies",
+          "name" : "updateAllergy",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -12138,7 +12198,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateAllergiesInput",
+                "name" : "UpdateAllergyInput",
                 "ofType" : null
               }
             },
@@ -12148,20 +12208,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelAllergiesConditionInput",
+              "name" : "ModelAllergyConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Allergies",
+            "name" : "Allergy",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteAllergies",
+          "name" : "deleteAllergy",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -12171,7 +12231,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteAllergiesInput",
+                "name" : "DeleteAllergyInput",
                 "ofType" : null
               }
             },
@@ -12181,14 +12241,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelAllergiesConditionInput",
+              "name" : "ModelAllergyConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Allergies",
+            "name" : "Allergy",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -12392,7 +12452,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createMedicines",
+          "name" : "createMedicine",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -12402,7 +12462,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateMedicinesInput",
+                "name" : "CreateMedicineInput",
                 "ofType" : null
               }
             },
@@ -12412,20 +12472,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicinesConditionInput",
+              "name" : "ModelMedicineConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Medicines",
+            "name" : "Medicine",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateMedicines",
+          "name" : "updateMedicine",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -12435,7 +12495,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateMedicinesInput",
+                "name" : "UpdateMedicineInput",
                 "ofType" : null
               }
             },
@@ -12445,20 +12505,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicinesConditionInput",
+              "name" : "ModelMedicineConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Medicines",
+            "name" : "Medicine",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteMedicines",
+          "name" : "deleteMedicine",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -12468,7 +12528,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteMedicinesInput",
+                "name" : "DeleteMedicineInput",
                 "ofType" : null
               }
             },
@@ -12478,20 +12538,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicinesConditionInput",
+              "name" : "ModelMedicineConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Medicines",
+            "name" : "Medicine",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createPostConsultationsActivities",
+          "name" : "createPostConsultationsActivity",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -12501,7 +12561,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreatePostConsultationsActivitiesInput",
+                "name" : "CreatePostConsultationsActivityInput",
                 "ofType" : null
               }
             },
@@ -12511,20 +12571,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelPostConsultationsActivitiesConditionInput",
+              "name" : "ModelPostConsultationsActivityConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "PostConsultationsActivities",
+            "name" : "PostConsultationsActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updatePostConsultationsActivities",
+          "name" : "updatePostConsultationsActivity",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -12534,7 +12594,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdatePostConsultationsActivitiesInput",
+                "name" : "UpdatePostConsultationsActivityInput",
                 "ofType" : null
               }
             },
@@ -12544,20 +12604,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelPostConsultationsActivitiesConditionInput",
+              "name" : "ModelPostConsultationsActivityConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "PostConsultationsActivities",
+            "name" : "PostConsultationsActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deletePostConsultationsActivities",
+          "name" : "deletePostConsultationsActivity",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -12567,7 +12627,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeletePostConsultationsActivitiesInput",
+                "name" : "DeletePostConsultationsActivityInput",
                 "ofType" : null
               }
             },
@@ -12577,20 +12637,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelPostConsultationsActivitiesConditionInput",
+              "name" : "ModelPostConsultationsActivityConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "PostConsultationsActivities",
+            "name" : "PostConsultationsActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createMedicalPrescriptions",
+          "name" : "createMedicalPrescription",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -12600,7 +12660,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateMedicalPrescriptionsInput",
+                "name" : "CreateMedicalPrescriptionInput",
                 "ofType" : null
               }
             },
@@ -12610,20 +12670,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsConditionInput",
+              "name" : "ModelMedicalPrescriptionConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MedicalPrescriptions",
+            "name" : "MedicalPrescription",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateMedicalPrescriptions",
+          "name" : "updateMedicalPrescription",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -12633,7 +12693,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateMedicalPrescriptionsInput",
+                "name" : "UpdateMedicalPrescriptionInput",
                 "ofType" : null
               }
             },
@@ -12643,20 +12703,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsConditionInput",
+              "name" : "ModelMedicalPrescriptionConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MedicalPrescriptions",
+            "name" : "MedicalPrescription",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteMedicalPrescriptions",
+          "name" : "deleteMedicalPrescription",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -12666,7 +12726,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteMedicalPrescriptionsInput",
+                "name" : "DeleteMedicalPrescriptionInput",
                 "ofType" : null
               }
             },
@@ -12676,14 +12736,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsConditionInput",
+              "name" : "ModelMedicalPrescriptionConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MedicalPrescriptions",
+            "name" : "MedicalPrescription",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -13382,7 +13442,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createVitalSigns",
+          "name" : "createVitalSign",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -13392,7 +13452,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateVitalSignsInput",
+                "name" : "CreateVitalSignInput",
                 "ofType" : null
               }
             },
@@ -13402,20 +13462,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelVitalSignsConditionInput",
+              "name" : "ModelVitalSignConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "VitalSigns",
+            "name" : "VitalSign",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateVitalSigns",
+          "name" : "updateVitalSign",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -13425,7 +13485,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateVitalSignsInput",
+                "name" : "UpdateVitalSignInput",
                 "ofType" : null
               }
             },
@@ -13435,20 +13495,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelVitalSignsConditionInput",
+              "name" : "ModelVitalSignConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "VitalSigns",
+            "name" : "VitalSign",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteVitalSigns",
+          "name" : "deleteVitalSign",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -13458,7 +13518,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteVitalSignsInput",
+                "name" : "DeleteVitalSignInput",
                 "ofType" : null
               }
             },
@@ -13468,14 +13528,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelVitalSignsConditionInput",
+              "name" : "ModelVitalSignConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "VitalSigns",
+            "name" : "VitalSign",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -14799,6 +14859,15 @@
             "ofType" : null
           },
           "defaultValue" : null
+        }, {
+          "name" : "description",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
         } ],
         "interfaces" : null,
         "enumValues" : null,
@@ -14809,6 +14878,15 @@
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
+          "name" : "description",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "and",
           "description" : null,
           "type" : {
@@ -14863,6 +14941,15 @@
               "name" : "ID",
               "ofType" : null
             }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "description",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
           },
           "defaultValue" : null
         } ],
@@ -15445,7 +15532,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "medicalConsultationPostConsultationsActivitiesId",
+          "name" : "medicalConsultationPostConsultationsActivityId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -15583,7 +15670,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "medicalConsultationPostConsultationsActivitiesId",
+          "name" : "medicalConsultationPostConsultationsActivityId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -16597,7 +16684,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateNonPathologicalActivitiesInput",
+        "name" : "CreateNonPathologicalActivityInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -16642,7 +16729,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelNonPathologicalActivitiesConditionInput",
+        "name" : "ModelNonPathologicalActivityConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -16680,7 +16767,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelNonPathologicalActivitiesConditionInput",
+              "name" : "ModelNonPathologicalActivityConditionInput",
               "ofType" : null
             }
           },
@@ -16693,7 +16780,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelNonPathologicalActivitiesConditionInput",
+              "name" : "ModelNonPathologicalActivityConditionInput",
               "ofType" : null
             }
           },
@@ -16703,7 +16790,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelNonPathologicalActivitiesConditionInput",
+            "name" : "ModelNonPathologicalActivityConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -16713,7 +16800,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateNonPathologicalActivitiesInput",
+        "name" : "UpdateNonPathologicalActivityInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -16762,7 +16849,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteNonPathologicalActivitiesInput",
+        "name" : "DeleteNonPathologicalActivityInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -17413,7 +17500,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateDiseasesInput",
+        "name" : "CreateDiseaseInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -17440,7 +17527,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelDiseasesConditionInput",
+        "name" : "ModelDiseaseConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -17460,7 +17547,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelDiseasesConditionInput",
+              "name" : "ModelDiseaseConditionInput",
               "ofType" : null
             }
           },
@@ -17473,7 +17560,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelDiseasesConditionInput",
+              "name" : "ModelDiseaseConditionInput",
               "ofType" : null
             }
           },
@@ -17483,7 +17570,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelDiseasesConditionInput",
+            "name" : "ModelDiseaseConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -17493,7 +17580,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateDiseasesInput",
+        "name" : "UpdateDiseaseInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -17524,7 +17611,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteDiseasesInput",
+        "name" : "DeleteDiseaseInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -17860,7 +17947,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateAllergiesInput",
+        "name" : "CreateAllergyInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -17881,17 +17968,35 @@
             "ofType" : null
           },
           "defaultValue" : null
+        }, {
+          "name" : "description",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
         } ],
         "interfaces" : null,
         "enumValues" : null,
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelAllergiesConditionInput",
+        "name" : "ModelAllergyConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
           "name" : "name",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "description",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -17907,7 +18012,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelAllergiesConditionInput",
+              "name" : "ModelAllergyConditionInput",
               "ofType" : null
             }
           },
@@ -17920,7 +18025,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelAllergiesConditionInput",
+              "name" : "ModelAllergyConditionInput",
               "ofType" : null
             }
           },
@@ -17930,7 +18035,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelAllergiesConditionInput",
+            "name" : "ModelAllergyConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -17940,7 +18045,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateAllergiesInput",
+        "name" : "UpdateAllergyInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -17965,13 +18070,22 @@
             "ofType" : null
           },
           "defaultValue" : null
+        }, {
+          "name" : "description",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
         } ],
         "interfaces" : null,
         "enumValues" : null,
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteAllergiesInput",
+        "name" : "DeleteAllergyInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -18265,7 +18379,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateMedicinesInput",
+        "name" : "CreateMedicineInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -18319,7 +18433,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelMedicinesConditionInput",
+        "name" : "ModelMedicineConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -18366,7 +18480,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicinesConditionInput",
+              "name" : "ModelMedicineConditionInput",
               "ofType" : null
             }
           },
@@ -18379,7 +18493,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicinesConditionInput",
+              "name" : "ModelMedicineConditionInput",
               "ofType" : null
             }
           },
@@ -18389,7 +18503,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelMedicinesConditionInput",
+            "name" : "ModelMedicineConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -18399,7 +18513,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateMedicinesInput",
+        "name" : "UpdateMedicineInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -18457,7 +18571,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteMedicinesInput",
+        "name" : "DeleteMedicineInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -18475,7 +18589,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreatePostConsultationsActivitiesInput",
+        "name" : "CreatePostConsultationsActivityInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -18520,7 +18634,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelPostConsultationsActivitiesConditionInput",
+        "name" : "ModelPostConsultationsActivityConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -18531,7 +18645,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelPostConsultationsActivitiesConditionInput",
+              "name" : "ModelPostConsultationsActivityConditionInput",
               "ofType" : null
             }
           },
@@ -18544,7 +18658,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelPostConsultationsActivitiesConditionInput",
+              "name" : "ModelPostConsultationsActivityConditionInput",
               "ofType" : null
             }
           },
@@ -18554,7 +18668,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelPostConsultationsActivitiesConditionInput",
+            "name" : "ModelPostConsultationsActivityConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -18564,7 +18678,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdatePostConsultationsActivitiesInput",
+        "name" : "UpdatePostConsultationsActivityInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -18613,7 +18727,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeletePostConsultationsActivitiesInput",
+        "name" : "DeletePostConsultationsActivityInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -18631,7 +18745,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateMedicalPrescriptionsInput",
+        "name" : "CreateMedicalPrescriptionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -18698,7 +18812,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "medicalPrescriptionsPcaId",
+          "name" : "medicalPrescriptionPcaId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -18712,7 +18826,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelMedicalPrescriptionsConditionInput",
+        "name" : "ModelMedicalPrescriptionConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -18750,7 +18864,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsConditionInput",
+              "name" : "ModelMedicalPrescriptionConditionInput",
               "ofType" : null
             }
           },
@@ -18763,7 +18877,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsConditionInput",
+              "name" : "ModelMedicalPrescriptionConditionInput",
               "ofType" : null
             }
           },
@@ -18773,7 +18887,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelMedicalPrescriptionsConditionInput",
+            "name" : "ModelMedicalPrescriptionConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -18783,7 +18897,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateMedicalPrescriptionsInput",
+        "name" : "UpdateMedicalPrescriptionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -18854,7 +18968,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "medicalPrescriptionsPcaId",
+          "name" : "medicalPrescriptionPcaId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -18868,7 +18982,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteMedicalPrescriptionsInput",
+        "name" : "DeleteMedicalPrescriptionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -19778,6 +19892,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "description",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "pathologicalHistorySurgicalInterventionsId",
           "description" : null,
           "type" : {
@@ -19797,6 +19920,15 @@
         "fields" : null,
         "inputFields" : [ {
           "name" : "name",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "description",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -19863,6 +19995,15 @@
           "defaultValue" : null
         }, {
           "name" : "name",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "description",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -19952,7 +20093,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "physicalExplorationVitalsignsId",
+          "name" : "physicalExplorationVitalsignId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -20081,7 +20222,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "physicalExplorationVitalsignsId",
+          "name" : "physicalExplorationVitalsignId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -20122,7 +20263,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateVitalSignsInput",
+        "name" : "CreateVitalSignInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -20203,7 +20344,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelVitalSignsConditionInput",
+        "name" : "ModelVitalSignConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -20250,7 +20391,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelVitalSignsConditionInput",
+              "name" : "ModelVitalSignConditionInput",
               "ofType" : null
             }
           },
@@ -20263,7 +20404,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelVitalSignsConditionInput",
+              "name" : "ModelVitalSignConditionInput",
               "ofType" : null
             }
           },
@@ -20273,7 +20414,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelVitalSignsConditionInput",
+            "name" : "ModelVitalSignConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -20283,7 +20424,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateVitalSignsInput",
+        "name" : "UpdateVitalSignInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -20368,7 +20509,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteVitalSignsInput",
+        "name" : "DeleteVitalSignInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -21569,7 +21710,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateNonPathologicalActivities",
+          "name" : "onCreateNonPathologicalActivity",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -21583,13 +21724,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "NonPathologicalActivities",
+            "name" : "NonPathologicalActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateNonPathologicalActivities",
+          "name" : "onUpdateNonPathologicalActivity",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -21603,13 +21744,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "NonPathologicalActivities",
+            "name" : "NonPathologicalActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteNonPathologicalActivities",
+          "name" : "onDeleteNonPathologicalActivity",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -21623,7 +21764,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "NonPathologicalActivities",
+            "name" : "NonPathologicalActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -21842,7 +21983,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateDiseases",
+          "name" : "onCreateDisease",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -21856,13 +21997,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Diseases",
+            "name" : "Disease",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateDiseases",
+          "name" : "onUpdateDisease",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -21876,13 +22017,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Diseases",
+            "name" : "Disease",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteDiseases",
+          "name" : "onDeleteDisease",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -21896,7 +22037,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Diseases",
+            "name" : "Disease",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -21962,7 +22103,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateAllergies",
+          "name" : "onCreateAllergy",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -21976,13 +22117,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Allergies",
+            "name" : "Allergy",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateAllergies",
+          "name" : "onUpdateAllergy",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -21996,13 +22137,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Allergies",
+            "name" : "Allergy",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteAllergies",
+          "name" : "onDeleteAllergy",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22016,7 +22157,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Allergies",
+            "name" : "Allergy",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -22088,7 +22229,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateMedicines",
+          "name" : "onCreateMedicine",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22102,13 +22243,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Medicines",
+            "name" : "Medicine",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateMedicines",
+          "name" : "onUpdateMedicine",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22122,13 +22263,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Medicines",
+            "name" : "Medicine",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteMedicines",
+          "name" : "onDeleteMedicine",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22142,13 +22283,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Medicines",
+            "name" : "Medicine",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreatePostConsultationsActivities",
+          "name" : "onCreatePostConsultationsActivity",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22162,13 +22303,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "PostConsultationsActivities",
+            "name" : "PostConsultationsActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdatePostConsultationsActivities",
+          "name" : "onUpdatePostConsultationsActivity",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22191,13 +22332,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "PostConsultationsActivities",
+            "name" : "PostConsultationsActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeletePostConsultationsActivities",
+          "name" : "onDeletePostConsultationsActivity",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22211,13 +22352,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "PostConsultationsActivities",
+            "name" : "PostConsultationsActivity",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateMedicalPrescriptions",
+          "name" : "onCreateMedicalPrescription",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22231,13 +22372,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MedicalPrescriptions",
+            "name" : "MedicalPrescription",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateMedicalPrescriptions",
+          "name" : "onUpdateMedicalPrescription",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22260,13 +22401,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MedicalPrescriptions",
+            "name" : "MedicalPrescription",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteMedicalPrescriptions",
+          "name" : "onDeleteMedicalPrescription",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22280,7 +22421,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MedicalPrescriptions",
+            "name" : "MedicalPrescription",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -22607,7 +22748,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateVitalSigns",
+          "name" : "onCreateVitalSign",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22621,13 +22762,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "VitalSigns",
+            "name" : "VitalSign",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateVitalSigns",
+          "name" : "onUpdateVitalSign",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22650,13 +22791,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "VitalSigns",
+            "name" : "VitalSign",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteVitalSigns",
+          "name" : "onDeleteVitalSign",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -22670,7 +22811,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "VitalSigns",
+            "name" : "VitalSign",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -23636,27 +23777,6 @@
         "onFragment" : false,
         "onField" : true
       }, {
-        "name" : "aws_publish",
-        "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
-        "locations" : [ "FIELD_DEFINITION" ],
-        "args" : [ {
-          "name" : "subscriptions",
-          "description" : "List of subscriptions which will be published to when this mutation is called.",
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
         "name" : "aws_subscribe",
         "description" : "Tells the service which mutation triggers this subscription.",
         "locations" : [ "FIELD_DEFINITION" ],
@@ -23674,6 +23794,14 @@
           },
           "defaultValue" : null
         } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_api_key",
+        "description" : "Tells the service this field/object has access authorized by an API key.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false
@@ -23720,6 +23848,35 @@
         "onFragment" : false,
         "onField" : false
       }, {
+        "name" : "aws_publish",
+        "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
+        "locations" : [ "FIELD_DEFINITION" ],
+        "args" : [ {
+          "name" : "subscriptions",
+          "description" : "List of subscriptions which will be published to when this mutation is called.",
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_iam",
+        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
         "name" : "aws_oidc",
         "description" : "Tells the service this field/object has access authorized by an OIDC token.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
@@ -23741,22 +23898,6 @@
           },
           "defaultValue" : "\"No longer supported\""
         } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_api_key",
-        "description" : "Tells the service this field/object has access authorized by an API key.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_iam",
-        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false
