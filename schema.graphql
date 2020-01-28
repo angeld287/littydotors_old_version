@@ -119,6 +119,7 @@ type Confirmation
         { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
+    description: String
 }
 
 type MedicalAppointment
@@ -373,6 +374,7 @@ type Disease
     ]) {
     id: ID!
     name: String
+    description: String
     familyDetails: [FamilyDetailsDiseases] @connection(name: "dfd")
 }
 
