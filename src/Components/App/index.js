@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { MDBBox, MDBSpinner, MDBContainer } from "mdbreact";
+
 import {
   BrowserRouter as Router,
   Route
@@ -23,6 +25,7 @@ export default class App extends Component {
         error: false,
       },
       username: null,
+      loading: true
     };
 
     this._isMounted = false;
@@ -54,6 +57,7 @@ export default class App extends Component {
                 email: result.data.listConsultingRooms.items[0].doctor.email,
                 location: result.data.listConsultingRooms.items[0].location.name,
                 secretary: result.data.listConsultingRooms.items[0].secretary,
+                loading: false
                 //stripe_source_token: result.data.listConsultingRooms.items[0].stripe.source_token,
                 //stripe_plan_id: result.data.listConsultingRooms.items[0].stripe.plan_id,
                 //stripe_plan_name: result.data.listConsultingRooms.items[0].stripe.plan_name,
@@ -85,6 +89,7 @@ export default class App extends Component {
                 email: result.data.listConsultingRooms.items[0].doctor.email,
                 location: result.data.listConsultingRooms.items[0].location.name,
                 secretary: result.data.listConsultingRooms.items[0].secretary,
+                loading: false
             });
         }).catch( err => {
           this.setState({
@@ -126,9 +131,18 @@ export default class App extends Component {
 
 
     return (
-      <div className="App">
-        <HeaderLinks childProps={childProps}/>
-        <Routes childProps={childProps} />
+      <div> 
+          {!this.state.loading &&
+            <div className="App">
+              <HeaderLinks childProps={childProps}/>
+              <Routes childProps={childProps} />
+            </div>
+          }
+          {this.state.loading &&
+            <MDBBox display="flex" justifyContent="center" className="mt-5">
+              <MDBSpinner big/>
+            </MDBBox>
+          }
       </div>
     );
   }

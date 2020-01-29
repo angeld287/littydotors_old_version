@@ -77,13 +77,13 @@ const useConsultations = () => {
                 var patientsApi = await API.graphql(graphqlOperation(listPatients, {filter: { name:{ contains: value } }}));
                 if (patientsApi.data.listPatients.items.length > 0) {
                     setAutoCompleteLoading(false);
-                    setNewPatient(false)
+                    setNewPatient(false);
                 }else{
                     setAutoCompleteLoading(false);
-                    setNewPatient(true)
-                    setNewPatientName(value)
+                    setNewPatient(true);
+                    setNewPatientName(value);
                 }
-            }    
+            }
         }
     }
 

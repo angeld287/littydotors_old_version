@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon,
-         MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBBox,
+         MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBSpinner } from "mdbreact";
 import NewPatient from './newPatient'
+import moment from 'moment';
 
 
 import useConsultations from '../useConsultations';
 import useConsultationProcess from './useConsultationProcess';
+import PatientDetails from './PatientDetail'
 
 const ConsultationProcess = ({childProps:childProps}) => {
-  const { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, setCreateNewPatient,
+  const { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, setCreateNewPatient, patientData,
           formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName } = useConsultationProcess();
 
   const { createConsultation } = useConsultations();
+  
+
+  if (loading) {
+      return (
+        <MDBContainer>
+          <MDBBox display="flex" justifyContent="center" className="mt-5">
+            <MDBSpinner big/>
+          </MDBBox>
+        </MDBContainer>
+      );
+    }
+
+  if (error) return <h2>Ha ocurrido un error</h2>;
 
   return (
     <MDBContainer>
@@ -31,15 +46,10 @@ const ConsultationProcess = ({childProps:childProps}) => {
                 <MDBCol>
                   {!createNewPatient &&
                     (
-                      <MDBCard style={{ width: "22rem" }}>
-                        <MDBCardImage className="img-fluid" src="https://www.morpht.com/sites/morpht/files/styles/landscape/public/dalibor-matura_1.jpg" waves />
-                        <MDBCardBody>
-                          <MDBCardTitle>Bartolo Antonio de Jesús Valerio</MDBCardTitle>
-                          <MDBCardText>
-                            34 años, Email: bjesus@gmail.com, Telefono: 809-232-3344
-                          </MDBCardText>
-                        </MDBCardBody>
-                      </MDBCard>
+                      <PatientDetails
+                        patientData={patientData}
+                        childProps={childProps}
+                      />
                     )
                   }
                   {createNewPatient &&
