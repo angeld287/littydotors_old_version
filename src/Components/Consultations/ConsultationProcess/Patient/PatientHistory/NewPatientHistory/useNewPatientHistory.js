@@ -6,6 +6,7 @@ import useForm from 'react-hook-form';
 
 const useNewPatientHistory = (childProps, patientData, global, setGlobalData) => {
     const [ loading, setLoading ] = useState(false);
+    const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
     let { consultation, patient } = useParams();
     const [ name, setName ] = useState(null);
@@ -38,11 +39,12 @@ const useNewPatientHistory = (childProps, patientData, global, setGlobalData) =>
         };
     }, []);
 
-    const onSubmit = () => {
-
+    const onSubmit = (i) => {
+        alert(i.smoking_frequency);
+        
     }
 
-    return { onSubmit, birthdate, setBirthdate, register, handleSubmit, errors, formState, loading, setLoading, name, setName  };
+    return { loadingButton, onSubmit, birthdate, setBirthdate, register, handleSubmit, errors, formState, loading, setLoading, name, setName  };
     
 };
 

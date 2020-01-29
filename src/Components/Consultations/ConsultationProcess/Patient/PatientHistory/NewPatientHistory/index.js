@@ -3,11 +3,12 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable } from "mdbreact";
 
 import useNewPatientHistory from './useNewPatientHistory';
+import NonPathologicalHistory from './NonPathologicalHistory';
 
 
 
 const NewPatientHistory = () => {
-  const { onSubmit, egister, setBirthdate, loadingButton, handleSubmit, formState, birthdate, newPatient, errors, loading, setLoading, name, setName } = useNewPatientHistory();
+  const { register, onSubmit, setBirthdate, loadingButton, handleSubmit, formState, birthdate, newPatient, errors, loading, setLoading, name, setName } = useNewPatientHistory();
 
   return (
     <div>
@@ -37,25 +38,11 @@ const NewPatientHistory = () => {
           <strong>Personales No Patológicos</strong>
         </h5>
           <MDBRow>
-            <MDBCol md="6">
+            <MDBCol md="12">
               <MDBCard>
-                <MDBContainer>
-                  <MDBInput label="Alcohol" className="mt-4" />
-                  <MDBInput label="Tabaquismo" className="mt-4" />
-                  <MDBInput label="Drogas" className="mt-4" />
-                  <MDBInput label="Inmunizaciones" className="mt-4" />
-                  <MDBInput label="Otros" className="mt-4" />
-                </MDBContainer>
+                <br/>
+                <NonPathologicalHistory register={register}/>
               </MDBCard>
-            </MDBCol>
-            <MDBCol md="6">
-              <MDBContainer>
-                <MDBInput label="Alcohol" className="mt-4" />
-                <MDBInput label="Tabaquismo" className="mt-4" />
-                <MDBInput label="Drogas" className="mt-4" />
-                <MDBInput label="Inmunizaciones" className="mt-4" />
-                <MDBInput label="Otros" className="mt-4" />
-              </MDBContainer>
             </MDBCol>
           </MDBRow>
         <br/>
@@ -69,8 +56,8 @@ const NewPatientHistory = () => {
         <MDBInput label="Enfermedades que padece" className="mt-4" />
         <br/>
         <div className="text-center py-4 mt-3">
-                  {loadingButton && <MDBBtn className="btn btn-outline-blue" type="submit" disabled={formState.isSubmitting}>Agregar</MDBBtn>}
-                  {!loadingButton && <MDBSpinner small />}
+                  {!loadingButton && <MDBBtn className="btn btn-outline-blue" type="submit" disabled={formState.isSubmitting}>Agregar</MDBBtn>}
+                  {loadingButton && <MDBSpinner small />}
 				</div>
       </form>
     </div>

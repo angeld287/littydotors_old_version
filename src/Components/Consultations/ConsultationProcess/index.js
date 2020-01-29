@@ -9,7 +9,7 @@ import useConsultationProcess from './useConsultationProcess';
 import PatientDetails from './Patient/PatientDetail';
 import NewPatient from './Patient/newPatient';
 import MedicalHistory from './MedicalHistory';
-import NewPatientHistory from '../ConsultationProcess/Patient/NewPatientHistory';
+import NewPatientHistory from './Patient/PatientHistory/NewPatientHistory';
 
 
 const ConsultationProcess = ({childProps:childProps}) => {

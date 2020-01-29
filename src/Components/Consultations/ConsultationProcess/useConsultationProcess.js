@@ -47,7 +47,7 @@ const useConsultationProcess = () => {
 
         const fetch = async () => {
             try {
-                setFormActivePanel(1);
+                setFormActivePanel(2);
                 if (consultation === "null") {
                     setCreateNewPatient(true);
                     setCreateNewPatientName(patient);

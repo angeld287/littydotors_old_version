@@ -3,21 +3,20 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable } from "mdbreact";
 
 import useMedicalHistory from './useMedicalHistory';
-import NonPathologicalHistory from '../Patient/NonPathologicalHistory';
 import NewMedicalHistory from './NewMedicalHistory';
 
 const MedicalHistory = ({childProps: childProps, patientData: patientData, global: global, setGlobalData: setGlobalData}) => {
   const { loading, error } = useMedicalHistory(childProps, patientData, global, setGlobalData);
 
     if (loading) {
-        return (
-          <MDBContainer>
-            <MDBBox display="flex" justifyContent="center" className="mt-5">
-              <MDBSpinner big/>
-            </MDBBox>
-          </MDBContainer>
-        );
-      }
+      return (
+        <MDBContainer>
+          <MDBBox display="flex" justifyContent="center" className="mt-5">
+            <MDBSpinner big/>
+          </MDBBox>
+        </MDBContainer>
+      );
+    }
 
     if (error) return <h2 className="text-center font-weight-bold pt-6 pb-2 mb-2">Ha ocurrido un error</h2>;
 
@@ -60,8 +59,6 @@ const MedicalHistory = ({childProps: childProps, patientData: patientData, globa
             <h5 className="font-weight-bold pl-0 my-4">
               <strong>Personales No Patológicos</strong>
             </h5>
-              {global.patient.patientHistory.nonPathologicalHistory !== null && <NonPathologicalHistory/>}
-              {global.patient.patientHistory.nonPathologicalHistory === null && <p>crear no Patológicos</p>}
             <br/>
             <h5 className="font-weight-bold pl-0 my-4">
               <strong>Familiares</strong>
