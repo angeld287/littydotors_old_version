@@ -85,7 +85,7 @@ Parameters:
                       
   userPoolGroupList:
     Type: CommaDelimitedList
-                          
+              
   dependsOn:
     Type: CommaDelimitedList
     
@@ -100,7 +100,7 @@ Resources:
   # Created to allow the UserPool SMS Config to publish via the Simple Notification Service during MFA Process
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, 'littyd976a7757_sns-role', !Join ['',[ 'sns', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, 'littyd0f1e523f_sns-role', !Join ['',[ 'sns', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
       AssumeRolePolicyDocument: 
         Version: "2012-10-17"
         Statement: 
@@ -112,10 +112,10 @@ Resources:
               - "sts:AssumeRole"
             Condition: 
               StringEquals:
-                sts:ExternalId: littyd976a7757_role_external_id
+                sts:ExternalId: littyd0f1e523f_role_external_id
       Policies: 
         - 
-          PolicyName: littyd976a7757-sns-policy
+          PolicyName: littyd0f1e523f-sns-policy
           PolicyDocument: 
             Version: "2012-10-17"
             Statement: 
@@ -161,7 +161,7 @@ Resources:
       SmsVerificationMessage: !Ref smsVerificationMessage
       SmsConfiguration: 
         SnsCallerArn: !GetAtt SNSRole.Arn
-        ExternalId: littyd976a7757_role_external_id
+        ExternalId: littyd0f1e523f_role_external_id
     
   
   UserPoolClientWeb:
@@ -169,7 +169,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: littyd976a7757_app_clientWeb
+      ClientName: littyd0f1e523f_app_clientWeb
       
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
@@ -179,7 +179,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: littyd976a7757_app_client
+      ClientName: littyd0f1e523f_app_client
       
       GenerateSecret: !Ref userpoolClientGenerateSecret
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
@@ -244,7 +244,7 @@ Resources:
   # Marked as depending on UserPoolClientRole for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: littyd976a7757_userpoolclient_lambda_iam_policy
+      PolicyName: littyd0f1e523f_userpoolclient_lambda_iam_policy
       Roles: 
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -261,7 +261,7 @@ Resources:
   # Marked as depending on UserPoolClientLambdaPolicy for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: littyd976a7757_userpoolclient_lambda_log_policy
+      PolicyName: littyd0f1e523f_userpoolclient_lambda_log_policy
       Roles: 
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -301,7 +301,7 @@ Resources:
   # Always created
     Type: AWS::Cognito::IdentityPool
     Properties: 
-      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'littydoctors976a7757_identitypool_976a7757', !Join ['',['littydoctors976a7757_identitypool_976a7757', '__', !Ref env]]]
+      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'littydoctors0f1e523f_identitypool_0f1e523f', !Join ['',['littydoctors0f1e523f_identitypool_0f1e523f', '__', !Ref env]]]
       
       CognitoIdentityProviders:
         - ClientId:  !Ref UserPoolClient

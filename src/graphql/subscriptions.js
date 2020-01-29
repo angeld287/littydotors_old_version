@@ -78,6 +78,7 @@ export const onCreateMedicalAppointment = /* GraphQL */ `
       }
       confirmation {
         id
+        description
         owner
       }
       secretary
@@ -180,6 +181,7 @@ export const onUpdateMedicalAppointment = /* GraphQL */ `
       }
       confirmation {
         id
+        description
         owner
       }
       secretary
@@ -521,6 +523,7 @@ export const onCreateConfirmation = /* GraphQL */ `
   subscription OnCreateConfirmation($owner: String) {
     onCreateConfirmation(owner: $owner) {
       id
+      description
       owner
     }
   }
@@ -529,6 +532,7 @@ export const onUpdateConfirmation = /* GraphQL */ `
   subscription OnUpdateConfirmation($owner: String) {
     onUpdateConfirmation(owner: $owner) {
       id
+      description
       owner
     }
   }
@@ -537,6 +541,7 @@ export const onDeleteConfirmation = /* GraphQL */ `
   subscription OnDeleteConfirmation($owner: String) {
     onDeleteConfirmation(owner: $owner) {
       id
+      description
       owner
     }
   }
@@ -560,7 +565,25 @@ export const onCreateMedicalConsultation = /* GraphQL */ `
         image
         owner
       }
-      postConsultationsActivities {
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      postConsultationsActivity {
         id
         medicalPrescriptions {
           nextToken
@@ -608,7 +631,7 @@ export const onCreateMedicalConsultation = /* GraphQL */ `
       }
       doctorname
       secretary
-      patient
+      patientname
       createdAt
       owner
     }
@@ -636,7 +659,25 @@ export const onUpdateMedicalConsultation = /* GraphQL */ `
         image
         owner
       }
-      postConsultationsActivities {
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      postConsultationsActivity {
         id
         medicalPrescriptions {
           nextToken
@@ -684,7 +725,7 @@ export const onUpdateMedicalConsultation = /* GraphQL */ `
       }
       doctorname
       secretary
-      patient
+      patientname
       createdAt
       owner
     }
@@ -709,7 +750,25 @@ export const onDeleteMedicalConsultation = /* GraphQL */ `
         image
         owner
       }
-      postConsultationsActivities {
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      postConsultationsActivity {
         id
         medicalPrescriptions {
           nextToken
@@ -757,7 +816,7 @@ export const onDeleteMedicalConsultation = /* GraphQL */ `
       }
       doctorname
       secretary
-      patient
+      patientname
       createdAt
       owner
     }
@@ -789,7 +848,7 @@ export const onCreateMedicalHistory = /* GraphQL */ `
       physicalExploration {
         id
         general_exploration
-        vitalsigns {
+        vitalsign {
           id
           blood_pressure
           Breathing
@@ -852,7 +911,7 @@ export const onUpdateMedicalHistory = /* GraphQL */ `
       physicalExploration {
         id
         general_exploration
-        vitalsigns {
+        vitalsign {
           id
           blood_pressure
           Breathing
@@ -915,7 +974,7 @@ export const onDeleteMedicalHistory = /* GraphQL */ `
       physicalExploration {
         id
         general_exploration
-        vitalsigns {
+        vitalsign {
           id
           blood_pressure
           Breathing
@@ -1531,9 +1590,9 @@ export const onDeleteNonPathologicalHistory = /* GraphQL */ `
     }
   }
 `;
-export const onCreateNonPathologicalActivities = /* GraphQL */ `
-  subscription OnCreateNonPathologicalActivities($owner: String) {
-    onCreateNonPathologicalActivities(owner: $owner) {
+export const onCreateNonPathologicalActivity = /* GraphQL */ `
+  subscription OnCreateNonPathologicalActivity($owner: String) {
+    onCreateNonPathologicalActivity(owner: $owner) {
       id
       active
       frequency
@@ -1542,9 +1601,9 @@ export const onCreateNonPathologicalActivities = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateNonPathologicalActivities = /* GraphQL */ `
-  subscription OnUpdateNonPathologicalActivities($owner: String) {
-    onUpdateNonPathologicalActivities(owner: $owner) {
+export const onUpdateNonPathologicalActivity = /* GraphQL */ `
+  subscription OnUpdateNonPathologicalActivity($owner: String) {
+    onUpdateNonPathologicalActivity(owner: $owner) {
       id
       active
       frequency
@@ -1553,9 +1612,9 @@ export const onUpdateNonPathologicalActivities = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteNonPathologicalActivities = /* GraphQL */ `
-  subscription OnDeleteNonPathologicalActivities($owner: String) {
-    onDeleteNonPathologicalActivities(owner: $owner) {
+export const onDeleteNonPathologicalActivity = /* GraphQL */ `
+  subscription OnDeleteNonPathologicalActivity($owner: String) {
+    onDeleteNonPathologicalActivity(owner: $owner) {
       id
       active
       frequency
@@ -1572,6 +1631,7 @@ export const onCreatePathologicalHistory = /* GraphQL */ `
         items {
           id
           name
+          description
           owner
         }
         nextToken
@@ -1600,6 +1660,7 @@ export const onUpdatePathologicalHistory = /* GraphQL */ `
         items {
           id
           name
+          description
           owner
         }
         nextToken
@@ -1628,6 +1689,7 @@ export const onDeletePathologicalHistory = /* GraphQL */ `
         items {
           id
           name
+          description
           owner
         }
         nextToken
@@ -1920,6 +1982,7 @@ export const onCreateFamilyDetailsDiseases = /* GraphQL */ `
       diseases {
         id
         name
+        description
         familyDetails {
           nextToken
         }
@@ -1945,6 +2008,7 @@ export const onUpdateFamilyDetailsDiseases = /* GraphQL */ `
       diseases {
         id
         name
+        description
         familyDetails {
           nextToken
         }
@@ -1970,6 +2034,7 @@ export const onDeleteFamilyDetailsDiseases = /* GraphQL */ `
       diseases {
         id
         name
+        description
         familyDetails {
           nextToken
         }
@@ -1978,11 +2043,12 @@ export const onDeleteFamilyDetailsDiseases = /* GraphQL */ `
     }
   }
 `;
-export const onCreateDiseases = /* GraphQL */ `
-  subscription OnCreateDiseases($owner: String) {
-    onCreateDiseases(owner: $owner) {
+export const onCreateDisease = /* GraphQL */ `
+  subscription OnCreateDisease($owner: String) {
+    onCreateDisease(owner: $owner) {
       id
       name
+      description
       familyDetails {
         items {
           id
@@ -1993,11 +2059,12 @@ export const onCreateDiseases = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateDiseases = /* GraphQL */ `
-  subscription OnUpdateDiseases($owner: String) {
-    onUpdateDiseases(owner: $owner) {
+export const onUpdateDisease = /* GraphQL */ `
+  subscription OnUpdateDisease($owner: String) {
+    onUpdateDisease(owner: $owner) {
       id
       name
+      description
       familyDetails {
         items {
           id
@@ -2008,11 +2075,12 @@ export const onUpdateDiseases = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteDiseases = /* GraphQL */ `
-  subscription OnDeleteDiseases($owner: String) {
-    onDeleteDiseases(owner: $owner) {
+export const onDeleteDisease = /* GraphQL */ `
+  subscription OnDeleteDisease($owner: String) {
+    onDeleteDisease(owner: $owner) {
       id
       name
+      description
       familyDetails {
         items {
           id
@@ -2071,11 +2139,12 @@ export const onDeleteGynecoObstetricHistory = /* GraphQL */ `
     }
   }
 `;
-export const onCreateAllergies = /* GraphQL */ `
-  subscription OnCreateAllergies($owner: String) {
-    onCreateAllergies(owner: $owner) {
+export const onCreateAllergy = /* GraphQL */ `
+  subscription OnCreateAllergy($owner: String) {
+    onCreateAllergy(owner: $owner) {
       id
       name
+      description
       patients {
         items {
           id
@@ -2086,11 +2155,12 @@ export const onCreateAllergies = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateAllergies = /* GraphQL */ `
-  subscription OnUpdateAllergies($owner: String) {
-    onUpdateAllergies(owner: $owner) {
+export const onUpdateAllergy = /* GraphQL */ `
+  subscription OnUpdateAllergy($owner: String) {
+    onUpdateAllergy(owner: $owner) {
       id
       name
+      description
       patients {
         items {
           id
@@ -2101,11 +2171,12 @@ export const onUpdateAllergies = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteAllergies = /* GraphQL */ `
-  subscription OnDeleteAllergies($owner: String) {
-    onDeleteAllergies(owner: $owner) {
+export const onDeleteAllergy = /* GraphQL */ `
+  subscription OnDeleteAllergy($owner: String) {
+    onDeleteAllergy(owner: $owner) {
       id
       name
+      description
       patients {
         items {
           id
@@ -2136,6 +2207,7 @@ export const onCreatePatientAllergies = /* GraphQL */ `
       allergies {
         id
         name
+        description
         patients {
           nextToken
         }
@@ -2164,6 +2236,7 @@ export const onUpdatePatientAllergies = /* GraphQL */ `
       allergies {
         id
         name
+        description
         patients {
           nextToken
         }
@@ -2192,6 +2265,7 @@ export const onDeletePatientAllergies = /* GraphQL */ `
       allergies {
         id
         name
+        description
         patients {
           nextToken
         }
@@ -2302,9 +2376,9 @@ export const onDeletePatientMedications = /* GraphQL */ `
     }
   }
 `;
-export const onCreateMedicines = /* GraphQL */ `
-  subscription OnCreateMedicines($owner: String) {
-    onCreateMedicines(owner: $owner) {
+export const onCreateMedicine = /* GraphQL */ `
+  subscription OnCreateMedicine($owner: String) {
+    onCreateMedicine(owner: $owner) {
       id
       name
       patients {
@@ -2326,9 +2400,9 @@ export const onCreateMedicines = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateMedicines = /* GraphQL */ `
-  subscription OnUpdateMedicines($owner: String) {
-    onUpdateMedicines(owner: $owner) {
+export const onUpdateMedicine = /* GraphQL */ `
+  subscription OnUpdateMedicine($owner: String) {
+    onUpdateMedicine(owner: $owner) {
       id
       name
       patients {
@@ -2350,9 +2424,9 @@ export const onUpdateMedicines = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteMedicines = /* GraphQL */ `
-  subscription OnDeleteMedicines($owner: String) {
-    onDeleteMedicines(owner: $owner) {
+export const onDeleteMedicine = /* GraphQL */ `
+  subscription OnDeleteMedicine($owner: String) {
+    onDeleteMedicine(owner: $owner) {
       id
       name
       patients {
@@ -2374,9 +2448,9 @@ export const onDeleteMedicines = /* GraphQL */ `
     }
   }
 `;
-export const onCreatePostConsultationsActivities = /* GraphQL */ `
-  subscription OnCreatePostConsultationsActivities($owner: String) {
-    onCreatePostConsultationsActivities(owner: $owner) {
+export const onCreatePostConsultationsActivity = /* GraphQL */ `
+  subscription OnCreatePostConsultationsActivity($owner: String) {
+    onCreatePostConsultationsActivity(owner: $owner) {
       id
       medicalPrescriptions {
         items {
@@ -2409,12 +2483,12 @@ export const onCreatePostConsultationsActivities = /* GraphQL */ `
     }
   }
 `;
-export const onUpdatePostConsultationsActivities = /* GraphQL */ `
-  subscription OnUpdatePostConsultationsActivities(
+export const onUpdatePostConsultationsActivity = /* GraphQL */ `
+  subscription OnUpdatePostConsultationsActivity(
     $owner: String
     $doctor: String
   ) {
-    onUpdatePostConsultationsActivities(owner: $owner, doctor: $doctor) {
+    onUpdatePostConsultationsActivity(owner: $owner, doctor: $doctor) {
       id
       medicalPrescriptions {
         items {
@@ -2447,9 +2521,9 @@ export const onUpdatePostConsultationsActivities = /* GraphQL */ `
     }
   }
 `;
-export const onDeletePostConsultationsActivities = /* GraphQL */ `
-  subscription OnDeletePostConsultationsActivities($owner: String) {
-    onDeletePostConsultationsActivities(owner: $owner) {
+export const onDeletePostConsultationsActivity = /* GraphQL */ `
+  subscription OnDeletePostConsultationsActivity($owner: String) {
+    onDeletePostConsultationsActivity(owner: $owner) {
       id
       medicalPrescriptions {
         items {
@@ -2482,9 +2556,9 @@ export const onDeletePostConsultationsActivities = /* GraphQL */ `
     }
   }
 `;
-export const onCreateMedicalPrescriptions = /* GraphQL */ `
-  subscription OnCreateMedicalPrescriptions($owner: String) {
-    onCreateMedicalPrescriptions(owner: $owner) {
+export const onCreateMedicalPrescription = /* GraphQL */ `
+  subscription OnCreateMedicalPrescription($owner: String) {
+    onCreateMedicalPrescription(owner: $owner) {
       id
       date
       frequency
@@ -2524,9 +2598,9 @@ export const onCreateMedicalPrescriptions = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateMedicalPrescriptions = /* GraphQL */ `
-  subscription OnUpdateMedicalPrescriptions($owner: String, $doctor: String) {
-    onUpdateMedicalPrescriptions(owner: $owner, doctor: $doctor) {
+export const onUpdateMedicalPrescription = /* GraphQL */ `
+  subscription OnUpdateMedicalPrescription($owner: String, $doctor: String) {
+    onUpdateMedicalPrescription(owner: $owner, doctor: $doctor) {
       id
       date
       frequency
@@ -2566,9 +2640,9 @@ export const onUpdateMedicalPrescriptions = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteMedicalPrescriptions = /* GraphQL */ `
-  subscription OnDeleteMedicalPrescriptions($owner: String) {
-    onDeleteMedicalPrescriptions(owner: $owner) {
+export const onDeleteMedicalPrescription = /* GraphQL */ `
+  subscription OnDeleteMedicalPrescription($owner: String) {
+    onDeleteMedicalPrescription(owner: $owner) {
       id
       date
       frequency
@@ -3035,6 +3109,7 @@ export const onCreatePostConsultActSurgicalInt = /* GraphQL */ `
       surgicalIntervention {
         id
         name
+        description
         surgicalIntervention {
           nextToken
         }
@@ -3068,6 +3143,7 @@ export const onUpdatePostConsultActSurgicalInt = /* GraphQL */ `
       surgicalIntervention {
         id
         name
+        description
         surgicalIntervention {
           nextToken
         }
@@ -3101,6 +3177,7 @@ export const onDeletePostConsultActSurgicalInt = /* GraphQL */ `
       surgicalIntervention {
         id
         name
+        description
         surgicalIntervention {
           nextToken
         }
@@ -3114,6 +3191,7 @@ export const onCreateSurgicalIntervention = /* GraphQL */ `
     onCreateSurgicalIntervention(owner: $owner) {
       id
       name
+      description
       surgicalIntervention {
         items {
           id
@@ -3131,6 +3209,7 @@ export const onUpdateSurgicalIntervention = /* GraphQL */ `
     onUpdateSurgicalIntervention(owner: $owner) {
       id
       name
+      description
       surgicalIntervention {
         items {
           id
@@ -3148,6 +3227,7 @@ export const onDeleteSurgicalIntervention = /* GraphQL */ `
     onDeleteSurgicalIntervention(owner: $owner) {
       id
       name
+      description
       surgicalIntervention {
         items {
           id
@@ -3165,7 +3245,7 @@ export const onCreatePhysicalExploration = /* GraphQL */ `
     onCreatePhysicalExploration(owner: $owner) {
       id
       general_exploration
-      vitalsigns {
+      vitalsign {
         id
         blood_pressure
         Breathing
@@ -3202,7 +3282,7 @@ export const onUpdatePhysicalExploration = /* GraphQL */ `
     onUpdatePhysicalExploration(owner: $owner, doctor: $doctor) {
       id
       general_exploration
-      vitalsigns {
+      vitalsign {
         id
         blood_pressure
         Breathing
@@ -3239,7 +3319,7 @@ export const onDeletePhysicalExploration = /* GraphQL */ `
     onDeletePhysicalExploration(owner: $owner) {
       id
       general_exploration
-      vitalsigns {
+      vitalsign {
         id
         blood_pressure
         Breathing
@@ -3271,9 +3351,9 @@ export const onDeletePhysicalExploration = /* GraphQL */ `
     }
   }
 `;
-export const onCreateVitalSigns = /* GraphQL */ `
-  subscription OnCreateVitalSigns($owner: String) {
-    onCreateVitalSigns(owner: $owner) {
+export const onCreateVitalSign = /* GraphQL */ `
+  subscription OnCreateVitalSign($owner: String) {
+    onCreateVitalSign(owner: $owner) {
       id
       blood_pressure
       Breathing
@@ -3286,9 +3366,9 @@ export const onCreateVitalSigns = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateVitalSigns = /* GraphQL */ `
-  subscription OnUpdateVitalSigns($owner: String, $doctor: String) {
-    onUpdateVitalSigns(owner: $owner, doctor: $doctor) {
+export const onUpdateVitalSign = /* GraphQL */ `
+  subscription OnUpdateVitalSign($owner: String, $doctor: String) {
+    onUpdateVitalSign(owner: $owner, doctor: $doctor) {
       id
       blood_pressure
       Breathing
@@ -3301,9 +3381,9 @@ export const onUpdateVitalSigns = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteVitalSigns = /* GraphQL */ `
-  subscription OnDeleteVitalSigns($owner: String) {
-    onDeleteVitalSigns(owner: $owner) {
+export const onDeleteVitalSign = /* GraphQL */ `
+  subscription OnDeleteVitalSign($owner: String) {
+    onDeleteVitalSign(owner: $owner) {
       id
       blood_pressure
       Breathing

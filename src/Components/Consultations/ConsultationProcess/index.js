@@ -4,12 +4,14 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
 import NewPatient from './newPatient'
 
 
-
+import useConsultations from '../useConsultations';
 import useConsultationProcess from './useConsultationProcess';
 
-const ConsultationProcess = () => {
+const ConsultationProcess = ({childProps:childProps}) => {
   const { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, setCreateNewPatient,
           formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName } = useConsultationProcess();
+
+  const { createConsultation } = useConsultations();
 
   return (
     <MDBContainer>
@@ -42,7 +44,12 @@ const ConsultationProcess = () => {
                   }
                   {createNewPatient &&
                     (
-                      <NewPatient setCreateNewPatient={setCreateNewPatient}/>
+                      <NewPatient 
+                        createConsultation={createConsultation} 
+                        setCreateNewPatient={setCreateNewPatient} 
+                        name={createNewPatientName}
+                        childProps={childProps}
+                      />
                     )
                   }
                 </MDBCol>

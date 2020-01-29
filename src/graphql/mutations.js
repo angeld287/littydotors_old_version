@@ -383,6 +383,7 @@ export const createConfirmation = /* GraphQL */ `
   ) {
     createConfirmation(input: $input, condition: $condition) {
       id
+      description
       owner
     }
   }
@@ -394,6 +395,7 @@ export const updateConfirmation = /* GraphQL */ `
   ) {
     updateConfirmation(input: $input, condition: $condition) {
       id
+      description
       owner
     }
   }
@@ -405,6 +407,7 @@ export const deleteConfirmation = /* GraphQL */ `
   ) {
     deleteConfirmation(input: $input, condition: $condition) {
       id
+      description
       owner
     }
   }
@@ -486,6 +489,7 @@ export const createMedicalAppointment = /* GraphQL */ `
       }
       confirmation {
         id
+        description
         owner
       }
       secretary
@@ -579,6 +583,7 @@ export const updateMedicalAppointment = /* GraphQL */ `
       }
       confirmation {
         id
+        description
         owner
       }
       secretary
@@ -672,6 +677,7 @@ export const deleteMedicalAppointment = /* GraphQL */ `
       }
       confirmation {
         id
+        description
         owner
       }
       secretary
@@ -710,7 +716,25 @@ export const createMedicalConsultation = /* GraphQL */ `
         image
         owner
       }
-      postConsultationsActivities {
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      postConsultationsActivity {
         id
         medicalPrescriptions {
           nextToken
@@ -758,7 +782,7 @@ export const createMedicalConsultation = /* GraphQL */ `
       }
       doctorname
       secretary
-      patient
+      patientname
       createdAt
       owner
     }
@@ -786,7 +810,25 @@ export const updateMedicalConsultation = /* GraphQL */ `
         image
         owner
       }
-      postConsultationsActivities {
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      postConsultationsActivity {
         id
         medicalPrescriptions {
           nextToken
@@ -834,7 +876,7 @@ export const updateMedicalConsultation = /* GraphQL */ `
       }
       doctorname
       secretary
-      patient
+      patientname
       createdAt
       owner
     }
@@ -862,7 +904,25 @@ export const deleteMedicalConsultation = /* GraphQL */ `
         image
         owner
       }
-      postConsultationsActivities {
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
+      postConsultationsActivity {
         id
         medicalPrescriptions {
           nextToken
@@ -910,7 +970,7 @@ export const deleteMedicalConsultation = /* GraphQL */ `
       }
       doctorname
       secretary
-      patient
+      patientname
       createdAt
       owner
     }
@@ -945,7 +1005,7 @@ export const createMedicalHistory = /* GraphQL */ `
       physicalExploration {
         id
         general_exploration
-        vitalsigns {
+        vitalsign {
           id
           blood_pressure
           Breathing
@@ -1011,7 +1071,7 @@ export const updateMedicalHistory = /* GraphQL */ `
       physicalExploration {
         id
         general_exploration
-        vitalsigns {
+        vitalsign {
           id
           blood_pressure
           Breathing
@@ -1077,7 +1137,7 @@ export const deleteMedicalHistory = /* GraphQL */ `
       physicalExploration {
         id
         general_exploration
-        vitalsigns {
+        vitalsign {
           id
           blood_pressure
           Breathing
@@ -1720,12 +1780,12 @@ export const deleteNonPathologicalHistory = /* GraphQL */ `
     }
   }
 `;
-export const createNonPathologicalActivities = /* GraphQL */ `
-  mutation CreateNonPathologicalActivities(
-    $input: CreateNonPathologicalActivitiesInput!
-    $condition: ModelNonPathologicalActivitiesConditionInput
+export const createNonPathologicalActivity = /* GraphQL */ `
+  mutation CreateNonPathologicalActivity(
+    $input: CreateNonPathologicalActivityInput!
+    $condition: ModelNonPathologicalActivityConditionInput
   ) {
-    createNonPathologicalActivities(input: $input, condition: $condition) {
+    createNonPathologicalActivity(input: $input, condition: $condition) {
       id
       active
       frequency
@@ -1734,12 +1794,12 @@ export const createNonPathologicalActivities = /* GraphQL */ `
     }
   }
 `;
-export const updateNonPathologicalActivities = /* GraphQL */ `
-  mutation UpdateNonPathologicalActivities(
-    $input: UpdateNonPathologicalActivitiesInput!
-    $condition: ModelNonPathologicalActivitiesConditionInput
+export const updateNonPathologicalActivity = /* GraphQL */ `
+  mutation UpdateNonPathologicalActivity(
+    $input: UpdateNonPathologicalActivityInput!
+    $condition: ModelNonPathologicalActivityConditionInput
   ) {
-    updateNonPathologicalActivities(input: $input, condition: $condition) {
+    updateNonPathologicalActivity(input: $input, condition: $condition) {
       id
       active
       frequency
@@ -1748,12 +1808,12 @@ export const updateNonPathologicalActivities = /* GraphQL */ `
     }
   }
 `;
-export const deleteNonPathologicalActivities = /* GraphQL */ `
-  mutation DeleteNonPathologicalActivities(
-    $input: DeleteNonPathologicalActivitiesInput!
-    $condition: ModelNonPathologicalActivitiesConditionInput
+export const deleteNonPathologicalActivity = /* GraphQL */ `
+  mutation DeleteNonPathologicalActivity(
+    $input: DeleteNonPathologicalActivityInput!
+    $condition: ModelNonPathologicalActivityConditionInput
   ) {
-    deleteNonPathologicalActivities(input: $input, condition: $condition) {
+    deleteNonPathologicalActivity(input: $input, condition: $condition) {
       id
       active
       frequency
@@ -1773,6 +1833,7 @@ export const createPathologicalHistory = /* GraphQL */ `
         items {
           id
           name
+          description
           owner
         }
         nextToken
@@ -1804,6 +1865,7 @@ export const updatePathologicalHistory = /* GraphQL */ `
         items {
           id
           name
+          description
           owner
         }
         nextToken
@@ -1835,6 +1897,7 @@ export const deletePathologicalHistory = /* GraphQL */ `
         items {
           id
           name
+          description
           owner
         }
         nextToken
@@ -2148,6 +2211,7 @@ export const createFamilyDetailsDiseases = /* GraphQL */ `
       diseases {
         id
         name
+        description
         familyDetails {
           nextToken
         }
@@ -2176,6 +2240,7 @@ export const updateFamilyDetailsDiseases = /* GraphQL */ `
       diseases {
         id
         name
+        description
         familyDetails {
           nextToken
         }
@@ -2204,6 +2269,7 @@ export const deleteFamilyDetailsDiseases = /* GraphQL */ `
       diseases {
         id
         name
+        description
         familyDetails {
           nextToken
         }
@@ -2212,14 +2278,15 @@ export const deleteFamilyDetailsDiseases = /* GraphQL */ `
     }
   }
 `;
-export const createDiseases = /* GraphQL */ `
-  mutation CreateDiseases(
-    $input: CreateDiseasesInput!
-    $condition: ModelDiseasesConditionInput
+export const createDisease = /* GraphQL */ `
+  mutation CreateDisease(
+    $input: CreateDiseaseInput!
+    $condition: ModelDiseaseConditionInput
   ) {
-    createDiseases(input: $input, condition: $condition) {
+    createDisease(input: $input, condition: $condition) {
       id
       name
+      description
       familyDetails {
         items {
           id
@@ -2230,14 +2297,15 @@ export const createDiseases = /* GraphQL */ `
     }
   }
 `;
-export const updateDiseases = /* GraphQL */ `
-  mutation UpdateDiseases(
-    $input: UpdateDiseasesInput!
-    $condition: ModelDiseasesConditionInput
+export const updateDisease = /* GraphQL */ `
+  mutation UpdateDisease(
+    $input: UpdateDiseaseInput!
+    $condition: ModelDiseaseConditionInput
   ) {
-    updateDiseases(input: $input, condition: $condition) {
+    updateDisease(input: $input, condition: $condition) {
       id
       name
+      description
       familyDetails {
         items {
           id
@@ -2248,14 +2316,15 @@ export const updateDiseases = /* GraphQL */ `
     }
   }
 `;
-export const deleteDiseases = /* GraphQL */ `
-  mutation DeleteDiseases(
-    $input: DeleteDiseasesInput!
-    $condition: ModelDiseasesConditionInput
+export const deleteDisease = /* GraphQL */ `
+  mutation DeleteDisease(
+    $input: DeleteDiseaseInput!
+    $condition: ModelDiseaseConditionInput
   ) {
-    deleteDiseases(input: $input, condition: $condition) {
+    deleteDisease(input: $input, condition: $condition) {
       id
       name
+      description
       familyDetails {
         items {
           id
@@ -2323,14 +2392,15 @@ export const deleteGynecoObstetricHistory = /* GraphQL */ `
     }
   }
 `;
-export const createAllergies = /* GraphQL */ `
-  mutation CreateAllergies(
-    $input: CreateAllergiesInput!
-    $condition: ModelAllergiesConditionInput
+export const createAllergy = /* GraphQL */ `
+  mutation CreateAllergy(
+    $input: CreateAllergyInput!
+    $condition: ModelAllergyConditionInput
   ) {
-    createAllergies(input: $input, condition: $condition) {
+    createAllergy(input: $input, condition: $condition) {
       id
       name
+      description
       patients {
         items {
           id
@@ -2341,14 +2411,15 @@ export const createAllergies = /* GraphQL */ `
     }
   }
 `;
-export const updateAllergies = /* GraphQL */ `
-  mutation UpdateAllergies(
-    $input: UpdateAllergiesInput!
-    $condition: ModelAllergiesConditionInput
+export const updateAllergy = /* GraphQL */ `
+  mutation UpdateAllergy(
+    $input: UpdateAllergyInput!
+    $condition: ModelAllergyConditionInput
   ) {
-    updateAllergies(input: $input, condition: $condition) {
+    updateAllergy(input: $input, condition: $condition) {
       id
       name
+      description
       patients {
         items {
           id
@@ -2359,14 +2430,15 @@ export const updateAllergies = /* GraphQL */ `
     }
   }
 `;
-export const deleteAllergies = /* GraphQL */ `
-  mutation DeleteAllergies(
-    $input: DeleteAllergiesInput!
-    $condition: ModelAllergiesConditionInput
+export const deleteAllergy = /* GraphQL */ `
+  mutation DeleteAllergy(
+    $input: DeleteAllergyInput!
+    $condition: ModelAllergyConditionInput
   ) {
-    deleteAllergies(input: $input, condition: $condition) {
+    deleteAllergy(input: $input, condition: $condition) {
       id
       name
+      description
       patients {
         items {
           id
@@ -2400,6 +2472,7 @@ export const createPatientAllergies = /* GraphQL */ `
       allergies {
         id
         name
+        description
         patients {
           nextToken
         }
@@ -2431,6 +2504,7 @@ export const updatePatientAllergies = /* GraphQL */ `
       allergies {
         id
         name
+        description
         patients {
           nextToken
         }
@@ -2462,6 +2536,7 @@ export const deletePatientAllergies = /* GraphQL */ `
       allergies {
         id
         name
+        description
         patients {
           nextToken
         }
@@ -2581,12 +2656,12 @@ export const deletePatientMedications = /* GraphQL */ `
     }
   }
 `;
-export const createMedicines = /* GraphQL */ `
-  mutation CreateMedicines(
-    $input: CreateMedicinesInput!
-    $condition: ModelMedicinesConditionInput
+export const createMedicine = /* GraphQL */ `
+  mutation CreateMedicine(
+    $input: CreateMedicineInput!
+    $condition: ModelMedicineConditionInput
   ) {
-    createMedicines(input: $input, condition: $condition) {
+    createMedicine(input: $input, condition: $condition) {
       id
       name
       patients {
@@ -2608,12 +2683,12 @@ export const createMedicines = /* GraphQL */ `
     }
   }
 `;
-export const updateMedicines = /* GraphQL */ `
-  mutation UpdateMedicines(
-    $input: UpdateMedicinesInput!
-    $condition: ModelMedicinesConditionInput
+export const updateMedicine = /* GraphQL */ `
+  mutation UpdateMedicine(
+    $input: UpdateMedicineInput!
+    $condition: ModelMedicineConditionInput
   ) {
-    updateMedicines(input: $input, condition: $condition) {
+    updateMedicine(input: $input, condition: $condition) {
       id
       name
       patients {
@@ -2635,12 +2710,12 @@ export const updateMedicines = /* GraphQL */ `
     }
   }
 `;
-export const deleteMedicines = /* GraphQL */ `
-  mutation DeleteMedicines(
-    $input: DeleteMedicinesInput!
-    $condition: ModelMedicinesConditionInput
+export const deleteMedicine = /* GraphQL */ `
+  mutation DeleteMedicine(
+    $input: DeleteMedicineInput!
+    $condition: ModelMedicineConditionInput
   ) {
-    deleteMedicines(input: $input, condition: $condition) {
+    deleteMedicine(input: $input, condition: $condition) {
       id
       name
       patients {
@@ -2662,12 +2737,12 @@ export const deleteMedicines = /* GraphQL */ `
     }
   }
 `;
-export const createPostConsultationsActivities = /* GraphQL */ `
-  mutation CreatePostConsultationsActivities(
-    $input: CreatePostConsultationsActivitiesInput!
-    $condition: ModelPostConsultationsActivitiesConditionInput
+export const createPostConsultationsActivity = /* GraphQL */ `
+  mutation CreatePostConsultationsActivity(
+    $input: CreatePostConsultationsActivityInput!
+    $condition: ModelPostConsultationsActivityConditionInput
   ) {
-    createPostConsultationsActivities(input: $input, condition: $condition) {
+    createPostConsultationsActivity(input: $input, condition: $condition) {
       id
       medicalPrescriptions {
         items {
@@ -2700,12 +2775,12 @@ export const createPostConsultationsActivities = /* GraphQL */ `
     }
   }
 `;
-export const updatePostConsultationsActivities = /* GraphQL */ `
-  mutation UpdatePostConsultationsActivities(
-    $input: UpdatePostConsultationsActivitiesInput!
-    $condition: ModelPostConsultationsActivitiesConditionInput
+export const updatePostConsultationsActivity = /* GraphQL */ `
+  mutation UpdatePostConsultationsActivity(
+    $input: UpdatePostConsultationsActivityInput!
+    $condition: ModelPostConsultationsActivityConditionInput
   ) {
-    updatePostConsultationsActivities(input: $input, condition: $condition) {
+    updatePostConsultationsActivity(input: $input, condition: $condition) {
       id
       medicalPrescriptions {
         items {
@@ -2738,12 +2813,12 @@ export const updatePostConsultationsActivities = /* GraphQL */ `
     }
   }
 `;
-export const deletePostConsultationsActivities = /* GraphQL */ `
-  mutation DeletePostConsultationsActivities(
-    $input: DeletePostConsultationsActivitiesInput!
-    $condition: ModelPostConsultationsActivitiesConditionInput
+export const deletePostConsultationsActivity = /* GraphQL */ `
+  mutation DeletePostConsultationsActivity(
+    $input: DeletePostConsultationsActivityInput!
+    $condition: ModelPostConsultationsActivityConditionInput
   ) {
-    deletePostConsultationsActivities(input: $input, condition: $condition) {
+    deletePostConsultationsActivity(input: $input, condition: $condition) {
       id
       medicalPrescriptions {
         items {
@@ -2776,12 +2851,12 @@ export const deletePostConsultationsActivities = /* GraphQL */ `
     }
   }
 `;
-export const createMedicalPrescriptions = /* GraphQL */ `
-  mutation CreateMedicalPrescriptions(
-    $input: CreateMedicalPrescriptionsInput!
-    $condition: ModelMedicalPrescriptionsConditionInput
+export const createMedicalPrescription = /* GraphQL */ `
+  mutation CreateMedicalPrescription(
+    $input: CreateMedicalPrescriptionInput!
+    $condition: ModelMedicalPrescriptionConditionInput
   ) {
-    createMedicalPrescriptions(input: $input, condition: $condition) {
+    createMedicalPrescription(input: $input, condition: $condition) {
       id
       date
       frequency
@@ -2821,12 +2896,12 @@ export const createMedicalPrescriptions = /* GraphQL */ `
     }
   }
 `;
-export const updateMedicalPrescriptions = /* GraphQL */ `
-  mutation UpdateMedicalPrescriptions(
-    $input: UpdateMedicalPrescriptionsInput!
-    $condition: ModelMedicalPrescriptionsConditionInput
+export const updateMedicalPrescription = /* GraphQL */ `
+  mutation UpdateMedicalPrescription(
+    $input: UpdateMedicalPrescriptionInput!
+    $condition: ModelMedicalPrescriptionConditionInput
   ) {
-    updateMedicalPrescriptions(input: $input, condition: $condition) {
+    updateMedicalPrescription(input: $input, condition: $condition) {
       id
       date
       frequency
@@ -2866,12 +2941,12 @@ export const updateMedicalPrescriptions = /* GraphQL */ `
     }
   }
 `;
-export const deleteMedicalPrescriptions = /* GraphQL */ `
-  mutation DeleteMedicalPrescriptions(
-    $input: DeleteMedicalPrescriptionsInput!
-    $condition: ModelMedicalPrescriptionsConditionInput
+export const deleteMedicalPrescription = /* GraphQL */ `
+  mutation DeleteMedicalPrescription(
+    $input: DeleteMedicalPrescriptionInput!
+    $condition: ModelMedicalPrescriptionConditionInput
   ) {
-    deleteMedicalPrescriptions(input: $input, condition: $condition) {
+    deleteMedicalPrescription(input: $input, condition: $condition) {
       id
       date
       frequency
@@ -3386,6 +3461,7 @@ export const createPostConsultActSurgicalInt = /* GraphQL */ `
       surgicalIntervention {
         id
         name
+        description
         surgicalIntervention {
           nextToken
         }
@@ -3422,6 +3498,7 @@ export const updatePostConsultActSurgicalInt = /* GraphQL */ `
       surgicalIntervention {
         id
         name
+        description
         surgicalIntervention {
           nextToken
         }
@@ -3458,6 +3535,7 @@ export const deletePostConsultActSurgicalInt = /* GraphQL */ `
       surgicalIntervention {
         id
         name
+        description
         surgicalIntervention {
           nextToken
         }
@@ -3474,6 +3552,7 @@ export const createSurgicalIntervention = /* GraphQL */ `
     createSurgicalIntervention(input: $input, condition: $condition) {
       id
       name
+      description
       surgicalIntervention {
         items {
           id
@@ -3494,6 +3573,7 @@ export const updateSurgicalIntervention = /* GraphQL */ `
     updateSurgicalIntervention(input: $input, condition: $condition) {
       id
       name
+      description
       surgicalIntervention {
         items {
           id
@@ -3514,6 +3594,7 @@ export const deleteSurgicalIntervention = /* GraphQL */ `
     deleteSurgicalIntervention(input: $input, condition: $condition) {
       id
       name
+      description
       surgicalIntervention {
         items {
           id
@@ -3534,7 +3615,7 @@ export const createPhysicalExploration = /* GraphQL */ `
     createPhysicalExploration(input: $input, condition: $condition) {
       id
       general_exploration
-      vitalsigns {
+      vitalsign {
         id
         blood_pressure
         Breathing
@@ -3574,7 +3655,7 @@ export const updatePhysicalExploration = /* GraphQL */ `
     updatePhysicalExploration(input: $input, condition: $condition) {
       id
       general_exploration
-      vitalsigns {
+      vitalsign {
         id
         blood_pressure
         Breathing
@@ -3614,7 +3695,7 @@ export const deletePhysicalExploration = /* GraphQL */ `
     deletePhysicalExploration(input: $input, condition: $condition) {
       id
       general_exploration
-      vitalsigns {
+      vitalsign {
         id
         blood_pressure
         Breathing
@@ -3646,12 +3727,12 @@ export const deletePhysicalExploration = /* GraphQL */ `
     }
   }
 `;
-export const createVitalSigns = /* GraphQL */ `
-  mutation CreateVitalSigns(
-    $input: CreateVitalSignsInput!
-    $condition: ModelVitalSignsConditionInput
+export const createVitalSign = /* GraphQL */ `
+  mutation CreateVitalSign(
+    $input: CreateVitalSignInput!
+    $condition: ModelVitalSignConditionInput
   ) {
-    createVitalSigns(input: $input, condition: $condition) {
+    createVitalSign(input: $input, condition: $condition) {
       id
       blood_pressure
       Breathing
@@ -3664,12 +3745,12 @@ export const createVitalSigns = /* GraphQL */ `
     }
   }
 `;
-export const updateVitalSigns = /* GraphQL */ `
-  mutation UpdateVitalSigns(
-    $input: UpdateVitalSignsInput!
-    $condition: ModelVitalSignsConditionInput
+export const updateVitalSign = /* GraphQL */ `
+  mutation UpdateVitalSign(
+    $input: UpdateVitalSignInput!
+    $condition: ModelVitalSignConditionInput
   ) {
-    updateVitalSigns(input: $input, condition: $condition) {
+    updateVitalSign(input: $input, condition: $condition) {
       id
       blood_pressure
       Breathing
@@ -3682,12 +3763,12 @@ export const updateVitalSigns = /* GraphQL */ `
     }
   }
 `;
-export const deleteVitalSigns = /* GraphQL */ `
-  mutation DeleteVitalSigns(
-    $input: DeleteVitalSignsInput!
-    $condition: ModelVitalSignsConditionInput
+export const deleteVitalSign = /* GraphQL */ `
+  mutation DeleteVitalSign(
+    $input: DeleteVitalSignInput!
+    $condition: ModelVitalSignConditionInput
   ) {
-    deleteVitalSigns(input: $input, condition: $condition) {
+    deleteVitalSign(input: $input, condition: $condition) {
       id
       blood_pressure
       Breathing

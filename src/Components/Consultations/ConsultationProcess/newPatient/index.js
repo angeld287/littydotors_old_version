@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner,
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker } from "mdbreact";
-
+import { API, graphqlOperation } from 'aws-amplify';
 import useNewPatient from './useNewPatient';
+import { createPatient } from '../../../../graphql/mutations';
 import moment from 'moment';
 import Swal from 'sweetalert2';
 
-const NewPatient = ({ setCreateNewPatient: setCreateNewPatient}) => {
+const NewPatient = (
+                      {
+                        createConsultation: createConsultation,
+                        setCreateNewPatient: setCreateNewPatient,
+                        name: _name,
+                        childProps: childProps
+                      }
+                   ) => {
 
-  const { register, setBirthdate, username, handleSubmit, formState, setUsername, name, setName, birthdate, newPatient,
-  email, setEmail, phone, setPhone, weight, setWeight, height, setHeight, errors, loading, setLoading } = useNewPatient();
+  const { register, setBirthdate, handleSubmit, formState, birthdate, newPatient, errors, loading, setLoading, name, setName } = useNewPatient();
 
   const onSubmit = (input) => {
         var date = moment(new Date()).format('YYYY-MM-DD');
@@ -21,9 +28,17 @@ const NewPatient = ({ setCreateNewPatient: setCreateNewPatient}) => {
         }else{
             setLoading(true);
             input.birthdate = birthdate;
-            newPatient(input);
-            setCreateNewPatient(false);
-            setLoading(false);
+            API.graphql(graphqlOperation(createPatient, { input: input }))
+            .then((r) => {
+                console.log(r.data.createPatient);
+                console.log(childProps.state);
+                createConsultation(childProps.state, r.data.createPatient);
+                setLoading(false);
+            })
+            .catch((err) => { 
+                console.log(err);
+                setLoading(false);
+            })
         }
     }
 
@@ -44,7 +59,7 @@ const NewPatient = ({ setCreateNewPatient: setCreateNewPatient}) => {
 								<br />
 								<MDBRow>
                   <MDBCol md="12">
-                    <input name="name" placeholder="Nombre Completo" autoComplete="off" className="form-control" ref={register({ required: { message: 'Este campo es requerido', value: true } })}/>
+                    <input name="name" value={(name === null ? _name : name)} onChange={e => {setName(e.target.value)}} placeholder="Nombre Completo" autoComplete="off" className="form-control" ref={register({ required: { message: 'Este campo es requerido', value: true } })}/>
                     {errors.name && <span className="text-danger mb-2">{errors.name.message}</span>}
                   </MDBCol>
                 </MDBRow>

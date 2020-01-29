@@ -11,7 +11,7 @@ const useConsultationProcess = () => {
     const [ formActivePanel, setFormActivePanel ] = useState(0);
     const [ selectedDate, setSelectedDate ] = useState(new Date());
 
-    let { patient, newpatient } = useParams();
+    let { consultation, patient } = useParams();
 
     const swapFormActive = (param) => (e) => {
         setFormActivePanelChanged(true);
@@ -41,9 +41,9 @@ const useConsultationProcess = () => {
             try {
                 setFormActivePanel(1);
                 
-                if (patient === "null") {
+                if (consultation === "null") {
                     setCreateNewPatient(true);
-                    setCreateNewPatientName(newpatient);
+                    setCreateNewPatientName(patient);
                 }
             } catch (error) {
                 setLoading(false);

@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"littydoctors976a7757": {
+		"littydoctors0f1e523f": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": []
@@ -16,7 +16,7 @@
 					"defaultAuthentication": {
 						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
 						"userPoolConfig": {
-							"userPoolId": "authlittydoctors976a7757"
+							"userPoolId": "authlittydoctors0f1e523f"
 						}
 					}
 				}
@@ -24,7 +24,7 @@
 		}
 	},
 	"storage": {
-		"littydoctorstorage": {
+		"littydoctorsS3": {
 			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}
