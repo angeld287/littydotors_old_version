@@ -27,9 +27,8 @@ export const Routes = ({ childProps }) => (
     <ProtectedRoute exact path="/medicalappointmentsmanagement" render={() => <MedicalAppointmentsManagement childProps={childProps}/>} props={childProps} />
     <ProtectedRouteCompany exact path="/reports" render={() => <Reports childProps={childProps}/>} props={childProps} />
     <Route exact path="/consultations" render={() => <Consultations childProps={childProps} />} />
-    <Route exact path="/consultations/process/:patient" render={() => <ConsultationProcess childProps={childProps} />} />
-    <Route exact path="/consultations/process/:patient/:newpatient" render={() => <ConsultationProcess childProps={childProps} />} />
-    <Route exact path="/consultations/patient/new" render={() => <NewPatient childProps={childProps} />} />
+    <Route exact path="/consultations/process/:consultation/:patient" render={() => <ConsultationProcess childProps={childProps} />} />
+    
   </Switch>
 );
 

@@ -46,6 +46,7 @@ export default class App extends Component {
         API.graphql(graphqlOperation(listConsultingRooms)).then( result =>{
             this.setState({
                 id: result.data.listConsultingRooms.items[0].id,
+                doctorid: result.data.listConsultingRooms.items[0].doctor.id,
                 doctorname: result.data.listConsultingRooms.items[0].doctor.name,
                 doctorusername: result.data.listConsultingRooms.items[0].doctor.username,
                 speciality: result.data.listConsultingRooms.items[0].doctor.speciality,
@@ -76,6 +77,7 @@ export default class App extends Component {
         })).then( result =>{
             this.setState({
                 id: result.data.listConsultingRooms.items[0].id,
+                doctorid: result.data.listConsultingRooms.items[0].doctor.id,
                 doctorname: result.data.listConsultingRooms.items[0].doctor.name,
                 doctorusername: result.data.listConsultingRooms.items[0].doctor.username,
                 speciality: result.data.listConsultingRooms.items[0].doctor.speciality,

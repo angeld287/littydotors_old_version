@@ -447,6 +447,24 @@ export const getMedicalConsultation = /* GraphQL */ `
         image
         owner
       }
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
       postConsultationsActivity {
         id
         medicalPrescriptions {
@@ -495,7 +513,7 @@ export const getMedicalConsultation = /* GraphQL */ `
       }
       doctorname
       secretary
-      patient
+      patientname
       createdAt
       owner
     }
@@ -524,6 +542,20 @@ export const listMedicalConsultations = /* GraphQL */ `
           image
           owner
         }
+        patient {
+          id
+          name
+          username
+          email
+          phone
+          phone_id
+          weight
+          height
+          size
+          age
+          birthdate
+          owner
+        }
         postConsultationsActivity {
           id
           doctor
@@ -541,7 +573,7 @@ export const listMedicalConsultations = /* GraphQL */ `
         }
         doctorname
         secretary
-        patient
+        patientname
         createdAt
         owner
       }

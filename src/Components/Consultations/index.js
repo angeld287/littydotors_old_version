@@ -19,8 +19,9 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 
-const Consultations = () => { 
-    const { loading, error, patients, setPatient, patient, beginConsultation, autoCompleteLoading, searchPatient, newPatientName,  setNewPatientName} = useConsultations();
+const Consultations = ({childProps: childProps}) => { 
+    const { createConsultation, loading, error, patients, setPatient, patient, redirectToProcess, autoCompleteLoading, 
+    loadingButton, searchPatient, newPatientName,  setNewPatientName} = useConsultations();
     const classes = useStyles();
     const theme = useTheme();
     const preventDefault = event => event.preventDefault();
@@ -71,7 +72,9 @@ const Consultations = () => {
               </Typography>
             </CardContent>
             <div className={classes.controls}>  
-              <MDBBtn disabled={patient === null || patient.name === "N/A"} className={classes.playIcon} onClick={ e => {e.preventDefault(); beginConsultation((patient != null ? patient.id : "N/A"), false);}} color="indigo" >Crear Consulta Medica</MDBBtn>
+              {/* redirectToProcess((patient != null ? patient.id : "N/A"), false) */}
+              {!loadingButton &&(<MDBBtn disabled={patient === null || patient.name === "N/A"} className={classes.playIcon} onClick={ e => {e.preventDefault(); createConsultation(childProps.state, patient)}} color="indigo" >Crear Consulta Medica</MDBBtn>)}
+              {loadingButton && <MDBSpinner small/>}
             </div>
           </div>
         </Card>

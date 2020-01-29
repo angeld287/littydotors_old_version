@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import {listPatients} from './../../graphql/queries'
+import {listPatients} from './../../graphql/queries';
+import { createMedicalConsultation } from '../../graphql/mutations';
 import { API, graphqlOperation } from 'aws-amplify';
 import { filterByValue } from '../../Functions/filterArray'
 
 
 const useConsultations = () => {
     const [ loading, setLoading ] = useState(true);
+    const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
     const [ patients, setPatients ] = useState([]);
     const [ patient, setPatient ] = useState({});
@@ -33,7 +35,7 @@ const useConsultations = () => {
                 
                 if(patientsApi.data.listPatients.items.length > 0){
                     patientsApi.data.listPatients.items.forEach(element => {
-                        const pdata = {id: element.id, name: element.name, age: element.age, image: "https://asociaciondenutriologia.org/img/default_user.png", email: element.email, phone: element.phone};
+                        const pdata = {value: element.id, label: element.name, id: element.id, name: element.name, age: element.age, image: "https://asociaciondenutriologia.org/img/default_user.png", email: element.email, phone: element.phone, username: element.username};
                         _patients.push(pdata);
                     });
                 }else{
@@ -85,19 +87,20 @@ const useConsultations = () => {
         }
     }
 
-    const beginConsultation = (_patient, _new) => {
-        console.log("entro");
-        
-        if (_new) {
-            if (newPatient) {
-                window.location.href = "/consultations/process/null/"+newPatientName;   
-            }
-        }else{
-            window.location.href = "/consultations/process/"+_patient;
-        }   
+    const createConsultation = (state, _patient) => {
+        setLoadingButton(true);
+        API.graphql(graphqlOperation(createMedicalConsultation, {input: { medicalConsultationDoctorId: state.doctorid, medicalConsultationPatientId: _patient.id, doctorname: state.doctorusername, secretary: state.secretary, patientname: _patient.username }}))
+        .then((r) => {
+            var consultationid = r.data.createMedicalConsultation.id
+            setLoadingButton(false);
+            window.location.href = "/consultations/process/"+consultationid+"/"+_patient.id;
+        }).catch((err) => { 
+            console.log("Ocurrio un error al crear la consulta medica: ",err);
+            setLoadingButton(false);
+        });
     }
 
-    return { patients, error, loading, setPatients, patient, setPatient, beginConsultation, autoCompleteLoading, searchPatient, newPatientName, setNewPatientName};
+    return { createConsultation, loadingButton, patients, error, loading, setPatients, patient, setPatient, autoCompleteLoading, searchPatient, newPatientName, setNewPatientName};
 };
 
 export default useConsultations;

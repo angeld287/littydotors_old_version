@@ -565,6 +565,24 @@ export const onCreateMedicalConsultation = /* GraphQL */ `
         image
         owner
       }
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
       postConsultationsActivity {
         id
         medicalPrescriptions {
@@ -613,7 +631,7 @@ export const onCreateMedicalConsultation = /* GraphQL */ `
       }
       doctorname
       secretary
-      patient
+      patientname
       createdAt
       owner
     }
@@ -641,6 +659,24 @@ export const onUpdateMedicalConsultation = /* GraphQL */ `
         image
         owner
       }
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
       postConsultationsActivity {
         id
         medicalPrescriptions {
@@ -689,7 +725,7 @@ export const onUpdateMedicalConsultation = /* GraphQL */ `
       }
       doctorname
       secretary
-      patient
+      patientname
       createdAt
       owner
     }
@@ -714,6 +750,24 @@ export const onDeleteMedicalConsultation = /* GraphQL */ `
         image
         owner
       }
+      patient {
+        id
+        name
+        username
+        email
+        phone
+        phone_id
+        weight
+        height
+        size
+        age
+        birthdate
+        patientHistory {
+          id
+          owner
+        }
+        owner
+      }
       postConsultationsActivity {
         id
         medicalPrescriptions {
@@ -762,7 +816,7 @@ export const onDeleteMedicalConsultation = /* GraphQL */ `
       }
       doctorname
       secretary
-      patient
+      patientname
       createdAt
       owner
     }

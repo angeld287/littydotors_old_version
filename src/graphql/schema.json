@@ -7330,6 +7330,17 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
+          "name" : "patient",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "Patient",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
           "name" : "postConsultationsActivity",
           "description" : null,
           "args" : [ ],
@@ -7374,7 +7385,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "patient",
+          "name" : "patientname",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -7938,7 +7949,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "patient",
+          "name" : "patientname",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -15525,7 +15536,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "patient",
+          "name" : "patientname",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -15544,6 +15555,15 @@
           "defaultValue" : null
         }, {
           "name" : "medicalConsultationDoctorId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "medicalConsultationPatientId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -15579,6 +15599,15 @@
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
+          "name" : "patientname",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "createdAt",
           "description" : null,
           "type" : {
@@ -15663,7 +15692,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "patient",
+          "name" : "patientname",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -15682,6 +15711,15 @@
           "defaultValue" : null
         }, {
           "name" : "medicalConsultationDoctorId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "medicalConsultationPatientId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -23845,23 +23883,6 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
         "name" : "aws_api_key",
         "description" : "Tells the service this field/object has access authorized by an API key.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
@@ -23945,6 +23966,23 @@
         "description" : "Tells the service this field/object has access authorized by an OIDC token.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
         "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
+        } ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false
