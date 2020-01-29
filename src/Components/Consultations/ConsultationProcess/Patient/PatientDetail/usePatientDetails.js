@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { useHistory, useParams } from 'react-router-dom';
-import { listMedicalConsultations } from '../../../../graphql/queries';
+import { listMedicalConsultations } from '../../../../../graphql/queries';
 import moment from 'moment';
 
 

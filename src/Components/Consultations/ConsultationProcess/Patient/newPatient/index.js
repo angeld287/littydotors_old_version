@@ -3,7 +3,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker } from "mdbreact";
 import { API, graphqlOperation } from 'aws-amplify';
 import useNewPatient from './useNewPatient';
-import { createPatient } from '../../../../graphql/mutations';
+import { createPatient } from '../../../../../graphql/mutations';
 import moment from 'moment';
 import Swal from 'sweetalert2';
 
