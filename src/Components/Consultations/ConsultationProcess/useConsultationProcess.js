@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { useHistory, useParams } from 'react-router-dom';
 import { getPatient } from '../../../graphql/queries';
+import { getMedicalConsultation } from '../../../graphql/custom-queries';
 
 const useConsultationProcess = () => {
     const [ loading, setLoading ] = useState(true);
@@ -12,6 +13,7 @@ const useConsultationProcess = () => {
     const [ formActivePanel, setFormActivePanel ] = useState(0);
     const [ selectedDate, setSelectedDate ] = useState(new Date());
     const [ patientData, setPatientData ] = useState({});
+    const [ global, setGlobal ] = useState({});
 
     let { consultation, patient } = useParams();
 
@@ -35,6 +37,10 @@ const useConsultationProcess = () => {
         }
     }
 
+    const setGlobalData = (object) => {
+        setGlobal(object);
+    }
+
     useEffect(() => {
         let didCancel = false;
         var _patientData = {};
@@ -45,16 +51,26 @@ const useConsultationProcess = () => {
                 if (consultation === "null") {
                     setCreateNewPatient(true);
                     setCreateNewPatientName(patient);
+                    setLoading(false);
                 }else{
-                    API.graphql(graphqlOperation(getPatient, { id: patient}))
+                    API.graphql(graphqlOperation(getMedicalConsultation, { id: consultation}))
                     .then((r) => {
-                        _patientData = r.data.getPatient;
-                        setPatientData(_patientData);
+                        setGlobal({
+                            consultationid: consultation,
+                            patientid: patient,
+                            patient: r.data.getMedicalConsultation.patient,
+                            medicalHistory: r.data.getMedicalConsultation.medicalHistory
+                        });
+                        setPatientData(r.data.getMedicalConsultation.patient);
                         setLoading(false);
-                    }).catch((err) => { 
+                        console.log(r.data.getMedicalConsultation.patient.patientHistory);
+                        
+                    })
+                    .catch((err) => { 
                         console.log("Ocurrio un error: ",err);
                         setLoading(false);
-                    });
+                        setError(true);
+                    })
                 }
             } catch (error) {
                 setLoading(false);
@@ -74,7 +90,7 @@ const useConsultationProcess = () => {
         };
     }, []);
 
-    return { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, patientData,
+    return { setGlobalData, global, error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, patientData,
              formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName, setCreateNewPatient  };
 };
 

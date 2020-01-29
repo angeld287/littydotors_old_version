@@ -9,11 +9,12 @@ import useConsultationProcess from './useConsultationProcess';
 import PatientDetails from './Patient/PatientDetail';
 import NewPatient from './Patient/newPatient';
 import MedicalHistory from './MedicalHistory';
+import NewPatientHistory from '../ConsultationProcess/Patient/NewPatientHistory';
 
 
 const ConsultationProcess = ({childProps:childProps}) => {
   const { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, setCreateNewPatient, patientData,
-          formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName } = useConsultationProcess();
+          formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName, setGlobalData, global } = useConsultationProcess();
 
   const { createConsultation } = useConsultations();
   
@@ -28,7 +29,7 @@ const ConsultationProcess = ({childProps:childProps}) => {
       );
     }
 
-  if (error) return <h2>Ha ocurrido un error</h2>;
+  if (error) return <h2 className="text-center font-weight-bold pt-10 pb-2 mb-2">Ha ocurrido un error</h2>;
 
   return (
     <MDBContainer>
@@ -51,6 +52,8 @@ const ConsultationProcess = ({childProps:childProps}) => {
                       <PatientDetails
                         patientData={patientData}
                         childProps={childProps}
+                        global={global}
+                        setGlobalData={setGlobalData}
                       />
                     )
                   }
@@ -71,9 +74,11 @@ const ConsultationProcess = ({childProps:childProps}) => {
 
             {formActivePanel === 2 &&
               <MDBCol md="12">
-                <MedicalHistory
-                  patientData={patientData}
-                  childProps={childProps}
+                <NewPatientHistory
+                    patientData={patientData}
+                    childProps={childProps}
+                    global={global}
+                    setGlobalData={setGlobalData}
                 />
                 <br/>
                 <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(1)}>previous</MDBBtn>
@@ -83,6 +88,12 @@ const ConsultationProcess = ({childProps:childProps}) => {
 
             {formActivePanel == 3 &&
             (<MDBCol md="12">
+              {/* <MedicalHistory
+                  patientData={patientData}
+                  childProps={childProps}
+                  global={global}
+                  setGlobalData={setGlobalData}
+              /> */}
               <h3 className="font-weight-bold pl-0 my-4"><strong>Exploracion Fisica</strong></h3>
               <MDBInput label="First Name" className="mt-3" />
               <MDBInput label="Second Name" className="mt-3" />
