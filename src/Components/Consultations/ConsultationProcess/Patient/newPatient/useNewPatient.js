@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import useForm from 'react-hook-form';
-import useConsultationProcess from '../useConsultationProcess';
+import useConsultationProcess from '../../useConsultationProcess';
 
 const useNewPatient = () => {
     const [ loading, setLoading ] = useState(true);

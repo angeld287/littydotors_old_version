@@ -4,7 +4,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
 import { API, graphqlOperation } from 'aws-amplify';
 
 import UsePatientDetails from './usePatientDetails';
-import { createPatient } from '../../../../graphql/mutations';
+import { createPatient } from '../../../../../graphql/mutations';
 import moment from 'moment';
 import Swal from 'sweetalert2';
 

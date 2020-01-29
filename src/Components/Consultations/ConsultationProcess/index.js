@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBBox,
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBSpinner } from "mdbreact";
-import NewPatient from './newPatient'
 import moment from 'moment';
 
 
 import useConsultations from '../useConsultations';
 import useConsultationProcess from './useConsultationProcess';
-import PatientDetails from './PatientDetail'
+import PatientDetails from './Patient/PatientDetail';
+import NewPatient from './Patient/newPatient';
+import MedicalHistory from './MedicalHistory';
+
 
 const ConsultationProcess = ({childProps:childProps}) => {
   const { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, setCreateNewPatient, patientData,
@@ -68,52 +70,16 @@ const ConsultationProcess = ({childProps:childProps}) => {
               </MDBCol>)}
 
             {formActivePanel === 2 &&
-            (<MDBCol md="12">
-              <h3 className="font-weight-bold pl-0 my-4">
-                <strong>Antecedentes</strong>
-              </h3>
-              <h5 className="font-weight-bold pl-0 my-4">
-                <strong>Personales Patológicos</strong>
-              </h5>
-              <MDBRow>
-                <MDBCol>
-                  <MDBInput label="Cardiovasculares" type="checkbox" id="checkbox" />
-                  <MDBInput label="Pulmonares" type="checkbox" id="checkbox"/>
-                  <MDBInput label="Renales" type="checkbox" id="checkbox"/>
-                  <MDBInput label="Quirúrgicos" type="checkbox" id="checkbox"/>
-                </MDBCol>
-                <MDBCol>
-                  <MDBInput label="Digestivos" type="checkbox" id="checkbox"/>
-                  <MDBInput label="Alérgicos" type="checkbox" id="checkbox"/>
-                  <MDBInput label="Transfusiones" type="checkbox" id="checkbox"/>
-                  <MDBInput label="Diabetes" type="checkbox" id="checkbox"/>
-                </MDBCol>
-              </MDBRow>
-              <MDBInput label="Medicamentos" className="mt-4" />
-              <MDBInput label="Especifique" className="mt-4" />
-              
-              <br/>
-              <h5 className="font-weight-bold pl-0 my-4">
-                <strong>Personales No Patológicos</strong>
-              </h5>
-              <MDBInput label="Alcohol" className="mt-4" />
-              <MDBInput label="Tabaquismo" className="mt-4" />
-              <MDBInput label="Drogas" className="mt-4" />
-              <MDBInput label="Inmunizaciones" className="mt-4" />
-              <MDBInput label="Otros" className="mt-4" />
-              <br/>
-              <h5 className="font-weight-bold pl-0 my-4">
-                <strong>Familiares</strong>
-              </h5>
-              <MDBInput type="checkbox" label="Padre Vivo" className="mt-4" />
-              <MDBInput label="Enfermedades que padece" className="mt-4" />
-              <br/>
-              <MDBInput type="checkbox" label="Madre Viva" className="mt-4" />
-              <MDBInput label="Enfermedades que padece" className="mt-4" />
-              <br/>
-              <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(1)}>previous</MDBBtn>
-              <MDBBtn color="mdb-color" rounded className="float-right" onClick={handleNextPrevClick(3)}>next</MDBBtn>
-            </MDBCol>)}
+              <MDBCol md="12">
+                <MedicalHistory
+                  patientData={patientData}
+                  childProps={childProps}
+                />
+                <br/>
+                <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(1)}>previous</MDBBtn>
+                <MDBBtn color="mdb-color" rounded className="float-right" onClick={handleNextPrevClick(3)}>next</MDBBtn>
+              </MDBCol>
+            }
 
             {formActivePanel == 3 &&
             (<MDBCol md="12">
