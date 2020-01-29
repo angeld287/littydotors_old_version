@@ -181,11 +181,12 @@ type MedicalConsultation
     ]) {
     id: ID!
     doctor: Doctor @connection
+    patient: Patient @connection
     postConsultationsActivity: PostConsultationsActivity @connection
     medicalHistory: MedicalHistory @connection
     doctorname: String
     secretary: String
-    patient: String
+    patientname: String
     createdAt: String
 }
 

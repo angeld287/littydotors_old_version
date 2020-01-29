@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { useHistory, useParams } from 'react-router-dom';
+import { getPatient } from '../../../graphql/queries';
 
 const useConsultationProcess = () => {
     const [ loading, setLoading ] = useState(true);
@@ -10,6 +11,7 @@ const useConsultationProcess = () => {
     const [ formActivePanelChanged, setFormActivePanelChanged ] = useState(false);
     const [ formActivePanel, setFormActivePanel ] = useState(0);
     const [ selectedDate, setSelectedDate ] = useState(new Date());
+    const [ patientData, setPatientData ] = useState({});
 
     let { consultation, patient } = useParams();
 
@@ -35,15 +37,24 @@ const useConsultationProcess = () => {
 
     useEffect(() => {
         let didCancel = false;
+        var _patientData = {};
 
-        const createMedicalConsultation = async () => {
-
+        const fetch = async () => {
             try {
                 setFormActivePanel(1);
-                
                 if (consultation === "null") {
                     setCreateNewPatient(true);
                     setCreateNewPatientName(patient);
+                }else{
+                    API.graphql(graphqlOperation(getPatient, { id: patient}))
+                    .then((r) => {
+                        _patientData = r.data.getPatient;
+                        setPatientData(_patientData);
+                        setLoading(false);
+                    }).catch((err) => { 
+                        console.log("Ocurrio un error: ",err);
+                        setLoading(false);
+                    });
                 }
             } catch (error) {
                 setLoading(false);
@@ -51,18 +62,19 @@ const useConsultationProcess = () => {
             }
 
             if (!didCancel) {
-                setLoading(false);
+                setPatientData(_patientData);
+                //setLoading(false);
             }
         };
 
-        createMedicalConsultation();
+        fetch();
 
         return () => {
             didCancel = true;
         };
     }, []);
 
-    return { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate,
+    return { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, patientData,
              formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName, setCreateNewPatient  };
 };
 
