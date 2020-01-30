@@ -4250,7 +4250,7 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelSurgicalInterventionFilterInput",
+              "name" : "ModelPathologicalHistorySurgicalIntFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -4284,7 +4284,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelSurgicalInterventionConnection",
+            "name" : "ModelPathologicalHistorySurgicalIntConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4401,7 +4401,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelSurgicalInterventionConnection",
+        "name" : "ModelPathologicalHistorySurgicalIntConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -4412,7 +4412,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "SurgicalIntervention",
+              "name" : "PathologicalHistorySurgicalInt",
               "ofType" : null
             }
           },
@@ -4425,6 +4425,63 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "inputFields" : null,
+        "interfaces" : [ ],
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "OBJECT",
+        "name" : "PathologicalHistorySurgicalInt",
+        "description" : null,
+        "fields" : [ {
+          "name" : "id",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "ID",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "date",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "pathologicalHistory",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "PathologicalHistory",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "surgicalIntervention",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "SurgicalIntervention",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4518,6 +4575,53 @@
           "type" : {
             "kind" : "OBJECT",
             "name" : "ModelPostConsultActSurgicalIntConnection",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "pathologicalHistory",
+          "description" : null,
+          "args" : [ {
+            "name" : "filter",
+            "description" : null,
+            "type" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "ModelPathologicalHistorySurgicalIntFilterInput",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "sortDirection",
+            "description" : null,
+            "type" : {
+              "kind" : "ENUM",
+              "name" : "ModelSortDirection",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "limit",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "Int",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "nextToken",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "ModelPathologicalHistorySurgicalIntConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4720,7 +4824,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "medicalPrescriptions",
+          "name" : "medicalpres",
           "description" : null,
           "args" : [ {
             "name" : "filter",
@@ -4986,7 +5090,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "pcActivities",
+          "name" : "postconsultact",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -4997,7 +5101,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "medicalPrescriptions",
+          "name" : "medicalpresc",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -5067,52 +5171,27 @@
         }, {
           "name" : "medications",
           "description" : null,
-          "args" : [ {
-            "name" : "filter",
-            "description" : null,
-            "type" : {
-              "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsMedicationsFilterInput",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "sortDirection",
-            "description" : null,
-            "type" : {
-              "kind" : "ENUM",
-              "name" : "ModelSortDirection",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "limit",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "Int",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "nextToken",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          } ],
+          "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelMedicalPrescriptionsMedicationsConnection",
+            "name" : "Medicine",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "pca",
+          "name" : "comment",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "postconsultact",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -5162,87 +5241,6 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        } ],
-        "inputFields" : null,
-        "interfaces" : [ ],
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "OBJECT",
-        "name" : "ModelMedicalPrescriptionsMedicationsConnection",
-        "description" : null,
-        "fields" : [ {
-          "name" : "items",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "OBJECT",
-              "name" : "MedicalPrescriptionsMedications",
-              "ofType" : null
-            }
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "nextToken",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        } ],
-        "inputFields" : null,
-        "interfaces" : [ ],
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "OBJECT",
-        "name" : "MedicalPrescriptionsMedications",
-        "description" : null,
-        "fields" : [ {
-          "name" : "id",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "ID",
-              "ofType" : null
-            }
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "medicalPrescriptions",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "MedicalPrescription",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "medications",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "Medicine",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -5358,53 +5356,6 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "mp",
-          "description" : null,
-          "args" : [ {
-            "name" : "filter",
-            "description" : null,
-            "type" : {
-              "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsMedicationsFilterInput",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "sortDirection",
-            "description" : null,
-            "type" : {
-              "kind" : "ENUM",
-              "name" : "ModelSortDirection",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "limit",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "Int",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "nextToken",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          } ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "ModelMedicalPrescriptionsMedicationsConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -5577,59 +5528,6 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         } ],
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
-        "name" : "ModelMedicalPrescriptionsMedicationsFilterInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "id",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelIDInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "and",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsMedicationsFilterInput",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "or",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsMedicationsFilterInput",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "not",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelMedicalPrescriptionsMedicationsFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
-        "enumValues" : null,
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
@@ -6080,7 +5978,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelSurgicalInterventionFilterInput",
+        "name" : "ModelPathologicalHistorySurgicalIntFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -6093,16 +5991,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "name",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "description",
+          "name" : "date",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -6118,7 +6007,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelSurgicalInterventionFilterInput",
+              "name" : "ModelPathologicalHistorySurgicalIntFilterInput",
               "ofType" : null
             }
           },
@@ -6131,7 +6020,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelSurgicalInterventionFilterInput",
+              "name" : "ModelPathologicalHistorySurgicalIntFilterInput",
               "ofType" : null
             }
           },
@@ -6141,7 +6030,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelSurgicalInterventionFilterInput",
+            "name" : "ModelPathologicalHistorySurgicalIntFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -7655,7 +7544,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "Breathing",
+          "name" : "breathing",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -7666,7 +7555,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "Pulse",
+          "name" : "pulse",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -7677,7 +7566,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "Temperature",
+          "name" : "temperature",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -9577,6 +9466,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "comment",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "doctor",
           "description" : null,
           "type" : {
@@ -9741,6 +9639,112 @@
           "type" : {
             "kind" : "INPUT_OBJECT",
             "name" : "ModelMedicalAnalysisFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "OBJECT",
+        "name" : "ModelSurgicalInterventionConnection",
+        "description" : null,
+        "fields" : [ {
+          "name" : "items",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "OBJECT",
+              "name" : "SurgicalIntervention",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "nextToken",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "inputFields" : null,
+        "interfaces" : [ ],
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelSurgicalInterventionFilterInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "id",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelIDInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "name",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "description",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "and",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "ModelSurgicalInterventionFilterInput",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "or",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "ModelSurgicalInterventionFilterInput",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "not",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelSurgicalInterventionFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -9931,7 +9935,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "Breathing",
+          "name" : "breathing",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -9940,7 +9944,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "Pulse",
+          "name" : "pulse",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -9949,7 +9953,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "Temperature",
+          "name" : "temperature",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -12879,105 +12883,6 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createMedicalPrescriptionsMedications",
-          "description" : null,
-          "args" : [ {
-            "name" : "input",
-            "description" : null,
-            "type" : {
-              "kind" : "NON_NULL",
-              "name" : null,
-              "ofType" : {
-                "kind" : "INPUT_OBJECT",
-                "name" : "CreateMedicalPrescriptionsMedicationsInput",
-                "ofType" : null
-              }
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "condition",
-            "description" : null,
-            "type" : {
-              "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsMedicationsConditionInput",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          } ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "MedicalPrescriptionsMedications",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "updateMedicalPrescriptionsMedications",
-          "description" : null,
-          "args" : [ {
-            "name" : "input",
-            "description" : null,
-            "type" : {
-              "kind" : "NON_NULL",
-              "name" : null,
-              "ofType" : {
-                "kind" : "INPUT_OBJECT",
-                "name" : "UpdateMedicalPrescriptionsMedicationsInput",
-                "ofType" : null
-              }
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "condition",
-            "description" : null,
-            "type" : {
-              "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsMedicationsConditionInput",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          } ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "MedicalPrescriptionsMedications",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "deleteMedicalPrescriptionsMedications",
-          "description" : null,
-          "args" : [ {
-            "name" : "input",
-            "description" : null,
-            "type" : {
-              "kind" : "NON_NULL",
-              "name" : null,
-              "ofType" : {
-                "kind" : "INPUT_OBJECT",
-                "name" : "DeleteMedicalPrescriptionsMedicationsInput",
-                "ofType" : null
-              }
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "condition",
-            "description" : null,
-            "type" : {
-              "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsMedicationsConditionInput",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          } ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "MedicalPrescriptionsMedications",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
           "name" : "createPostConsultActMedAnalysis",
           "description" : null,
           "args" : [ {
@@ -13270,6 +13175,105 @@
           "type" : {
             "kind" : "OBJECT",
             "name" : "PostConsultActSurgicalInt",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "createPathologicalHistorySurgicalInt",
+          "description" : null,
+          "args" : [ {
+            "name" : "input",
+            "description" : null,
+            "type" : {
+              "kind" : "NON_NULL",
+              "name" : null,
+              "ofType" : {
+                "kind" : "INPUT_OBJECT",
+                "name" : "CreatePathologicalHistorySurgicalIntInput",
+                "ofType" : null
+              }
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "condition",
+            "description" : null,
+            "type" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "ModelPathologicalHistorySurgicalIntConditionInput",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "PathologicalHistorySurgicalInt",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "updatePathologicalHistorySurgicalInt",
+          "description" : null,
+          "args" : [ {
+            "name" : "input",
+            "description" : null,
+            "type" : {
+              "kind" : "NON_NULL",
+              "name" : null,
+              "ofType" : {
+                "kind" : "INPUT_OBJECT",
+                "name" : "UpdatePathologicalHistorySurgicalIntInput",
+                "ofType" : null
+              }
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "condition",
+            "description" : null,
+            "type" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "ModelPathologicalHistorySurgicalIntConditionInput",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "PathologicalHistorySurgicalInt",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "deletePathologicalHistorySurgicalInt",
+          "description" : null,
+          "args" : [ {
+            "name" : "input",
+            "description" : null,
+            "type" : {
+              "kind" : "NON_NULL",
+              "name" : null,
+              "ofType" : {
+                "kind" : "INPUT_OBJECT",
+                "name" : "DeletePathologicalHistorySurgicalIntInput",
+                "ofType" : null
+              }
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "condition",
+            "description" : null,
+            "type" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "ModelPathologicalHistorySurgicalIntConditionInput",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "PathologicalHistorySurgicalInt",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -18870,6 +18874,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "comment",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "doctor",
           "description" : null,
           "type" : {
@@ -18897,7 +18910,16 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "medicalPrescriptionPcaId",
+          "name" : "medicalPrescriptionMedicationsId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "medicalPrescriptionPostconsultactId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -18934,6 +18956,15 @@
           "defaultValue" : null
         }, {
           "name" : "duration",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "comment",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -19026,6 +19057,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "comment",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "doctor",
           "description" : null,
           "type" : {
@@ -19053,7 +19093,16 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "medicalPrescriptionPcaId",
+          "name" : "medicalPrescriptionMedicationsId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "medicalPrescriptionPostconsultactId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -19116,7 +19165,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "postConsultActMedicalPresPcActivitiesId",
+          "name" : "postConsultActMedicalPresPostconsultactId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -19125,7 +19174,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "postConsultActMedicalPresMedicalPrescriptionsId",
+          "name" : "postConsultActMedicalPresMedicalprescId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -19236,7 +19285,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "postConsultActMedicalPresPcActivitiesId",
+          "name" : "postConsultActMedicalPresPostconsultactId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -19245,7 +19294,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "postConsultActMedicalPresMedicalPrescriptionsId",
+          "name" : "postConsultActMedicalPresMedicalprescId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -19260,144 +19309,6 @@
       }, {
         "kind" : "INPUT_OBJECT",
         "name" : "DeletePostConsultActMedicalPresInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "id",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "ID",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
-        "name" : "CreateMedicalPrescriptionsMedicationsInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "id",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "ID",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "medicalPrescriptionsMedicationsMedicalPrescriptionsId",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "ID",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "medicalPrescriptionsMedicationsMedicationsId",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "ID",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
-        "name" : "ModelMedicalPrescriptionsMedicationsConditionInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "and",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsMedicationsConditionInput",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "or",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "INPUT_OBJECT",
-              "name" : "ModelMedicalPrescriptionsMedicationsConditionInput",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "not",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelMedicalPrescriptionsMedicationsConditionInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
-        "name" : "UpdateMedicalPrescriptionsMedicationsInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "id",
-          "description" : null,
-          "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "ID",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "medicalPrescriptionsMedicationsMedicalPrescriptionsId",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "ID",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "medicalPrescriptionsMedicationsMedicationsId",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "ID",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
-        "name" : "DeleteMedicalPrescriptionsMedicationsInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -19955,6 +19866,171 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
+        "name" : "CreatePathologicalHistorySurgicalIntInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "id",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "date",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "pathologicalHistorySurgicalIntPathologicalHistoryId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "pathologicalHistorySurgicalIntSurgicalInterventionId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelPathologicalHistorySurgicalIntConditionInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "date",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "and",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "ModelPathologicalHistorySurgicalIntConditionInput",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "or",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "ModelPathologicalHistorySurgicalIntConditionInput",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "not",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelPathologicalHistorySurgicalIntConditionInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "UpdatePathologicalHistorySurgicalIntInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "id",
+          "description" : null,
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "ID",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "date",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "pathologicalHistorySurgicalIntPathologicalHistoryId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "pathologicalHistorySurgicalIntSurgicalInterventionId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "DeletePathologicalHistorySurgicalIntInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "id",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
         "name" : "CreateSurgicalInterventionInput",
         "description" : null,
         "fields" : null,
@@ -19982,15 +20058,6 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "pathologicalHistorySurgicalInterventionsId",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "ID",
             "ofType" : null
           },
           "defaultValue" : null
@@ -20093,15 +20160,6 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "pathologicalHistorySurgicalInterventionsId",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "ID",
             "ofType" : null
           },
           "defaultValue" : null
@@ -20370,7 +20428,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "Breathing",
+          "name" : "breathing",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -20379,7 +20437,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "Pulse",
+          "name" : "pulse",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -20388,7 +20446,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "Temperature",
+          "name" : "temperature",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -20442,7 +20500,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "Breathing",
+          "name" : "breathing",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -20451,7 +20509,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "Pulse",
+          "name" : "pulse",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -20460,7 +20518,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "Temperature",
+          "name" : "temperature",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -20535,7 +20593,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "Breathing",
+          "name" : "breathing",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -20544,7 +20602,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "Pulse",
+          "name" : "pulse",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -20553,7 +20611,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "Temperature",
+          "name" : "temperature",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -22545,39 +22603,6 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateMedicalPrescriptionsMedications",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "MedicalPrescriptionsMedications",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "onUpdateMedicalPrescriptionsMedications",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "MedicalPrescriptionsMedications",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "onDeleteMedicalPrescriptionsMedications",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "MedicalPrescriptionsMedications",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
           "name" : "onCreatePostConsultActMedAnalysis",
           "description" : null,
           "args" : [ ],
@@ -22699,6 +22724,39 @@
           "type" : {
             "kind" : "OBJECT",
             "name" : "PostConsultActSurgicalInt",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "onCreatePathologicalHistorySurgicalInt",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "PathologicalHistorySurgicalInt",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "onUpdatePathologicalHistorySurgicalInt",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "PathologicalHistorySurgicalInt",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "onDeletePathologicalHistorySurgicalInt",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "PathologicalHistorySurgicalInt",
             "ofType" : null
           },
           "isDeprecated" : false,

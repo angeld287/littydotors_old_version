@@ -309,7 +309,7 @@ type PathologicalHistory
         { allow: groups, groups: ["secretary"], operations: [read] }
     ]) {
     id: ID!
-    surgicalInterventions: [SurgicalIntervention] @connection
+    surgicalInterventions: [PathologicalHistorySurgicalInt] @connection(name: "phsi")
     patientMedications: [PatientMedications] @connection(name: "pm")
     patientAllergies: [PatientAllergies] @connection(name: "pa")
 }
@@ -467,7 +467,7 @@ type PostConsultationsActivity
         { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
-    medicalPrescriptions: [PostConsultActMedicalPres] @connection(name: "pcamp")
+    medicalPrescriptions: [MedicalPrescription] @connection
     medicalAnalysis: [PostConsultActMedAnalysis] @connection(name: "pcama")
     surgicalIntervention: [PostConsultActSurgicalInt] @connection(name: "pcasi")
     doctor: String
@@ -493,19 +493,19 @@ type MedicalPrescription
     frequency: String
     duration: String
     medications: [MedicalPrescriptionsMedications] @connection(name: "mpm")
-    pca: PostConsultActMedicalPres @connection(name: "mppca")
+    #pca: PostConsultActMedicalPres @connection(name: "mppca")
     doctor: String
     secretary: String
     patient: String
 }
 
-type PostConsultActMedicalPres @model(queries: null) {
+""" type PostConsultActMedicalPres @model(queries: null) {
   id: ID!
   state: State # se colocara un estado que espesificara si la receta se completo o no
   date: String
   pcActivities: PostConsultationsActivity @connection(name: "pcamp")
   medicalPrescriptions: MedicalPrescription @connection(name: "mppca")
-}
+} """
 
 type MedicalPrescriptionsMedications @model(queries: null) {
   id: ID!
@@ -547,6 +547,13 @@ type PostConsultActSurgicalInt @model(queries: null) {
   surgicalIntervention: SurgicalIntervention @connection(name: "sipca")
 }
 
+type PathologicalHistorySurgicalInt @model(queries: null) {
+  id: ID!
+  date: String
+  pathologicalHistory: PathologicalHistory @connection(name: "phsi")
+  surgicalIntervention: SurgicalIntervention @connection(name: "siph")
+}
+
 type SurgicalIntervention
     @model
     @auth(rules: [
@@ -563,6 +570,7 @@ type SurgicalIntervention
     name: String
     description: String
     surgicalIntervention: [PostConsultActSurgicalInt] @connection(name: "sipca")
+    pathologicalHistory: [PathologicalHistorySurgicalInt] @connection(name: "siph")
 }
 
 type PhysicalExploration

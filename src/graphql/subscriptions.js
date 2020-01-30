@@ -585,7 +585,7 @@ export const onCreateMedicalConsultation = /* GraphQL */ `
       }
       postConsultationsActivity {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -679,7 +679,7 @@ export const onUpdateMedicalConsultation = /* GraphQL */ `
       }
       postConsultationsActivity {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -770,7 +770,7 @@ export const onDeleteMedicalConsultation = /* GraphQL */ `
       }
       postConsultationsActivity {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -851,9 +851,9 @@ export const onCreateMedicalHistory = /* GraphQL */ `
         vitalsign {
           id
           blood_pressure
-          Breathing
-          Pulse
-          Temperature
+          breathing
+          pulse
+          temperature
           doctor
           secretary
           patient
@@ -914,9 +914,9 @@ export const onUpdateMedicalHistory = /* GraphQL */ `
         vitalsign {
           id
           blood_pressure
-          Breathing
-          Pulse
-          Temperature
+          breathing
+          pulse
+          temperature
           doctor
           secretary
           patient
@@ -977,9 +977,9 @@ export const onDeleteMedicalHistory = /* GraphQL */ `
         vitalsign {
           id
           blood_pressure
-          Breathing
-          Pulse
-          Temperature
+          breathing
+          pulse
+          temperature
           doctor
           secretary
           patient
@@ -1630,9 +1630,7 @@ export const onCreatePathologicalHistory = /* GraphQL */ `
       surgicalInterventions {
         items {
           id
-          name
-          description
-          owner
+          date
         }
         nextToken
       }
@@ -1659,9 +1657,7 @@ export const onUpdatePathologicalHistory = /* GraphQL */ `
       surgicalInterventions {
         items {
           id
-          name
-          description
-          owner
+          date
         }
         nextToken
       }
@@ -1688,9 +1684,7 @@ export const onDeletePathologicalHistory = /* GraphQL */ `
       surgicalInterventions {
         items {
           id
-          name
-          description
-          owner
+          date
         }
         nextToken
       }
@@ -2300,9 +2294,6 @@ export const onCreatePatientMedications = /* GraphQL */ `
         code
         drug_concentration
         chemical_composition
-        mp {
-          nextToken
-        }
         owner
       }
     }
@@ -2334,9 +2325,6 @@ export const onUpdatePatientMedications = /* GraphQL */ `
         code
         drug_concentration
         chemical_composition
-        mp {
-          nextToken
-        }
         owner
       }
     }
@@ -2368,9 +2356,6 @@ export const onDeletePatientMedications = /* GraphQL */ `
         code
         drug_concentration
         chemical_composition
-        mp {
-          nextToken
-        }
         owner
       }
     }
@@ -2390,12 +2375,6 @@ export const onCreateMedicine = /* GraphQL */ `
       code
       drug_concentration
       chemical_composition
-      mp {
-        items {
-          id
-        }
-        nextToken
-      }
       owner
     }
   }
@@ -2414,12 +2393,6 @@ export const onUpdateMedicine = /* GraphQL */ `
       code
       drug_concentration
       chemical_composition
-      mp {
-        items {
-          id
-        }
-        nextToken
-      }
       owner
     }
   }
@@ -2438,12 +2411,6 @@ export const onDeleteMedicine = /* GraphQL */ `
       code
       drug_concentration
       chemical_composition
-      mp {
-        items {
-          id
-        }
-        nextToken
-      }
       owner
     }
   }
@@ -2452,7 +2419,7 @@ export const onCreatePostConsultationsActivity = /* GraphQL */ `
   subscription OnCreatePostConsultationsActivity($owner: String) {
     onCreatePostConsultationsActivity(owner: $owner) {
       id
-      medicalPrescriptions {
+      medicalpres {
         items {
           id
           state
@@ -2490,7 +2457,7 @@ export const onUpdatePostConsultationsActivity = /* GraphQL */ `
   ) {
     onUpdatePostConsultationsActivity(owner: $owner, doctor: $doctor) {
       id
-      medicalPrescriptions {
+      medicalpres {
         items {
           id
           state
@@ -2525,7 +2492,7 @@ export const onDeletePostConsultationsActivity = /* GraphQL */ `
   subscription OnDeletePostConsultationsActivity($owner: String) {
     onDeletePostConsultationsActivity(owner: $owner) {
       id
-      medicalPrescriptions {
+      medicalpres {
         items {
           id
           state
@@ -2564,27 +2531,34 @@ export const onCreateMedicalPrescription = /* GraphQL */ `
       frequency
       duration
       medications {
-        items {
-          id
+        id
+        name
+        patients {
+          nextToken
         }
-        nextToken
+        code
+        drug_concentration
+        chemical_composition
+        owner
       }
-      pca {
+      comment
+      postconsultact {
         id
         state
         date
-        pcActivities {
+        postconsultact {
           id
           doctor
           secretary
           patient
           owner
         }
-        medicalPrescriptions {
+        medicalpresc {
           id
           date
           frequency
           duration
+          comment
           doctor
           secretary
           patient
@@ -2606,27 +2580,34 @@ export const onUpdateMedicalPrescription = /* GraphQL */ `
       frequency
       duration
       medications {
-        items {
-          id
+        id
+        name
+        patients {
+          nextToken
         }
-        nextToken
+        code
+        drug_concentration
+        chemical_composition
+        owner
       }
-      pca {
+      comment
+      postconsultact {
         id
         state
         date
-        pcActivities {
+        postconsultact {
           id
           doctor
           secretary
           patient
           owner
         }
-        medicalPrescriptions {
+        medicalpresc {
           id
           date
           frequency
           duration
+          comment
           doctor
           secretary
           patient
@@ -2648,27 +2629,34 @@ export const onDeleteMedicalPrescription = /* GraphQL */ `
       frequency
       duration
       medications {
-        items {
-          id
+        id
+        name
+        patients {
+          nextToken
         }
-        nextToken
+        code
+        drug_concentration
+        chemical_composition
+        owner
       }
-      pca {
+      comment
+      postconsultact {
         id
         state
         date
-        pcActivities {
+        postconsultact {
           id
           doctor
           secretary
           patient
           owner
         }
-        medicalPrescriptions {
+        medicalpresc {
           id
           date
           frequency
           duration
+          comment
           doctor
           secretary
           patient
@@ -2688,9 +2676,9 @@ export const onCreatePostConsultActMedicalPres = /* GraphQL */ `
       id
       state
       date
-      pcActivities {
+      postconsultact {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -2704,15 +2692,21 @@ export const onCreatePostConsultActMedicalPres = /* GraphQL */ `
         patient
         owner
       }
-      medicalPrescriptions {
+      medicalpresc {
         id
         date
         frequency
         duration
         medications {
-          nextToken
+          id
+          name
+          code
+          drug_concentration
+          chemical_composition
+          owner
         }
-        pca {
+        comment
+        postconsultact {
           id
           state
           date
@@ -2731,9 +2725,9 @@ export const onUpdatePostConsultActMedicalPres = /* GraphQL */ `
       id
       state
       date
-      pcActivities {
+      postconsultact {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -2747,15 +2741,21 @@ export const onUpdatePostConsultActMedicalPres = /* GraphQL */ `
         patient
         owner
       }
-      medicalPrescriptions {
+      medicalpresc {
         id
         date
         frequency
         duration
         medications {
-          nextToken
+          id
+          name
+          code
+          drug_concentration
+          chemical_composition
+          owner
         }
-        pca {
+        comment
+        postconsultact {
           id
           state
           date
@@ -2774,9 +2774,9 @@ export const onDeletePostConsultActMedicalPres = /* GraphQL */ `
       id
       state
       date
-      pcActivities {
+      postconsultact {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -2790,15 +2790,21 @@ export const onDeletePostConsultActMedicalPres = /* GraphQL */ `
         patient
         owner
       }
-      medicalPrescriptions {
+      medicalpresc {
         id
         date
         frequency
         duration
         medications {
-          nextToken
+          id
+          name
+          code
+          drug_concentration
+          chemical_composition
+          owner
         }
-        pca {
+        comment
+        postconsultact {
           id
           state
           date
@@ -2806,123 +2812,6 @@ export const onDeletePostConsultActMedicalPres = /* GraphQL */ `
         doctor
         secretary
         patient
-        owner
-      }
-    }
-  }
-`;
-export const onCreateMedicalPrescriptionsMedications = /* GraphQL */ `
-  subscription OnCreateMedicalPrescriptionsMedications {
-    onCreateMedicalPrescriptionsMedications {
-      id
-      medicalPrescriptions {
-        id
-        date
-        frequency
-        duration
-        medications {
-          nextToken
-        }
-        pca {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medications {
-        id
-        name
-        patients {
-          nextToken
-        }
-        code
-        drug_concentration
-        chemical_composition
-        mp {
-          nextToken
-        }
-        owner
-      }
-    }
-  }
-`;
-export const onUpdateMedicalPrescriptionsMedications = /* GraphQL */ `
-  subscription OnUpdateMedicalPrescriptionsMedications {
-    onUpdateMedicalPrescriptionsMedications {
-      id
-      medicalPrescriptions {
-        id
-        date
-        frequency
-        duration
-        medications {
-          nextToken
-        }
-        pca {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medications {
-        id
-        name
-        patients {
-          nextToken
-        }
-        code
-        drug_concentration
-        chemical_composition
-        mp {
-          nextToken
-        }
-        owner
-      }
-    }
-  }
-`;
-export const onDeleteMedicalPrescriptionsMedications = /* GraphQL */ `
-  subscription OnDeleteMedicalPrescriptionsMedications {
-    onDeleteMedicalPrescriptionsMedications {
-      id
-      medicalPrescriptions {
-        id
-        date
-        frequency
-        duration
-        medications {
-          nextToken
-        }
-        pca {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medications {
-        id
-        name
-        patients {
-          nextToken
-        }
-        code
-        drug_concentration
-        chemical_composition
-        mp {
-          nextToken
-        }
         owner
       }
     }
@@ -2936,7 +2825,7 @@ export const onCreatePostConsultActMedAnalysis = /* GraphQL */ `
       date
       pcActivities {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -2970,7 +2859,7 @@ export const onUpdatePostConsultActMedAnalysis = /* GraphQL */ `
       date
       pcActivities {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3004,7 +2893,7 @@ export const onDeletePostConsultActMedAnalysis = /* GraphQL */ `
       date
       pcActivities {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3092,7 +2981,7 @@ export const onCreatePostConsultActSurgicalInt = /* GraphQL */ `
       date
       pcActivities {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3111,6 +3000,9 @@ export const onCreatePostConsultActSurgicalInt = /* GraphQL */ `
         name
         description
         surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
           nextToken
         }
         owner
@@ -3126,7 +3018,7 @@ export const onUpdatePostConsultActSurgicalInt = /* GraphQL */ `
       date
       pcActivities {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3145,6 +3037,9 @@ export const onUpdatePostConsultActSurgicalInt = /* GraphQL */ `
         name
         description
         surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
           nextToken
         }
         owner
@@ -3160,7 +3055,7 @@ export const onDeletePostConsultActSurgicalInt = /* GraphQL */ `
       date
       pcActivities {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3179,6 +3074,108 @@ export const onDeletePostConsultActSurgicalInt = /* GraphQL */ `
         name
         description
         surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onCreatePathologicalHistorySurgicalInt = /* GraphQL */ `
+  subscription OnCreatePathologicalHistorySurgicalInt {
+    onCreatePathologicalHistorySurgicalInt {
+      id
+      date
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      surgicalIntervention {
+        id
+        name
+        description
+        surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onUpdatePathologicalHistorySurgicalInt = /* GraphQL */ `
+  subscription OnUpdatePathologicalHistorySurgicalInt {
+    onUpdatePathologicalHistorySurgicalInt {
+      id
+      date
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      surgicalIntervention {
+        id
+        name
+        description
+        surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onDeletePathologicalHistorySurgicalInt = /* GraphQL */ `
+  subscription OnDeletePathologicalHistorySurgicalInt {
+    onDeletePathologicalHistorySurgicalInt {
+      id
+      date
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      surgicalIntervention {
+        id
+        name
+        description
+        surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
           nextToken
         }
         owner
@@ -3196,6 +3193,13 @@ export const onCreateSurgicalIntervention = /* GraphQL */ `
         items {
           id
           state
+          date
+        }
+        nextToken
+      }
+      pathologicalHistory {
+        items {
+          id
           date
         }
         nextToken
@@ -3218,6 +3222,13 @@ export const onUpdateSurgicalIntervention = /* GraphQL */ `
         }
         nextToken
       }
+      pathologicalHistory {
+        items {
+          id
+          date
+        }
+        nextToken
+      }
       owner
     }
   }
@@ -3236,6 +3247,13 @@ export const onDeleteSurgicalIntervention = /* GraphQL */ `
         }
         nextToken
       }
+      pathologicalHistory {
+        items {
+          id
+          date
+        }
+        nextToken
+      }
       owner
     }
   }
@@ -3248,9 +3266,9 @@ export const onCreatePhysicalExploration = /* GraphQL */ `
       vitalsign {
         id
         blood_pressure
-        Breathing
-        Pulse
-        Temperature
+        breathing
+        pulse
+        temperature
         doctor
         secretary
         patient
@@ -3285,9 +3303,9 @@ export const onUpdatePhysicalExploration = /* GraphQL */ `
       vitalsign {
         id
         blood_pressure
-        Breathing
-        Pulse
-        Temperature
+        breathing
+        pulse
+        temperature
         doctor
         secretary
         patient
@@ -3322,9 +3340,9 @@ export const onDeletePhysicalExploration = /* GraphQL */ `
       vitalsign {
         id
         blood_pressure
-        Breathing
-        Pulse
-        Temperature
+        breathing
+        pulse
+        temperature
         doctor
         secretary
         patient
@@ -3356,9 +3374,9 @@ export const onCreateVitalSign = /* GraphQL */ `
     onCreateVitalSign(owner: $owner) {
       id
       blood_pressure
-      Breathing
-      Pulse
-      Temperature
+      breathing
+      pulse
+      temperature
       doctor
       secretary
       patient
@@ -3371,9 +3389,9 @@ export const onUpdateVitalSign = /* GraphQL */ `
     onUpdateVitalSign(owner: $owner, doctor: $doctor) {
       id
       blood_pressure
-      Breathing
-      Pulse
-      Temperature
+      breathing
+      pulse
+      temperature
       doctor
       secretary
       patient
@@ -3386,9 +3404,9 @@ export const onDeleteVitalSign = /* GraphQL */ `
     onDeleteVitalSign(owner: $owner) {
       id
       blood_pressure
-      Breathing
-      Pulse
-      Temperature
+      breathing
+      pulse
+      temperature
       doctor
       secretary
       patient

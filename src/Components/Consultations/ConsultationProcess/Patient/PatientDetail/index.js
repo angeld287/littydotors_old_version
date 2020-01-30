@@ -11,11 +11,13 @@ import Swal from 'sweetalert2';
 const PatientDetails = (
                       {
                         patientData: patientData,
-                        childProps: childProps
+                        childProps: childProps,
+                        global: global,
+                        setGlobalData: setGlobalData
                       }
                    ) => {
 
-  const { loadingHistory, data } = UsePatientDetails(childProps, patientData);
+  const { loadingHistory, data } = UsePatientDetails(childProps, patientData, global, setGlobalData);
   const age = moment(new Date()).format('YYYY') - moment(patientData.birthdate).format('YYYY');
 
   return (
@@ -35,7 +37,7 @@ const PatientDetails = (
 
         <MDBCol md="8">
           <MDBCard style={{ width: '100%' }}>
-            <h4>Analisis pendientes</h4>
+            <h4 className="text-center font-weight-bold pt-4 pb-2 mb-2"><strong>Analisis pendientes</strong></h4>
           </MDBCard>
         </MDBCol>
       </MDBRow>
