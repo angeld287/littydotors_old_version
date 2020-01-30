@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { API, graphqlOperation } from 'aws-amplify';
 import useForm from 'react-hook-form';
-import { listMedicines, listAllergys, listSurgicalInterventions } from '../../../../../../graphql/queries';
+import { listMedicines, listAllergys, listSurgicalInterventions, listDiseases } from '../../../../../../graphql/queries';
 
 const useNewPatientHistory = (childProps, patientData, global, setGlobalData) => {
     const [ loading, setLoading ] = useState(false);
@@ -15,6 +15,12 @@ const useNewPatientHistory = (childProps, patientData, global, setGlobalData) =>
 	const [ patientMedications, setPatientMedications ] = useState([]);
 	const [ patientAllergies, setPatientAllergies ] = useState([]);
 	const [ patientSurgicalInterventions, setPatientSurgicalInterventions ] = useState([]);
+	const [ fatherDiseases, setFatherDiseases ] = useState([]);
+	const [ motherDiseases, setMotherDiseases ] = useState([]);
+	const [ brothersDiseases, setBrothersDiseases ] = useState([]);
+	const [ grandfatherDiseases, setGrandfatherDiseases ] = useState([]);
+	const [ grandmotherDiseases, setGrandmotherDiseases ] = useState([]);
+	const [ otherDiseases, setOtherDiseases ] = useState([]);
 	const [ api, setApi ] = useState([]);
 
 
@@ -25,16 +31,18 @@ const useNewPatientHistory = (childProps, patientData, global, setGlobalData) =>
 
         const fetch = async () => {
             try {
-
 				const _medications = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
 				const _allergies = await API.graphql(graphqlOperation(listAllergys, {limit: 400}));
 				const _surgicalinterventions = await API.graphql(graphqlOperation(listSurgicalInterventions, {limit: 400}));
+				const _diseases = await API.graphql(graphqlOperation(listDiseases, {limit: 400}));
 
                 api = {
 					medications: _medications.data.listMedicines.items,
                     allergies: _allergies.data.listAllergys.items,
-                    surgicalinterventions: _surgicalinterventions.data.listSurgicalInterventions.items
+                    surgicalinterventions: _surgicalinterventions.data.listSurgicalInterventions.items,
+                    diseases: _diseases.data.listDiseases.items
                 };
+
                 setApi(api);
                 /* API.graphql(graphqlOperation(createMedicalHistory, {input: input}))
                 .then((r) => {
@@ -62,7 +70,9 @@ const useNewPatientHistory = (childProps, patientData, global, setGlobalData) =>
         
     }
 
-    return { loadingButton, onSubmit, setPatientAllergies, setPatientMedications, api, handleSubmit, formState, setPatientSurgicalInterventions  };
+    return { loadingButton, onSubmit, setPatientAllergies, setPatientMedications, api, handleSubmit, formState, 
+             setPatientSurgicalInterventions, setFatherDiseases, setMotherDiseases, setBrothersDiseases, setGrandfatherDiseases,
+             setGrandmotherDiseases, setOtherDiseases };
     
 };
 

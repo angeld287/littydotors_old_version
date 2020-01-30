@@ -4,12 +4,15 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
 
 import useNewPatientHistory from './useNewPatientHistory';
 import NonPathologicalHistory from './NonPathologicalHistory';
-import PathologicalHistory from './PathologicalHistory/';
+import PathologicalHistory from './PathologicalHistory';
+import FamilyHistory from './FamilyHistory';
 
 
 
 const NewPatientHistory = () => {
-  const { api, setPatientMedications, setPatientSurgicalInterventions, register, onSubmit, setPatientAllergies, loadingButton, handleSubmit, formState, errors } = useNewPatientHistory();
+  const { api, setPatientMedications, setPatientSurgicalInterventions, register, onSubmit, setPatientAllergies, 
+          loadingButton, handleSubmit, formState, errors, setDiseases, setFatherDiseases, setMotherDiseases, setBrothersDiseases, 
+          setGrandfatherDiseases, setGrandmotherDiseases, setOtherDisease } = useNewPatientHistory();
 
   return (
     <div>
@@ -46,11 +49,22 @@ const NewPatientHistory = () => {
         <h5 className="font-weight-bold pl-0 my-4">
           <strong>Familiares</strong>
         </h5>
-        <MDBInput type="checkbox" label="Padre Vivo" className="mt-4" />
-        <MDBInput label="Enfermedades que padece" className="mt-4" />
-        <br/>
-        <MDBInput type="checkbox" label="Madre Viva" className="mt-4" />
-        <MDBInput label="Enfermedades que padece" className="mt-4" />
+        <MDBRow>
+            <MDBCol md="12">
+              <MDBCard>
+                <br/>
+                <FamilyHistory 
+                  setFatherDiseases={setFatherDiseases}
+                  setMotherDiseases={setMotherDiseases}
+                  setBrothersDiseases={setBrothersDiseases}
+                  setGrandfatherDiseases={setGrandfatherDiseases}
+                  setGrandmotherDiseases={setGrandmotherDiseases}
+                  setOtherDisease={setOtherDisease}
+                  api={api}
+                />
+              </MDBCard>
+            </MDBCol>
+        </MDBRow>
         <br/>
         <div className="text-center py-4 mt-3">
                   {!loadingButton && <MDBBtn className="btn btn-outline-blue" type="submit" disabled={formState.isSubmitting}>Agregar</MDBBtn>}
