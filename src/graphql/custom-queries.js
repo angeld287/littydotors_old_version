@@ -217,7 +217,7 @@ export const getMedicalConsultation = /* GraphQL */ `
       }
       postConsultationsActivity {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {

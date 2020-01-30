@@ -736,7 +736,7 @@ export const createMedicalConsultation = /* GraphQL */ `
       }
       postConsultationsActivity {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -830,7 +830,7 @@ export const updateMedicalConsultation = /* GraphQL */ `
       }
       postConsultationsActivity {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -924,7 +924,7 @@ export const deleteMedicalConsultation = /* GraphQL */ `
       }
       postConsultationsActivity {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -1008,9 +1008,9 @@ export const createMedicalHistory = /* GraphQL */ `
         vitalsign {
           id
           blood_pressure
-          Breathing
-          Pulse
-          Temperature
+          breathing
+          pulse
+          temperature
           doctor
           secretary
           patient
@@ -1074,9 +1074,9 @@ export const updateMedicalHistory = /* GraphQL */ `
         vitalsign {
           id
           blood_pressure
-          Breathing
-          Pulse
-          Temperature
+          breathing
+          pulse
+          temperature
           doctor
           secretary
           patient
@@ -1140,9 +1140,9 @@ export const deleteMedicalHistory = /* GraphQL */ `
         vitalsign {
           id
           blood_pressure
-          Breathing
-          Pulse
-          Temperature
+          breathing
+          pulse
+          temperature
           doctor
           secretary
           patient
@@ -2568,9 +2568,6 @@ export const createPatientMedications = /* GraphQL */ `
         code
         drug_concentration
         chemical_composition
-        mp {
-          nextToken
-        }
         owner
       }
     }
@@ -2605,9 +2602,6 @@ export const updatePatientMedications = /* GraphQL */ `
         code
         drug_concentration
         chemical_composition
-        mp {
-          nextToken
-        }
         owner
       }
     }
@@ -2642,9 +2636,6 @@ export const deletePatientMedications = /* GraphQL */ `
         code
         drug_concentration
         chemical_composition
-        mp {
-          nextToken
-        }
         owner
       }
     }
@@ -2667,12 +2658,6 @@ export const createMedicine = /* GraphQL */ `
       code
       drug_concentration
       chemical_composition
-      mp {
-        items {
-          id
-        }
-        nextToken
-      }
       owner
     }
   }
@@ -2694,12 +2679,6 @@ export const updateMedicine = /* GraphQL */ `
       code
       drug_concentration
       chemical_composition
-      mp {
-        items {
-          id
-        }
-        nextToken
-      }
       owner
     }
   }
@@ -2721,12 +2700,6 @@ export const deleteMedicine = /* GraphQL */ `
       code
       drug_concentration
       chemical_composition
-      mp {
-        items {
-          id
-        }
-        nextToken
-      }
       owner
     }
   }
@@ -2738,7 +2711,7 @@ export const createPostConsultationsActivity = /* GraphQL */ `
   ) {
     createPostConsultationsActivity(input: $input, condition: $condition) {
       id
-      medicalPrescriptions {
+      medicalpres {
         items {
           id
           state
@@ -2776,7 +2749,7 @@ export const updatePostConsultationsActivity = /* GraphQL */ `
   ) {
     updatePostConsultationsActivity(input: $input, condition: $condition) {
       id
-      medicalPrescriptions {
+      medicalpres {
         items {
           id
           state
@@ -2814,7 +2787,7 @@ export const deletePostConsultationsActivity = /* GraphQL */ `
   ) {
     deletePostConsultationsActivity(input: $input, condition: $condition) {
       id
-      medicalPrescriptions {
+      medicalpres {
         items {
           id
           state
@@ -2856,27 +2829,34 @@ export const createMedicalPrescription = /* GraphQL */ `
       frequency
       duration
       medications {
-        items {
-          id
+        id
+        name
+        patients {
+          nextToken
         }
-        nextToken
+        code
+        drug_concentration
+        chemical_composition
+        owner
       }
-      pca {
+      comment
+      postconsultact {
         id
         state
         date
-        pcActivities {
+        postconsultact {
           id
           doctor
           secretary
           patient
           owner
         }
-        medicalPrescriptions {
+        medicalpresc {
           id
           date
           frequency
           duration
+          comment
           doctor
           secretary
           patient
@@ -2901,27 +2881,34 @@ export const updateMedicalPrescription = /* GraphQL */ `
       frequency
       duration
       medications {
-        items {
-          id
+        id
+        name
+        patients {
+          nextToken
         }
-        nextToken
+        code
+        drug_concentration
+        chemical_composition
+        owner
       }
-      pca {
+      comment
+      postconsultact {
         id
         state
         date
-        pcActivities {
+        postconsultact {
           id
           doctor
           secretary
           patient
           owner
         }
-        medicalPrescriptions {
+        medicalpresc {
           id
           date
           frequency
           duration
+          comment
           doctor
           secretary
           patient
@@ -2946,27 +2933,34 @@ export const deleteMedicalPrescription = /* GraphQL */ `
       frequency
       duration
       medications {
-        items {
-          id
+        id
+        name
+        patients {
+          nextToken
         }
-        nextToken
+        code
+        drug_concentration
+        chemical_composition
+        owner
       }
-      pca {
+      comment
+      postconsultact {
         id
         state
         date
-        pcActivities {
+        postconsultact {
           id
           doctor
           secretary
           patient
           owner
         }
-        medicalPrescriptions {
+        medicalpresc {
           id
           date
           frequency
           duration
+          comment
           doctor
           secretary
           patient
@@ -2989,9 +2983,9 @@ export const createPostConsultActMedicalPres = /* GraphQL */ `
       id
       state
       date
-      pcActivities {
+      postconsultact {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3005,15 +2999,21 @@ export const createPostConsultActMedicalPres = /* GraphQL */ `
         patient
         owner
       }
-      medicalPrescriptions {
+      medicalpresc {
         id
         date
         frequency
         duration
         medications {
-          nextToken
+          id
+          name
+          code
+          drug_concentration
+          chemical_composition
+          owner
         }
-        pca {
+        comment
+        postconsultact {
           id
           state
           date
@@ -3035,9 +3035,9 @@ export const updatePostConsultActMedicalPres = /* GraphQL */ `
       id
       state
       date
-      pcActivities {
+      postconsultact {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3051,15 +3051,21 @@ export const updatePostConsultActMedicalPres = /* GraphQL */ `
         patient
         owner
       }
-      medicalPrescriptions {
+      medicalpresc {
         id
         date
         frequency
         duration
         medications {
-          nextToken
+          id
+          name
+          code
+          drug_concentration
+          chemical_composition
+          owner
         }
-        pca {
+        comment
+        postconsultact {
           id
           state
           date
@@ -3081,9 +3087,9 @@ export const deletePostConsultActMedicalPres = /* GraphQL */ `
       id
       state
       date
-      pcActivities {
+      postconsultact {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3097,15 +3103,21 @@ export const deletePostConsultActMedicalPres = /* GraphQL */ `
         patient
         owner
       }
-      medicalPrescriptions {
+      medicalpresc {
         id
         date
         frequency
         duration
         medications {
-          nextToken
+          id
+          name
+          code
+          drug_concentration
+          chemical_composition
+          owner
         }
-        pca {
+        comment
+        postconsultact {
           id
           state
           date
@@ -3113,141 +3125,6 @@ export const deletePostConsultActMedicalPres = /* GraphQL */ `
         doctor
         secretary
         patient
-        owner
-      }
-    }
-  }
-`;
-export const createMedicalPrescriptionsMedications = /* GraphQL */ `
-  mutation CreateMedicalPrescriptionsMedications(
-    $input: CreateMedicalPrescriptionsMedicationsInput!
-    $condition: ModelMedicalPrescriptionsMedicationsConditionInput
-  ) {
-    createMedicalPrescriptionsMedications(
-      input: $input
-      condition: $condition
-    ) {
-      id
-      medicalPrescriptions {
-        id
-        date
-        frequency
-        duration
-        medications {
-          nextToken
-        }
-        pca {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medications {
-        id
-        name
-        patients {
-          nextToken
-        }
-        code
-        drug_concentration
-        chemical_composition
-        mp {
-          nextToken
-        }
-        owner
-      }
-    }
-  }
-`;
-export const updateMedicalPrescriptionsMedications = /* GraphQL */ `
-  mutation UpdateMedicalPrescriptionsMedications(
-    $input: UpdateMedicalPrescriptionsMedicationsInput!
-    $condition: ModelMedicalPrescriptionsMedicationsConditionInput
-  ) {
-    updateMedicalPrescriptionsMedications(
-      input: $input
-      condition: $condition
-    ) {
-      id
-      medicalPrescriptions {
-        id
-        date
-        frequency
-        duration
-        medications {
-          nextToken
-        }
-        pca {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medications {
-        id
-        name
-        patients {
-          nextToken
-        }
-        code
-        drug_concentration
-        chemical_composition
-        mp {
-          nextToken
-        }
-        owner
-      }
-    }
-  }
-`;
-export const deleteMedicalPrescriptionsMedications = /* GraphQL */ `
-  mutation DeleteMedicalPrescriptionsMedications(
-    $input: DeleteMedicalPrescriptionsMedicationsInput!
-    $condition: ModelMedicalPrescriptionsMedicationsConditionInput
-  ) {
-    deleteMedicalPrescriptionsMedications(
-      input: $input
-      condition: $condition
-    ) {
-      id
-      medicalPrescriptions {
-        id
-        date
-        frequency
-        duration
-        medications {
-          nextToken
-        }
-        pca {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medications {
-        id
-        name
-        patients {
-          nextToken
-        }
-        code
-        drug_concentration
-        chemical_composition
-        mp {
-          nextToken
-        }
         owner
       }
     }
@@ -3264,7 +3141,7 @@ export const createPostConsultActMedAnalysis = /* GraphQL */ `
       date
       pcActivities {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3301,7 +3178,7 @@ export const updatePostConsultActMedAnalysis = /* GraphQL */ `
       date
       pcActivities {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3338,7 +3215,7 @@ export const deletePostConsultActMedAnalysis = /* GraphQL */ `
       date
       pcActivities {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3438,7 +3315,7 @@ export const createPostConsultActSurgicalInt = /* GraphQL */ `
       date
       pcActivities {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3478,7 +3355,7 @@ export const updatePostConsultActSurgicalInt = /* GraphQL */ `
       date
       pcActivities {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3518,7 +3395,7 @@ export const deletePostConsultActSurgicalInt = /* GraphQL */ `
       date
       pcActivities {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -3750,9 +3627,9 @@ export const createPhysicalExploration = /* GraphQL */ `
       vitalsign {
         id
         blood_pressure
-        Breathing
-        Pulse
-        Temperature
+        breathing
+        pulse
+        temperature
         doctor
         secretary
         patient
@@ -3790,9 +3667,9 @@ export const updatePhysicalExploration = /* GraphQL */ `
       vitalsign {
         id
         blood_pressure
-        Breathing
-        Pulse
-        Temperature
+        breathing
+        pulse
+        temperature
         doctor
         secretary
         patient
@@ -3830,9 +3707,9 @@ export const deletePhysicalExploration = /* GraphQL */ `
       vitalsign {
         id
         blood_pressure
-        Breathing
-        Pulse
-        Temperature
+        breathing
+        pulse
+        temperature
         doctor
         secretary
         patient
@@ -3867,9 +3744,9 @@ export const createVitalSign = /* GraphQL */ `
     createVitalSign(input: $input, condition: $condition) {
       id
       blood_pressure
-      Breathing
-      Pulse
-      Temperature
+      breathing
+      pulse
+      temperature
       doctor
       secretary
       patient
@@ -3885,9 +3762,9 @@ export const updateVitalSign = /* GraphQL */ `
     updateVitalSign(input: $input, condition: $condition) {
       id
       blood_pressure
-      Breathing
-      Pulse
-      Temperature
+      breathing
+      pulse
+      temperature
       doctor
       secretary
       patient
@@ -3903,9 +3780,9 @@ export const deleteVitalSign = /* GraphQL */ `
     deleteVitalSign(input: $input, condition: $condition) {
       id
       blood_pressure
-      Breathing
-      Pulse
-      Temperature
+      breathing
+      pulse
+      temperature
       doctor
       secretary
       patient

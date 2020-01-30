@@ -47,7 +47,7 @@ const useConsultationProcess = () => {
 
         const fetch = async () => {
             try {
-                setFormActivePanel(3);
+                setFormActivePanel(4);
                 if (consultation === "null") {
                     setCreateNewPatient(true);
                     setCreateNewPatientName(patient);
@@ -63,8 +63,7 @@ const useConsultationProcess = () => {
                         });
                         setPatientData(r.data.getMedicalConsultation.patient);
                         setLoading(false);
-                        console.log(r.data.getMedicalConsultation.patient.patientHistory);
-                        
+                        //console.log(r.data.getMedicalConsultation.patient.patientHistory);
                     })
                     .catch((err) => { 
                         console.log("Ocurrio un error: ",err);

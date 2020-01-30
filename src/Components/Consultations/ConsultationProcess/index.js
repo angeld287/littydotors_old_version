@@ -8,8 +8,9 @@ import useConsultations from '../useConsultations';
 import useConsultationProcess from './useConsultationProcess';
 import PatientDetails from './Patient/PatientDetail';
 import NewPatient from './Patient/newPatient';
-import NewPhysicalExploration from './MedicalHistory/NewPhysicalExploration/';
+import NewPhysicalExploration from './MedicalHistory/NewPhysicalExploration';
 import NewPatientHistory from './Patient/PatientHistory/NewPatientHistory';
+import NewPostConsultationsActivity from './MedicalHistory/NewPostConsultationsActivity';
 
 
 const ConsultationProcess = ({childProps:childProps}) => {
@@ -105,10 +106,12 @@ const ConsultationProcess = ({childProps:childProps}) => {
             {formActivePanel == 4 &&
             (<MDBCol md="12">
               <h3 className="font-weight-bold pl-0 my-4"><strong>Prescripciones y Estudios</strong></h3>
-              <MDBInput label="I agreee to the terms and conditions" type="checkbox" id="checkbox" />
-              <MDBInput label="I want to receive newsletter" type="checkbox" id="checkbox2" />
-              <MDBInput label="Second Name" className="mt-3" />
-              <MDBInput label="Surname" className="mt-3" />
+              <NewPostConsultationsActivity
+                patientData={patientData}
+                childProps={childProps}
+                global={global}
+                setGlobalData={setGlobalData}
+              />
               <br/>
               <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(3)}>previous</MDBBtn>
               <MDBBtn color="success" rounded className="float-right" onClick={handleSubmission}>submit</MDBBtn>

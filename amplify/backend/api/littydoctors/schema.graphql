@@ -450,7 +450,7 @@ type Medicine
     code: String
     drug_concentration: String #500mg, 200mg, 50mg 
     chemical_composition: String
-    mp: [MedicalPrescriptionsMedications] @connection(name: "mmp")
+    #mp: [MedicalPrescriptionsMedications] @connection(name: "mmp")
 }
 
 type PostConsultationsActivity
@@ -467,7 +467,7 @@ type PostConsultationsActivity
         { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
-    medicalPrescriptions: [PostConsultActMedicalPres] @connection(name: "pcamp")
+    medicalpres: [PostConsultActMedicalPres] @connection(name: "postconsact")
     medicalAnalysis: [PostConsultActMedAnalysis] @connection(name: "pcama")
     surgicalIntervention: [PostConsultActSurgicalInt] @connection(name: "pcasi")
     doctor: String
@@ -492,8 +492,9 @@ type MedicalPrescription
     date: String
     frequency: String
     duration: String
-    medications: [MedicalPrescriptionsMedications] @connection(name: "mpm")
-    pca: PostConsultActMedicalPres @connection(name: "mppca")
+    medications: Medicine @connection
+    comment: String
+    postconsultact: PostConsultActMedicalPres @connection(name: "medicalpres")
     doctor: String
     secretary: String
     patient: String
@@ -503,15 +504,15 @@ type PostConsultActMedicalPres @model(queries: null) {
   id: ID!
   state: State # se colocara un estado que espesificara si la receta se completo o no
   date: String
-  pcActivities: PostConsultationsActivity @connection(name: "pcamp")
-  medicalPrescriptions: MedicalPrescription @connection(name: "mppca")
+  postconsultact: PostConsultationsActivity @connection(name: "postconsact")
+  medicalpresc: MedicalPrescription @connection(name: "medicalpres")
 }
 
-type MedicalPrescriptionsMedications @model(queries: null) {
+""" type MedicalPrescriptionsMedications @model(queries: null) {
   id: ID!
   medicalPrescriptions: MedicalPrescription @connection(name: "mpm")
   medications: Medicine @connection(name: "mmp")
-}
+} """
 
 type PostConsultActMedAnalysis @model(queries: null) {
   id: ID!
@@ -610,9 +611,9 @@ type VitalSign
     ]) {
     id: ID!
     blood_pressure: String
-    Breathing: String
-    Pulse: String
-    Temperature: String
+    breathing: String
+    pulse: String
+    temperature: String
     doctor: String
     secretary: String
     patient: String

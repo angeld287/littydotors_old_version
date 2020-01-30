@@ -467,7 +467,7 @@ export const getMedicalConsultation = /* GraphQL */ `
       }
       postConsultationsActivity {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -610,9 +610,9 @@ export const getMedicalHistory = /* GraphQL */ `
         vitalsign {
           id
           blood_pressure
-          Breathing
-          Pulse
-          Temperature
+          breathing
+          pulse
+          temperature
           doctor
           secretary
           patient
@@ -1373,12 +1373,6 @@ export const getMedicine = /* GraphQL */ `
       code
       drug_concentration
       chemical_composition
-      mp {
-        items {
-          id
-        }
-        nextToken
-      }
       owner
     }
   }
@@ -1399,9 +1393,6 @@ export const listMedicines = /* GraphQL */ `
         code
         drug_concentration
         chemical_composition
-        mp {
-          nextToken
-        }
         owner
       }
       nextToken
@@ -1412,7 +1403,7 @@ export const getPostConsultationsActivity = /* GraphQL */ `
   query GetPostConsultationsActivity($id: ID!) {
     getPostConsultationsActivity(id: $id) {
       id
-      medicalPrescriptions {
+      medicalpres {
         items {
           id
           state
@@ -1456,7 +1447,7 @@ export const listPostConsultationsActivitys = /* GraphQL */ `
     ) {
       items {
         id
-        medicalPrescriptions {
+        medicalpres {
           nextToken
         }
         medicalAnalysis {
@@ -1482,27 +1473,34 @@ export const getMedicalPrescription = /* GraphQL */ `
       frequency
       duration
       medications {
-        items {
-          id
+        id
+        name
+        patients {
+          nextToken
         }
-        nextToken
+        code
+        drug_concentration
+        chemical_composition
+        owner
       }
-      pca {
+      comment
+      postconsultact {
         id
         state
         date
-        pcActivities {
+        postconsultact {
           id
           doctor
           secretary
           patient
           owner
         }
-        medicalPrescriptions {
+        medicalpresc {
           id
           date
           frequency
           duration
+          comment
           doctor
           secretary
           patient
@@ -1533,9 +1531,15 @@ export const listMedicalPrescriptions = /* GraphQL */ `
         frequency
         duration
         medications {
-          nextToken
+          id
+          name
+          code
+          drug_concentration
+          chemical_composition
+          owner
         }
-        pca {
+        comment
+        postconsultact {
           id
           state
           date
@@ -1651,9 +1655,9 @@ export const getPhysicalExploration = /* GraphQL */ `
       vitalsign {
         id
         blood_pressure
-        Breathing
-        Pulse
-        Temperature
+        breathing
+        pulse
+        temperature
         doctor
         secretary
         patient
@@ -1697,9 +1701,9 @@ export const listPhysicalExplorations = /* GraphQL */ `
         vitalsign {
           id
           blood_pressure
-          Breathing
-          Pulse
-          Temperature
+          breathing
+          pulse
+          temperature
           doctor
           secretary
           patient
@@ -1733,9 +1737,9 @@ export const getVitalSign = /* GraphQL */ `
     getVitalSign(id: $id) {
       id
       blood_pressure
-      Breathing
-      Pulse
-      Temperature
+      breathing
+      pulse
+      temperature
       doctor
       secretary
       patient
@@ -1753,9 +1757,9 @@ export const listVitalSigns = /* GraphQL */ `
       items {
         id
         blood_pressure
-        Breathing
-        Pulse
-        Temperature
+        breathing
+        pulse
+        temperature
         doctor
         secretary
         patient
