@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner, MDBBox,
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable } from "mdbreact";
 
-import useNewPatientHistory from './useNonPathologicalHistory';
+import useNonPathologicalHistory from './useNonPathologicalHistory';
 
 const NonPathologicalHistory = (
                       {
                         register: register
                       } 
                    ) => {
-      const { alcohol, setAlcoholValue, smoking, setSmokingValue, drugs, setDrugsValue, immunizations, setImmunizationsValue } = useNewPatientHistory();
+      const { alcohol, setAlcoholValue, smoking, setSmokingValue, drugs, setDrugsValue, immunizations, setImmunizationsValue } = useNonPathologicalHistory();
 
       const frequencyItems = ['Diario', 'InterDiario', 'Semanal', 'Mensual', 'Anual'];
       const data = [].concat(frequencyItems).map((item,i)=> <option key={i} value={item}>{item}</option>);

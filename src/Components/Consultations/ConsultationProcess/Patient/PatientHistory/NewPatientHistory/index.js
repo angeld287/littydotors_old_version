@@ -4,11 +4,12 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
 
 import useNewPatientHistory from './useNewPatientHistory';
 import NonPathologicalHistory from './NonPathologicalHistory';
+import PathologicalHistory from './PathologicalHistory/';
 
 
 
 const NewPatientHistory = () => {
-  const { register, onSubmit, setBirthdate, loadingButton, handleSubmit, formState, birthdate, newPatient, errors, loading, setLoading, name, setName } = useNewPatientHistory();
+  const { api, setPatientMedications, setPatientSurgicalInterventions, register, onSubmit, setPatientAllergies, loadingButton, handleSubmit, formState, errors } = useNewPatientHistory();
 
   return (
     <div>
@@ -16,23 +17,19 @@ const NewPatientHistory = () => {
         <h5 className="font-weight-bold pl-0 my-4">
           <strong>Personales Patológicos</strong>
         </h5>
-        <MDBRow>
-          <MDBCol>
-            <MDBInput label="Cardiovasculares" type="checkbox" id="checkbox" />
-            <MDBInput label="Pulmonares" type="checkbox" id="checkbox"/>
-            <MDBInput label="Renales" type="checkbox" id="checkbox"/>
-            <MDBInput label="Quirúrgicos" type="checkbox" id="checkbox"/>
-          </MDBCol>
-          <MDBCol>
-            <MDBInput label="Digestivos" type="checkbox" id="checkbox"/>
-            <MDBInput label="Alérgicos" type="checkbox" id="checkbox"/>
-            <MDBInput label="Transfusiones" type="checkbox" id="checkbox"/>
-            <MDBInput label="Diabetes" type="checkbox" id="checkbox"/>
-          </MDBCol>
-        </MDBRow>
-        <MDBInput label="Medicamentos" className="mt-4" />
-        <MDBInput label="Especifique" className="mt-4" />
-        
+          <MDBRow>
+            <MDBCol md="12">
+              <MDBCard>
+                <br/>
+                <PathologicalHistory
+                  setPatientMedications={setPatientMedications}
+                  setPatientAllergies={setPatientAllergies}
+                  setPatientSurgicalInterventions={setPatientSurgicalInterventions}
+                  api={api}
+                />
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
         <br/>
         <h5 className="font-weight-bold pl-0 my-4">
           <strong>Personales No Patológicos</strong>

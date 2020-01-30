@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useNonPathologicalHistory = () => {
+const usePathologicalHistory = () => {
     const [ alcohol, setAlcohol ] = useState(false);
     const [ smoking, setSmoking ] = useState(false);
     const [ drugs, setDrugs ] = useState(false);
@@ -15,4 +15,4 @@ const useNonPathologicalHistory = () => {
     
 };
 
-export default useNonPathologicalHistory;
+export default usePathologicalHistory;

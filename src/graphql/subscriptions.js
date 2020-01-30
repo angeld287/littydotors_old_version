@@ -1630,9 +1630,7 @@ export const onCreatePathologicalHistory = /* GraphQL */ `
       surgicalInterventions {
         items {
           id
-          name
-          description
-          owner
+          date
         }
         nextToken
       }
@@ -1659,9 +1657,7 @@ export const onUpdatePathologicalHistory = /* GraphQL */ `
       surgicalInterventions {
         items {
           id
-          name
-          description
-          owner
+          date
         }
         nextToken
       }
@@ -1688,9 +1684,7 @@ export const onDeletePathologicalHistory = /* GraphQL */ `
       surgicalInterventions {
         items {
           id
-          name
-          description
-          owner
+          date
         }
         nextToken
       }
@@ -3113,6 +3107,9 @@ export const onCreatePostConsultActSurgicalInt = /* GraphQL */ `
         surgicalIntervention {
           nextToken
         }
+        pathologicalHistory {
+          nextToken
+        }
         owner
       }
     }
@@ -3145,6 +3142,9 @@ export const onUpdatePostConsultActSurgicalInt = /* GraphQL */ `
         name
         description
         surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
           nextToken
         }
         owner
@@ -3181,6 +3181,108 @@ export const onDeletePostConsultActSurgicalInt = /* GraphQL */ `
         surgicalIntervention {
           nextToken
         }
+        pathologicalHistory {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onCreatePathologicalHistorySurgicalInt = /* GraphQL */ `
+  subscription OnCreatePathologicalHistorySurgicalInt {
+    onCreatePathologicalHistorySurgicalInt {
+      id
+      date
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      surgicalIntervention {
+        id
+        name
+        description
+        surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onUpdatePathologicalHistorySurgicalInt = /* GraphQL */ `
+  subscription OnUpdatePathologicalHistorySurgicalInt {
+    onUpdatePathologicalHistorySurgicalInt {
+      id
+      date
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      surgicalIntervention {
+        id
+        name
+        description
+        surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const onDeletePathologicalHistorySurgicalInt = /* GraphQL */ `
+  subscription OnDeletePathologicalHistorySurgicalInt {
+    onDeletePathologicalHistorySurgicalInt {
+      id
+      date
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      surgicalIntervention {
+        id
+        name
+        description
+        surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
+          nextToken
+        }
         owner
       }
     }
@@ -3196,6 +3298,13 @@ export const onCreateSurgicalIntervention = /* GraphQL */ `
         items {
           id
           state
+          date
+        }
+        nextToken
+      }
+      pathologicalHistory {
+        items {
+          id
           date
         }
         nextToken
@@ -3218,6 +3327,13 @@ export const onUpdateSurgicalIntervention = /* GraphQL */ `
         }
         nextToken
       }
+      pathologicalHistory {
+        items {
+          id
+          date
+        }
+        nextToken
+      }
       owner
     }
   }
@@ -3232,6 +3348,13 @@ export const onDeleteSurgicalIntervention = /* GraphQL */ `
         items {
           id
           state
+          date
+        }
+        nextToken
+      }
+      pathologicalHistory {
+        items {
+          id
           date
         }
         nextToken

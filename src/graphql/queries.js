@@ -1033,9 +1033,7 @@ export const getPathologicalHistory = /* GraphQL */ `
       surgicalInterventions {
         items {
           id
-          name
-          description
-          owner
+          date
         }
         nextToken
       }
@@ -1607,6 +1605,13 @@ export const getSurgicalIntervention = /* GraphQL */ `
         }
         nextToken
       }
+      pathologicalHistory {
+        items {
+          id
+          date
+        }
+        nextToken
+      }
       owner
     }
   }
@@ -1627,6 +1632,9 @@ export const listSurgicalInterventions = /* GraphQL */ `
         name
         description
         surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
           nextToken
         }
         owner

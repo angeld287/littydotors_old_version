@@ -1832,9 +1832,7 @@ export const createPathologicalHistory = /* GraphQL */ `
       surgicalInterventions {
         items {
           id
-          name
-          description
-          owner
+          date
         }
         nextToken
       }
@@ -1864,9 +1862,7 @@ export const updatePathologicalHistory = /* GraphQL */ `
       surgicalInterventions {
         items {
           id
-          name
-          description
-          owner
+          date
         }
         nextToken
       }
@@ -1896,9 +1892,7 @@ export const deletePathologicalHistory = /* GraphQL */ `
       surgicalInterventions {
         items {
           id
-          name
-          description
-          owner
+          date
         }
         nextToken
       }
@@ -3465,6 +3459,9 @@ export const createPostConsultActSurgicalInt = /* GraphQL */ `
         surgicalIntervention {
           nextToken
         }
+        pathologicalHistory {
+          nextToken
+        }
         owner
       }
     }
@@ -3500,6 +3497,9 @@ export const updatePostConsultActSurgicalInt = /* GraphQL */ `
         name
         description
         surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
           nextToken
         }
         owner
@@ -3539,6 +3539,117 @@ export const deletePostConsultActSurgicalInt = /* GraphQL */ `
         surgicalIntervention {
           nextToken
         }
+        pathologicalHistory {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const createPathologicalHistorySurgicalInt = /* GraphQL */ `
+  mutation CreatePathologicalHistorySurgicalInt(
+    $input: CreatePathologicalHistorySurgicalIntInput!
+    $condition: ModelPathologicalHistorySurgicalIntConditionInput
+  ) {
+    createPathologicalHistorySurgicalInt(input: $input, condition: $condition) {
+      id
+      date
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      surgicalIntervention {
+        id
+        name
+        description
+        surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const updatePathologicalHistorySurgicalInt = /* GraphQL */ `
+  mutation UpdatePathologicalHistorySurgicalInt(
+    $input: UpdatePathologicalHistorySurgicalIntInput!
+    $condition: ModelPathologicalHistorySurgicalIntConditionInput
+  ) {
+    updatePathologicalHistorySurgicalInt(input: $input, condition: $condition) {
+      id
+      date
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      surgicalIntervention {
+        id
+        name
+        description
+        surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
+          nextToken
+        }
+        owner
+      }
+    }
+  }
+`;
+export const deletePathologicalHistorySurgicalInt = /* GraphQL */ `
+  mutation DeletePathologicalHistorySurgicalInt(
+    $input: DeletePathologicalHistorySurgicalIntInput!
+    $condition: ModelPathologicalHistorySurgicalIntConditionInput
+  ) {
+    deletePathologicalHistorySurgicalInt(input: $input, condition: $condition) {
+      id
+      date
+      pathologicalHistory {
+        id
+        surgicalInterventions {
+          nextToken
+        }
+        patientMedications {
+          nextToken
+        }
+        patientAllergies {
+          nextToken
+        }
+        owner
+      }
+      surgicalIntervention {
+        id
+        name
+        description
+        surgicalIntervention {
+          nextToken
+        }
+        pathologicalHistory {
+          nextToken
+        }
         owner
       }
     }
@@ -3557,6 +3668,13 @@ export const createSurgicalIntervention = /* GraphQL */ `
         items {
           id
           state
+          date
+        }
+        nextToken
+      }
+      pathologicalHistory {
+        items {
+          id
           date
         }
         nextToken
@@ -3582,6 +3700,13 @@ export const updateSurgicalIntervention = /* GraphQL */ `
         }
         nextToken
       }
+      pathologicalHistory {
+        items {
+          id
+          date
+        }
+        nextToken
+      }
       owner
     }
   }
@@ -3599,6 +3724,13 @@ export const deleteSurgicalIntervention = /* GraphQL */ `
         items {
           id
           state
+          date
+        }
+        nextToken
+      }
+      pathologicalHistory {
+        items {
+          id
           date
         }
         nextToken
