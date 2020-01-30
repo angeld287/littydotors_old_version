@@ -8,7 +8,7 @@ import useConsultations from '../useConsultations';
 import useConsultationProcess from './useConsultationProcess';
 import PatientDetails from './Patient/PatientDetail';
 import NewPatient from './Patient/newPatient';
-import MedicalHistory from './MedicalHistory';
+import NewPhysicalExploration from './MedicalHistory/NewPhysicalExploration/';
 import NewPatientHistory from './Patient/PatientHistory/NewPatientHistory';
 
 
@@ -88,18 +88,15 @@ const ConsultationProcess = ({childProps:childProps}) => {
 
             {formActivePanel == 3 &&
             (<MDBCol md="12">
-              {/* <MedicalHistory
-                  patientData={patientData}
-                  childProps={childProps}
-                  global={global}
-                  setGlobalData={setGlobalData}
-              /> */}
+
               <h3 className="font-weight-bold pl-0 my-4"><strong>Exploracion Fisica</strong></h3>
-              <MDBInput label="First Name" className="mt-3" />
-              <MDBInput label="Second Name" className="mt-3" />
-              <MDBInput label="Surname" className="mt-3" />
-              <MDBInput label="I agreee to the terms and conditions" type="checkbox" id="checkbox"/>
-              <MDBInput label="I want to receive newsletter" type="checkbox" id="checkbox2" />
+              
+              <NewPhysicalExploration
+                patientData={patientData}
+                childProps={childProps}
+                global={global}
+                setGlobalData={setGlobalData}
+              />
               <br/>
               <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(2)}>previous</MDBBtn>
               <MDBBtn color="mdb-color" rounded className="float-right" onClick={handleNextPrevClick(4)}>next</MDBBtn>

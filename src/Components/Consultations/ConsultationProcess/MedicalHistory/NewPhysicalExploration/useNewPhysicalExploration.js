@@ -4,10 +4,12 @@ import { API, graphqlOperation } from 'aws-amplify';
 import useForm from 'react-hook-form';
 //import { createMedicalHistory, updateMedicalConsultation } from '../../../../graphql/mutations';
 
-const useMedicalHistory = (childProps, patientData, global, setGlobalData) => {
+const useNewPhysicalExploration = () => {
     const [ loading, setLoading ] = useState(false);
     const [ error, setError ] = useState(false);
     let { consultation, patient } = useParams();
+    const { register, handleSubmit, errors, formState } = useForm();
+
 
     useEffect(() => {
         let didCancel = false;
@@ -35,7 +37,11 @@ const useMedicalHistory = (childProps, patientData, global, setGlobalData) => {
         };
     }, []);
 
-    return { loading, error };
+    const onSubmit = (i) => {
+        console.log(i);
+    }
+
+    return { onSubmit, loading, error, register, handleSubmit, errors, formState };
 };
 
-export default useMedicalHistory;
+export default useNewPhysicalExploration;
