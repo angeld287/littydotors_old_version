@@ -9,55 +9,13 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 
 const NewPostConsultationsActivity = () => {
-  const { createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention } = useNewPostConsultationsActivity();
-
-  const createdPrescriptions = () => {
-		var formated = [];
-		items.forEach((item) => {
-			formated.push({
-				medicationName: item.medicationName,
-				frequency: item.frequency,
-				options: (
-					<Fragment>
-						<MDBBtn color="red" size="sm">
-							  Borrar
-						</MDBBtn>
-					</Fragment>
-				)
-			});
-		});
-
-		return {
-			columns: [
-				{
-					label: 'Medicamento',
-					field: 'medicationName',
-					sort: 'asc'
-				},
-				{
-					label: 'Frecuencia',
-					field: 'frequency',
-					sort: 'asc'
-				},
-				{
-					label: 'Opciones',
-					field: 'options',
-					sort: 'disabled'
-				}
-			],
-			rows: formated
-		};
-	};
-
-  const toggle = () => {
-    setModal(!modal);
-  };
+  const { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention } = useNewPostConsultationsActivity();
 
   return (
     <MDBContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
       <h6 className="text-center font-weight-bold pt-5 pb-3 mb-2"><strong>Prescripciones Medicas</strong></h6>
-      <MDBBtn onClick={toggle} className="btn btn-primary btn-sm">
+      <MDBBtn onClick={toggle} disabled={loadingButton} className="btn btn-primary btn-sm">
 				crear receta medica
 			</MDBBtn>
       <MDBRow className="mb-3">
@@ -65,7 +23,7 @@ const NewPostConsultationsActivity = () => {
           <MDBDataTable
             striped bordered searchLabel="Buscar"
             responsiveSm={true} small hover entries={5}
-            btn={true} data={createdPrescriptions()} noRecordsFoundLabel="No se han encontrado datos"
+            btn={true} data={table} noRecordsFoundLabel="No se han encontrado datos"
             entriesLabel="Cantidad" entriesOptions={[ 5, 10 ]} infoLabel={[ '', '-', 'de', 'registros' ]}
             paginationLabel={[ 'Anterior', 'Siguiente' ]} noBottomColumns={true}
           />
@@ -73,7 +31,10 @@ const NewPostConsultationsActivity = () => {
             <NewMedicalPrescription
               toggle={toggle}
               createMedicalPrescription={createMedicalPrescription}
+              editMedicalPrescription={editMedicalPrescription}
               api={api}
+              edit={edit}
+              editObject={editObject}
             />
           </MDBModal>
         </MDBCol>
