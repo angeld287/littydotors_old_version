@@ -15,7 +15,6 @@ const NewPatientHistory = () => {
           setGrandfatherDiseases, setGrandmotherDiseases, setOtherDisease } = useNewPatientHistory();
 
   return (
-    <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h5 className="font-weight-bold pl-0 my-4">
           <strong>Personales Patológicos</strong>
@@ -29,6 +28,8 @@ const NewPatientHistory = () => {
                   setPatientAllergies={setPatientAllergies}
                   setPatientSurgicalInterventions={setPatientSurgicalInterventions}
                   api={api}
+                  register={register}
+                  errors={errors}
                 />
               </MDBCard>
             </MDBCol>
@@ -41,7 +42,7 @@ const NewPatientHistory = () => {
             <MDBCol md="12">
               <MDBCard>
                 <br/>
-                <NonPathologicalHistory register={register}/>
+                <NonPathologicalHistory register={register} errors={errors}/>
               </MDBCard>
             </MDBCol>
           </MDBRow>
@@ -61,6 +62,8 @@ const NewPatientHistory = () => {
                   setGrandmotherDiseases={setGrandmotherDiseases}
                   setOtherDisease={setOtherDisease}
                   api={api}
+                  register={register}
+                  errors={errors}
                 />
               </MDBCard>
             </MDBCol>
@@ -71,7 +74,6 @@ const NewPatientHistory = () => {
                   {loadingButton && <MDBSpinner small />}
 				</div>
       </form>
-    </div>
   );
 }
 

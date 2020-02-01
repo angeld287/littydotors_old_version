@@ -2422,8 +2422,14 @@ export const onCreatePostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -2460,8 +2466,14 @@ export const onUpdatePostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -2495,8 +2507,14 @@ export const onDeletePostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -2542,29 +2560,6 @@ export const onCreateMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
@@ -2591,29 +2586,6 @@ export const onUpdateMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
@@ -2640,180 +2612,10 @@ export const onDeleteMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
       owner
-    }
-  }
-`;
-export const onCreatePostConsultActMedicalPres = /* GraphQL */ `
-  subscription OnCreatePostConsultActMedicalPres {
-    onCreatePostConsultActMedicalPres {
-      id
-      state
-      date
-      postconsultact {
-        id
-        medicalpres {
-          nextToken
-        }
-        medicalAnalysis {
-          nextToken
-        }
-        surgicalIntervention {
-          nextToken
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medicalpresc {
-        id
-        date
-        frequency
-        duration
-        medications {
-          id
-          name
-          code
-          drug_concentration
-          chemical_composition
-          owner
-        }
-        comment
-        postconsultact {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-    }
-  }
-`;
-export const onUpdatePostConsultActMedicalPres = /* GraphQL */ `
-  subscription OnUpdatePostConsultActMedicalPres {
-    onUpdatePostConsultActMedicalPres {
-      id
-      state
-      date
-      postconsultact {
-        id
-        medicalpres {
-          nextToken
-        }
-        medicalAnalysis {
-          nextToken
-        }
-        surgicalIntervention {
-          nextToken
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medicalpresc {
-        id
-        date
-        frequency
-        duration
-        medications {
-          id
-          name
-          code
-          drug_concentration
-          chemical_composition
-          owner
-        }
-        comment
-        postconsultact {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-    }
-  }
-`;
-export const onDeletePostConsultActMedicalPres = /* GraphQL */ `
-  subscription OnDeletePostConsultActMedicalPres {
-    onDeletePostConsultActMedicalPres {
-      id
-      state
-      date
-      postconsultact {
-        id
-        medicalpres {
-          nextToken
-        }
-        medicalAnalysis {
-          nextToken
-        }
-        surgicalIntervention {
-          nextToken
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medicalpresc {
-        id
-        date
-        frequency
-        duration
-        medications {
-          id
-          name
-          code
-          drug_concentration
-          chemical_composition
-          owner
-        }
-        comment
-        postconsultact {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
     }
   }
 `;

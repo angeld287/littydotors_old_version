@@ -2714,8 +2714,14 @@ export const createPostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -2752,8 +2758,14 @@ export const updatePostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -2790,8 +2802,14 @@ export const deletePostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -2840,29 +2858,6 @@ export const createMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
@@ -2892,29 +2887,6 @@ export const updateMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
@@ -2944,189 +2916,10 @@ export const deleteMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
       owner
-    }
-  }
-`;
-export const createPostConsultActMedicalPres = /* GraphQL */ `
-  mutation CreatePostConsultActMedicalPres(
-    $input: CreatePostConsultActMedicalPresInput!
-    $condition: ModelPostConsultActMedicalPresConditionInput
-  ) {
-    createPostConsultActMedicalPres(input: $input, condition: $condition) {
-      id
-      state
-      date
-      postconsultact {
-        id
-        medicalpres {
-          nextToken
-        }
-        medicalAnalysis {
-          nextToken
-        }
-        surgicalIntervention {
-          nextToken
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medicalpresc {
-        id
-        date
-        frequency
-        duration
-        medications {
-          id
-          name
-          code
-          drug_concentration
-          chemical_composition
-          owner
-        }
-        comment
-        postconsultact {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-    }
-  }
-`;
-export const updatePostConsultActMedicalPres = /* GraphQL */ `
-  mutation UpdatePostConsultActMedicalPres(
-    $input: UpdatePostConsultActMedicalPresInput!
-    $condition: ModelPostConsultActMedicalPresConditionInput
-  ) {
-    updatePostConsultActMedicalPres(input: $input, condition: $condition) {
-      id
-      state
-      date
-      postconsultact {
-        id
-        medicalpres {
-          nextToken
-        }
-        medicalAnalysis {
-          nextToken
-        }
-        surgicalIntervention {
-          nextToken
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medicalpresc {
-        id
-        date
-        frequency
-        duration
-        medications {
-          id
-          name
-          code
-          drug_concentration
-          chemical_composition
-          owner
-        }
-        comment
-        postconsultact {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-    }
-  }
-`;
-export const deletePostConsultActMedicalPres = /* GraphQL */ `
-  mutation DeletePostConsultActMedicalPres(
-    $input: DeletePostConsultActMedicalPresInput!
-    $condition: ModelPostConsultActMedicalPresConditionInput
-  ) {
-    deletePostConsultActMedicalPres(input: $input, condition: $condition) {
-      id
-      state
-      date
-      postconsultact {
-        id
-        medicalpres {
-          nextToken
-        }
-        medicalAnalysis {
-          nextToken
-        }
-        surgicalIntervention {
-          nextToken
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medicalpresc {
-        id
-        date
-        frequency
-        duration
-        medications {
-          id
-          name
-          code
-          drug_concentration
-          chemical_composition
-          owner
-        }
-        comment
-        postconsultact {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
     }
   }
 `;

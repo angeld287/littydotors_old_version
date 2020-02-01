@@ -30,9 +30,9 @@ const FamilyHistory = (
           <h6 className="text-center font-weight-bold pt-1 pb-1 mb-1"><strong>Padre</strong></h6>
         </MDBCol>
         <MDBCol md="1" >
-          <div class="custom-control custom-checkbox">
-              <input name="father_alive" id="father_alive" type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="father_alive">Con vida?</label>
+          <div className="custom-control custom-checkbox">
+              <input name="father_alive" id="father_alive" type="checkbox" className="custom-control-input" ref={register}/>
+              <label className="custom-control-label" htmlFor="father_alive">Con vida?</label>
           </div>
         </MDBCol>
         <MDBCol md="3">
@@ -59,9 +59,9 @@ const FamilyHistory = (
           <h6 className="text-center font-weight-bold pt-1 pb-1 mb-1"><strong>Madre</strong></h6>
         </MDBCol>
         <MDBCol md="1" >
-          <div class="custom-control custom-checkbox">
-              <input name="mother_alive" id="mother_alive" type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="mother_alive">Con vida?</label>
+          <div className="custom-control custom-checkbox">
+              <input name="mother_alive" id="mother_alive" type="checkbox" className="custom-control-input" ref={register}/>
+              <label className="custom-control-label" htmlFor="mother_alive">Con vida?</label>
           </div>
         </MDBCol>
         <MDBCol md="3">
@@ -87,9 +87,9 @@ const FamilyHistory = (
           <h6 className="text-center font-weight-bold pt-1 pb-1 mb-1"><strong>Hermanos</strong></h6>
         </MDBCol>
         <MDBCol md="1" >
-          <div class="custom-control custom-checkbox">
-              <input name="brother_alive" id="brother_alive" type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="brother_alive">Con vida?</label>
+          <div className="custom-control custom-checkbox">
+              <input name="brother_alive" id="brother_alive" type="checkbox" className="custom-control-input" ref={register}/>
+              <label className="custom-control-label" htmlFor="brother_alive">Con vida?</label>
           </div>
         </MDBCol>
         <MDBCol md="3">
@@ -115,9 +115,9 @@ const FamilyHistory = (
           <h6 className="text-center font-weight-bold pt-1 pb-1 mb-1"><strong>Abuelo</strong></h6>
         </MDBCol>
         <MDBCol md="1" >
-          <div class="custom-control custom-checkbox">
-              <input name="gfather_alive" id="gfather_alive" type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="gfather_alive">Con vida?</label>
+          <div className="custom-control custom-checkbox">
+              <input name="gfather_alive" id="gfather_alive" type="checkbox" className="custom-control-input" ref={register}/>
+              <label className="custom-control-label" htmlFor="gfather_alive">Con vida?</label>
           </div>
         </MDBCol>
         <MDBCol md="3">
@@ -143,9 +143,9 @@ const FamilyHistory = (
           <h6 className="text-center font-weight-bold pt-1 pb-1 mb-1"><strong>Abuela</strong></h6>
         </MDBCol>
         <MDBCol md="1" >
-          <div class="custom-control custom-checkbox">
-              <input name="gmother_alive" id="gmother_alive" type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="gmother_alive">Con vida?</label>
+          <div className="custom-control custom-checkbox">
+              <input name="gmother_alive" id="gmother_alive" type="checkbox" className="custom-control-input" ref={register}/>
+              <label className="custom-control-label" htmlFor="gmother_alive">Con vida?</label>
           </div>
         </MDBCol>
         <MDBCol md="3">
@@ -171,9 +171,9 @@ const FamilyHistory = (
           <h6 className="text-center font-weight-bold pt-1 pb-1 mb-1"><strong>Otros</strong></h6>
         </MDBCol>
         <MDBCol md="1" >
-          <div class="custom-control custom-checkbox">
-              <input name="other_alive" id="other_alive" type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="other_alive">Con vida?</label>
+          <div className="custom-control custom-checkbox">
+              <input name="other_alive" id="other_alive" type="checkbox" className="custom-control-input" ref={register}/>
+              <label className="custom-control-label" htmlFor="other_alive">Con vida?</label>
           </div>
         </MDBCol>
         <MDBCol md="3">

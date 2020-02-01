@@ -18,9 +18,9 @@ const NonPathologicalHistory = (
     <MDBContainer>
       <MDBRow className="mb-3">
         <MDBCol md="2" >
-          <div class="custom-control custom-checkbox">
-              <input name="alcohol" id="alcohol" onChange={setAlcoholValue} type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="alcohol">Alcohol</label>
+          <div className="custom-control custom-checkbox">
+              <input name="alcohol" id="alcohol" onChange={setAlcoholValue} type="checkbox" className="custom-control-input" ref={register}/>
+              <label className="custom-control-label" htmlFor="alcohol">Alcohol</label>
           </div>
         </MDBCol>
         <MDBCol md="3">
@@ -36,9 +36,9 @@ const NonPathologicalHistory = (
 
       <MDBRow className="mb-3">
         <MDBCol md="2" >
-          <div class="custom-control custom-checkbox">
-              <input name="smoking" id="smoking" onChange={setSmokingValue} type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="smoking">Tabaquismo</label>
+          <div className="custom-control custom-checkbox">
+              <input name="smoking" id="smoking" onChange={setSmokingValue} type="checkbox" className="custom-control-input" ref={register}/>
+              <label className="custom-control-label" htmlFor="smoking">Tabaquismo</label>
           </div>
         </MDBCol>
         <MDBCol md="3">
@@ -54,9 +54,9 @@ const NonPathologicalHistory = (
 
       <MDBRow className="mb-3">
         <MDBCol md="2" >
-          <div class="custom-control custom-checkbox">
-              <input name="drugs" id="drugs" onChange={setDrugsValue} type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="drugs">Drogas</label>
+          <div className="custom-control custom-checkbox">
+              <input name="drugs" id="drugs" onChange={setDrugsValue} type="checkbox" className="custom-control-input" ref={register}/>
+              <label className="custom-control-label" htmlFor="drugs">Drogas</label>
           </div>
         </MDBCol>
         <MDBCol md="3">
@@ -72,9 +72,9 @@ const NonPathologicalHistory = (
 
       <MDBRow className="mb-3">
         <MDBCol md="2" >
-          <div class="custom-control custom-checkbox">
-              <input name="immunizations" id="immunizations" onChange={setImmunizationsValue} type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="immunizations">Inmunizaciones</label>
+          <div className="custom-control custom-checkbox">
+              <input name="immunizations" id="immunizations" onChange={setImmunizationsValue} type="checkbox" className="custom-control-input" ref={register}/>
+              <label className="custom-control-label" htmlFor="immunizations">Inmunizaciones</label>
           </div>
         </MDBCol>
         <MDBCol md="3">

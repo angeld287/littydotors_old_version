@@ -28,7 +28,6 @@ const useNewPatientHistory = (childProps, patientData, global, setGlobalData) =>
         let didCancel = false;
 		let api = {};
 
-
         const fetch = async () => {
             try {
 				const _medications = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
@@ -66,13 +65,35 @@ const useNewPatientHistory = (childProps, patientData, global, setGlobalData) =>
     }, []);
 
     const onSubmit = (i) => {
-        console.log(patientMedications);
+        
+        global.patient.patientHistory = {
+            pathologicalHistory : { 
+                patientMedications: patientMedications,
+                patientAllergies: patientAllergies,
+                surgicalInterventions: patientSurgicalInterventions,
+            },
+            familyHistory : {
+                father: "",
+                mother: "",
+                brothers: "",
+                grandfather: "",
+                grandmother: "",
+                other: ""
+            },
+            nonPathologicalHistory : {
+                alcohol: "",
+                smoking: "",
+                drugs: "",
+                immunizations: "",
+            }
+
+        };
         
     }
 
-    return { loadingButton, onSubmit, setPatientAllergies, setPatientMedications, api, handleSubmit, formState, 
+    return { loadingButton, onSubmit, setPatientAllergies, setPatientMedications, api, handleSubmit, formState, register,
              setPatientSurgicalInterventions, setFatherDiseases, setMotherDiseases, setBrothersDiseases, setGrandfatherDiseases,
-             setGrandmotherDiseases, setOtherDiseases };
+             setGrandmotherDiseases, setOtherDiseases, errors };
     
 };
 

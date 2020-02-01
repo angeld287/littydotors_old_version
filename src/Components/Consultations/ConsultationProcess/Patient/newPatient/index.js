@@ -30,8 +30,6 @@ const NewPatient = (
             input.birthdate = birthdate;
             API.graphql(graphqlOperation(createPatient, { input: input }))
             .then((r) => {
-                console.log(r.data.createPatient);
-                console.log(childProps.state);
                 createConsultation(childProps.state, r.data.createPatient);
                 setLoading(false);
             })

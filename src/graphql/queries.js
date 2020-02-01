@@ -1406,8 +1406,14 @@ export const getPostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -1484,29 +1490,6 @@ export const getMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
@@ -1539,11 +1522,6 @@ export const listMedicalPrescriptions = /* GraphQL */ `
           owner
         }
         comment
-        postconsultact {
-          id
-          state
-          date
-        }
         doctor
         secretary
         patient

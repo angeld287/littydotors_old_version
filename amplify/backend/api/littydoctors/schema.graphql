@@ -467,7 +467,7 @@ type PostConsultationsActivity
         { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
-    medicalpres: [PostConsultActMedicalPres] @connection(name: "postconsact")
+    medicalpres: [MedicalPrescription] @connection
     medicalAnalysis: [PostConsultActMedAnalysis] @connection(name: "pcama")
     surgicalIntervention: [PostConsultActSurgicalInt] @connection(name: "pcasi")
     doctor: String
@@ -494,18 +494,9 @@ type MedicalPrescription
     duration: String
     medications: Medicine @connection
     comment: String
-    postconsultact: PostConsultActMedicalPres @connection(name: "medicalpres")
     doctor: String
     secretary: String
     patient: String
-}
-
-type PostConsultActMedicalPres @model(queries: null) {
-  id: ID!
-  state: State # se colocara un estado que espesificara si la receta se completo o no
-  date: String
-  postconsultact: PostConsultationsActivity @connection(name: "postconsact")
-  medicalpresc: MedicalPrescription @connection(name: "medicalpres")
 }
 
 """ type MedicalPrescriptionsMedications @model(queries: null) {
