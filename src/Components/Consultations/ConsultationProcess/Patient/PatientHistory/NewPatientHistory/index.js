@@ -9,10 +9,13 @@ import FamilyHistory from './FamilyHistory';
 
 
 
-const NewPatientHistory = () => {
+const NewPatientHistory = ({
+    global: global,
+    setGlobalData: setGlobalData
+}) => {
   const { api, setPatientMedications, setPatientSurgicalInterventions, register, onSubmit, setPatientAllergies, 
           loadingButton, handleSubmit, formState, errors, setDiseases, setFatherDiseases, setMotherDiseases, setBrothersDiseases, 
-          setGrandfatherDiseases, setGrandmotherDiseases, setOtherDisease } = useNewPatientHistory();
+          setGrandfatherDiseases, setGrandmotherDiseases, setOtherDisease } = useNewPatientHistory(global, setGlobalData);
 
   return (
       <form onSubmit={handleSubmit(onSubmit)}>
