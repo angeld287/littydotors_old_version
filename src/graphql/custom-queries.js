@@ -136,31 +136,17 @@ export const getMedicalConsultation = /* GraphQL */ `
         patientHistory {
           id
           nonPathologicalHistory {
-            id
-            alcohol {
+            items {
               id
-              active
               frequency
               comment
+              type {
+                id
+                name
+              }
+              owner
             }
-            smoking {
-              id
-              active
-              frequency
-              comment
-            }
-            drugs {
-              id
-              active
-              frequency
-              comment
-            }
-            immunizations {
-              id
-              active
-              frequency
-              comment
-            }
+            nextToken
           }
           pathologicalHistory {
             id
@@ -175,43 +161,13 @@ export const getMedicalConsultation = /* GraphQL */ `
             }
           }
           familyHistory {
-            id
-            father {
+            items {
               id
               alive
-              relationship
               comment
+              owner
             }
-            mother {
-              id
-              alive
-              relationship
-              comment
-            }
-            brothers {
-              id
-              alive
-              relationship
-              comment
-            }
-            grandfather {
-              id
-              alive
-              relationship
-              comment
-            }
-            grandmother {
-              id
-              alive
-              relationship
-              comment
-            }
-            other {
-              id
-              alive
-              relationship
-              comment
-            }
+            nextToken
           }
         }
       }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner, MDBBox,
+import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner, MDBBox, MDBModal,
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable } from "mdbreact";
 
 import useNewPatientHistory from './useNewPatientHistory';
@@ -13,9 +13,8 @@ const NewPatientHistory = ({
     global: global,
     setGlobalData: setGlobalData
 }) => {
-  const { api, setPatientMedications, setPatientSurgicalInterventions, register, onSubmit, setPatientAllergies, 
-          loadingButton, handleSubmit, formState, errors, setDiseases, setFatherDiseases, setMotherDiseases, setBrothersDiseases, 
-          setGrandfatherDiseases, setGrandmotherDiseases, setOtherDisease } = useNewPatientHistory(global, setGlobalData);
+  const { nonPathModal, toggleNonPath, api, setPatientMedications, setPatientSurgicalInterventions, register, onSubmit, setPatientAllergies, nonPath,
+          loadingButton, handleSubmit, formState, errors, edit, nonPathEditObject, createNonPath, editNonPath } = useNewPatientHistory(global, setGlobalData);
 
   return (
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -45,7 +44,28 @@ const NewPatientHistory = ({
             <MDBCol md="12">
               <MDBCard>
                 <br/>
-                <NonPathologicalHistory register={register} errors={errors}/>
+                <MDBContainer>
+                  <MDBBtn onClick={toggleNonPath} /* disabled={loadingButton} */ className="btn btn-primary btn-sm">
+                      Crear Antecedente No Patológicos
+                  </MDBBtn>
+                  <MDBDataTable
+                    striped bordered searchLabel="Buscar"
+                    responsiveSm={true} small hover entries={5}
+                    btn={true} data={nonPath} noRecordsFoundLabel="No se han encontrado datos"
+                    entriesLabel="Cantidad" entriesOptions={[ 5, 10 ]} infoLabel={[ '', '-', 'de', 'registros' ]}
+                    paginationLabel={[ 'Anterior', 'Siguiente' ]} noBottomColumns={true}
+                  />
+                </MDBContainer>
+                <MDBModal isOpen={nonPathModal} toggle={toggleNonPath} size="lg">
+                  <NonPathologicalHistory
+                    toggleNonPath={toggleNonPath}
+                    api={api}
+                    createNonPath={createNonPath}
+                    editNonPath={editNonPath}
+                    edit={edit}
+                    nonPathEditObject={nonPathEditObject}
+                  />
+                </MDBModal>
               </MDBCard>
             </MDBCol>
           </MDBRow>
@@ -58,12 +78,6 @@ const NewPatientHistory = ({
               <MDBCard>
                 <br/>
                 <FamilyHistory 
-                  setFatherDiseases={setFatherDiseases}
-                  setMotherDiseases={setMotherDiseases}
-                  setBrothersDiseases={setBrothersDiseases}
-                  setGrandfatherDiseases={setGrandfatherDiseases}
-                  setGrandmotherDiseases={setGrandmotherDiseases}
-                  setOtherDisease={setOtherDisease}
                   api={api}
                   register={register}
                   errors={errors}
