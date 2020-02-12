@@ -1,197 +1,114 @@
-import React, { Component } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner, MDBBox,
-         MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable } from "mdbreact";
+         MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable,
+         MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
 
-import useFamilyHistory from './useFamilyHistory';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
+import Select from 'react-select'
+const uuidv1 = require('uuid/v1');
 
-const FamilyHistory = (
-                      {
-                        register: register,
-                        api: api,
-                        setFatherDiseases: setFatherDiseases,
-                        setMotherDiseases: setMotherDiseases,
-                        setBrothersDiseases: setBrothersDiseases,
-                        setGrandfatherDiseases: setGrandfatherDiseases,
-                        setGrandmotherDiseases: setGrandmotherDiseases,
-                        setOtherDisease: setOtherDisease
-                      } 
-                   ) => {
+const FamilyHistory = ({
+    toggleFamily: toggleFamily,
+    api: api,
+    createFamily: createFamily,
+    editFamily: editFamily,
+    edit: edit,
+    familyEditObject: familyEditObject
+}) => {
 
-      const frequencyItems = ['Diario', 'InterDiario', 'Semanal', 'Mensual', 'Anual'];
-      const data = [].concat(frequencyItems).map((item,i)=> <option key={i} value={item}>{item}</option>);
+  const [ id, setId ] = useState("");
+  const [ relationship, setRelationship ] = useState({});
+  const [ diseases, setDiseases ] = useState([]);
+  const [ comment, setComment ] = useState("");
 
+  const _diseases = [];
+  api.diseases.forEach(element => {
+    var item = {value: element.id, label: element.name};
+    _diseases.push(item);
+  });
+
+  const relationships = [];
+  api.familytypes.forEach(element => {
+    var item = {value: element.id, label: element.name};
+    relationships.push(item);
+  });
+
+  useEffect(() => {            
+        if(edit){
+          setId(familyEditObject.id);
+          setRelationship(familyEditObject.relationship);          
+          setDiseases(familyEditObject.diseases);
+          setComment(familyEditObject.comment);
+        }else{
+          setId("");
+          setRelationship({});          
+          setDiseases([]);
+          setComment("");
+          
+        }
+  }, []);
+
+  const rindex = !edit ? null : relationships.findIndex(v => v.value === familyEditObject.relationship.value);
+  const dlist = !edit ? null : familyEditObject.diseases;
   return (
     <MDBContainer>
-      <MDBRow className="mb-3">
-        <MDBCol md="1" >
-          <h6 className="text-center font-weight-bold pt-1 pb-1 mb-1"><strong>Padre</strong></h6>
-        </MDBCol>
-        <MDBCol md="1" >
-          <div className="custom-control custom-checkbox">
-              <input name="father_alive" id="father_alive" type="checkbox" className="custom-control-input" ref={register}/>
-              <label className="custom-control-label" htmlFor="father_alive">Con vida?</label>
+        <MDBModalHeader toggle={toggleFamily}>Crear Antecedente Familiar</MDBModalHeader>
+        <MDBModalBody>
+          <MDBRow className="mb-3">
+            <MDBCol md="8" >
+              <label htmlFor="relationship" className="mt-2" >Parentesco</label>
+              <Select id="relationship" options={relationships} defaultValue={relationships[rindex]} onChange={ (v) => {setRelationship(v)}} />
+            </MDBCol>
+            <MDBCol md="4" >
+              <div className="custom-control custom-checkbox">
+                  <label className="custom-control-label" htmlFor="brother_alive">Con vida?</label>
+                  <input name="brother_alive" id="brother_alive" type="checkbox" className="custom-control-input"/>
+              </div>
+            </MDBCol>
+          </MDBRow>
+
+          <label htmlFor="diseases" className="mt-2" >Enfermedades</label>
+          <Select isMulti id="diseases" options={_diseases} defaultValue={dlist} onChange={ (v) => {setDiseases(v)}}/>
+          <div className="form-group">
+            <label htmlFor="comment">Comentario</label>
+            <textarea name="comment" className="form-control" id="comment" rows="3" value={comment} onChange={ (e) => {setComment(e.target.value)}}></textarea>
           </div>
-        </MDBCol>
-        <MDBCol md="3">
-          <Autocomplete
-            multiple
-            id="fatherdiseases"
-            options={api.diseases}
-            getOptionLabel={option => option.name}
-            onChange={(event, newValue) => {setFatherDiseases(newValue)}}
-            renderInput={params => (
-              <TextField {...params} label="Medicaciones" variant="outlined" fullWidth/>
-            )}
-          />
-        </MDBCol>
-        <MDBCol md="7">
-          <input name="father_comment" placeholder="Comentario" className="form-control" ref={register}/>
-        </MDBCol>
-      </MDBRow>
+        </MDBModalBody>
+        <MDBModalFooter>
+          <MDBBtn color="secondary" onClick={toggleFamily}>Cancelar</MDBBtn>
 
-
-
-      <MDBRow className="mb-3">
-        <MDBCol md="1" >
-          <h6 className="text-center font-weight-bold pt-1 pb-1 mb-1"><strong>Madre</strong></h6>
-        </MDBCol>
-        <MDBCol md="1" >
-          <div className="custom-control custom-checkbox">
-              <input name="mother_alive" id="mother_alive" type="checkbox" className="custom-control-input" ref={register}/>
-              <label className="custom-control-label" htmlFor="mother_alive">Con vida?</label>
-          </div>
-        </MDBCol>
-        <MDBCol md="3">
-          <Autocomplete
-            multiple
-            id="motherdiseases"
-            options={api.diseases}
-            getOptionLabel={option => option.name}
-            onChange={(event, newValue) => {setMotherDiseases(newValue)}}
-            renderInput={params => (
-              <TextField {...params} label="Enfermedades" variant="outlined" fullWidth/>
-            )}
-          />
-        </MDBCol>
-        <MDBCol md="7">
-          <input name="mother_comment" placeholder="Comentario" className="form-control" ref={register}/>
-        </MDBCol>
-      </MDBRow>
-
-
-      <MDBRow className="mb-3">
-        <MDBCol md="1" >
-          <h6 className="text-center font-weight-bold pt-1 pb-1 mb-1"><strong>Hermanos</strong></h6>
-        </MDBCol>
-        <MDBCol md="1" >
-          <div className="custom-control custom-checkbox">
-              <input name="brother_alive" id="brother_alive" type="checkbox" className="custom-control-input" ref={register}/>
-              <label className="custom-control-label" htmlFor="brother_alive">Con vida?</label>
-          </div>
-        </MDBCol>
-        <MDBCol md="3">
-          <Autocomplete
-            multiple
-            id="brotherdiseases"
-            options={api.diseases}
-            getOptionLabel={option => option.name}
-            onChange={(event, newValue) => {setBrothersDiseases(newValue)}}
-            renderInput={params => (
-              <TextField {...params} label="Enfermedades" variant="outlined" fullWidth/>
-            )}
-          />
-        </MDBCol>
-        <MDBCol md="7">
-          <input name="brother_comment" placeholder="Comentario" className="form-control" ref={register}/>
-        </MDBCol>
-      </MDBRow>
-
-
-      <MDBRow className="mb-3">
-        <MDBCol md="1" >
-          <h6 className="text-center font-weight-bold pt-1 pb-1 mb-1"><strong>Abuelo</strong></h6>
-        </MDBCol>
-        <MDBCol md="1" >
-          <div className="custom-control custom-checkbox">
-              <input name="gfather_alive" id="gfather_alive" type="checkbox" className="custom-control-input" ref={register}/>
-              <label className="custom-control-label" htmlFor="gfather_alive">Con vida?</label>
-          </div>
-        </MDBCol>
-        <MDBCol md="3">
-          <Autocomplete
-            multiple
-            id="gfatherdiseases"
-            options={api.diseases}
-            getOptionLabel={option => option.name}
-            onChange={(event, newValue) => {setGrandfatherDiseases(newValue)}}
-            renderInput={params => (
-              <TextField {...params} label="Enfermedades" variant="outlined" fullWidth/>
-            )}
-          />
-        </MDBCol>
-        <MDBCol md="7">
-          <input name="gfather_comment" placeholder="Comentario" className="form-control" ref={register}/>
-        </MDBCol>
-      </MDBRow>
-
-
-      <MDBRow className="mb-3">
-        <MDBCol md="1" >
-          <h6 className="text-center font-weight-bold pt-1 pb-1 mb-1"><strong>Abuela</strong></h6>
-        </MDBCol>
-        <MDBCol md="1" >
-          <div className="custom-control custom-checkbox">
-              <input name="gmother_alive" id="gmother_alive" type="checkbox" className="custom-control-input" ref={register}/>
-              <label className="custom-control-label" htmlFor="gmother_alive">Con vida?</label>
-          </div>
-        </MDBCol>
-        <MDBCol md="3">
-          <Autocomplete
-            multiple
-            id="gmotherdiseases"
-            options={api.diseases}
-            getOptionLabel={option => option.name}
-            onChange={(event, newValue) => {setGrandmotherDiseases(newValue)}}
-            renderInput={params => (
-              <TextField {...params} label="Enfermedades" variant="outlined" fullWidth/>
-            )}
-          />
-        </MDBCol>
-        <MDBCol md="7">
-          <input name="gmother_comment" placeholder="Comentario" className="form-control" ref={register}/>
-        </MDBCol>
-      </MDBRow>
-
-
-      <MDBRow className="mb-3">
-        <MDBCol md="1" >
-          <h6 className="text-center font-weight-bold pt-1 pb-1 mb-1"><strong>Otros</strong></h6>
-        </MDBCol>
-        <MDBCol md="1" >
-          <div className="custom-control custom-checkbox">
-              <input name="other_alive" id="other_alive" type="checkbox" className="custom-control-input" ref={register}/>
-              <label className="custom-control-label" htmlFor="other_alive">Con vida?</label>
-          </div>
-        </MDBCol>
-        <MDBCol md="3">
-          <Autocomplete
-            multiple
-            id="otherdiseases"
-            options={api.diseases}
-            getOptionLabel={option => option.name}
-            onChange={(event, newValue) => {setOtherDisease(newValue)}}
-            renderInput={params => (
-              <TextField {...params} label="Enfermedades" variant="outlined" fullWidth/>
-            )}
-          />
-        </MDBCol>
-        <MDBCol md="7">
-          <input name="other_comment" placeholder="Comentario" className="form-control" ref={register}/>
-        </MDBCol>
-      </MDBRow>
+          {!edit &&
+            <MDBBtn color="primary" onClick={(e) => {
+                e.preventDefault();
+                createFamily({
+                    id: uuidv1(),
+                    date: new Date(),
+                    diseases: diseases,
+                    relationship: relationship,
+                    comment: comment,
+                    doctor: "String",
+                    secretary: "String",
+                    patient: "String",
+                });
+                toggleFamily();
+            }}>Crear</MDBBtn>
+          }
+          {edit &&
+            <MDBBtn color="primary" onClick={(e) => {
+                e.preventDefault();                
+                editFamily({
+                    id: id,
+                    date: new Date(),
+                    diseases: diseases,
+                    relationship: relationship,
+                    comment: comment,
+                    doctor: "String",
+                    secretary: "String",
+                    patient: "String",
+                });
+                toggleFamily();
+            }}>Guardar Cambios</MDBBtn>
+          }
+        </MDBModalFooter>
     </MDBContainer>
   );
 }
