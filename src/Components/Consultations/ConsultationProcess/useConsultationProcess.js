@@ -13,6 +13,7 @@ const useConsultationProcess = () => {
     const [ formActivePanel, setFormActivePanel ] = useState(0);
     const [ selectedDate, setSelectedDate ] = useState(new Date());
     const [ patientData, setPatientData ] = useState({});
+    const [ consultationObject, setConsultationObject ] = useState({});
     const [ global, setGlobal ] = useState({});
 
     let { consultation, patient } = useParams();
@@ -44,10 +45,11 @@ const useConsultationProcess = () => {
     useEffect(() => {
         let didCancel = false;
         var _patientData = {};
+        var _consultation = {}
 
         const fetch = async () => {
             try {
-                setFormActivePanel(4);
+                setFormActivePanel(2);
                 if (consultation === "null") {
                     setCreateNewPatient(true);
                     setCreateNewPatientName(patient);
@@ -62,7 +64,11 @@ const useConsultationProcess = () => {
                             medicalHistory: r.data.getMedicalConsultation.medicalHistory
                         });
                         setPatientData(r.data.getMedicalConsultation.patient);
+                        setConsultationObject(r.data.getMedicalConsultation);
+                        let _consultation = r.data.getMedicalConsultation;
                         setLoading(false);
+                        console.log(r.data.getMedicalConsultation);
+                        
                         //console.log(r.data.getMedicalConsultation.patient.patientHistory);
                     })
                     .catch((err) => { 
@@ -78,6 +84,7 @@ const useConsultationProcess = () => {
 
             if (!didCancel) {
                 setPatientData(_patientData);
+                setConsultationObject(_consultation);
                 //setLoading(false);
             }
         };
@@ -89,7 +96,7 @@ const useConsultationProcess = () => {
         };
     }, []);
 
-    return { setGlobalData, global, error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, patientData,
+    return { consultationObject, setGlobalData, global, error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, patientData,
              formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName, setCreateNewPatient  };
 };
 

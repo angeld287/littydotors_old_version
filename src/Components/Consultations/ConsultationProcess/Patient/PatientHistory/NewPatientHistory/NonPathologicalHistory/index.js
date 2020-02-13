@@ -1,92 +1,104 @@
-import React, { Component } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner, MDBBox,
-         MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable } from "mdbreact";
+         MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable,
+         MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
 
-import useNonPathologicalHistory from './useNonPathologicalHistory';
+import Select from 'react-select'
+const uuidv1 = require('uuid/v1');
 
-const NonPathologicalHistory = (
-                      {
-                        register: register
-                      } 
-                   ) => {
-      const { alcohol, setAlcoholValue, smoking, setSmokingValue, drugs, setDrugsValue, immunizations, setImmunizationsValue } = useNonPathologicalHistory();
+const NonPathologicalHistory = ({
+    toggleNonPath: toggleNonPath,
+    api: api,
+    createNonPath: createNonPath,
+    editNonPath: editNonPath,
+    edit: edit,
+    nonPathEditObject: nonPathEditObject
+}) => {
 
-      const frequencyItems = ['Diario', 'InterDiario', 'Semanal', 'Mensual', 'Anual'];
-      const data = [].concat(frequencyItems).map((item,i)=> <option key={i} value={item}>{item}</option>);
+  const [ id, setId ] = useState("");
+  const [ type, setType ] = useState("");
+  const [ frequency, setFrequency ] = useState("");
+  const [ duration, setDuration ] = useState("");
+  const [ comment, setComment ] = useState("");
 
+  const frequencies = [];
+  api.nonpathfrequencies.forEach(element => {
+    var item = {value: element.id, label: element.name};
+    frequencies.push(item);
+  });
+
+  const types = [];
+  api.nonpathtypes.forEach(element => {
+    var item = {value: element.id, label: element.name};
+    types.push(item);
+  });
+
+  useEffect(() => {            
+        if(edit){
+          setId(nonPathEditObject.id);
+          setType(nonPathEditObject.type);          
+          setFrequency(nonPathEditObject.frequency);
+          setComment(nonPathEditObject.comment);
+        }else{
+          setId("");
+          setType("");          
+          setFrequency("");
+          setComment("");
+          
+        }
+  }, []);
+
+  const tindex = !edit ? null : types.findIndex(v => v.value === nonPathEditObject.type.value);
+  const findex = !edit ? null : frequencies.findIndex(v => v.value === nonPathEditObject.frequency.value);
   return (
     <MDBContainer>
-      <MDBRow className="mb-3">
-        <MDBCol md="2" >
-          <div class="custom-control custom-checkbox">
-              <input name="alcohol" id="alcohol" onChange={setAlcoholValue} type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="alcohol">Alcohol</label>
+        <MDBModalHeader toggle={toggleNonPath}>Crear Antecedente No Patologico</MDBModalHeader>
+        <MDBModalBody>
+<label htmlFor="type" className="mt-2" >Tipo</label>
+          <Select id="type" options={types} defaultValue={types[tindex]} onChange={ (v) => {setType(v)}} />
+          <label htmlFor="frequency" className="mt-2" >Frecuencia</label>
+          <Select id="frequency" options={frequencies} defaultValue={frequencies[findex]} onChange={ (v) => {setFrequency(v)}}/>
+          <div className="form-group">
+            <label htmlFor="comment">Comentario</label>
+            <textarea name="comment" className="form-control" id="comment" rows="3" value={comment} onChange={ (e) => {setComment(e.target.value)}}></textarea>
           </div>
-        </MDBCol>
-        <MDBCol md="3">
-          <select disabled={!alcohol} className="form-control" name="alcohol_frequency" ref={register}>
-            <option value="0">Frecuencia</option> 
-            {data}
-          </select>
-        </MDBCol>
-        <MDBCol md="7">
-          <input disabled={!alcohol} name="alcohol_comment" placeholder="Comentario" className="form-control" ref={register}/>
-        </MDBCol>
-      </MDBRow>
+        </MDBModalBody>
+        <MDBModalFooter>
+          <MDBBtn color="secondary" onClick={toggleNonPath}>Cancelar</MDBBtn>
 
-      <MDBRow className="mb-3">
-        <MDBCol md="2" >
-          <div class="custom-control custom-checkbox">
-              <input name="smoking" id="smoking" onChange={setSmokingValue} type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="smoking">Tabaquismo</label>
-          </div>
-        </MDBCol>
-        <MDBCol md="3">
-          <select disabled={!smoking} className="form-control" name="smoking_frequency" ref={register}>
-            <option value="0">Frecuencia</option> 
-            {data}
-          </select>
-        </MDBCol>
-        <MDBCol md="7">
-          <input disabled={!smoking} name="smoking_comment" placeholder="Comentario" className="form-control" ref={register}/>
-        </MDBCol>
-      </MDBRow>
-
-      <MDBRow className="mb-3">
-        <MDBCol md="2" >
-          <div class="custom-control custom-checkbox">
-              <input name="drugs" id="drugs" onChange={setDrugsValue} type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="drugs">Drogas</label>
-          </div>
-        </MDBCol>
-        <MDBCol md="3">
-          <select disabled={!drugs} className="form-control" name="drugs_frequency" ref={register}>
-            <option value="0">Frecuencia</option> 
-            {data}
-          </select>
-        </MDBCol>
-        <MDBCol md="7">
-          <input disabled={!drugs} name="drugs_comment" placeholder="Comentario" className="form-control" ref={register}/>
-        </MDBCol>
-      </MDBRow>
-
-      <MDBRow className="mb-3">
-        <MDBCol md="2" >
-          <div class="custom-control custom-checkbox">
-              <input name="immunizations" id="immunizations" onChange={setImmunizationsValue} type="checkbox" class="custom-control-input" ref={register}/>
-              <label class="custom-control-label" for="immunizations">Inmunizaciones</label>
-          </div>
-        </MDBCol>
-        <MDBCol md="3">
-          <select disabled={!immunizations} className="form-control" name="immunizations_frequency" ref={register}>
-            <option value="0">Frecuencia</option> 
-            {data}
-          </select>
-        </MDBCol>
-        <MDBCol md="7">
-          <input disabled={!immunizations} name="immunizations_comment" placeholder="Comentario" className="form-control" ref={register}/>
-        </MDBCol>
-      </MDBRow>
+          {!edit &&
+            <MDBBtn color="primary" onClick={(e) => {
+                e.preventDefault();
+                createNonPath({
+                    id: uuidv1(),
+                    date: new Date(),
+                    frequency: frequency,
+                    type: type,
+                    comment: comment,
+                    doctor: "String",
+                    secretary: "String",
+                    patient: "String",
+                });
+                toggleNonPath();
+            }}>Crear</MDBBtn>
+          }
+          {edit &&
+            <MDBBtn color="primary" onClick={(e) => {
+                e.preventDefault();
+                editNonPath({
+                    id: id,
+                    date: new Date(),
+                    frequency: frequency,
+                    type: type,
+                    comment: comment,
+                    doctor: "String",
+                    secretary: "String",
+                    patient: "String",
+                });
+                toggleNonPath();
+            }}>Guardar Cambios</MDBBtn>
+          }
+        </MDBModalFooter>
     </MDBContainer>
   );
 }

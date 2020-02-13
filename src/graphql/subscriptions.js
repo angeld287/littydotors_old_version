@@ -1028,16 +1028,14 @@ export const onCreatePatient = /* GraphQL */ `
       patientHistory {
         id
         nonPathologicalHistory {
-          id
-          owner
+          nextToken
         }
         pathologicalHistory {
           id
           owner
         }
         familyHistory {
-          id
-          owner
+          nextToken
         }
         gynecoObstetricHistory {
           id
@@ -1074,16 +1072,14 @@ export const onUpdatePatient = /* GraphQL */ `
       patientHistory {
         id
         nonPathologicalHistory {
-          id
-          owner
+          nextToken
         }
         pathologicalHistory {
           id
           owner
         }
         familyHistory {
-          id
-          owner
+          nextToken
         }
         gynecoObstetricHistory {
           id
@@ -1120,16 +1116,14 @@ export const onDeletePatient = /* GraphQL */ `
       patientHistory {
         id
         nonPathologicalHistory {
-          id
-          owner
+          nextToken
         }
         pathologicalHistory {
           id
           owner
         }
         familyHistory {
-          id
-          owner
+          nextToken
         }
         gynecoObstetricHistory {
           id
@@ -1154,36 +1148,14 @@ export const onCreatePatientHistory = /* GraphQL */ `
     onCreatePatientHistory(owner: $owner) {
       id
       nonPathologicalHistory {
-        id
-        alcohol {
+        items {
           id
           active
           frequency
           comment
           owner
         }
-        smoking {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        drugs {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        immunizations {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        owner
+        nextToken
       }
       pathologicalHistory {
         id
@@ -1199,50 +1171,13 @@ export const onCreatePatientHistory = /* GraphQL */ `
         owner
       }
       familyHistory {
-        id
-        father {
+        items {
           id
           alive
-          relationship
           comment
           owner
         }
-        mother {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        brothers {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        grandfather {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        grandmother {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        other {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        owner
+        nextToken
       }
       gynecoObstetricHistory {
         id
@@ -1265,36 +1200,14 @@ export const onUpdatePatientHistory = /* GraphQL */ `
     onUpdatePatientHistory(owner: $owner) {
       id
       nonPathologicalHistory {
-        id
-        alcohol {
+        items {
           id
           active
           frequency
           comment
           owner
         }
-        smoking {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        drugs {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        immunizations {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        owner
+        nextToken
       }
       pathologicalHistory {
         id
@@ -1310,50 +1223,13 @@ export const onUpdatePatientHistory = /* GraphQL */ `
         owner
       }
       familyHistory {
-        id
-        father {
+        items {
           id
           alive
-          relationship
           comment
           owner
         }
-        mother {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        brothers {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        grandfather {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        grandmother {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        other {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        owner
+        nextToken
       }
       gynecoObstetricHistory {
         id
@@ -1376,36 +1252,14 @@ export const onDeletePatientHistory = /* GraphQL */ `
     onDeletePatientHistory(owner: $owner) {
       id
       nonPathologicalHistory {
-        id
-        alcohol {
+        items {
           id
           active
           frequency
           comment
           owner
         }
-        smoking {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        drugs {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        immunizations {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        owner
+        nextToken
       }
       pathologicalHistory {
         id
@@ -1421,50 +1275,13 @@ export const onDeletePatientHistory = /* GraphQL */ `
         owner
       }
       familyHistory {
-        id
-        father {
+        items {
           id
           alive
-          relationship
           comment
           owner
         }
-        mother {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        brothers {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        grandfather {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        grandmother {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        other {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        owner
+        nextToken
       }
       gynecoObstetricHistory {
         id
@@ -1486,34 +1303,16 @@ export const onCreateNonPathologicalHistory = /* GraphQL */ `
   subscription OnCreateNonPathologicalHistory($owner: String) {
     onCreateNonPathologicalHistory(owner: $owner) {
       id
-      alcohol {
+      type {
         id
-        active
-        frequency
-        comment
+        name
+        description
+        module
         owner
       }
-      smoking {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      drugs {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      immunizations {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
+      active
+      frequency
+      comment
       owner
     }
   }
@@ -1522,34 +1321,16 @@ export const onUpdateNonPathologicalHistory = /* GraphQL */ `
   subscription OnUpdateNonPathologicalHistory($owner: String) {
     onUpdateNonPathologicalHistory(owner: $owner) {
       id
-      alcohol {
+      type {
         id
-        active
-        frequency
-        comment
+        name
+        description
+        module
         owner
       }
-      smoking {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      drugs {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      immunizations {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
+      active
+      frequency
+      comment
       owner
     }
   }
@@ -1558,64 +1339,13 @@ export const onDeleteNonPathologicalHistory = /* GraphQL */ `
   subscription OnDeleteNonPathologicalHistory($owner: String) {
     onDeleteNonPathologicalHistory(owner: $owner) {
       id
-      alcohol {
+      type {
         id
-        active
-        frequency
-        comment
+        name
+        description
+        module
         owner
       }
-      smoking {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      drugs {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      immunizations {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      owner
-    }
-  }
-`;
-export const onCreateNonPathologicalActivity = /* GraphQL */ `
-  subscription OnCreateNonPathologicalActivity($owner: String) {
-    onCreateNonPathologicalActivity(owner: $owner) {
-      id
-      active
-      frequency
-      comment
-      owner
-    }
-  }
-`;
-export const onUpdateNonPathologicalActivity = /* GraphQL */ `
-  subscription OnUpdateNonPathologicalActivity($owner: String) {
-    onUpdateNonPathologicalActivity(owner: $owner) {
-      id
-      active
-      frequency
-      comment
-      owner
-    }
-  }
-`;
-export const onDeleteNonPathologicalActivity = /* GraphQL */ `
-  subscription OnDeleteNonPathologicalActivity($owner: String) {
-    onDeleteNonPathologicalActivity(owner: $owner) {
-      id
       active
       frequency
       comment
@@ -1708,66 +1438,21 @@ export const onCreateFamilyHistory = /* GraphQL */ `
   subscription OnCreateFamilyHistory($owner: String) {
     onCreateFamilyHistory(owner: $owner) {
       id
-      father {
+      relationship {
         id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
+        name
+        description
+        module
         owner
       }
-      mother {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
+      alive
+      diseases {
+        items {
+          id
         }
-        comment
-        owner
+        nextToken
       }
-      brothers {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      grandfather {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      grandmother {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      other {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
+      comment
       owner
     }
   }
@@ -1776,66 +1461,21 @@ export const onUpdateFamilyHistory = /* GraphQL */ `
   subscription OnUpdateFamilyHistory($owner: String) {
     onUpdateFamilyHistory(owner: $owner) {
       id
-      father {
+      relationship {
         id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
+        name
+        description
+        module
         owner
       }
-      mother {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
+      alive
+      diseases {
+        items {
+          id
         }
-        comment
-        owner
+        nextToken
       }
-      brothers {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      grandfather {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      grandmother {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      other {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
+      comment
       owner
     }
   }
@@ -1844,110 +1484,14 @@ export const onDeleteFamilyHistory = /* GraphQL */ `
   subscription OnDeleteFamilyHistory($owner: String) {
     onDeleteFamilyHistory(owner: $owner) {
       id
-      father {
+      relationship {
         id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
+        name
+        description
+        module
         owner
       }
-      mother {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      brothers {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      grandfather {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      grandmother {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      other {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      owner
-    }
-  }
-`;
-export const onCreateFamilyDetails = /* GraphQL */ `
-  subscription OnCreateFamilyDetails($owner: String) {
-    onCreateFamilyDetails(owner: $owner) {
-      id
       alive
-      relationship
-      diseases {
-        items {
-          id
-        }
-        nextToken
-      }
-      comment
-      owner
-    }
-  }
-`;
-export const onUpdateFamilyDetails = /* GraphQL */ `
-  subscription OnUpdateFamilyDetails($owner: String) {
-    onUpdateFamilyDetails(owner: $owner) {
-      id
-      alive
-      relationship
-      diseases {
-        items {
-          id
-        }
-        nextToken
-      }
-      comment
-      owner
-    }
-  }
-`;
-export const onDeleteFamilyDetails = /* GraphQL */ `
-  subscription OnDeleteFamilyDetails($owner: String) {
-    onDeleteFamilyDetails(owner: $owner) {
-      id
-      alive
-      relationship
       diseases {
         items {
           id
@@ -1965,8 +1509,14 @@ export const onCreateFamilyDetailsDiseases = /* GraphQL */ `
       id
       family {
         id
+        relationship {
+          id
+          name
+          description
+          module
+          owner
+        }
         alive
-        relationship
         diseases {
           nextToken
         }
@@ -1991,8 +1541,14 @@ export const onUpdateFamilyDetailsDiseases = /* GraphQL */ `
       id
       family {
         id
+        relationship {
+          id
+          name
+          description
+          module
+          owner
+        }
         alive
-        relationship
         diseases {
           nextToken
         }
@@ -2017,8 +1573,14 @@ export const onDeleteFamilyDetailsDiseases = /* GraphQL */ `
       id
       family {
         id
+        relationship {
+          id
+          name
+          description
+          module
+          owner
+        }
         alive
-        relationship
         diseases {
           nextToken
         }
@@ -2422,8 +1984,14 @@ export const onCreatePostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -2460,8 +2028,14 @@ export const onUpdatePostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -2495,8 +2069,14 @@ export const onDeletePostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -2542,29 +2122,6 @@ export const onCreateMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
@@ -2591,29 +2148,6 @@ export const onUpdateMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
@@ -2640,180 +2174,10 @@ export const onDeleteMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
       owner
-    }
-  }
-`;
-export const onCreatePostConsultActMedicalPres = /* GraphQL */ `
-  subscription OnCreatePostConsultActMedicalPres {
-    onCreatePostConsultActMedicalPres {
-      id
-      state
-      date
-      postconsultact {
-        id
-        medicalpres {
-          nextToken
-        }
-        medicalAnalysis {
-          nextToken
-        }
-        surgicalIntervention {
-          nextToken
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medicalpresc {
-        id
-        date
-        frequency
-        duration
-        medications {
-          id
-          name
-          code
-          drug_concentration
-          chemical_composition
-          owner
-        }
-        comment
-        postconsultact {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-    }
-  }
-`;
-export const onUpdatePostConsultActMedicalPres = /* GraphQL */ `
-  subscription OnUpdatePostConsultActMedicalPres {
-    onUpdatePostConsultActMedicalPres {
-      id
-      state
-      date
-      postconsultact {
-        id
-        medicalpres {
-          nextToken
-        }
-        medicalAnalysis {
-          nextToken
-        }
-        surgicalIntervention {
-          nextToken
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medicalpresc {
-        id
-        date
-        frequency
-        duration
-        medications {
-          id
-          name
-          code
-          drug_concentration
-          chemical_composition
-          owner
-        }
-        comment
-        postconsultact {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-    }
-  }
-`;
-export const onDeletePostConsultActMedicalPres = /* GraphQL */ `
-  subscription OnDeletePostConsultActMedicalPres {
-    onDeletePostConsultActMedicalPres {
-      id
-      state
-      date
-      postconsultact {
-        id
-        medicalpres {
-          nextToken
-        }
-        medicalAnalysis {
-          nextToken
-        }
-        surgicalIntervention {
-          nextToken
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medicalpresc {
-        id
-        date
-        frequency
-        duration
-        medications {
-          id
-          name
-          code
-          drug_concentration
-          chemical_composition
-          owner
-        }
-        comment
-        postconsultact {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
     }
   }
 `;
@@ -3464,6 +2828,39 @@ export const onDeleteRegionalExploration = /* GraphQL */ `
       doctor
       secretary
       patient
+      owner
+    }
+  }
+`;
+export const onCreateCategory = /* GraphQL */ `
+  subscription OnCreateCategory($owner: String) {
+    onCreateCategory(owner: $owner) {
+      id
+      name
+      description
+      module
+      owner
+    }
+  }
+`;
+export const onUpdateCategory = /* GraphQL */ `
+  subscription OnUpdateCategory($owner: String) {
+    onUpdateCategory(owner: $owner) {
+      id
+      name
+      description
+      module
+      owner
+    }
+  }
+`;
+export const onDeleteCategory = /* GraphQL */ `
+  subscription OnDeleteCategory($owner: String) {
+    onDeleteCategory(owner: $owner) {
+      id
+      name
+      description
+      module
       owner
     }
   }

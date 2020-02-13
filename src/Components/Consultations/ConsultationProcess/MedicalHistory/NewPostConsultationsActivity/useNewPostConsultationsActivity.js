@@ -150,6 +150,9 @@ const useNewMedicalPrescription = () => {
     const editMedicalPrescription = (o) => {
 
         const _items = items;
+
+        _items.splice(_items.findIndex(v => v.imedicalPrescriptionMedicationsId === o.medicalPrescriptionMedicationsId), 1);
+
         _items.push(o);
         setItems(_items);
         setEdit(false);

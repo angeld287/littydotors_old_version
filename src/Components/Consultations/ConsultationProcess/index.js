@@ -14,7 +14,7 @@ import NewPostConsultationsActivity from './MedicalHistory/NewPostConsultationsA
 
 
 const ConsultationProcess = ({childProps:childProps}) => {
-  const { error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, setCreateNewPatient, patientData,
+  const { consultationObject, error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, setCreateNewPatient, patientData,
           formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName, setGlobalData, global } = useConsultationProcess();
 
   const { createConsultation } = useConsultations();
@@ -75,12 +75,12 @@ const ConsultationProcess = ({childProps:childProps}) => {
 
             {formActivePanel === 2 &&
               <MDBCol md="12">
-                <NewPatientHistory
-                    patientData={patientData}
-                    childProps={childProps}
-                    global={global}
-                    setGlobalData={setGlobalData}
-                />
+                  <NewPatientHistory
+                      patientData={patientData}
+                      childProps={childProps}
+                      global={global}
+                      setGlobalData={setGlobalData}
+                  />
                 <br/>
                 <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(1)}>previous</MDBBtn>
                 <MDBBtn color="mdb-color" rounded className="float-right" onClick={handleNextPrevClick(3)}>next</MDBBtn>
@@ -89,15 +89,13 @@ const ConsultationProcess = ({childProps:childProps}) => {
 
             {formActivePanel == 3 &&
             (<MDBCol md="12">
-
               <h3 className="font-weight-bold pl-0 my-4"><strong>Exploracion Fisica</strong></h3>
-              
-              <NewPhysicalExploration
-                patientData={patientData}
-                childProps={childProps}
-                global={global}
-                setGlobalData={setGlobalData}
-              />
+                <NewPhysicalExploration
+                  patientData={patientData}
+                  childProps={childProps}
+                  global={global}
+                  setGlobalData={setGlobalData}
+                />
               <br/>
               <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(2)}>previous</MDBBtn>
               <MDBBtn color="mdb-color" rounded className="float-right" onClick={handleNextPrevClick(4)}>next</MDBBtn>
@@ -106,12 +104,12 @@ const ConsultationProcess = ({childProps:childProps}) => {
             {formActivePanel == 4 &&
             (<MDBCol md="12">
               <h3 className="font-weight-bold pl-0 my-4"><strong>Prescripciones y Estudios</strong></h3>
-              <NewPostConsultationsActivity
-                patientData={patientData}
-                childProps={childProps}
-                global={global}
-                setGlobalData={setGlobalData}
-              />
+                <NewPostConsultationsActivity
+                  patientData={patientData}
+                  childProps={childProps}
+                  global={global}
+                  setGlobalData={setGlobalData}
+                />
               <br/>
               <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(3)}>previous</MDBBtn>
               <MDBBtn color="success" rounded className="float-right" onClick={handleSubmission}>submit</MDBBtn>

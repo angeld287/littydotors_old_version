@@ -1194,16 +1194,14 @@ export const createPatient = /* GraphQL */ `
       patientHistory {
         id
         nonPathologicalHistory {
-          id
-          owner
+          nextToken
         }
         pathologicalHistory {
           id
           owner
         }
         familyHistory {
-          id
-          owner
+          nextToken
         }
         gynecoObstetricHistory {
           id
@@ -1243,16 +1241,14 @@ export const updatePatient = /* GraphQL */ `
       patientHistory {
         id
         nonPathologicalHistory {
-          id
-          owner
+          nextToken
         }
         pathologicalHistory {
           id
           owner
         }
         familyHistory {
-          id
-          owner
+          nextToken
         }
         gynecoObstetricHistory {
           id
@@ -1292,16 +1288,14 @@ export const deletePatient = /* GraphQL */ `
       patientHistory {
         id
         nonPathologicalHistory {
-          id
-          owner
+          nextToken
         }
         pathologicalHistory {
           id
           owner
         }
         familyHistory {
-          id
-          owner
+          nextToken
         }
         gynecoObstetricHistory {
           id
@@ -1329,36 +1323,14 @@ export const createPatientHistory = /* GraphQL */ `
     createPatientHistory(input: $input, condition: $condition) {
       id
       nonPathologicalHistory {
-        id
-        alcohol {
+        items {
           id
           active
           frequency
           comment
           owner
         }
-        smoking {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        drugs {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        immunizations {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        owner
+        nextToken
       }
       pathologicalHistory {
         id
@@ -1374,50 +1346,13 @@ export const createPatientHistory = /* GraphQL */ `
         owner
       }
       familyHistory {
-        id
-        father {
+        items {
           id
           alive
-          relationship
           comment
           owner
         }
-        mother {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        brothers {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        grandfather {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        grandmother {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        other {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        owner
+        nextToken
       }
       gynecoObstetricHistory {
         id
@@ -1443,36 +1378,14 @@ export const updatePatientHistory = /* GraphQL */ `
     updatePatientHistory(input: $input, condition: $condition) {
       id
       nonPathologicalHistory {
-        id
-        alcohol {
+        items {
           id
           active
           frequency
           comment
           owner
         }
-        smoking {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        drugs {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        immunizations {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        owner
+        nextToken
       }
       pathologicalHistory {
         id
@@ -1488,50 +1401,13 @@ export const updatePatientHistory = /* GraphQL */ `
         owner
       }
       familyHistory {
-        id
-        father {
+        items {
           id
           alive
-          relationship
           comment
           owner
         }
-        mother {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        brothers {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        grandfather {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        grandmother {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        other {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        owner
+        nextToken
       }
       gynecoObstetricHistory {
         id
@@ -1557,36 +1433,14 @@ export const deletePatientHistory = /* GraphQL */ `
     deletePatientHistory(input: $input, condition: $condition) {
       id
       nonPathologicalHistory {
-        id
-        alcohol {
+        items {
           id
           active
           frequency
           comment
           owner
         }
-        smoking {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        drugs {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        immunizations {
-          id
-          active
-          frequency
-          comment
-          owner
-        }
-        owner
+        nextToken
       }
       pathologicalHistory {
         id
@@ -1602,50 +1456,13 @@ export const deletePatientHistory = /* GraphQL */ `
         owner
       }
       familyHistory {
-        id
-        father {
+        items {
           id
           alive
-          relationship
           comment
           owner
         }
-        mother {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        brothers {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        grandfather {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        grandmother {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        other {
-          id
-          alive
-          relationship
-          comment
-          owner
-        }
-        owner
+        nextToken
       }
       gynecoObstetricHistory {
         id
@@ -1670,34 +1487,16 @@ export const createNonPathologicalHistory = /* GraphQL */ `
   ) {
     createNonPathologicalHistory(input: $input, condition: $condition) {
       id
-      alcohol {
+      type {
         id
-        active
-        frequency
-        comment
+        name
+        description
+        module
         owner
       }
-      smoking {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      drugs {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      immunizations {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
+      active
+      frequency
+      comment
       owner
     }
   }
@@ -1709,34 +1508,16 @@ export const updateNonPathologicalHistory = /* GraphQL */ `
   ) {
     updateNonPathologicalHistory(input: $input, condition: $condition) {
       id
-      alcohol {
+      type {
         id
-        active
-        frequency
-        comment
+        name
+        description
+        module
         owner
       }
-      smoking {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      drugs {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      immunizations {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
+      active
+      frequency
+      comment
       owner
     }
   }
@@ -1748,73 +1529,13 @@ export const deleteNonPathologicalHistory = /* GraphQL */ `
   ) {
     deleteNonPathologicalHistory(input: $input, condition: $condition) {
       id
-      alcohol {
+      type {
         id
-        active
-        frequency
-        comment
+        name
+        description
+        module
         owner
       }
-      smoking {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      drugs {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      immunizations {
-        id
-        active
-        frequency
-        comment
-        owner
-      }
-      owner
-    }
-  }
-`;
-export const createNonPathologicalActivity = /* GraphQL */ `
-  mutation CreateNonPathologicalActivity(
-    $input: CreateNonPathologicalActivityInput!
-    $condition: ModelNonPathologicalActivityConditionInput
-  ) {
-    createNonPathologicalActivity(input: $input, condition: $condition) {
-      id
-      active
-      frequency
-      comment
-      owner
-    }
-  }
-`;
-export const updateNonPathologicalActivity = /* GraphQL */ `
-  mutation UpdateNonPathologicalActivity(
-    $input: UpdateNonPathologicalActivityInput!
-    $condition: ModelNonPathologicalActivityConditionInput
-  ) {
-    updateNonPathologicalActivity(input: $input, condition: $condition) {
-      id
-      active
-      frequency
-      comment
-      owner
-    }
-  }
-`;
-export const deleteNonPathologicalActivity = /* GraphQL */ `
-  mutation DeleteNonPathologicalActivity(
-    $input: DeleteNonPathologicalActivityInput!
-    $condition: ModelNonPathologicalActivityConditionInput
-  ) {
-    deleteNonPathologicalActivity(input: $input, condition: $condition) {
-      id
       active
       frequency
       comment
@@ -1919,66 +1640,21 @@ export const createFamilyHistory = /* GraphQL */ `
   ) {
     createFamilyHistory(input: $input, condition: $condition) {
       id
-      father {
+      relationship {
         id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
+        name
+        description
+        module
         owner
       }
-      mother {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
+      alive
+      diseases {
+        items {
+          id
         }
-        comment
-        owner
+        nextToken
       }
-      brothers {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      grandfather {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      grandmother {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      other {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
+      comment
       owner
     }
   }
@@ -1990,66 +1666,21 @@ export const updateFamilyHistory = /* GraphQL */ `
   ) {
     updateFamilyHistory(input: $input, condition: $condition) {
       id
-      father {
+      relationship {
         id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
+        name
+        description
+        module
         owner
       }
-      mother {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
+      alive
+      diseases {
+        items {
+          id
         }
-        comment
-        owner
+        nextToken
       }
-      brothers {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      grandfather {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      grandmother {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      other {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
+      comment
       owner
     }
   }
@@ -2061,119 +1692,14 @@ export const deleteFamilyHistory = /* GraphQL */ `
   ) {
     deleteFamilyHistory(input: $input, condition: $condition) {
       id
-      father {
+      relationship {
         id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
+        name
+        description
+        module
         owner
       }
-      mother {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      brothers {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      grandfather {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      grandmother {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      other {
-        id
-        alive
-        relationship
-        diseases {
-          nextToken
-        }
-        comment
-        owner
-      }
-      owner
-    }
-  }
-`;
-export const createFamilyDetails = /* GraphQL */ `
-  mutation CreateFamilyDetails(
-    $input: CreateFamilyDetailsInput!
-    $condition: ModelFamilyDetailsConditionInput
-  ) {
-    createFamilyDetails(input: $input, condition: $condition) {
-      id
       alive
-      relationship
-      diseases {
-        items {
-          id
-        }
-        nextToken
-      }
-      comment
-      owner
-    }
-  }
-`;
-export const updateFamilyDetails = /* GraphQL */ `
-  mutation UpdateFamilyDetails(
-    $input: UpdateFamilyDetailsInput!
-    $condition: ModelFamilyDetailsConditionInput
-  ) {
-    updateFamilyDetails(input: $input, condition: $condition) {
-      id
-      alive
-      relationship
-      diseases {
-        items {
-          id
-        }
-        nextToken
-      }
-      comment
-      owner
-    }
-  }
-`;
-export const deleteFamilyDetails = /* GraphQL */ `
-  mutation DeleteFamilyDetails(
-    $input: DeleteFamilyDetailsInput!
-    $condition: ModelFamilyDetailsConditionInput
-  ) {
-    deleteFamilyDetails(input: $input, condition: $condition) {
-      id
-      alive
-      relationship
       diseases {
         items {
           id
@@ -2194,8 +1720,14 @@ export const createFamilyDetailsDiseases = /* GraphQL */ `
       id
       family {
         id
+        relationship {
+          id
+          name
+          description
+          module
+          owner
+        }
         alive
-        relationship
         diseases {
           nextToken
         }
@@ -2223,8 +1755,14 @@ export const updateFamilyDetailsDiseases = /* GraphQL */ `
       id
       family {
         id
+        relationship {
+          id
+          name
+          description
+          module
+          owner
+        }
         alive
-        relationship
         diseases {
           nextToken
         }
@@ -2252,8 +1790,14 @@ export const deleteFamilyDetailsDiseases = /* GraphQL */ `
       id
       family {
         id
+        relationship {
+          id
+          name
+          description
+          module
+          owner
+        }
         alive
-        relationship
         diseases {
           nextToken
         }
@@ -2714,8 +2258,14 @@ export const createPostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -2752,8 +2302,14 @@ export const updatePostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -2790,8 +2346,14 @@ export const deletePostConsultationsActivity = /* GraphQL */ `
       medicalpres {
         items {
           id
-          state
           date
+          frequency
+          duration
+          comment
+          doctor
+          secretary
+          patient
+          owner
         }
         nextToken
       }
@@ -2840,29 +2402,6 @@ export const createMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
@@ -2892,29 +2431,6 @@ export const updateMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
@@ -2944,189 +2460,10 @@ export const deleteMedicalPrescription = /* GraphQL */ `
         owner
       }
       comment
-      postconsultact {
-        id
-        state
-        date
-        postconsultact {
-          id
-          doctor
-          secretary
-          patient
-          owner
-        }
-        medicalpresc {
-          id
-          date
-          frequency
-          duration
-          comment
-          doctor
-          secretary
-          patient
-          owner
-        }
-      }
       doctor
       secretary
       patient
       owner
-    }
-  }
-`;
-export const createPostConsultActMedicalPres = /* GraphQL */ `
-  mutation CreatePostConsultActMedicalPres(
-    $input: CreatePostConsultActMedicalPresInput!
-    $condition: ModelPostConsultActMedicalPresConditionInput
-  ) {
-    createPostConsultActMedicalPres(input: $input, condition: $condition) {
-      id
-      state
-      date
-      postconsultact {
-        id
-        medicalpres {
-          nextToken
-        }
-        medicalAnalysis {
-          nextToken
-        }
-        surgicalIntervention {
-          nextToken
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medicalpresc {
-        id
-        date
-        frequency
-        duration
-        medications {
-          id
-          name
-          code
-          drug_concentration
-          chemical_composition
-          owner
-        }
-        comment
-        postconsultact {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-    }
-  }
-`;
-export const updatePostConsultActMedicalPres = /* GraphQL */ `
-  mutation UpdatePostConsultActMedicalPres(
-    $input: UpdatePostConsultActMedicalPresInput!
-    $condition: ModelPostConsultActMedicalPresConditionInput
-  ) {
-    updatePostConsultActMedicalPres(input: $input, condition: $condition) {
-      id
-      state
-      date
-      postconsultact {
-        id
-        medicalpres {
-          nextToken
-        }
-        medicalAnalysis {
-          nextToken
-        }
-        surgicalIntervention {
-          nextToken
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medicalpresc {
-        id
-        date
-        frequency
-        duration
-        medications {
-          id
-          name
-          code
-          drug_concentration
-          chemical_composition
-          owner
-        }
-        comment
-        postconsultact {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-    }
-  }
-`;
-export const deletePostConsultActMedicalPres = /* GraphQL */ `
-  mutation DeletePostConsultActMedicalPres(
-    $input: DeletePostConsultActMedicalPresInput!
-    $condition: ModelPostConsultActMedicalPresConditionInput
-  ) {
-    deletePostConsultActMedicalPres(input: $input, condition: $condition) {
-      id
-      state
-      date
-      postconsultact {
-        id
-        medicalpres {
-          nextToken
-        }
-        medicalAnalysis {
-          nextToken
-        }
-        surgicalIntervention {
-          nextToken
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
-      medicalpresc {
-        id
-        date
-        frequency
-        duration
-        medications {
-          id
-          name
-          code
-          drug_concentration
-          chemical_composition
-          owner
-        }
-        comment
-        postconsultact {
-          id
-          state
-          date
-        }
-        doctor
-        secretary
-        patient
-        owner
-      }
     }
   }
 `;
@@ -3849,6 +3186,48 @@ export const deleteRegionalExploration = /* GraphQL */ `
       doctor
       secretary
       patient
+      owner
+    }
+  }
+`;
+export const createCategory = /* GraphQL */ `
+  mutation CreateCategory(
+    $input: CreateCategoryInput!
+    $condition: ModelCategoryConditionInput
+  ) {
+    createCategory(input: $input, condition: $condition) {
+      id
+      name
+      description
+      module
+      owner
+    }
+  }
+`;
+export const updateCategory = /* GraphQL */ `
+  mutation UpdateCategory(
+    $input: UpdateCategoryInput!
+    $condition: ModelCategoryConditionInput
+  ) {
+    updateCategory(input: $input, condition: $condition) {
+      id
+      name
+      description
+      module
+      owner
+    }
+  }
+`;
+export const deleteCategory = /* GraphQL */ `
+  mutation DeleteCategory(
+    $input: DeleteCategoryInput!
+    $condition: ModelCategoryConditionInput
+  ) {
+    deleteCategory(input: $input, condition: $condition) {
+      id
+      name
+      description
+      module
       owner
     }
   }

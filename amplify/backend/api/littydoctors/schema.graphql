@@ -252,9 +252,9 @@ type PatientHistory
         { allow: groups, groups: ["secretary"], operations: [read] }
     ]) {
     id: ID!
-    nonPathologicalHistory: NonPathologicalHistory @connection
+    nonPathologicalHistory: [NonPathologicalHistory] @connection
     pathologicalHistory: PathologicalHistory @connection
-    familyHistory: FamilyHistory @connection
+    familyHistory: [FamilyHistory] @connection
     gynecoObstetricHistory: GynecoObstetricHistory @connection
 }
 
@@ -271,26 +271,7 @@ type NonPathologicalHistory
         { allow: groups, groups: ["secretary"], operations: [read] }
     ]) {
     id: ID!
-    alcohol: NonPathologicalActivity @connection
-    smoking: NonPathologicalActivity @connection
-    drugs: NonPathologicalActivity @connection
-    immunizations: NonPathologicalActivity @connection
-}
-
-
-type NonPathologicalActivity
-    @model 
-    @auth(rules: [
-        # Defaults to use the "owner" field.
-        { allow: owner },
-
-        # Admin users can access any operation.
-        { allow: groups, groups: ["admin"] },
-
-        { allow: groups, groups: ["doctor"], operations: [update, read] }
-        { allow: groups, groups: ["secretary"], operations: [read] }
-    ]) {
-    id: ID!
+    type: Category @connection
     active: Boolean
     frequency: String
     comment: String
@@ -327,37 +308,15 @@ type FamilyHistory
         { allow: groups, groups: ["secretary"], operations: [read] }
     ]) {
     id: ID!
-    father: FamilyDetails @connection
-    mother: FamilyDetails @connection
-    brothers: FamilyDetails @connection
-    grandfather: FamilyDetails @connection
-    grandmother: FamilyDetails @connection
-    other: FamilyDetails @connection
-    
-}
-
-type FamilyDetails
-    @model 
-    @auth(rules: [
-        # Defaults to use the "owner" field.
-        { allow: owner },
-
-        # Admin users can access any operation.
-        { allow: groups, groups: ["admin"] },
-
-        { allow: groups, groups: ["doctor"], operations: [update, read] }
-        { allow: groups, groups: ["secretary"], operations: [read] }
-    ]) {
-    id: ID!
+    relationship: Category @connection
     alive: Boolean
-    relationship: String
     diseases: [FamilyDetailsDiseases] @connection(name: "fdd")
     comment: String
 }
 
 type FamilyDetailsDiseases @model(queries: null) {
   id: ID!
-  family: FamilyDetails @connection(name: "fdd")
+  family: FamilyHistory @connection(name: "fdd")
   diseases: Disease @connection(name: "dfd")
 }
 
@@ -467,7 +426,7 @@ type PostConsultationsActivity
         { allow: owner, ownerField: "patient", operations: [read] },
     ]) {
     id: ID!
-    medicalpres: [PostConsultActMedicalPres] @connection(name: "postconsact")
+    medicalpres: [MedicalPrescription] @connection
     medicalAnalysis: [PostConsultActMedAnalysis] @connection(name: "pcama")
     surgicalIntervention: [PostConsultActSurgicalInt] @connection(name: "pcasi")
     doctor: String
@@ -494,18 +453,9 @@ type MedicalPrescription
     duration: String
     medications: Medicine @connection
     comment: String
-    postconsultact: PostConsultActMedicalPres @connection(name: "medicalpres")
     doctor: String
     secretary: String
     patient: String
-}
-
-type PostConsultActMedicalPres @model(queries: null) {
-  id: ID!
-  state: State # se colocara un estado que espesificara si la receta se completo o no
-  date: String
-  postconsultact: PostConsultationsActivity @connection(name: "postconsact")
-  medicalpresc: MedicalPrescription @connection(name: "medicalpres")
 }
 
 """ type MedicalPrescriptionsMedications @model(queries: null) {
@@ -643,4 +593,19 @@ type RegionalExploration
     doctor: String
     secretary: String
     patient: String
+}
+
+type Category
+    @model 
+    @auth(rules: [
+        # Defaults to use the "owner" field.
+        { allow: owner },
+        { allow: groups, groups: ["admin"] }
+        { allow: groups, groups: ["doctor"], operations: [read] },
+        { allow: groups, groups: ["secretary"], operations: [read] },
+    ]) {
+    id: ID!
+    name: String
+    description: String
+    module: String
 }
