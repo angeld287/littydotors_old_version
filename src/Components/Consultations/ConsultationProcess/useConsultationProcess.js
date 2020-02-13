@@ -57,17 +57,27 @@ const useConsultationProcess = () => {
                 }else{
                     API.graphql(graphqlOperation(getMedicalConsultation, { id: consultation}))
                     .then((r) => {
+                        const patientHistory = {
+                            notEmpty: false,
+                        }
+                        const medicalHistory = {
+                            data: r.data.getMedicalConsultation.medicalHistory,
+                            postConsultationActivities: {
+                                notEmpty: false,
+                            },
+                        }
                         setGlobal({
                             consultationid: consultation,
                             patientid: patient,
                             patient: r.data.getMedicalConsultation.patient,
-                            medicalHistory: r.data.getMedicalConsultation.medicalHistory
+                            medicalHistory: medicalHistory,
+                            patientHistory: patientHistory,
                         });
                         setPatientData(r.data.getMedicalConsultation.patient);
                         setConsultationObject(r.data.getMedicalConsultation);
                         let _consultation = r.data.getMedicalConsultation;
                         setLoading(false);
-                        console.log(r.data.getMedicalConsultation);
+                        //console.log(r.data.getMedicalConsultation);
                         
                         //console.log(r.data.getMedicalConsultation.patient.patientHistory);
                     })

@@ -6,9 +6,9 @@ import { listMedicalAnalysiss, listSurgicalInterventions, listMedicines } from '
 import { MDBBtn, MDBIcon } from 'mdbreact';
 import Swal from 'sweetalert2';
 
-const useNewMedicalPrescription = () => {
+const useNewPostConsultationsActivity = (global, setGlobalData) => {
     const [ loading, setLoading ] = useState(false);
-    const [ loadingButton, setLoadingButton ] = useState(true);
+    const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
     const [ modal, setModal ] = useState(false);
     const [ edit, setEdit ] = useState(false);
@@ -16,15 +16,12 @@ const useNewMedicalPrescription = () => {
     let { consultation, patient } = useParams();
     const { register, handleSubmit, errors, formState } = useForm();
 
-
 	const [ medicalAnalysis, setMedicalAnalysis ] = useState([]);
 	const [ surgicalIntervention, setSurgicalIntervention ] = useState([]);
 	const [ items, setItems ] = useState([]);
 	const [ table, setTable ] = useState([]);
 	const [ prescriptionMedication, setPrescriptionMedication ] = useState([]);
 	const [ api, setApi ] = useState([]);
-
-
 
     useEffect(() => {
         let didCancel = false;
@@ -45,22 +42,21 @@ const useNewMedicalPrescription = () => {
                 
                 setApi(api);
                 createdPrescriptions();
-                /* API.graphql(graphqlOperation(createMedicalHistory, {input: input}))
-                .then((r) => {
-                    
-                }).catch((err) => { 
-                    console.log("Ocurrio un error: ",err); 
-                    setError(true) 
-                    setLoading(false);
-                });  */
+                global.medicalHistory.postConsultationActivities.notEmpty = true;
+                setGlobalData(global);
                 setLoadingButton(false);
             } catch (error) {
                 setError(true);
                 setLoading(false);
             }
         };
+        if (global.medicalHistory.postConsultationActivities.notEmpty !== true) {
+            setLoadingButton(true);
+            fetch();
+        }else{
 
-        fetch();
+            createdPrescriptions();
+        }
 
         return () => {
             didCancel = true;
@@ -167,4 +163,4 @@ const useNewMedicalPrescription = () => {
     return { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention };
 };
 
-export default useNewMedicalPrescription;
+export default useNewPostConsultationsActivity;

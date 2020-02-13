@@ -8,8 +8,11 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 
-const NewPostConsultationsActivity = () => {
-  const { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention } = useNewPostConsultationsActivity();
+const NewPostConsultationsActivity = ({
+    global: global,
+    setGlobalData: setGlobalData
+}) => {
+  const { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention } = useNewPostConsultationsActivity(global, setGlobalData);
 
   return (
     <MDBContainer>
