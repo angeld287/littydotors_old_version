@@ -10,39 +10,46 @@ const useNewPostConsultationsActivity = (global, setGlobalData) => {
     const [ loading, setLoading ] = useState(false);
     const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
-    const [ modal, setModal ] = useState(false);
     const [ edit, setEdit ] = useState(false);
-    const [ editObject, setEditObject ] = useState({});
     let { consultation, patient } = useParams();
     const { register, handleSubmit, errors, formState } = useForm();
 
-	const [ medicalAnalysis, setMedicalAnalysis ] = useState([]);
-	const [ surgicalIntervention, setSurgicalIntervention ] = useState([]);
-	const [ items, setItems ] = useState([]);
-	const [ table, setTable ] = useState([]);
-	const [ prescriptionMedication, setPrescriptionMedication ] = useState([]);
-	const [ api, setApi ] = useState([]);
+    const [ medicalAnalysis, setMedicalAnalysis ] = useState([]);
+    const [ surgicalIntervention, setSurgicalIntervention ] = useState([]);
+    const [ prescriptionMedication, setPrescriptionMedication ] = useState([]);
+    const [ api, setApi ] = useState([]);
+
+    const [ items, setItems ] = useState([]);
+    const [ table, setTable ] = useState([]);
+    const [ modal, setModal ] = useState(false);
+    const [ editObject, setEditObject ] = useState({});
 
     useEffect(() => {
         let didCancel = false;
-		let api = {};
+        let api = {};
 
         const fetch = async () => {
             try {
-				const _medicalanalysis = await API.graphql(graphqlOperation(listMedicalAnalysiss, {limit: 400}));
-				const _surgicalintervention = await API.graphql(graphqlOperation(listSurgicalInterventions, {limit: 400}));
-				const _medications = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
+                const _medicalanalysis = await API.graphql(graphqlOperation(listMedicalAnalysiss, {limit: 400}));
+                const _surgicalintervention = await API.graphql(graphqlOperation(listSurgicalInterventions, {limit: 400}));
+                const _medications = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
 
-                
                 api = {
-					medicalanalysis: _medicalanalysis.data.listMedicalAnalysiss.items,
-					surgicalintervention: _surgicalintervention.data.listSurgicalInterventions.items,
+                    medicalanalysis: _medicalanalysis.data.listMedicalAnalysiss.items,
+                    surgicalintervention: _surgicalintervention.data.listSurgicalInterventions.items,
                     prescriptionmedications: _medications.data.listMedicines.items
                 };
                 
                 setApi(api);
                 createdPrescriptions();
-                global.medicalHistory.postConsultationActivities.notEmpty = true;
+                global.medicalHistory.postConsultationActivities = {
+                    notEmpty: true,
+                    api: api,
+                    medicalPrescriptions: {
+                        items: [],
+                        table: [],
+                    },
+                };
                 setGlobalData(global);
                 setLoadingButton(false);
             } catch (error) {
@@ -54,8 +61,11 @@ const useNewPostConsultationsActivity = (global, setGlobalData) => {
             setLoadingButton(true);
             fetch();
         }else{
-
-            createdPrescriptions();
+            const __items = global.medicalHistory.postConsultationActivities.medicalPrescriptions.items;
+            const __table = global.medicalHistory.postConsultationActivities.medicalPrescriptions.table;
+            setApi(global.medicalHistory.postConsultationActivities.api);
+            setItems(__items);
+            setTable(__table);
         }
 
         return () => {
@@ -69,46 +79,27 @@ const useNewPostConsultationsActivity = (global, setGlobalData) => {
     };
 
     const createdPrescriptions = () => {
-		var formated = [];
-		items.forEach((item) => {
-			formated.push({
-				medicationName: item.medicationName,
-				frequency: item.frequency,
-				options: (
-					<Fragment>
-						<MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); removeMedicalPrescription(item.medicalPrescriptionMedicationsId)}}>
-							  <MDBIcon icon="trash" size="2x"/>
-						</MDBBtn>
-                        <MDBBtn size="sm" onClick={(e) => {e.preventDefault(); openModalToEdit(item)}}>
-							  <MDBIcon icon="edit" size="2x"/>
-						</MDBBtn>
-					</Fragment>
-				)
-			});
-		});
-        const table = {
-			columns: [
-				{
-					label: 'Medicamento',
-					field: 'medicationName',
-					sort: 'asc'
-				},
-				{
-					label: 'Frecuencia',
-					field: 'frequency',
-					sort: 'asc'
-				},
-				{
-					label: 'Opciones',
-					field: 'options',
-					sort: 'disabled'
-				}
-			],
-			rows: formated
-		};
+        var formated = [];
+        items.forEach((item) => {
+            formated.push({
+                medicationName: item.medicationName,
+                frequency: item.frequency,
+                options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); removeMedicalPrescription(item.medicalPrescriptionMedicationsId)}}><MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); openModalToEdit(item)}}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
+            });
+        });
+        const _table = {
+            columns: [{label: 'Medicamento', field: 'medicationName', sort: 'asc'}, {label: 'Frecuencia', field: 'frequency', sort: 'asc'}, {label: 'Opciones', field: 'options', sort: 'disabled'} ],
+            rows: formated
+        };
 
-        setTable(table);
-	};
+        setTable(_table);
+        global.medicalHistory.postConsultationActivities.medicalPrescriptions = {
+            table: _table,
+            items: items
+        };
+
+        setGlobalData(global);
+    };
     
 
     const createMedicalPrescription = (o) => {
@@ -120,14 +111,14 @@ const useNewPostConsultationsActivity = (global, setGlobalData) => {
 
     const removeMedicalPrescription = async (id) => {
         const result = await Swal.fire({
-			title: '¿Desea eliminar el elemento?',
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Eliminar',
-			cancelButtonText: 'Cancelar'
-		});
+            title: '¿Desea eliminar el elemento?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar'
+        });
 
         if (result.value) {
             const _items = items;

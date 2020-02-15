@@ -81,14 +81,12 @@ const useNewPatientHistory = (global, setGlobalData) => {
             setLoadingButton(true);
             fetch();
         }else{
+            const __nonPath = global.patientHistory.nonPath.item;
             setApi(global.patientHistory.api);
             setFamily(global.patientHistory.family.items);
             setFamilyTable(global.patientHistory.family.table);
-            setNonPath(global.patientHistory.nonPath.items);
+            setNonPath(__nonPath);
             setNonPathTable(global.patientHistory.nonPath.table);
-
-            createdFamily();
-            createdNonPath();
         }
 
         return () => {

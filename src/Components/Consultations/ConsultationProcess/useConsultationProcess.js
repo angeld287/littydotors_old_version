@@ -59,13 +59,15 @@ const useConsultationProcess = () => {
                     .then((r) => {
                         const patientHistory = {
                             notEmpty: false,
-                        }
+                        };
+
                         const medicalHistory = {
                             data: r.data.getMedicalConsultation.medicalHistory,
                             postConsultationActivities: {
                                 notEmpty: false,
                             },
-                        }
+                        };
+
                         setGlobal({
                             consultationid: consultation,
                             patientid: patient,
