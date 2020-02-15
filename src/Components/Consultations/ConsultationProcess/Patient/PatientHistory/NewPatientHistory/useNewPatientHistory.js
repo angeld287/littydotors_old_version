@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 const useNewPatientHistory = (global, setGlobalData) => {
     const [ loading, setLoading ] = useState(false);
-    const [ loadingButton, setLoadingButton ] = useState(true);
+    const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
     const { register, handleSubmit, errors, formState } = useForm();
 
@@ -52,8 +52,23 @@ const useNewPatientHistory = (global, setGlobalData) => {
                     familytypes: _nonpath.data.listCategorys.items.filter(x => x.module === "FamilyHistory"),
                 };
 
-                
                 setApi(api);
+                createdFamily();
+                createdNonPath();
+                global.patientHistory = {
+                    notEmpty: true,
+                    api: api,
+                    family: {
+                        items: [],
+                        table: [],
+                    },
+                    nonPath: {
+                        items: [],
+                        table: [],
+                    }
+                };
+                
+                setGlobalData(global);
                 setLoadingButton(false);
             } catch (error) {
                 setError(true);
@@ -62,7 +77,17 @@ const useNewPatientHistory = (global, setGlobalData) => {
             }
         };
 
-        fetch();
+        if(global.patientHistory.notEmpty !== true){
+            setLoadingButton(true);
+            fetch();
+        }else{
+            const __nonPath = global.patientHistory.nonPath.item;
+            setApi(global.patientHistory.api);
+            setFamily(global.patientHistory.family.items);
+            setFamilyTable(global.patientHistory.family.table);
+            setNonPath(__nonPath);
+            setNonPathTable(global.patientHistory.nonPath.table);
+        }
 
         return () => {
             didCancel = true;
@@ -85,11 +110,19 @@ const useNewPatientHistory = (global, setGlobalData) => {
 				options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); removeNonPath(item.id)}}> <MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); openNonPathModalToEdit(item)}}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
 			});
 		});
-        const nonpath = {
+
+        const _nonpath = {
 			columns: [ { label: 'Tipo', field: 'type', sort: 'asc' }, { label: 'Frecuencia', field: 'frequency', sort: 'asc' }, { label: 'Opciones', field: 'options', sort: 'disabled' }],
 			rows: formated
 		};
-        setNonPathTable(nonpath);
+
+        setNonPathTable(_nonpath);
+        global.patientHistory.nonPath = {
+            table: _nonpath,
+            items: nonPath
+        };
+
+        setGlobalData(global);
 	};
 
     const createNonPath = (o) => {
@@ -147,6 +180,11 @@ const useNewPatientHistory = (global, setGlobalData) => {
 			rows: formated
 		};
         setFamilyTable(familytable);
+        global.patientHistory.family = {
+            table: familytable,
+            items: family
+        };
+        setGlobalData(global);
 	};
 
     const createFamily = (o) => {
