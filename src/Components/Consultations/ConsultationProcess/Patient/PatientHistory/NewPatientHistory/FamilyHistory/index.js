@@ -19,6 +19,7 @@ const FamilyHistory = ({
   const [ relationship, setRelationship ] = useState({});
   const [ diseases, setDiseases ] = useState([]);
   const [ comment, setComment ] = useState("");
+  const [ alive, setAlive ] = useState(true);
 
   const _diseases = [];
   api.diseases.forEach(element => {
@@ -43,9 +44,10 @@ const FamilyHistory = ({
           setRelationship({});          
           setDiseases([]);
           setComment("");
-          
         }
   }, []);
+
+  const setAliveD = () => { setAlive(!alive); }
 
   const rindex = !edit ? null : relationships.findIndex(v => v.value === familyEditObject.relationship.value);
   const dlist = !edit ? null : familyEditObject.diseases;
@@ -60,8 +62,8 @@ const FamilyHistory = ({
             </MDBCol>
             <MDBCol md="4" >
               <div className="custom-control custom-checkbox">
-                  <label className="custom-control-label" htmlFor="brother_alive">Con vida?</label>
-                  <input name="brother_alive" id="brother_alive" type="checkbox" className="custom-control-input"/>
+                  <MDBInput label="Con vida?" type="checkbox" id="alive" checked={alive} onChange={setAliveD}
+                  />
               </div>
             </MDBCol>
           </MDBRow>
@@ -88,6 +90,7 @@ const FamilyHistory = ({
                     doctor: "String",
                     secretary: "String",
                     patient: "String",
+                    alive: alive,
                 });
                 toggleFamily();
             }}>Crear</MDBBtn>
@@ -104,6 +107,7 @@ const FamilyHistory = ({
                     doctor: "String",
                     secretary: "String",
                     patient: "String",
+                    alive: alive,
                 });
                 toggleFamily();
             }}>Guardar Cambios</MDBBtn>

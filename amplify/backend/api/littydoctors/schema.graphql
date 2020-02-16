@@ -392,7 +392,7 @@ type PatientMedications @model(queries: null) {
 }
 
 type Medicine
-    @model 
+    @model
     @auth(rules: [
         # Defaults to use the "owner" field.
         { allow: owner },
