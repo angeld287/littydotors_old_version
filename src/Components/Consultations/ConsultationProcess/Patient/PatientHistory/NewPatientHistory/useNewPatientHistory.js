@@ -3,6 +3,18 @@ import { useHistory, useParams } from 'react-router-dom';
 import { API, graphqlOperation } from 'aws-amplify';
 import useForm from 'react-hook-form';
 import { listMedicines, listCategorys, listAllergys, listSurgicalInterventions, listDiseases } from '../../../../../../graphql/queries';
+
+import { 
+        createPathologicalHistory, 
+        createFamilyHistory, 
+        createFamilyDetailsDiseases, 
+        createPatientMedications,
+        createPathologicalHistorySurgicalInt, 
+        createPatientAllergies,
+        createPatientHistory,
+        createNonPathologicalHistory,
+    } from '../../../../../../graphql/mutations';
+
 import { MDBBtn, MDBIcon } from 'mdbreact';
 import Swal from 'sweetalert2';
 
@@ -81,11 +93,10 @@ const useNewPatientHistory = (global, setGlobalData) => {
             setLoadingButton(true);
             fetch();
         }else{
-            const __nonPath = global.patientHistory.nonPath.item;
             setApi(global.patientHistory.api);
             setFamily(global.patientHistory.family.items);
             setFamilyTable(global.patientHistory.family.table);
-            setNonPath(__nonPath);
+            setNonPath(global.patientHistory.nonPath.items);
             setNonPathTable(global.patientHistory.nonPath.table);
         }
 
@@ -221,14 +232,86 @@ const useNewPatientHistory = (global, setGlobalData) => {
         createdFamily();
     }
 
-    const onSubmit = (i) => {        
-        /* global.patient.patientHistory = {
+    const onSubmit = async (i) => {  
+        setLoadingButton(true);      
+        global.patient.patientHistory = {
             pathologicalHistory : { patientMedications: patientMedications, patientAllergies: patientAllergies, surgicalInterventions: patientSurgicalInterventions },
-            familyHistory : { },
-            nonPathologicalHistory : { } 
-        }; */
-        //setGlobalData(global);  
-        //console.log(global);     
+            familyHistory : family,
+            nonPathologicalHistory : nonPath 
+        };                
+        try {
+
+            //PATHOLOGICAL
+                 const pathological = await API.graphql(graphqlOperation(createPathologicalHistory, { input: {  } }));
+
+                patientMedications.forEach(async (e) => {
+                    const input = {
+                        patientMedicationsPathologicalHistoryId: pathological.data.createPathologicalHistory.id,
+                        patientMedicationsMedicationsId: e.id
+                    };
+                    const medications = await API.graphql(graphqlOperation(createPatientMedications, {input: input} ));
+                });
+
+                patientAllergies.forEach(async (e) => {
+                    const input = {
+                        patientAllergiesPathologicalHistoryId: pathological.data.createPathologicalHistory.id,
+                        patientAllergiesAllergiesId: e.id
+                    };
+                    const allergies = await API.graphql(graphqlOperation(createPatientAllergies, {input: input} ));
+                });
+
+                patientSurgicalInterventions.forEach(async (e) => {
+                    const input = {
+                        pathologicalHistorySurgicalIntPathologicalHistoryId: pathological.data.createPathologicalHistory.id,
+                        pathologicalHistorySurgicalIntSurgicalInterventionId: e.id
+                    };
+                    const surgery = await API.graphql(graphqlOperation(createPathologicalHistorySurgicalInt, {input: input} ));
+                });
+
+
+            //PATIENT HISTORY
+                const patienth = await API.graphql(graphqlOperation(createPatientHistory, {input: { patientHistoryPathologicalHistoryId: pathological.data.createPathologicalHistory.id}} ));
+
+            //NON PATHOLOGICAL
+                nonPath.forEach(async (e) => {
+                    const input = {
+                        active: e.active,
+                        frequency: e.frequency.value,
+                        comment: e.comment,
+                        patientHistoryNonPathologicalHistoryId: patienth.data.createPatientHistory.id,
+                        nonPathologicalHistoryTypeId: e.type.value,
+                    };
+
+                    const npnpathological = await API.graphql(graphqlOperation(createNonPathologicalHistory, {input: input} ));
+                });
+
+            //FAMILY
+
+                family.forEach(async (e) => {
+                    const input = {
+                        alive: e.alive,
+                        comment: e.comment,
+                        patientHistoryFamilyHistoryId: patienth.data.createPatientHistory.id,
+                        familyHistoryRelationshipId: e.relationship.value,
+                    };
+
+                    const cfamilyh = await API.graphql(graphqlOperation(createFamilyHistory, {input: input} ));
+                    e.diseases.forEach(async (d) => {
+                        const input = {
+                            familyDetailsDiseasesFamilyId: cfamilyh.data.createFamilyHistory.id,
+                            familyDetailsDiseasesDiseasesId: d.value,
+                        };
+                        const phdiseases = await API.graphql(graphqlOperation(createFamilyDetailsDiseases, {input: input} ));
+                    });
+                });
+            
+            setLoadingButton(false);
+			await Swal.fire('Correcto', 'El elemento se ha creado correctamente', 'success');
+			
+		} catch (error) {
+            setLoadingButton(false);
+			Swal.fire('Ha ocurrido un error', 'Intentelo de nuevo mas tarde');
+		}
     }
 
     return { createNonPath, loadingButton, onSubmit, setPatientAllergies, setPatientMedications, api, handleSubmit, formState, register, editNonPath,
