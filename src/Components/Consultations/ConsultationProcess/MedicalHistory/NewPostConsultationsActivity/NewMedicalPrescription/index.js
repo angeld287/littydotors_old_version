@@ -4,6 +4,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
          MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
 
 import Select from 'react-select'
+import Swal from 'sweetalert2';
 
 const NewMedicalPrescription = ({
   toggle: toggle,
@@ -15,9 +16,10 @@ const NewMedicalPrescription = ({
 }) => {
 
   const [ prescriptionMedication, setPrescriptionMedication ] = useState("");
-  const [ frequency, setFrequency ] = useState("");
+  const [ frequency, setFrequency ] = useState([]);
   const [ duration, setDuration ] = useState("");
   const [ comment, setComment ] = useState("");
+  const [ medication, setMedication ] = useState([]);
 
   const medications = [];
   api.prescriptionmedications.forEach(element => {
@@ -54,25 +56,67 @@ const NewMedicalPrescription = ({
           setFrequency(editObject.frequency);
           setDuration(editObject.duration);
           setComment(editObject.comment);
+          setMedication(editObject.medication);
         }else{
           setPrescriptionMedication("");          
-          setFrequency("");
+          setFrequency([]);
           setDuration("");
           setComment("");
+          setMedication([]);
           
         }
   }, []);
 
-  const mindex = !edit ? null : medications.findIndex(v => v.value === editObject.medicalPrescriptionMedicationsId);
-  const findex = !edit ? null : options.findIndex(v => v.value === editObject.frequency);
+  const save = (create) => {
+    if ((frequency.length < 1) || (medication.length < 1)) {
+        //Swal.fire('Campo Obligatorio', 'Favor completar el campo Lugar de Evento', 'error');
+        Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'Favor completar los campos Frecuencia y Medicamento',
+              showConfirmButton: false,
+              timer: 1500
+        });
+        return
+    }
+    if (create) {
+       createMedicalPrescription({
+          date: new Date(),
+          frequency: frequency,
+          medication: medication,
+          duration: duration,
+          comment: comment,
+          doctor: "String",
+          secretary: "String",
+          patient: "String",
+       });
+       toggle();
+    }else{
+      editMedicalPrescription({
+          date: new Date(),
+          frequency: frequency,
+          medication: medication,
+          duration: duration,
+          comment: comment,
+          doctor: "String",
+          secretary: "String",
+          patient: "String",
+      });
+      toggle();
+    }
+
+  }
+
+  const mindex = !edit ? null : medications.findIndex(v => v.value === editObject.medication.value);
+  const findex = !edit ? null : options.findIndex(v => v.value === editObject.frequency.value);
   return (
     <MDBContainer>
         <MDBModalHeader toggle={toggle}>Receta Medica</MDBModalHeader>
         <MDBModalBody>
           <label htmlFor="prescriptionmedication" className="mt-2" >Medicamento</label>
-          <Select id="prescriptionmedication" options={medications} defaultValue={medications[mindex]} onChange={ (v) => {setPrescriptionMedication(v)}} />
+          <Select id="prescriptionmedication" options={medications} defaultValue={medications[mindex]} onChange={ (v) => {setMedication(v)}} />
           <label htmlFor="frequency" className="mt-2" >Frecuencia</label>
-          <Select id="frequency" options={options} defaultValue={options[findex]} onChange={ (v) => {setFrequency(v.value)}}/>
+          <Select id="frequency" options={options} defaultValue={options[findex]} onChange={ (v) => {setFrequency(v)}}/>
           <MDBInput label="Duracion" value={duration} onChange={ (e) => {setDuration(e.target.value)}}/>
           <div className="form-group">
             <label htmlFor="comment">Comentario</label>
@@ -81,43 +125,10 @@ const NewMedicalPrescription = ({
         </MDBModalBody>
         <MDBModalFooter>
           <MDBBtn color="secondary" onClick={toggle}>Cancelar</MDBBtn>
-
-          {!edit &&
-            <MDBBtn color="primary" onClick={(e) => {
-                e.preventDefault();
-                createMedicalPrescription({
-                    date: new Date(),
-                    frequency: frequency,
-                    duration: duration,
-                    comment: comment,
-                    doctor: "String",
-                    secretary: "String",
-                    patient: "String",
-                    medicalPrescriptionMedicationsId: prescriptionMedication.value,
-                    medicationName: prescriptionMedication.label,
-                    medicalPrescriptionPostconsultactId: "sss"
-                });
-                toggle();
-            }}>Crear</MDBBtn>
-          }
-          {edit &&
-            <MDBBtn color="primary" onClick={(e) => {
-                e.preventDefault();
-                editMedicalPrescription({
-                    date: new Date(),
-                    frequency: frequency,
-                    duration: duration,
-                    comment: comment,
-                    doctor: "String",
-                    secretary: "String",
-                    patient: "String",
-                    medicalPrescriptionMedicationsId: prescriptionMedication.value,
-                    medicationName: prescriptionMedication.label,
-                    medicalPrescriptionPostconsultactId: "sss"
-                });
-                toggle();
-            }}>Guardar Cambios</MDBBtn>
-          }
+          <MDBBtn color="primary" onClick={(e) => {
+            e.preventDefault();
+            save(!edit);
+          }}>{edit ? "Guardar Cambios" : "Crear"}</MDBBtn>
         </MDBModalFooter>
     </MDBContainer>
   );

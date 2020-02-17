@@ -82,8 +82,8 @@ const useNewPostConsultationsActivity = (global, setGlobalData) => {
         var formated = [];
         items.forEach((item) => {
             formated.push({
-                medicationName: item.medicationName,
-                frequency: item.frequency,
+                medicationName: item.medication.label,
+                frequency: item.frequency.label,
                 options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); removeMedicalPrescription(item.medicalPrescriptionMedicationsId)}}><MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); openModalToEdit(item)}}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
             });
         });

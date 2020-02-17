@@ -180,14 +180,20 @@ const useNewPatientHistory = (global, setGlobalData) => {
     const createdFamily = () => {
 		var formated = [];
 		family.forEach((item) => {
+            var dItems = "";
+
+            item.diseases.forEach((d) => {
+                dItems = dItems+" - "+d.label;
+            });
+            
 			formated.push({
 				relationship: item.relationship.label,
-				frequency: item.comment,
+				diseases: dItems,
 				options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); removeFamily(item.id)}}> <MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); openFamilyModalToEdit(item)}}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
 			});
 		});
         const familytable = {
-			columns: [ { label: 'Parentesco', field: 'relationship', sort: 'asc' }, { label: 'Frecuencia', field: 'frequency', sort: 'asc' }, { label: 'Opciones', field: 'options', sort: 'disabled' }],
+			columns: [ { label: 'Parentesco', field: 'relationship', sort: 'asc' }, { label: 'Enfermedades', field: 'diseases', sort: 'asc' }, { label: 'Opciones', field: 'options', sort: 'disabled' }],
 			rows: formated
 		};
         setFamilyTable(familytable);
