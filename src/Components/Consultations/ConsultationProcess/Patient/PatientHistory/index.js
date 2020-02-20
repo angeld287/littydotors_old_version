@@ -3,6 +3,9 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable } from "mdbreact";
 
 import usePatientHistory from "./usePatientHistory"
+import NonPathological from "./NonPathological";
+import Pathological from "./Pathological";
+import Family from "./Family";
 
 
 const PatientHistory = ({
@@ -20,6 +23,7 @@ const PatientHistory = ({
             <MDBCol md="12">
               <MDBCard>
                 <br/>
+                <Pathological data={global.patient.patientHistory.pathologicalHistory}/>
               </MDBCard>
             </MDBCol>
           </MDBRow>
@@ -31,6 +35,7 @@ const PatientHistory = ({
             <MDBCol md="12">
               <MDBCard>
                 <br/>
+                <NonPathological data={global.patient.patientHistory.nonPathologicalHistory}/>
               </MDBCard>
             </MDBCol>
           </MDBRow>
@@ -42,6 +47,7 @@ const PatientHistory = ({
             <MDBCol md="12">
               <MDBCard>
                 <br/>
+                <Family data={global.patient.patientHistory.familyHistory}/>
               </MDBCard>
             </MDBCol>
         </MDBRow>

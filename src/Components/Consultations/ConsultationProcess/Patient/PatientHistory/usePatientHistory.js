@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { API, graphqlOperation } from 'aws-amplify';
 import useForm from 'react-hook-form';
-import { listMedicines, listCategorys, listAllergys, listSurgicalInterventions, listDiseases } from '../../../../../graphql/queries';
+import { listFamilyHistorys, listNonPathologicalHistorys, listPathologicalHistorys } from '../../../../../graphql/queries';
 
 import { MDBBtn, MDBIcon } from 'mdbreact';
 import Swal from 'sweetalert2';
@@ -22,12 +22,9 @@ const usePatientHistory = (global, setGlobalData) => {
 
         const fetch = async () => {
             try {
-				//const _medications = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
-
-                api = {
-					medications: "",
-                };
-
+				//const _family = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
+				//const _nonpath = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
+				//const _path = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
                 
                 setLoadingButton(false);
             } catch (error) {

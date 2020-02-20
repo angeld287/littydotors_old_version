@@ -284,7 +284,7 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory) => {
                     const input = {};
 
                     input.active = e.active;
-                    input.frequency = e.frequency;
+                    input.frequency = e.frequency.label;
                     if(e.comment !== ""){input.comment = e.comment;}
                     input.patientHistoryNonPathologicalHistoryId = patienth.data.createPatientHistory.id;
                     input.nonPathologicalHistoryTypeId = e.type.value;
