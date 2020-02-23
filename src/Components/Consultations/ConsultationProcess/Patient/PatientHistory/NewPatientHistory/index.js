@@ -15,9 +15,25 @@ const NewPatientHistory = ({
     setHasPatientHistory:  setHasPatientHistory,
     setPatientHistory: setPatientHistory,
 }) => {
-  const { nonPathModal, toggleNonPath, api, setPatientMedications, setPatientSurgicalInterventions, register, onSubmit, setPatientAllergies, nonPathTable,
+  const { 
+          nonPathModal, toggleNonPath, api, setPatientMedications, setPatientSurgicalInterventions, register, onSubmit, setPatientAllergies, nonPathTable,
           loadingButton, handleSubmit, formState, errors, edit, nonPathEditObject, createNonPath, editNonPath, toggleFamily, familyModal,
-          familyTable, createFamily, removeFamily, editFamily, familyEditObject } = useNewPatientHistory(global, setGlobalData, setHasPatientHistory, setPatientHistory);
+          familyTable, createFamily, removeFamily, editFamily, familyEditObject,
+          createMedication, toggleMedication, medicationModal, medicationTable, removeMedication, 
+          editMedication, medicationEditObject
+         } = useNewPatientHistory(global, setGlobalData, setHasPatientHistory, setPatientHistory);
+
+  const medicationActions = {
+      edit: edit,
+      loadingButton: loadingButton,
+      createMedication: createMedication, 
+      toggleMedication: toggleMedication, 
+      medicationModal: medicationModal,
+      medicationTable: medicationTable, 
+      removeMedication: removeMedication, 
+      editMedication: editMedication, 
+      medicationEditObject: medicationEditObject
+  }
 
   return (
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -35,6 +51,7 @@ const NewPatientHistory = ({
                   api={api}
                   register={register}
                   errors={errors}
+                  medicationActions={medicationActions}
                 />
               </MDBCard>
             </MDBCol>

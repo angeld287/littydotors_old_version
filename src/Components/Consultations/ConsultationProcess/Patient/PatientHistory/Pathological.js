@@ -36,7 +36,7 @@ const Pathological = ({
     if (data.patientMedications !== null && data.patientMedications !== undefined) {
       data.patientMedications.items.forEach((item) => {
         medicines.push({
-          name: item.medications.name,
+          name: item.medications.name +" - "+ item.drug_concentration,
         });
       });
     }else{

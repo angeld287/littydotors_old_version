@@ -167,6 +167,7 @@ export const getMedicalConsultation = /* GraphQL */ `
                   id
                   name
                 }
+                drug_concentration
               }
             }
             patientAllergies {

@@ -389,6 +389,7 @@ type PatientMedications @model(queries: null) {
   id: ID!
   pathologicalHistory: PathologicalHistory @connection(name: "pm")
   medications: Medicine @connection(name: "mp")
+  drug_concentration: String
 }
 
 type Medicine

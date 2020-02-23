@@ -1560,6 +1560,7 @@ export const createPathologicalHistory = /* GraphQL */ `
       patientMedications {
         items {
           id
+          drug_concentration
         }
         nextToken
       }
@@ -1590,6 +1591,7 @@ export const updatePathologicalHistory = /* GraphQL */ `
       patientMedications {
         items {
           id
+          drug_concentration
         }
         nextToken
       }
@@ -1620,6 +1622,7 @@ export const deletePathologicalHistory = /* GraphQL */ `
       patientMedications {
         items {
           id
+          drug_concentration
         }
         nextToken
       }
@@ -2114,6 +2117,7 @@ export const createPatientMedications = /* GraphQL */ `
         chemical_composition
         owner
       }
+      drug_concentration
     }
   }
 `;
@@ -2148,6 +2152,7 @@ export const updatePatientMedications = /* GraphQL */ `
         chemical_composition
         owner
       }
+      drug_concentration
     }
   }
 `;
@@ -2182,6 +2187,7 @@ export const deletePatientMedications = /* GraphQL */ `
         chemical_composition
         owner
       }
+      drug_concentration
     }
   }
 `;
@@ -2196,6 +2202,7 @@ export const createMedicine = /* GraphQL */ `
       patients {
         items {
           id
+          drug_concentration
         }
         nextToken
       }
@@ -2217,6 +2224,7 @@ export const updateMedicine = /* GraphQL */ `
       patients {
         items {
           id
+          drug_concentration
         }
         nextToken
       }
@@ -2238,6 +2246,7 @@ export const deleteMedicine = /* GraphQL */ `
       patients {
         items {
           id
+          drug_concentration
         }
         nextToken
       }
