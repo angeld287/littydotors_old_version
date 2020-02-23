@@ -37,6 +37,7 @@ export const updatePatientaddPatientHistory = /* GraphQL */ `
                   medications {
                     id
                     name
+                    drug_concentration
                   }
                 }
               }

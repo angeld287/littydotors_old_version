@@ -908,6 +908,7 @@ export const getPathologicalHistory = /* GraphQL */ `
       patientMedications {
         items {
           id
+          drug_concentration
         }
         nextToken
       }
@@ -1122,6 +1123,7 @@ export const getMedicine = /* GraphQL */ `
       patients {
         items {
           id
+          drug_concentration
         }
         nextToken
       }
