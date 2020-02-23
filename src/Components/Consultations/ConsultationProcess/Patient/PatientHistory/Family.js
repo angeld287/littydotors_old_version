@@ -19,8 +19,7 @@ const Family = ({
 		var formated = [];
 
 		data.items.forEach((item) => {
-            var dItems = "";
-
+            var dItems = null;
             item.diseases.items.forEach((d) => {
                 dItems = dItems+" - "+d.diseases.name;
             });

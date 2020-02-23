@@ -13,10 +13,11 @@ const NewPatientHistory = ({
     global: global,
     setGlobalData: setGlobalData,
     setHasPatientHistory:  setHasPatientHistory,
+    setPatientHistory: setPatientHistory,
 }) => {
   const { nonPathModal, toggleNonPath, api, setPatientMedications, setPatientSurgicalInterventions, register, onSubmit, setPatientAllergies, nonPathTable,
           loadingButton, handleSubmit, formState, errors, edit, nonPathEditObject, createNonPath, editNonPath, toggleFamily, familyModal,
-          familyTable, createFamily, removeFamily, editFamily, familyEditObject } = useNewPatientHistory(global, setGlobalData, setHasPatientHistory);
+          familyTable, createFamily, removeFamily, editFamily, familyEditObject } = useNewPatientHistory(global, setGlobalData, setHasPatientHistory, setPatientHistory);
 
   return (
       <form onSubmit={handleSubmit(onSubmit)}>

@@ -17,7 +17,7 @@ import NewPostConsultationsActivity from './MedicalHistory/NewPostConsultationsA
 const ConsultationProcess = ({childProps:childProps}) => {
   const { consultationObject, error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, setCreateNewPatient, patientData,
           formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName, setGlobalData, global,
-          setHasPatientHistory, hasPatientHistory } = useConsultationProcess();
+          setHasPatientHistory, hasPatientHistory, patientHistory, setPatientHistory } = useConsultationProcess();
 
   const { createConsultation } = useConsultations();
   
@@ -78,9 +78,9 @@ const ConsultationProcess = ({childProps:childProps}) => {
             {formActivePanel === 2 &&
               <MDBCol md="12">
                   {global.patient.patientHistory === null && 
-                    <NewPatientHistory patientData={patientData} childProps={childProps} global={global} setGlobalData={setGlobalData} setHasPatientHistory={setHasPatientHistory}/>}
+                    <NewPatientHistory patientData={patientData} childProps={childProps} global={global} setGlobalData={setGlobalData} setHasPatientHistory={setHasPatientHistory} setPatientHistory={setPatientHistory}/>}
                   {!(global.patient.patientHistory === null) && 
-                    <PatientHistory patientData={patientData} childProps={childProps} global={global} setGlobalData={setGlobalData}/>}
+                    <PatientHistory patientData={patientData} childProps={childProps} global={global} setGlobalData={setGlobalData} patientHistory={patientHistory}/>}
                 <br/>
                 <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(1)}>previous</MDBBtn>
                 <MDBBtn color="mdb-color" rounded className="float-right" onClick={handleNextPrevClick(3)}>next</MDBBtn>

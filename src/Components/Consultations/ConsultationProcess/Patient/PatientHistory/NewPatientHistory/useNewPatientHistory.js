@@ -16,12 +16,14 @@ import {
         updatePatient,
     } from '../../../../../../graphql/mutations';
 
+import { updatePatientaddPatientHistory } from '../../../../../../graphql/custom-mutations';
+
 import usePatientHistory from '../usePatientHistory';
 
 import { MDBBtn, MDBIcon } from 'mdbreact';
 import Swal from 'sweetalert2';
 
-const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory) => {
+const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPatientHistory) => {
     const [ loading, setLoading ] = useState(false);
     const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
@@ -50,9 +52,6 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory) => {
 		let api = {};
 
         const fetch = async () => {
-            console.log(test);
-            setTest(true)
-            console.log(test);
             
             try {
 				const _medications = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
@@ -319,18 +318,21 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory) => {
                 });
 
             //ADDING PATIENT HISTORY TO PATIENT TABLE
-                API.graphql(graphqlOperation(updatePatient, {input: {id: global.patient.id, patientPatientHistoryId: patienth.data.createPatientHistory.id}} ))
-                .then(r => {
-                    setData(r.data.updatePatient.patientHistory);
-                    setTest("daniel");
-                    global.patient.patientHistory = r.data.updatePatient.patientHistory;
-                    setGlobalData(global);
-                    setHasPatientHistory(true);
-                })
-            setTest("daniel");
-            setLoadingButton(false);
-			await Swal.fire('Correcto', 'El elemento se ha creado correctamente', 'success');
-			
+                setTimeout(() => {  
+                        API.graphql(graphqlOperation(updatePatientaddPatientHistory, {input: {id: global.patient.id, patientPatientHistoryId: patienth.data.createPatientHistory.id}} ))
+                        .then(async (r) => {
+                            console.log(r.data.updatePatient);
+                            
+                            setData(r.data.updatePatient.patientHistory);
+                            global.patient.patientHistory = r.data.updatePatient.patientHistory;
+                            setGlobalData(global);
+                            setPatientHistory(r.data.updatePatient.patientHistory);
+                            setHasPatientHistory(true);
+                            setLoadingButton(false);
+			                await Swal.fire('Correcto', 'El elemento se ha creado correctamente', 'success');
+                        })
+                }, 2000);
+
 		} catch (error) {
             setLoadingButton(false);
             console.log(error);

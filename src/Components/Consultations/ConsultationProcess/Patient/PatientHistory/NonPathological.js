@@ -17,7 +17,7 @@ const NonPathological = ({
 		var formated = [];
 
     if (data.items !== undefined && data.items !== null) {
-        data.items.forEach((item) => {
+        data.items.forEach((item) => {          
           formated.push({
             type: item.type.name,
             frequency: item.frequency,

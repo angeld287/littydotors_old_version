@@ -9,6 +9,7 @@ const useConsultationProcess = () => {
     const [ error, setError ] = useState(false);
     const [ createNewPatient, setCreateNewPatient ] = useState(false);
     const [ hasPatientHistory, setHasPatientHistory ] = useState(false);
+    const [ patientHistory, setPatientHistory ] = useState({});
     const [ createNewPatientName, setCreateNewPatientName ] = useState("");
     const [ formActivePanelChanged, setFormActivePanelChanged ] = useState(false);
     const [ formActivePanel, setFormActivePanel ] = useState(0);
@@ -115,7 +116,7 @@ const useConsultationProcess = () => {
 
     return { consultationObject, setGlobalData, global, error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, patientData,
              formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName, setCreateNewPatient,
-             setHasPatientHistory, hasPatientHistory  };
+             setHasPatientHistory, hasPatientHistory, patientHistory, setPatientHistory  };
 };
 
 export default useConsultationProcess;

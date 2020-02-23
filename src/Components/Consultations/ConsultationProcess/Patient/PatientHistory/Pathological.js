@@ -6,6 +6,7 @@ import usePatientHistory from  './usePatientHistory';
 
 const Pathological = ({
     data: data,
+    pathological: pathological
 }) => {
    
 	const [ medications, setMedications ] = useState([]);
@@ -29,7 +30,7 @@ const Pathological = ({
         });
       });
     }else{
-      console.log(test);
+      console.log(pathological);
     }
 		
     if (data.patientMedications !== null && data.patientMedications !== undefined) {
@@ -39,7 +40,7 @@ const Pathological = ({
         });
       });
     }else{
-      console.log(test);
+      console.log(pathological);
     }
 
 
@@ -50,7 +51,7 @@ const Pathological = ({
         });
       });
     }else{
-      console.log(test);
+      console.log(pathological);
     }
 
     setSurgicalInterventions(surgical);

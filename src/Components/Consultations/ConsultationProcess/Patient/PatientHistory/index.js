@@ -10,7 +10,8 @@ import Family from "./Family";
 
 const PatientHistory = ({
     global: global,
-    setGlobalData: setGlobalData
+    setGlobalData: setGlobalData,
+    patientHistory: patientHistory
 }) => {
   //const { data } = usePatientHistory(global, setGlobalData);
 
@@ -33,7 +34,7 @@ const PatientHistory = ({
               <MDBCard>
                 <br/>
                 {(hasPatientHistory && hasPathological) &&
-                  <Pathological data={global.patient.patientHistory.pathologicalHistory}/>
+                  <Pathological data={global.patient.patientHistory.pathologicalHistory} pathological={patientHistory.pathologicalHistory}/>
                 }
               </MDBCard>
             </MDBCol>
