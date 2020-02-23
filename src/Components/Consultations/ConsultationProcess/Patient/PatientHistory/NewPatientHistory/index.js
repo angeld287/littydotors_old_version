@@ -12,7 +12,7 @@ import FamilyHistory from './FamilyHistory';
 const NewPatientHistory = ({
     global: global,
     setGlobalData: setGlobalData,
-    setHasPatientHistory :  setHasPatientHistory,
+    setHasPatientHistory:  setHasPatientHistory,
 }) => {
   const { nonPathModal, toggleNonPath, api, setPatientMedications, setPatientSurgicalInterventions, register, onSubmit, setPatientAllergies, nonPathTable,
           loadingButton, handleSubmit, formState, errors, edit, nonPathEditObject, createNonPath, editNonPath, toggleFamily, familyModal,

@@ -10,7 +10,9 @@ const Family = ({
 	const [ table, setTable ] = useState([]);
 
   useEffect(() => {
+      if (data.items !== undefined && data.items !== null) {
         setList();
+      }
   }, []);
 
   const setList = () => {

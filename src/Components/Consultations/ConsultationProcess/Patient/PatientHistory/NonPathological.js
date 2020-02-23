@@ -16,13 +16,15 @@ const NonPathological = ({
   const setList = () => {
 		var formated = [];
 
-		data.items.forEach((item) => {
-			formated.push({
-				type: item.type.name,
-				frequency: item.frequency,
-				options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); /* removeNonPath(item.id) */}}> <MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); /* openNonPathModalToEdit(item) */}}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
-			});
-		});
+    if (data.items !== undefined && data.items !== null) {
+        data.items.forEach((item) => {
+          formated.push({
+            type: item.type.name,
+            frequency: item.frequency,
+            options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); /* removeNonPath(item.id) */}}> <MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); /* openNonPathModalToEdit(item) */}}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
+          });
+        }); 
+    }
 
     const _nonpath = {
 			columns: [ { label: 'Tipo', field: 'type', sort: 'asc' }, { label: 'Frecuencia', field: 'frequency', sort: 'asc' }, { label: 'Opciones', field: 'options', sort: 'disabled' }],

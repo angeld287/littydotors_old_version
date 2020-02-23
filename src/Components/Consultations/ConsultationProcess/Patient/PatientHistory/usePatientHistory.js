@@ -13,37 +13,15 @@ const usePatientHistory = (global, setGlobalData) => {
     const [ error, setError ] = useState(false);
     const { register, handleSubmit, errors, formState } = useForm();
 
-
+    const [ data, setData ] = useState({});
+	const [ test, setTest ] = useState(false);
 
 
     useEffect(() => {
-        let didCancel = false;
-		let api = {};
 
-        const fetch = async () => {
-            try {
-				//const _family = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
-				//const _nonpath = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
-				//const _path = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
-                
-                setLoadingButton(false);
-            } catch (error) {
-                setError(true);
-                setLoading(false);
-                setLoadingButton(false);
-            }
-        };
-
-        
-        fetch();
-        
-
-        return () => {
-            didCancel = true;
-        };
     }, []);
 
-    return { };
+    return { data, setData, setTest, test };
     
 };
 

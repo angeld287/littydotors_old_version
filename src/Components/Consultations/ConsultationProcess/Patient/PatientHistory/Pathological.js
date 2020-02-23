@@ -2,6 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner, MDBBox, MDBModal,
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable, MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 
+import usePatientHistory from  './usePatientHistory';
+
 const Pathological = ({
     data: data,
 }) => {
@@ -9,6 +11,7 @@ const Pathological = ({
 	const [ medications, setMedications ] = useState([]);
 	const [ allergies, setAllergies ] = useState([]);
 	const [ surgicalInterventions, setSurgicalInterventions ] = useState([]);
+  const { test } = usePatientHistory();
 
   useEffect(() => {
       setLists();
@@ -19,23 +22,36 @@ const Pathological = ({
 		var medicines = [];
 		var allergies = [];
 
-		data.surgicalInterventions.items.forEach((item) => {
-			surgical.push({
-				name: item.surgicalIntervention.name,
-			});
-		});
+    if (data.surgicalInterventions !== null && data.surgicalInterventions !== undefined) {
+      data.surgicalInterventions.items.forEach((item) => {
+        surgical.push({
+          name: item.surgicalIntervention.name,
+        });
+      });
+    }else{
+      console.log(test);
+    }
+		
+    if (data.patientMedications !== null && data.patientMedications !== undefined) {
+      data.patientMedications.items.forEach((item) => {
+        medicines.push({
+          name: item.medications.name,
+        });
+      });
+    }else{
+      console.log(test);
+    }
 
-    data.patientMedications.items.forEach((item) => {
-			medicines.push({
-				name: item.medications.name,
-			});
-		});
 
-    data.patientAllergies.items.forEach((item) => {
-			allergies.push({
-				name: item.allergies.name,
-			});
-		});
+    if (data.patientAllergies !== null && data.patientAllergies !== undefined) {
+      data.patientAllergies.items.forEach((item) => {
+        allergies.push({
+          name: item.allergies.name,
+        });
+      });
+    }else{
+      console.log(test);
+    }
 
     setSurgicalInterventions(surgical);
     setMedications(medicines);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner, MDBBox, MDBModal,
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable } from "mdbreact";
 
@@ -12,8 +12,17 @@ const PatientHistory = ({
     global: global,
     setGlobalData: setGlobalData
 }) => {
-  const {  } = usePatientHistory(global, setGlobalData);
+  //const { data } = usePatientHistory(global, setGlobalData);
 
+  //const object = (global.patient.patientHistory === null || global.patient.patientHistory === undefined) ? data : global.patient.patientHistory;
+
+	if (global.patient.patientHistory === null || global.patient.patientHistory === undefined) return (<MDBContainer><MDBBox display="flex" justifyContent="center" className="mt-5"><MDBSpinner big/></MDBBox></MDBContainer>)
+  
+  const hasPatientHistory = (global.patient.patientHistory !== null && global.patient.patientHistory !== undefined);
+  const hasPathological = (global.patient.patientHistory.pathologicalHistory !== null && global.patient.patientHistory.pathologicalHistory !== undefined);
+  const hasNonPathological = (global.patient.patientHistory.nonPathologicalHistory !== null && global.patient.patientHistory.nonPathologicalHistory !== undefined);
+  const hasFamilyHistory = (global.patient.patientHistory.familyHistory !== null && global.patient.patientHistory.familyHistory !== undefined);
+  
   return (
       <div>
         <h5 className="font-weight-bold pl-0 my-4">
@@ -23,7 +32,9 @@ const PatientHistory = ({
             <MDBCol md="12">
               <MDBCard>
                 <br/>
-                <Pathological data={global.patient.patientHistory.pathologicalHistory}/>
+                {(hasPatientHistory && hasPathological) &&
+                  <Pathological data={global.patient.patientHistory.pathologicalHistory}/>
+                }
               </MDBCard>
             </MDBCol>
           </MDBRow>
@@ -35,7 +46,9 @@ const PatientHistory = ({
             <MDBCol md="12">
               <MDBCard>
                 <br/>
-                <NonPathological data={global.patient.patientHistory.nonPathologicalHistory}/>
+                {(hasPatientHistory && hasNonPathological) &&
+                  <NonPathological data={global.patient.patientHistory.nonPathologicalHistory}/>
+                }
               </MDBCard>
             </MDBCol>
           </MDBRow>
@@ -47,7 +60,9 @@ const PatientHistory = ({
             <MDBCol md="12">
               <MDBCard>
                 <br/>
-                <Family data={global.patient.patientHistory.familyHistory}/>
+                {(hasPatientHistory && hasFamilyHistory) &&
+                  <Family data={global.patient.patientHistory.familyHistory}/>
+                }
               </MDBCard>
             </MDBCol>
         </MDBRow>

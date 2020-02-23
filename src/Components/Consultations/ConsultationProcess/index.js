@@ -77,9 +77,9 @@ const ConsultationProcess = ({childProps:childProps}) => {
 
             {formActivePanel === 2 &&
               <MDBCol md="12">
-                  {!hasPatientHistory && 
+                  {global.patient.patientHistory === null && 
                     <NewPatientHistory patientData={patientData} childProps={childProps} global={global} setGlobalData={setGlobalData} setHasPatientHistory={setHasPatientHistory}/>}
-                  {hasPatientHistory && 
+                  {!(global.patient.patientHistory === null) && 
                     <PatientHistory patientData={patientData} childProps={childProps} global={global} setGlobalData={setGlobalData}/>}
                 <br/>
                 <MDBBtn color="mdb-color" rounded className="float-left" onClick={handleNextPrevClick(1)}>previous</MDBBtn>
