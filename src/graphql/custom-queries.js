@@ -151,13 +151,33 @@ export const getMedicalConsultation = /* GraphQL */ `
           pathologicalHistory {
             id
             surgicalInterventions {
-              nextToken
+              items {
+                id
+                surgicalIntervention {
+                  id
+                  name
+                  description
+                }
+              }
             }
             patientMedications {
-              nextToken
+              items {
+                id
+                medications {
+                  id
+                  name
+                }
+              }
             }
             patientAllergies {
-              nextToken
+              items {
+                id
+                allergies {
+                  id
+                  name
+                  description
+                }
+              }
             }
           }
           familyHistory {
@@ -165,7 +185,18 @@ export const getMedicalConsultation = /* GraphQL */ `
               id
               alive
               comment
-              owner
+              diseases {
+                items {
+                  diseases {
+                    name
+                  }
+                }
+                nextToken
+              }
+              relationship {
+                id
+                name
+              }
             }
             nextToken
           }

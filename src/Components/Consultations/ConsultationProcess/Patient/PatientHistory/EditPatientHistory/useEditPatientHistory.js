@@ -13,17 +13,12 @@ import {
         createPatientAllergies,
         createPatientHistory,
         createNonPathologicalHistory,
-        updatePatient,
     } from '../../../../../../graphql/mutations';
-
-import { updatePatientaddPatientHistory } from '../../../../../../graphql/custom-mutations';
-
-import usePatientHistory from '../usePatientHistory';
 
 import { MDBBtn, MDBIcon } from 'mdbreact';
 import Swal from 'sweetalert2';
 
-const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPatientHistory) => {
+const useNewPatientHistory = (global, setGlobalData) => {
     const [ loading, setLoading ] = useState(false);
     const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
@@ -45,14 +40,13 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
 	const [ nonPathModal, setNonPathModal ] = useState(false);
 	const [ nonPathEditObject, setNonPathEditObject ] = useState({});
 
-    const { setData, setTest, test } = usePatientHistory();
+
 
     useEffect(() => {
         let didCancel = false;
 		let api = {};
 
         const fetch = async () => {
-            
             try {
 				const _medications = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
 				const _allergies = await API.graphql(graphqlOperation(listAllergys, {limit: 400}));
@@ -254,14 +248,14 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
         try {
 
             //PATHOLOGICAL
-                const pathological = await API.graphql(graphqlOperation(createPathologicalHistory, { input: {  } })).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
+                 const pathological = await API.graphql(graphqlOperation(createPathologicalHistory, { input: {  } }));
 
                 patientMedications.forEach(async (e) => {
                     const input = {
                         patientMedicationsPathologicalHistoryId: pathological.data.createPathologicalHistory.id,
                         patientMedicationsMedicationsId: e.id
                     };
-                    const medications = await API.graphql(graphqlOperation(createPatientMedications, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
+                    const medications = await API.graphql(graphqlOperation(createPatientMedications, {input: input} ));
                 });
 
                 patientAllergies.forEach(async (e) => {
@@ -269,7 +263,7 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
                         patientAllergiesPathologicalHistoryId: pathological.data.createPathologicalHistory.id,
                         patientAllergiesAllergiesId: e.id
                     };
-                    const allergies = await API.graphql(graphqlOperation(createPatientAllergies, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
+                    const allergies = await API.graphql(graphqlOperation(createPatientAllergies, {input: input} ));
                 });
 
                 patientSurgicalInterventions.forEach(async (e) => {
@@ -277,66 +271,51 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
                         pathologicalHistorySurgicalIntPathologicalHistoryId: pathological.data.createPathologicalHistory.id,
                         pathologicalHistorySurgicalIntSurgicalInterventionId: e.id
                     };
-                    const surgery = await API.graphql(graphqlOperation(createPathologicalHistorySurgicalInt, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
+                    const surgery = await API.graphql(graphqlOperation(createPathologicalHistorySurgicalInt, {input: input} ));
                 });
 
 
             //PATIENT HISTORY
-                const patienth = await API.graphql(graphqlOperation(createPatientHistory, {input: { patientHistoryPathologicalHistoryId: pathological.data.createPathologicalHistory.id}} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
+                const patienth = await API.graphql(graphqlOperation(createPatientHistory, {input: { patientHistoryPathologicalHistoryId: pathological.data.createPathologicalHistory.id}} ));
 
             //NON PATHOLOGICAL
                 nonPath.forEach(async (e) => {
-                    const input = {};
+                    const input = {
+                        active: e.active,
+                        frequency: e.frequency.value,
+                        comment: e.comment,
+                        patientHistoryNonPathologicalHistoryId: patienth.data.createPatientHistory.id,
+                        nonPathologicalHistoryTypeId: e.type.value,
+                    };
 
-                    input.active = e.active;
-                    input.frequency = e.frequency.label;
-                    if(e.comment !== ""){input.comment = e.comment;}
-                    input.patientHistoryNonPathologicalHistoryId = patienth.data.createPatientHistory.id;
-                    input.nonPathologicalHistoryTypeId = e.type.value;
-
-                    const npnpathological = await API.graphql(graphqlOperation(createNonPathologicalHistory, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
+                    const npnpathological = await API.graphql(graphqlOperation(createNonPathologicalHistory, {input: input} ));
                 });
 
             //FAMILY
 
                 family.forEach(async (e) => {
-                    const input = {};
+                    const input = {
+                        alive: e.alive,
+                        comment: e.comment,
+                        patientHistoryFamilyHistoryId: patienth.data.createPatientHistory.id,
+                        familyHistoryRelationshipId: e.relationship.value,
+                    };
 
-                    input.alive = e.alive;
-                    if(e.comment !== ""){input.comment = e.comment;}
-                    input.patientHistoryFamilyHistoryId = patienth.data.createPatientHistory.id;
-                    input.familyHistoryRelationshipId = e.relationship.value;
-
-                    const cfamilyh = await API.graphql(graphqlOperation(createFamilyHistory, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
+                    const cfamilyh = await API.graphql(graphqlOperation(createFamilyHistory, {input: input} ));
                     e.diseases.forEach(async (d) => {
                         const input = {
                             familyDetailsDiseasesFamilyId: cfamilyh.data.createFamilyHistory.id,
                             familyDetailsDiseasesDiseasesId: d.value,
                         };
-                        const phdiseases = await API.graphql(graphqlOperation(createFamilyDetailsDiseases, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
+                        const phdiseases = await API.graphql(graphqlOperation(createFamilyDetailsDiseases, {input: input} ));
                     });
                 });
-
-            //ADDING PATIENT HISTORY TO PATIENT TABLE
-                setTimeout(() => {  
-                        API.graphql(graphqlOperation(updatePatientaddPatientHistory, {input: {id: global.patient.id, patientPatientHistoryId: patienth.data.createPatientHistory.id}} ))
-                        .then(async (r) => {
-                            console.log(r.data.updatePatient);
-                            
-                            setData(r.data.updatePatient.patientHistory);
-                            global.patient.patientHistory = r.data.updatePatient.patientHistory;
-                            setGlobalData(global);
-                            setPatientHistory(r.data.updatePatient.patientHistory);
-                            setHasPatientHistory(true);
-                            setLoadingButton(false);
-			                await Swal.fire('Correcto', 'El elemento se ha creado correctamente', 'success');
-                        })
-                }, 2000);
-
+            
+            setLoadingButton(false);
+			await Swal.fire('Correcto', 'El elemento se ha creado correctamente', 'success');
+			
 		} catch (error) {
             setLoadingButton(false);
-            console.log(error);
-            
 			Swal.fire('Ha ocurrido un error', 'Intentelo de nuevo mas tarde');
 		}
     }

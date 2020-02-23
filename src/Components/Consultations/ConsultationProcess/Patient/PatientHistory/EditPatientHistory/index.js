@@ -11,13 +11,11 @@ import FamilyHistory from './FamilyHistory';
 
 const NewPatientHistory = ({
     global: global,
-    setGlobalData: setGlobalData,
-    setHasPatientHistory:  setHasPatientHistory,
-    setPatientHistory: setPatientHistory,
+    setGlobalData: setGlobalData
 }) => {
   const { nonPathModal, toggleNonPath, api, setPatientMedications, setPatientSurgicalInterventions, register, onSubmit, setPatientAllergies, nonPathTable,
           loadingButton, handleSubmit, formState, errors, edit, nonPathEditObject, createNonPath, editNonPath, toggleFamily, familyModal,
-          familyTable, createFamily, removeFamily, editFamily, familyEditObject } = useNewPatientHistory(global, setGlobalData, setHasPatientHistory, setPatientHistory);
+          familyTable, createFamily, removeFamily, editFamily, familyEditObject } = useNewPatientHistory(global, setGlobalData);
 
   return (
       <form onSubmit={handleSubmit(onSubmit)}>

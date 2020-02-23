@@ -31,7 +31,7 @@ const useConsultations = () => {
 
             try {
                 
-                var patientsApi = await API.graphql(graphqlOperation(listPatients));
+                var patientsApi = await API.graphql(graphqlOperation(listPatients, {limit: 500}));
                 
                 if(patientsApi.data.listPatients.items.length > 0){
                     patientsApi.data.listPatients.items.forEach(element => {

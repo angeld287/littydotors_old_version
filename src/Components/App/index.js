@@ -67,8 +67,10 @@ export default class App extends Component {
         }).catch( err => {
           this.setState({
               error: true,
+              loading: false,
           });
-          console.log(err)
+          console.log('There was an error: ' + err);
+
         });
 
       }else if(roll === 'secretary'){
@@ -94,12 +96,17 @@ export default class App extends Component {
         }).catch( err => {
           this.setState({
               error: true,
+              loading: false,
           });
-          console.log(err)
+          console.log('There was an error: ' + err);
         });
       }
     }).catch(err => {
       console.log('There was an error: ' + err);
+      this.setState({
+        error: true,
+        loading: false,
+      });
     });
   }
 
