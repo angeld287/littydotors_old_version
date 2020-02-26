@@ -27,7 +27,7 @@ const FamilyHistory = ({
   const [ comment, setComment ] = useState("");
   const [ alive, setAlive ] = useState(true);
 
-  const { api, createFamily} = useFamilyHistory(global, setGlobalData, setList, toggleFamily);
+  const { api, createFamily} = useFamilyHistory(global, setGlobalData, setList, toggleFamily, familyActions);
 
   const _diseases = [];
   if (api.diseases !== undefined) {

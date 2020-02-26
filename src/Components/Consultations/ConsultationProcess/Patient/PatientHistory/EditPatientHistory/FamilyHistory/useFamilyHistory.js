@@ -7,12 +7,12 @@ import { createFamilyHistoryForGlobal, createFamilyDetailsDiseasesForGlobal } fr
 
 import { MDBBtn, MDBIcon } from 'mdbreact';
 import Swal from 'sweetalert2';
+import useEditPatientHistory from '../useEditPatientHistory';
 
 
-const useFamilyHistory = (global, setGlobalData, setList, toggleFamily) => {
+const useFamilyHistory = (global, setGlobalData, setList, toggleFamily, familyActions) => {
 
     const [ loading, setLoading ] = useState(false);
-    const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
 
     const [ family, setFamily ] = useState([]);
@@ -40,16 +40,13 @@ const useFamilyHistory = (global, setGlobalData, setList, toggleFamily) => {
                 setList();
                 
                 setGlobalData(global);
-                setLoadingButton(false);
             } catch (error) {
                 setError(true);
                 setLoading(false);
-                setLoadingButton(false);
             }
         };
 
         if(global.patientHistory.notEmpty !== true){
-            setLoadingButton(true);
             fetch();
         }else{
             setApi(global.patientHistory.api);
@@ -63,6 +60,7 @@ const useFamilyHistory = (global, setGlobalData, setList, toggleFamily) => {
     }, []);
 
     const createFamily = async (o) => {
+        familyActions.setlb_family(true);
         const _items = global.patient.patientHistory.familyHistory.items;
         
         const input = {};
@@ -72,7 +70,7 @@ const useFamilyHistory = (global, setGlobalData, setList, toggleFamily) => {
         input.patientHistoryFamilyHistoryId = global.patient.patientHistory.id;
         input.familyHistoryRelationshipId = o.relationship.value;
 
-        const cfamilyh = await API.graphql(graphqlOperation(createFamilyHistoryForGlobal, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
+        const cfamilyh = await API.graphql(graphqlOperation(createFamilyHistoryForGlobal, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); familyActions.setlb_family(false); });
         
         const _familyHistory = cfamilyh.data.createFamilyHistory;
         const _diseases = [];
@@ -81,7 +79,7 @@ const useFamilyHistory = (global, setGlobalData, setList, toggleFamily) => {
                 familyDetailsDiseasesFamilyId: cfamilyh.data.createFamilyHistory.id,
                 familyDetailsDiseasesDiseasesId: d.value,
             };
-            const phdiseases = await API.graphql(graphqlOperation(createFamilyDetailsDiseasesForGlobal, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
+            const phdiseases = await API.graphql(graphqlOperation(createFamilyDetailsDiseasesForGlobal, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); familyActions.setlb_family(false);  });
             const _disease = phdiseases.data.createFamilyDetailsDiseases;
             _diseases.push(_disease);
         });
@@ -97,7 +95,8 @@ const useFamilyHistory = (global, setGlobalData, setList, toggleFamily) => {
         setGlobalData(global);
         
         setTimeout(() => {  
-            setList();    
+            setList();
+            familyActions.setlb_family(false);   
         }, 2000);
 
     }
