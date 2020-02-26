@@ -50,6 +50,17 @@ const FamilyHistory = ({
   }, []);
 
   const save = (create) => {
+    if(diseases === null){
+      Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Favor completar el campo enfermedades',
+            showConfirmButton: false,
+            timer: 1500
+      });
+      return
+    }
+
     if ((relationship.length < 1) || (diseases.length < 1)) {
         //Swal.fire('Campo Obligatorio', 'Favor completar el campo Lugar de Evento', 'error');
         Swal.fire({
@@ -61,6 +72,7 @@ const FamilyHistory = ({
         });
         return
     }
+
     if (create) {
        createFamily({
            id: uuidv1(),

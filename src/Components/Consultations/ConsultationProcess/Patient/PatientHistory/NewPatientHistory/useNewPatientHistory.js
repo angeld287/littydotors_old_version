@@ -63,7 +63,7 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
 				const _allergies = await API.graphql(graphqlOperation(listAllergys, {limit: 400}));
 				const _surgicalinterventions = await API.graphql(graphqlOperation(listSurgicalInterventions, {limit: 400}));
 				const _diseases = await API.graphql(graphqlOperation(listDiseases, {limit: 400}));
-				const _nonpath = await API.graphql(graphqlOperation(listCategorys, {filter: { or: [{module: {eq: "NonPathFrequency"}}, {module: {eq: "NonPathType"}}, {module: {eq: "FamilyHistory"}}]}} ));                
+				const _nonpath = await API.graphql(graphqlOperation(listCategorys, {limit: 400}, {filter: { or: [{module: {eq: "NonPathFrequency"}}, {module: {eq: "NonPathType"}}, {module: {eq: "FamilyHistory"}}]}} ));                
 
                 api = {
 					medications: _medications.data.listMedicines.items,
@@ -118,7 +118,13 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
     }, []);
 
 
-    //funciones de datos no patologicos
+    /**
+    * Description:
+    *
+    * Funciones Requeridas para la Gestion de Datos de antecedentes No Patologicos.
+    * 
+    */
+
     const toggleNonPath = () => {
         setNonPathModal(!nonPathModal)
         setEdit(false);
@@ -183,7 +189,13 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
     }
 
 
-    //funciones de datos de antecedentes familiares
+    /**
+    * Description:
+    *
+    * Funciones Requeridas para la Gestion de Datos de antecedentes Familiares.
+    * 
+    */
+
     const toggleFamily = () => {
         setFamilyModal(!familyModal)
         setEdit(false);
@@ -241,8 +253,8 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
 
     const editFamily = (o) => {
         const _items = family;
-
-        _items.splice(_items.findIndex(v => v.imedicalPrescriptionMedicationsId === o.medicalPrescriptionMedicationsId), 1);
+        
+        _items.splice(_items.findIndex(v => v.id === o.id), 1);
 
         _items.push(o);
         setFamily(_items);
@@ -250,9 +262,14 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
         createdFamily();
     }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //funciones de medicamentos
+    /**
+    * Description:
+    *
+    * Funciones Requeridas para la Gestion de Datos de medicamentos.
+    * 
+    */
+
     const toggleMedication = () => {
         setMedicationModal(!medicationModal)
         setEdit(false);
@@ -315,7 +332,13 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+    * Description:
+    *
+    * Funciones para la creacion completa de la historia clinica
+    * 
+    */
 
     const onSubmit = async (i) => {  
         setLoadingButton(true);      
@@ -413,6 +436,38 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
 		}
     }
 
+        const nonPathActions = {
+            createNonPath: createNonPath, 
+            toggleNonPath: toggleNonPath, 
+            nonPathModal: nonPathModal, 
+            nonPathTable: nonPathTable, 
+            removeNonPath: removeNonPath,
+            editNonPath: editNonPath,
+            nonPathEditObject: nonPathEditObject, 
+        };
+
+        const familyActions = {
+            createFamily: createFamily, 
+            toggleFamily: toggleFamily, 
+            familyModal: familyModal,
+            familyTable: familyTable,
+            removeFamily: removeFamily, 
+            editFamily: editFamily, 
+            familyEditObject: familyEditObject,
+        };
+
+        const medicationActions = {
+            loadingButton: loadingButton, 
+            edit: edit,
+            createMedication: createMedication, 
+            toggleMedication: toggleMedication, 
+            medicationModal: medicationModal,
+            medicationTable: medicationTable, 
+            removeMedication: removeMedication, 
+            editMedication: editMedication, 
+            medicationEditObject: medicationEditObject
+        };
+
     return { 
                 onSubmit, 
                 handleSubmit, 
@@ -428,29 +483,9 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
                 setPatientMedications, 
                 setPatientSurgicalInterventions, 
                 
-                createNonPath, 
-                toggleNonPath, 
-                nonPathModal, 
-                nonPathTable, 
-                removeNonPath,
-                editNonPath,
-                nonPathEditObject, 
-
-                createFamily, 
-                toggleFamily, 
-                familyModal,
-                familyTable, 
-                removeFamily, 
-                editFamily, 
-                familyEditObject,
-
-                createMedication, 
-                toggleMedication, 
-                medicationModal,
-                medicationTable, 
-                removeMedication, 
-                editMedication, 
-                medicationEditObject
+                nonPathActions,
+                familyActions,
+                medicationActions,
             };
     
 };
