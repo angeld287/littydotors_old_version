@@ -62,7 +62,7 @@ const PatientHistory = ({
               <MDBCard>
                 <br/>
                 {(hasPatientHistory && hasFamilyHistory) &&
-                  <Family data={global.patient.patientHistory.familyHistory}/>
+                  <Family global={global} setGlobalData={setGlobalData}/>
                 }
               </MDBCard>
             </MDBCol>

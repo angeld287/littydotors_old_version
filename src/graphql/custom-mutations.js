@@ -76,3 +76,42 @@ export const updatePatientaddPatientHistory = /* GraphQL */ `
       }
     }
 `;
+
+export const createFamilyHistoryForGlobal = /* GraphQL */ `
+  mutation CreateFamilyHistory(
+    $input: CreateFamilyHistoryInput!
+    $condition: ModelFamilyHistoryConditionInput
+  ) {
+    createFamilyHistory(input: $input, condition: $condition) {
+      id
+      relationship {
+        id
+        name
+      }
+      alive
+      diseases {
+        items {
+          diseases {
+            name
+          }
+        }
+        nextToken
+      }
+      comment
+      owner
+    }
+  }
+`;
+
+export const createFamilyDetailsDiseasesForGlobal = /* GraphQL */ `
+  mutation CreateFamilyDetailsDiseases(
+    $input: CreateFamilyDetailsDiseasesInput!
+    $condition: ModelFamilyDetailsDiseasesConditionInput
+  ) {
+    createFamilyDetailsDiseases(input: $input, condition: $condition) {
+      diseases {
+        name
+      }
+    }
+  }
+`;
