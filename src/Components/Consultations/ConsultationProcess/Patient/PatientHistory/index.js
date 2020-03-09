@@ -48,7 +48,7 @@ const PatientHistory = ({
               <MDBCard>
                 <br/>
                 {(hasPatientHistory && hasNonPathological) &&
-                  <NonPathological data={global.patient.patientHistory.nonPathologicalHistory}/>
+                  <NonPathological global={global} setGlobalData={setGlobalData}/>
                 }
               </MDBCard>
             </MDBCol>

@@ -1,41 +1,27 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import { listCategorys } from '../../../../../../../graphql/queries';
 import { API, graphqlOperation } from 'aws-amplify';
-import useForm from 'react-hook-form';
-import { listDiseases, listCategorys } from '../../../../../../../graphql/queries';
-import { deleteFamilyDetailsDiseases, deleteFamilyHistory } from '../../../../../../../graphql/mutations';
-import { createFamilyHistoryForGlobal, createFamilyDetailsDiseasesForGlobal, updateFamilyHistoryForGlobal, deleteFamilyDetailsDiseasesForGlobal } from '../../../../../../../graphql/custom-mutations';
-
-import { MDBBtn, MDBIcon } from 'mdbreact';
-import Swal from 'sweetalert2';
-import useEditPatientHistory from '../useEditPatientHistory';
-import { Loading } from 'aws-amplify-react';
 
 
-const useFamilyHistory = (global, setGlobalData, setList, toggleFamily, familyActions) => {
-
+const useNonPathologicalHistory = (global, setGlobalData, setList, toggleNonPath, nonPathActions) => {
     const [ loading, setLoading ] = useState(false);
-    const [ error, setError ] = useState(false);
+    const [ error, setError] = useState(false);
+    const [ api, setApi ] = useState({});
 
-    const [ family, setFamily ] = useState([]);
-	const [ familyTable, setFamilyTable ] = useState([]);
-	const [ familyModal, setFamilyModal ] = useState(false);
-	const [ familyEditObject, setFamilyEditObject ] = useState({});
-	const [ api, setApi ] = useState({});
-	const [ edit, setEdit ] = useState(false);
-    
+
     useEffect(() => {
         let didCancel = false;
         let api = {};
 
         const fetch = async () => {            
             try {
-				const _diseases = await API.graphql(graphqlOperation(listDiseases, {limit: 400}));
-				const _category = await API.graphql(graphqlOperation(listCategorys, {limit: 400}, {filter: { module: { eq: "FamilyHistory"} }} ));                
+
+				const _nonpath = await API.graphql(graphqlOperation(listCategorys, {limit: 400}, {filter: { or: [{module: {eq: "NonPathFrequency"}}, {module: {eq: "NonPathType"}}]}} ));                              
 
                 api = {
-                    diseases: _diseases.data.listDiseases.items,
-                    familytypes: _category.data.listCategorys.items,
+                    nonpathfrequencies: _nonpath.data.listCategorys.items.filter(x => x.module === "NonPathFrequency"),
+                    nonpathtypes: _nonpath.data.listCategorys.items.filter(x => x.module === "NonPathType"),
                 };
 
                 setApi(api);
@@ -58,8 +44,8 @@ const useFamilyHistory = (global, setGlobalData, setList, toggleFamily, familyAc
         };
     }, []);
 
-    const createFamily = async (o) => {
-        familyActions.setlb_family(true);
+    const createNonPath = async (o) => {
+        /* familyActions.setlb_family(true);
         const _items = global.patient.patientHistory.familyHistory.items;
         
         const input = {};
@@ -96,38 +82,12 @@ const useFamilyHistory = (global, setGlobalData, setList, toggleFamily, familyAc
         setTimeout(() => {  
             setList();
             familyActions.setlb_family(false);   
-        }, 2000);
+        }, 2000); */
 
     }
 
-    const removeFamily = async (id) => {
-        familyActions.setlb_family(true);
-        const result = await Swal.fire({ title: '¿Desea eliminar el elemento?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Eliminar', cancelButtonText: 'Cancelar'});
-        if (result.value) {
-            const _items = global.patient.patientHistory.familyHistory.items;
-            
-            API.graphql(graphqlOperation(deleteFamilyHistory, {input: {id: id}} ));
-            _items.splice(_items.findIndex(v => v.id === id), 1);
-
-            global.patient.patientHistory.familyHistory.items = _items;
-
-            setGlobalData(global);
-
-            setTimeout(() => {  
-                setList();
-                familyActions.setlb_family(false);   
-            }, 2000);
-        }
-    }
-
-    const openFamilyModalToEdit = (o) => {
-        setEdit(true);
-        setFamilyModal(true);
-        setFamilyEditObject(o);
-    }
-
-    const editFamily = async (o) => {
-        familyActions.setlb_family(true);
+    const editNonPath = async (o) => {
+        /* familyActions.setlb_family(true);
         const objectToEdit = {}
         
         const _items = global.patient.patientHistory.familyHistory.items;
@@ -183,11 +143,12 @@ const useFamilyHistory = (global, setGlobalData, setList, toggleFamily, familyAc
         setTimeout(() => {  
             setList();
             familyActions.setlb_family(false);   
-        }, 2000);
+        }, 2000); */
     }
 
-    return { api, createFamily, loading, editFamily };
+
+    return { editNonPath, createNonPath, api, loading };
     
 };
 
-export default useFamilyHistory;
+export default useNonPathologicalHistory;

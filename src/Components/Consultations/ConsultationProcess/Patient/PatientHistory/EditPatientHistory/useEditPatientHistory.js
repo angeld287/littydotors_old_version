@@ -45,12 +45,16 @@ const useEditPatientHistory = (global, setGlobalData, setList) => {
     const [ nonPath, setNonPath ] = useState([]);
 	const [ nonPathTable, setNonPathTable ] = useState([]);
 	const [ nonPathModal, setNonPathModal ] = useState(false);
-	const [ nonPathEditObject, setNonPathEditObject ] = useState({});
+    const [ nonPathEditObject, setNonPathEditObject ] = useState({});
+    const [ lb_nonpath, setlb_nonpath ] = useState(false);
+    
 
     const [ medication, setMedication ] = useState([]);
 	const [ medicationTable, setMedicationTable ] = useState([]);
 	const [ medicationModal, setMedicationModal ] = useState(false);
-	const [ medicationEditObject, setMedicationEditObject ] = useState({});
+    const [ medicationEditObject, setMedicationEditObject ] = useState({});
+    const [ lb_med, setlb_med ] = useState(false);
+    
 
     const { setData, setTest, test } = usePatientHistory();
 
@@ -332,6 +336,9 @@ const useEditPatientHistory = (global, setGlobalData, setList) => {
         removeNonPath: removeNonPath,
         editNonPath: editNonPath,
         nonPathEditObject: nonPathEditObject, 
+        lb_nonpath: lb_nonpath,
+        setlb_nonpath: setlb_nonpath,
+        openNonPathModalToEdit: openNonPathModalToEdit,
     };
 
     const familyActions = {
@@ -354,7 +361,11 @@ const useEditPatientHistory = (global, setGlobalData, setList) => {
         medicationTable: medicationTable, 
         removeMedication: removeMedication, 
         editMedication: editMedication, 
-        medicationEditObject: medicationEditObject
+        medicationEditObject: medicationEditObject,
+        lb_med: lb_med,
+        setlb_med: setlb_med,
+        openMedicationModalToEdit: openMedicationModalToEdit,
+
     };
 
     return {  
