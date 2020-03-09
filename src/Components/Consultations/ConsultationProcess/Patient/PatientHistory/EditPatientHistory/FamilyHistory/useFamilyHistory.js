@@ -3,11 +3,13 @@ import { useHistory, useParams } from 'react-router-dom';
 import { API, graphqlOperation } from 'aws-amplify';
 import useForm from 'react-hook-form';
 import { listDiseases, listCategorys } from '../../../../../../../graphql/queries';
-import { createFamilyHistoryForGlobal, createFamilyDetailsDiseasesForGlobal } from '../../../../../../../graphql/custom-mutations';
+import { deleteFamilyDetailsDiseases, deleteFamilyHistory } from '../../../../../../../graphql/mutations';
+import { createFamilyHistoryForGlobal, createFamilyDetailsDiseasesForGlobal, updateFamilyHistoryForGlobal, deleteFamilyDetailsDiseasesForGlobal } from '../../../../../../../graphql/custom-mutations';
 
 import { MDBBtn, MDBIcon } from 'mdbreact';
 import Swal from 'sweetalert2';
 import useEditPatientHistory from '../useEditPatientHistory';
+import { Loading } from 'aws-amplify-react';
 
 
 const useFamilyHistory = (global, setGlobalData, setList, toggleFamily, familyActions) => {
@@ -24,9 +26,9 @@ const useFamilyHistory = (global, setGlobalData, setList, toggleFamily, familyAc
     
     useEffect(() => {
         let didCancel = false;
-		let api = {};
+        let api = {};
 
-        const fetch = async () => {
+        const fetch = async () => {            
             try {
 				const _diseases = await API.graphql(graphqlOperation(listDiseases, {limit: 400}));
 				const _category = await API.graphql(graphqlOperation(listCategorys, {filter: { module: { eq: "FamilyHistory"} }} ));                
@@ -40,19 +42,16 @@ const useFamilyHistory = (global, setGlobalData, setList, toggleFamily, familyAc
                 setList();
                 
                 setGlobalData(global);
+                setLoading(false);
+
             } catch (error) {
                 setError(true);
                 setLoading(false);
             }
         };
 
-        if(global.patientHistory.notEmpty !== true){
-            fetch();
-        }else{
-            setApi(global.patientHistory.api);
-            setFamily(global.patientHistory.family.items);
-            setFamilyTable(global.patientHistory.family.table);
-        }
+        setLoading(true);
+        fetch();
 
         return () => {
             didCancel = true;
@@ -102,12 +101,22 @@ const useFamilyHistory = (global, setGlobalData, setList, toggleFamily, familyAc
     }
 
     const removeFamily = async (id) => {
+        familyActions.setlb_family(true);
         const result = await Swal.fire({ title: '¿Desea eliminar el elemento?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Eliminar', cancelButtonText: 'Cancelar'});
         if (result.value) {
-            const _items = family;
+            const _items = global.patient.patientHistory.familyHistory.items;
+            
+            API.graphql(graphqlOperation(deleteFamilyHistory, {input: {id: id}} ));
             _items.splice(_items.findIndex(v => v.id === id), 1);
-            setFamily(_items);
-            setList();
+
+            global.patient.patientHistory.familyHistory.items = _items;
+
+            setGlobalData(global);
+
+            setTimeout(() => {  
+                setList();
+                familyActions.setlb_family(false);   
+            }, 2000);
         }
     }
 
@@ -117,18 +126,67 @@ const useFamilyHistory = (global, setGlobalData, setList, toggleFamily, familyAc
         setFamilyEditObject(o);
     }
 
-    const editFamily = (o) => {
-        const _items = family;
+    const editFamily = async (o) => {
+        familyActions.setlb_family(true);
+        const objectToEdit = {}
+        
+        const _items = global.patient.patientHistory.familyHistory.items;
+        objectToEdit.id = o.id;
+        
 
-        _items.splice(_items.findIndex(v => v.imedicalPrescriptionMedicationsId === o.medicalPrescriptionMedicationsId), 1);
+        const item = _items[_items.findIndex(v => v.id === o.id)];
+        const _diseases = item.diseases.items;
+        
+        if(o.comment !== item.comment){objectToEdit.comment = o.comment;}
+        if(o.alive !== item.alive){objectToEdit.alive = o.alive;}
 
-        _items.push(o);
-        setFamily(_items);
-        setEdit(false);
-        setList();
+        if (o.diseases.items === undefined) {
+            
+            item.diseases.items.forEach( async (e) => {
+                const diseasesIndex = o.diseases.findIndex(x => x.value === e.diseases.id);
+				if(diseasesIndex === -1){
+                    const deletedfd = await API.graphql(graphqlOperation(deleteFamilyDetailsDiseasesForGlobal, {input: {id: e.id}} ));
+                    _diseases.splice(_diseases.findIndex(v => v.id === e.id), 1);
+				}
+            });
+
+            o.diseases.forEach(async (e) => {
+                const diseasesIndex = item.diseases.items.findIndex(x => x.diseases.id === e.value);
+                if(diseasesIndex === -1){
+                    const input = {
+                        familyDetailsDiseasesFamilyId: item.id,
+                        familyDetailsDiseasesDiseasesId: e.value,
+                    };
+                    
+                    const phdiseases = await API.graphql(graphqlOperation(createFamilyDetailsDiseasesForGlobal, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); familyActions.setlb_family(false);  });
+                    const _disease = phdiseases.data.createFamilyDetailsDiseases;
+                    _diseases.push(_disease);                    
+                }
+            });
+        }
+
+        if (o.relationship.value !== undefined) {
+            if (o.relationship.value !== item.relationship.id) {
+                objectToEdit.familyHistoryRelationshipId = o.relationship.value
+            }
+        }
+
+        const ufamilyh = await API.graphql(graphqlOperation(updateFamilyHistoryForGlobal, {input: objectToEdit} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); familyActions.setlb_family(false); });
+
+        _items.splice(_items.findIndex(v => v.id === o.id), 1);
+        _items.push(ufamilyh.data.updateFamilyHistory);
+        
+        global.patient.patientHistory.familyHistory.items = _items;
+
+        setGlobalData(global);
+        
+        setTimeout(() => {  
+            setList();
+            familyActions.setlb_family(false);   
+        }, 2000);
     }
 
-    return { api, createFamily };
+    return { api, createFamily, loading, editFamily };
     
 };
 

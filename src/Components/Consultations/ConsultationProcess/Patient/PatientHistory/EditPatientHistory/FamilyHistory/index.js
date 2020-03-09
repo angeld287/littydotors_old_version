@@ -8,12 +8,9 @@ import Swal from 'sweetalert2';
 
 import useFamilyHistory from './useFamilyHistory';
 
-const uuidv1 = require('uuid/v1');
-
 const FamilyHistory = ({
     familyActions: familyActions,
     toggleFamily: toggleFamily,
-    editFamily: editFamily,
     edit: edit,
     familyEditObject: familyEditObject,
     global: global,
@@ -27,7 +24,10 @@ const FamilyHistory = ({
   const [ comment, setComment ] = useState("");
   const [ alive, setAlive ] = useState(true);
 
-  const { api, createFamily} = useFamilyHistory(global, setGlobalData, setList, toggleFamily, familyActions);
+  const [ diseasesToEdit, setDiseasesToEdit ] = useState([]);
+
+
+  const { api, createFamily, loading, editFamily} = useFamilyHistory(global, setGlobalData, setList, toggleFamily, familyActions);
 
   const _diseases = [];
   if (api.diseases !== undefined) {
@@ -45,8 +45,17 @@ const FamilyHistory = ({
     });
   }
 
-  useEffect(() => {            
+  useEffect(() => {       
+    
         if(edit){
+
+          const _d = []
+          familyEditObject.diseases.items.forEach( e => {
+            _d.push({value: e.diseases.id, label: e.diseases.name})
+          })
+
+          setDiseasesToEdit(_d);
+          
           setId(familyEditObject.id);
           setRelationship(familyEditObject.relationship);          
           setDiseases(familyEditObject.diseases);
@@ -60,8 +69,18 @@ const FamilyHistory = ({
   }, []);
 
   const save = (create) => {
+    if(diseases === null){
+      Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Favor completar el campo enfermedades',
+            showConfirmButton: false,
+            timer: 1500
+      });
+      return
+    }
+
     if ((relationship.length < 1) || (diseases.length < 1)) {
-        //Swal.fire('Campo Obligatorio', 'Favor completar el campo Lugar de Evento', 'error');
         Swal.fire({
               position: 'top-end',
               icon: 'error',
@@ -103,16 +122,21 @@ const FamilyHistory = ({
 
   const setAliveD = () => { setAlive(!alive); }
 
-  const rindex = !edit ? null : relationships.findIndex(v => v.value === familyEditObject.relationship.value);
+  const rindex = !edit ? null : relationships.findIndex(v => v.value === familyEditObject.relationship.id);
   const dlist = !edit ? null : familyEditObject.diseases;
+
+  
   return (
     <MDBContainer>
         <MDBModalHeader toggle={toggleFamily}>Crear Antecedente Familiar</MDBModalHeader>
         <MDBModalBody>
           <MDBRow className="mb-3">
             <MDBCol md="8" >
-              <label htmlFor="relationship" className="mt-2" >Parentesco</label>
-              <Select id="relationship" options={relationships} defaultValue={relationships[rindex]} onChange={ (v) => {setRelationship(v)}} />
+              <label htmlFor="relationship" className="mt-2" >Parentesco </label>
+              {!loading && <Select isLoading={loading} id="relationship" options={relationships} defaultValue={relationships[rindex]} onChange={ (v) => {setRelationship(v)}} />}
+              {loading && 
+                  <div style={{marginLeft: 10}} className="spinner-border spinner-border-sm" role="status"></div>
+              }
             </MDBCol>
             <MDBCol md="4" >
               <div className="custom-control custom-checkbox">
@@ -123,7 +147,10 @@ const FamilyHistory = ({
           </MDBRow>
 
           <label htmlFor="diseases" className="mt-2" >Enfermedades</label>
-          <Select isMulti id="diseases" options={_diseases} defaultValue={dlist} onChange={ (v) => {setDiseases(v)}}/>
+          {!loading && <Select isMulti id="diseases" options={_diseases} defaultValue={diseasesToEdit} onChange={ (v) => {setDiseases(v)}}/>}
+          {loading && 
+              <div style={{marginLeft: 10}} className="spinner-border spinner-border-sm" role="status"></div>
+          }
           <div className="form-group">
             <label htmlFor="comment">Comentario</label>
             <textarea name="comment" className="form-control" id="comment" rows="3" value={comment} onChange={ (e) => {setComment(e.target.value)}}></textarea>

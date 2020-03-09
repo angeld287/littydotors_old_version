@@ -2,6 +2,11 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner, MDBBox, MDBModal,
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable } from "mdbreact";
 
+import { deleteFamilyHistory } from '../../../../../graphql/mutations';
+
+import { API, graphqlOperation } from 'aws-amplify';
+import Swal from 'sweetalert2';
+
 import useEditPatientHistory from './EditPatientHistory/useEditPatientHistory';
 import FamilyHistory from './EditPatientHistory/FamilyHistory';
 
@@ -12,7 +17,7 @@ const Family = ({
 }) => {
 
 	const [ table, setTable ] = useState([]);
-  const { familyActions, api, edit } = useEditPatientHistory(global);
+  const { familyActions, api, edit } = useEditPatientHistory(global, setGlobalData, setList);
   const data = global.patient.patientHistory.familyHistory;
 
   useEffect(() => {
@@ -20,6 +25,26 @@ const Family = ({
         setList();
       }
   }, []);
+
+  const removeFamily = async (id) => {
+    familyActions.setlb_family(true);
+      const result = await Swal.fire({ title: '¿Desea eliminar el elemento?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Eliminar', cancelButtonText: 'Cancelar'});
+      if (result.value) {
+          const _items = global.patient.patientHistory.familyHistory.items;
+          
+          API.graphql(graphqlOperation(deleteFamilyHistory, {input: {id: id}} ));
+          _items.splice(_items.findIndex(v => v.id === id), 1);
+
+          global.patient.patientHistory.familyHistory.items = _items;
+
+          setGlobalData(global);
+          
+          setTimeout(() => {  
+              setList();
+              familyActions.setlb_family(false);   
+          }, 2000);
+      }
+  }
 
   const setList = () => {
 		var formated = [];
@@ -33,7 +58,7 @@ const Family = ({
 			formated.push({
 				relationship: item.relationship.name,
 				diseases: dItems,
-				options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); /* removeFamily(item.id) */}}> <MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); /* openFamilyModalToEdit(item) */}}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
+				options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); removeFamily(item.id) }}> <MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); familyActions.openFamilyModalToEdit(item) }}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
 			});
 		});
 

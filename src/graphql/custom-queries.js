@@ -188,7 +188,9 @@ export const getMedicalConsultation = /* GraphQL */ `
               comment
               diseases {
                 items {
+                  id
                   diseases {
+                    id
                     name
                   }
                 }

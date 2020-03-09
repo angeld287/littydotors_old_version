@@ -14,6 +14,7 @@ import {
         createPatientHistory,
         createNonPathologicalHistory,
         updatePatient,
+        deleteFamilyHistory,
     } from '../../../../../../graphql/mutations';
 
 import { updatePatientaddPatientHistory } from '../../../../../../graphql/custom-mutations';
@@ -23,7 +24,7 @@ import usePatientHistory from '../usePatientHistory';
 import { MDBBtn, MDBIcon } from 'mdbreact';
 import Swal from 'sweetalert2';
 
-const useEditPatientHistory = (global, setGlobalData, setHasPatientHistory, setPatientHistory) => {
+const useEditPatientHistory = (global, setGlobalData, setList) => {
     const [ loading, setLoading ] = useState(false);
     const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
@@ -183,7 +184,6 @@ const useEditPatientHistory = (global, setGlobalData, setHasPatientHistory, setP
         createdNonPath();
     }
 
-
     //funciones de datos de antecedentes familiares
     const toggleFamily = () => {
         setFamilyModal(!familyModal)
@@ -225,12 +225,22 @@ const useEditPatientHistory = (global, setGlobalData, setHasPatientHistory, setP
     }
 
     const removeFamily = async (id) => {
+        setlb_family(true);
         const result = await Swal.fire({ title: '¿Desea eliminar el elemento?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Eliminar', cancelButtonText: 'Cancelar'});
         if (result.value) {
-            const _items = family;
+            const _items = global.patient.patientHistory.familyHistory.items;
+            
+            API.graphql(graphqlOperation(deleteFamilyHistory, {input: {id: id}} ));
             _items.splice(_items.findIndex(v => v.id === id), 1);
-            setFamily(_items);
-            createdFamily();
+
+            global.patient.patientHistory.familyHistory.items = _items;
+
+            setGlobalData(global);
+            
+            setTimeout(() => {  
+                setList();
+                setlb_family(false);   
+            }, 2000);
         }
     }
 
@@ -314,107 +324,6 @@ const useEditPatientHistory = (global, setGlobalData, setHasPatientHistory, setP
         createdMedication();
     }
 
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    const onSubmit = async (i) => {  
-        setLoadingButton(true);      
-        global.patient.patientHistory = {
-            pathologicalHistory : { patientMedications: patientMedications, patientAllergies: patientAllergies, surgicalInterventions: patientSurgicalInterventions },
-            familyHistory : family,
-            nonPathologicalHistory : nonPath 
-        };                
-        try {
-
-            //PATHOLOGICAL
-                const pathological = await API.graphql(graphqlOperation(createPathologicalHistory, { input: {  } })).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
-
-                medication.forEach(async (e) => {
-                    const input = {
-                        patientMedicationsPathologicalHistoryId: pathological.data.createPathologicalHistory.id,
-                        patientMedicationsMedicationsId: e.medication.value
-                    };
-                    if(e.drug_concentration !== ""){input.drug_concentration = e.drug_concentration;}
-                    const medications = await API.graphql(graphqlOperation(createPatientMedications, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
-                });
-
-                patientAllergies.forEach(async (e) => {
-                    const input = {
-                        patientAllergiesPathologicalHistoryId: pathological.data.createPathologicalHistory.id,
-                        patientAllergiesAllergiesId: e.id
-                    };
-                    const allergies = await API.graphql(graphqlOperation(createPatientAllergies, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
-                });
-
-                patientSurgicalInterventions.forEach(async (e) => {
-                    const input = {
-                        pathologicalHistorySurgicalIntPathologicalHistoryId: pathological.data.createPathologicalHistory.id,
-                        pathologicalHistorySurgicalIntSurgicalInterventionId: e.id
-                    };
-                    const surgery = await API.graphql(graphqlOperation(createPathologicalHistorySurgicalInt, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
-                });
-
-
-            //PATIENT HISTORY
-                const patienth = await API.graphql(graphqlOperation(createPatientHistory, {input: { patientHistoryPathologicalHistoryId: pathological.data.createPathologicalHistory.id}} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
-
-            //NON PATHOLOGICAL
-                nonPath.forEach(async (e) => {
-                    const input = {};
-
-                    input.active = e.active;
-                    input.frequency = e.frequency.label;
-                    if(e.comment !== ""){input.comment = e.comment;}
-                    input.patientHistoryNonPathologicalHistoryId = patienth.data.createPatientHistory.id;
-                    input.nonPathologicalHistoryTypeId = e.type.value;
-
-                    const npnpathological = await API.graphql(graphqlOperation(createNonPathologicalHistory, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
-                });
-
-            //FAMILY
-
-                family.forEach(async (e) => {
-                    const input = {};
-
-                    input.alive = e.alive;
-                    if(e.comment !== ""){input.comment = e.comment;}
-                    input.patientHistoryFamilyHistoryId = patienth.data.createPatientHistory.id;
-                    input.familyHistoryRelationshipId = e.relationship.value;
-
-                    const cfamilyh = await API.graphql(graphqlOperation(createFamilyHistory, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
-                    e.diseases.forEach(async (d) => {
-                        const input = {
-                            familyDetailsDiseasesFamilyId: cfamilyh.data.createFamilyHistory.id,
-                            familyDetailsDiseasesDiseasesId: d.value,
-                        };
-                        const phdiseases = await API.graphql(graphqlOperation(createFamilyDetailsDiseases, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
-                    });
-                });
-
-            //ADDING PATIENT HISTORY TO PATIENT TABLE
-                setTimeout(() => {  
-                        API.graphql(graphqlOperation(updatePatientaddPatientHistory, {input: {id: global.patient.id, patientPatientHistoryId: patienth.data.createPatientHistory.id}} ))
-                        .then(async (r) => {                            
-                            setData(r.data.updatePatient.patientHistory);
-                            global.patient.patientHistory = r.data.updatePatient.patientHistory;
-                            setGlobalData(global);
-                            setPatientHistory(r.data.updatePatient.patientHistory);
-                            setHasPatientHistory(true);
-                            setLoadingButton(false);
-			                await Swal.fire('Correcto', 'El elemento se ha creado correctamente', 'success');
-                        })
-                }, 2000);
-
-		} catch (error) {
-            setLoadingButton(false);
-            console.log(error);
-            
-			Swal.fire('Ha ocurrido un error', 'Intentelo de nuevo mas tarde');
-		}
-    }
-
-
     const nonPathActions = {
         createNonPath: createNonPath, 
         toggleNonPath: toggleNonPath, 
@@ -434,7 +343,8 @@ const useEditPatientHistory = (global, setGlobalData, setHasPatientHistory, setP
         editFamily: editFamily, 
         familyEditObject: familyEditObject,
         lb_family: lb_family,
-        setlb_family: setlb_family
+        setlb_family: setlb_family,
+        openFamilyModalToEdit: openFamilyModalToEdit
     };
 
     const medicationActions = {
@@ -447,8 +357,7 @@ const useEditPatientHistory = (global, setGlobalData, setHasPatientHistory, setP
         medicationEditObject: medicationEditObject
     };
 
-    return { 
-                onSubmit, 
+    return {  
                 handleSubmit, 
                 formState, 
                 register, 

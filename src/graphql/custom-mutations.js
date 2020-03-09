@@ -91,7 +91,9 @@ export const createFamilyHistoryForGlobal = /* GraphQL */ `
       alive
       diseases {
         items {
+          id
           diseases {
+            id
             name
           }
         }
@@ -109,7 +111,52 @@ export const createFamilyDetailsDiseasesForGlobal = /* GraphQL */ `
     $condition: ModelFamilyDetailsDiseasesConditionInput
   ) {
     createFamilyDetailsDiseases(input: $input, condition: $condition) {
+      id
       diseases {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const updateFamilyHistoryForGlobal = /* GraphQL */ `
+  mutation UpdateFamilyHistory(
+    $input: UpdateFamilyHistoryInput!
+    $condition: ModelFamilyHistoryConditionInput
+  ) {
+    updateFamilyHistory(input: $input, condition: $condition) {
+      id
+      relationship {
+        id
+        name
+      }
+      alive
+      diseases {
+        items {
+          id
+          diseases {
+            id
+            name
+          }
+        }
+        nextToken
+      }
+      comment
+      owner
+    }
+  }
+`;
+
+export const deleteFamilyDetailsDiseasesForGlobal = /* GraphQL */ `
+  mutation DeleteFamilyDetailsDiseases(
+    $input: DeleteFamilyDetailsDiseasesInput!
+    $condition: ModelFamilyDetailsDiseasesConditionInput
+  ) {
+    deleteFamilyDetailsDiseases(input: $input, condition: $condition) {
+      id
+      diseases {
+        id
         name
       }
     }
