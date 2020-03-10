@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import { listCategorys } from '../../../../../../../graphql/queries';
+import { createNonPathologicalHistoryForGlobal, updateNonPathologicalHistoryForGlobal} from '../../../../../../../graphql/custom-mutations';
+
 import { API, graphqlOperation } from 'aws-amplify';
 
 
@@ -45,105 +47,63 @@ const useNonPathologicalHistory = (global, setGlobalData, setList, toggleNonPath
     }, []);
 
     const createNonPath = async (o) => {
-        /* familyActions.setlb_family(true);
-        const _items = global.patient.patientHistory.familyHistory.items;
+
+        nonPathActions.setlb_nonpath(true);
+        const _items = global.patient.patientHistory.nonPathologicalHistory.items;
         
         const input = {};
 
-        input.alive = o.alive;
+        input.active = o.active;
+        input.frequency = o.frequency.label;
         if(o.comment !== ""){input.comment = o.comment;}
-        input.patientHistoryFamilyHistoryId = global.patient.patientHistory.id;
-        input.familyHistoryRelationshipId = o.relationship.value;
+        input.patientHistoryNonPathologicalHistoryId = global.patient.patientHistory.id;
+        input.nonPathologicalHistoryTypeId = o.type.value;
 
-        const cfamilyh = await API.graphql(graphqlOperation(createFamilyHistoryForGlobal, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); familyActions.setlb_family(false); });
+        const cnonpath = await API.graphql(graphqlOperation(createNonPathologicalHistoryForGlobal, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); nonPathActions.setlb_nonpath(false); });
         
-        const _familyHistory = cfamilyh.data.createFamilyHistory;
-        const _diseases = [];
-        o.diseases.forEach(async (d) => {
-            const input = {
-                familyDetailsDiseasesFamilyId: cfamilyh.data.createFamilyHistory.id,
-                familyDetailsDiseasesDiseasesId: d.value,
-            };
-            const phdiseases = await API.graphql(graphqlOperation(createFamilyDetailsDiseasesForGlobal, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); familyActions.setlb_family(false);  });
-            const _disease = phdiseases.data.createFamilyDetailsDiseases;
-            _diseases.push(_disease);
-        });
-
-        _familyHistory.diseases = {
-            items:_diseases
-        };
-
-        _items.push(_familyHistory);
-        
-        global.patient.patientHistory.familyHistory.items = _items;
-
+        const _nonpathHistory = cnonpath.data.createNonPathologicalHistory;
+        _items.push(_nonpathHistory);
+        global.patient.patientHistory.nonPathologicalHistory.items = _items;
         setGlobalData(global);
         
         setTimeout(() => {  
             setList();
-            familyActions.setlb_family(false);   
-        }, 2000); */
-
+            nonPathActions.setlb_nonpath(false);   
+        }, 2000);
     }
 
     const editNonPath = async (o) => {
-        /* familyActions.setlb_family(true);
+        nonPathActions.setlb_nonpath(true);
         const objectToEdit = {}
         
-        const _items = global.patient.patientHistory.familyHistory.items;
+        const _items = global.patient.patientHistory.nonPathologicalHistory.items;
         objectToEdit.id = o.id;
         
-
         const item = _items[_items.findIndex(v => v.id === o.id)];
-        const _diseases = item.diseases.items;
         
         if(o.comment !== item.comment){objectToEdit.comment = o.comment;}
-        if(o.alive !== item.alive){objectToEdit.alive = o.alive;}
+        if(o.active !== item.active){objectToEdit.active = o.active;}
+        if(o.frequency.label !== item.frequency){objectToEdit.frequency = o.frequency.label;}
 
-        if (o.diseases.items === undefined) {
-            
-            item.diseases.items.forEach( async (e) => {
-                const diseasesIndex = o.diseases.findIndex(x => x.value === e.diseases.id);
-				if(diseasesIndex === -1){
-                    const deletedfd = await API.graphql(graphqlOperation(deleteFamilyDetailsDiseasesForGlobal, {input: {id: e.id}} ));
-                    _diseases.splice(_diseases.findIndex(v => v.id === e.id), 1);
-				}
-            });
-
-            o.diseases.forEach(async (e) => {
-                const diseasesIndex = item.diseases.items.findIndex(x => x.diseases.id === e.value);
-                if(diseasesIndex === -1){
-                    const input = {
-                        familyDetailsDiseasesFamilyId: item.id,
-                        familyDetailsDiseasesDiseasesId: e.value,
-                    };
-                    
-                    const phdiseases = await API.graphql(graphqlOperation(createFamilyDetailsDiseasesForGlobal, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); familyActions.setlb_family(false);  });
-                    const _disease = phdiseases.data.createFamilyDetailsDiseases;
-                    _diseases.push(_disease);                    
-                }
-            });
-        }
-
-        if (o.relationship.value !== undefined) {
-            if (o.relationship.value !== item.relationship.id) {
-                objectToEdit.familyHistoryRelationshipId = o.relationship.value
+        if (o.type.value !== undefined) {
+            if (o.type.value !== item.type.id) {
+                objectToEdit.nonPathologicalHistoryTypeId = o.type.value
             }
         }
 
-        const ufamilyh = await API.graphql(graphqlOperation(updateFamilyHistoryForGlobal, {input: objectToEdit} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); familyActions.setlb_family(false); });
+        const unonPath = await API.graphql(graphqlOperation(updateNonPathologicalHistoryForGlobal, {input: objectToEdit} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); nonPathActions.setlb_nonpath(false); });
 
         _items.splice(_items.findIndex(v => v.id === o.id), 1);
-        _items.push(ufamilyh.data.updateFamilyHistory);
+        _items.push(unonPath.data.updateNonPathologicalHistory);
         
-        global.patient.patientHistory.familyHistory.items = _items;
+        global.patient.patientHistory.nonPathologicalHistory.items = _items;
 
         setGlobalData(global);
         
         setTimeout(() => {  
             setList();
-            familyActions.setlb_family(false);   
-        }, 2000); */
+            nonPathActions.setlb_nonpath(false);   
+        }, 2000);
     }
 
 

@@ -162,3 +162,39 @@ export const deleteFamilyDetailsDiseasesForGlobal = /* GraphQL */ `
     }
   }
 `;
+
+export const createNonPathologicalHistoryForGlobal = /* GraphQL */ `
+  mutation CreateNonPathologicalHistory(
+    $input: CreateNonPathologicalHistoryInput!
+    $condition: ModelNonPathologicalHistoryConditionInput
+  ) {
+    createNonPathologicalHistory(input: $input, condition: $condition) {
+      id
+      frequency
+      comment
+      type {
+        id
+        name
+      }
+      owner
+    }
+  }
+`;
+
+export const updateNonPathologicalHistoryForGlobal = /* GraphQL */ `
+  mutation UpdateNonPathologicalHistory(
+    $input: UpdateNonPathologicalHistoryInput!
+    $condition: ModelNonPathologicalHistoryConditionInput
+  ) {
+    updateNonPathologicalHistory(input: $input, condition: $condition) {
+      id
+      frequency
+      comment
+      type {
+        id
+        name
+      }
+      owner
+    }
+  }
+`;
