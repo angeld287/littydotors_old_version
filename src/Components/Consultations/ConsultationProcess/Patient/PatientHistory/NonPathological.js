@@ -74,7 +74,7 @@ const NonPathological = ({
         <br/>
         <MDBContainer>
           <MDBBtn onClick={nonPathActions.toggleNonPath} disabled={nonPathActions.loadingButton} className="btn btn-primary btn-sm">
-              {!nonPathActions.lb_nonpath && "Crear Antecedente No Patologico"}
+              {!nonPathActions.lb_nonpath && <MDBIcon icon="plus" size="2x" />}
               {nonPathActions.lb_nonpath && 
                 <div className="spinner-border spinner-border-sm" role="status">
                   <span className="sr-only">Loading...</span>

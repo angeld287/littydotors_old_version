@@ -75,7 +75,7 @@ const Family = ({
           <br/>
           <MDBContainer>
             <MDBBtn onClick={familyActions.toggleFamily} disabled={familyActions.loadingButton} className="btn btn-primary btn-sm">
-                {!familyActions.lb_family && "Crear Antecedente Familiar"}
+                {!familyActions.lb_family && <MDBIcon icon="plus" size="2x" />}
                 {familyActions.lb_family && 
                   <div className="spinner-border spinner-border-sm" role="status">
                     <span className="sr-only">Loading...</span>
