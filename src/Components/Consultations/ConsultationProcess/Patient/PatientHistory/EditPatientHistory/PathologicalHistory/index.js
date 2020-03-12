@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
+
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner, MDBBox,
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable, MDBModal } from "mdbreact";
+
+import Select from 'react-select';
 
 import usePathologicalHistory from './usePathologicalHistory';
 import PatientMedications from './PatientMedications';
@@ -14,12 +17,91 @@ const PathologicalHistory = (
                         editP: editP,
                         lb_editpath: lb_editpath,
                         setPatientMedications: setPatientMedications,
-                        setGlobalData: setGlobalData,
-                        setPatientAllergies: setPatientAllergies,
-                        setPatientSurgicalInterventions: setPatientSurgicalInterventions,
+                        setGlobalData: setGlobalData
                       } 
                    ) => {
-      const { api, medicationActions, edit, loadingButton, loading} = usePathologicalHistory(setGlobalData, global);
+      const { api, 
+              medicationActions, 
+              edit, 
+              loadingButton, 
+              loading,
+              setPatientAllergies,
+              setPatientSurgicalInterventions,
+            
+            } = usePathologicalHistory(setGlobalData, global);
+
+  const [ allergiesToEdit, setAllergiesToEdit ] = useState([]);
+  const [ surgicalInterventionsToEdit, setSurgicalInterventionsToEdit ] = useState([]);
+  const [ medicationsToEdit, setMedicationsToEdit ] = useState([]);
+  const [ medicationsTable, setMedicationsTable ] = useState([]);
+
+  useEffect(() => {       
+      setEditObjects();
+      setMedicationsList();
+  }, []);
+
+  const _surgicalInterventions = [];
+  if (api.surgicalinterventions !== undefined) {
+    api.surgicalinterventions.forEach(element => {
+      var item = {value: element.id, label: element.name};
+      _surgicalInterventions.push(item);
+    });
+  }
+
+  const _allergies = [];
+  if (api.allergies !== undefined) {
+    api.allergies.forEach(element => {
+      var item = {value: element.id, label: element.name};
+      _allergies.push(item);
+    });
+  }
+
+  const setEditObjects = () =>{
+    const _a = [];
+    const _s = [];
+    const _m = [];
+
+    global.patient.patientHistory.pathologicalHistory.patientAllergies.items.forEach( e => {
+        _a.push({value: e.allergies.id, label: e.allergies.name})
+    });
+
+    global.patient.patientHistory.pathologicalHistory.surgicalInterventions.items.forEach( e => {
+        _s.push({value: e.surgicalIntervention.id, label: e.surgicalIntervention.name})
+    });
+
+    global.patient.patientHistory.pathologicalHistory.patientMedications.items.forEach( e => {
+        _m.push({value: e.medications.id, label: e.medications.name})
+    });
+
+    setAllergiesToEdit(_a);
+    setSurgicalInterventionsToEdit(_s);
+    setMedicationsToEdit(_m);
+  }
+
+  const setMedicationsList = () => {
+    const data = global.patient.patientHistory.pathologicalHistory.patientMedications;
+		var formated = [];
+
+		data.items.forEach((item) => {
+			formated.push({
+				name: item.medications.name,
+				drug_concentration: item.drug_concentration,
+				options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); removeMedication(item.id) }}> <MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); /* familyActions.openFamilyModalToEdit(item)  */}}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
+			});
+		});
+
+    const medicationstable = {
+			columns: [ { label: 'Medicamento', field: 'name', sort: 'asc' }, { label: 'Concentracion', field: 'drug_concentration', sort: 'asc' }, { label: 'Opciones', field: 'options', sort: 'disabled' }],
+			rows: formated
+		};
+
+    setMedicationsTable(medicationstable);
+  };
+  
+  const removeMedication = (o) => {
+    console.log(o);
+    
+  }
 
   if (loading) {
     return (
@@ -35,32 +117,7 @@ const PathologicalHistory = (
     <MDBContainer>
       <MDBRow className="mb-3">
         <MDBCol>
-          <Autocomplete
-              multiple
-              id="patientSurgicalInterventions"
-              options={api.surgicalinterventions}
-              getOptionLabel={option => option.name}
-              onChange={(event, newValue) => {setPatientSurgicalInterventions(newValue)}}
-              renderInput={params => (
-                <TextField {...params} label="Intervenciones Quirurgicas" variant="outlined" fullWidth/>
-              )}
-          />
-        </MDBCol>
-        <MDBCol>
-          <Autocomplete
-            multiple
-            id="patientAllegies"
-            options={api.allergies}
-            getOptionLabel={option => option.name}
-            onChange={(event, newValue) => {setPatientAllergies(newValue)}}
-            renderInput={params => (
-              <TextField {...params} label="Alergias" variant="outlined" fullWidth/>
-            )}
-          />
-        </MDBCol>
-      </MDBRow>
-      <MDBRow className="mb-3">
-        <MDBCol>
+            <label htmlFor="diseases" className="mt-2" >Medicamentos</label>
             <br/>
             <MDBContainer>
               <MDBBtn onClick={medicationActions.toggleMedication} disabled={medicationActions.loadingButton} className="btn btn-primary btn-sm">
@@ -69,7 +126,7 @@ const PathologicalHistory = (
               <MDBDataTable
                 striped bordered searchLabel="Buscar"
                 responsiveSm={true} small hover entries={5}
-                btn={true} data={medicationActions.medicationTable} noRecordsFoundLabel="No se han encontrado datos"
+                btn={true} data={medicationsTable} noRecordsFoundLabel="No se han encontrado datos"
                 entriesLabel="Cantidad" entriesOptions={[ 5, 10 ]} infoLabel={[ '', '-', 'de', 'registros' ]}
                 paginationLabel={[ 'Anterior', 'Siguiente' ]} noBottomColumns={true}
               />
@@ -84,6 +141,22 @@ const PathologicalHistory = (
                 medicationEditObject={medicationActions.medicationEditObject}
               />
             </MDBModal>
+        </MDBCol>
+      </MDBRow>
+      <MDBRow className="mb-3">
+        <MDBCol>
+          <label htmlFor="diseases" className="mt-2" >Intervenciones Quirurgicas</label>
+          {!loading && <Select isMulti id="surgincalinterventions" options={_surgicalInterventions} defaultValue={surgicalInterventionsToEdit} onChange={ (v) => {setPatientSurgicalInterventions(v)}}/>}
+          {loading && 
+              <div style={{marginLeft: 10}} className="spinner-border spinner-border-sm" role="status"></div>
+          }
+        </MDBCol>
+        <MDBCol>
+          <label htmlFor="diseases" className="mt-2" >Alergias</label>
+          {!loading && <Select isMulti id="allergies" options={_allergies} defaultValue={allergiesToEdit} onChange={ (v) => {setPatientAllergies(v)}}/>}
+          {loading && 
+              <div style={{marginLeft: 10}} className="spinner-border spinner-border-sm" role="status"></div>
+          }
         </MDBCol>
       </MDBRow>
       <MDBRow>
