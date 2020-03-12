@@ -21,15 +21,17 @@ const PatientMedications = ({
   const [ drugConcentration, setDrugConcentration ] = useState([]);
 
   const medications = [];
-  api.medications.forEach(element => {
-    var item = {value: element.id, label: element.name};
-    medications.push(item);
-  });
+    if (api.medications !== undefined) {
+    api.medications.forEach(element => {
+      var item = {value: element.id, label: element.name};
+      medications.push(item);
+    });
+  }
 
-  useEffect(() => {            
-        if(edit){
+  useEffect(() => {       
+        if(edit){          
           setId(medicationEditObject.id);
-          setMedication(medicationEditObject.medication);          
+          setMedication(medicationEditObject.medications);          
           setDrugConcentration(medicationEditObject.drug_concentration);
         }else{
           setId("");
@@ -39,6 +41,17 @@ const PatientMedications = ({
   }, []);
 
   const save = (create) => {
+    if (medication === undefined) {
+      Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Favor completar los campos concentracion y medicamento',
+            showConfirmButton: false,
+            timer: 1500
+      });
+      return
+    }
+    
     if ((medication.length < 1) || (drugConcentration === "")) {
         //Swal.fire('Campo Obligatorio', 'Favor completar el campo Lugar de Evento', 'error');
         Swal.fire({
@@ -70,11 +83,11 @@ const PatientMedications = ({
           patient: "String",
       });
       toggleMedication();
-    }
+    } 
 
   }
 
-  const mindex = !edit ? null : medications.findIndex(v => v.value === medicationEditObject.medication.value);
+  const mindex = !edit ? null : medications.findIndex(v => v.value === medicationEditObject.medications.id);
   return (
     <MDBContainer>
         <MDBModalHeader toggle={toggleMedication}>Agregar Medicamento</MDBModalHeader>

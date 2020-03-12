@@ -14,8 +14,6 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { deletePatientMedications } from '../../../../../../../graphql/mutations';
-
 const PathologicalHistory = (
                       {
                         global: global,
@@ -35,7 +33,7 @@ const PathologicalHistory = (
               setPatientSurgicalInterventions,
               medicationTable,
               setMedicationsList,
-              
+
             } = usePathologicalHistory(setGlobalData, global);
 
   const [ allergiesToEdit, setAllergiesToEdit ] = useState([]);
@@ -84,26 +82,6 @@ const PathologicalHistory = (
     setSurgicalInterventionsToEdit(_s);
     setMedicationsToEdit(_m);
   }
-  
-  const removeMedication = async (id) => {
-    medicationActions.setlb_med(true);
-      const result = await Swal.fire({ title: '¿Desea eliminar el elemento?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Eliminar', cancelButtonText: 'Cancelar'});
-      if (result.value) {
-          const _items = global.patient.patientHistory.pathologicalHistory.patientMedications.items;
-          
-          API.graphql(graphqlOperation(deletePatientMedications, {input: {id: id}} ));
-          _items.splice(_items.findIndex(v => v.id === id), 1);
-
-          global.patient.patientHistory.pathologicalHistory.patientMedications.items = _items;
-
-          setGlobalData(global);
-          
-          setTimeout(() => {  
-              setMedicationsList();
-              medicationActions.setlb_med(false);   
-          }, 2000);
-      }
-  }
 
   if (loading) {
     return (
@@ -144,7 +122,7 @@ const PathologicalHistory = (
                 api={api}
                 createMedication={medicationActions.createMedication}
                 editMedication={medicationActions.editMedication}
-                edit={medicationActions.edit}
+                edit={edit}
                 medicationEditObject={medicationActions.medicationEditObject}
               />
             </MDBModal>
