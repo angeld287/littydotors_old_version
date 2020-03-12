@@ -5,11 +5,16 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
 
 import Select from 'react-select';
 
+import Swal from 'sweetalert2';
+import { API, graphqlOperation } from 'aws-amplify';
+
 import usePathologicalHistory from './usePathologicalHistory';
 import PatientMedications from './PatientMedications';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
+
+import { deletePatientMedications } from '../../../../../../../graphql/mutations';
 
 const PathologicalHistory = (
                       {
@@ -98,9 +103,24 @@ const PathologicalHistory = (
     setMedicationsTable(medicationstable);
   };
   
-  const removeMedication = (o) => {
-    console.log(o);
-    
+  const removeMedication = async (id) => {
+    medicationActions.setlb_med(true);
+      const result = await Swal.fire({ title: '¿Desea eliminar el elemento?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Eliminar', cancelButtonText: 'Cancelar'});
+      if (result.value) {
+          const _items = global.patient.patientHistory.pathologicalHistory.patientMedications.items;
+          
+          API.graphql(graphqlOperation(deletePatientMedications, {input: {id: id}} ));
+          _items.splice(_items.findIndex(v => v.id === id), 1);
+
+          global.patient.patientHistory.pathologicalHistory.patientMedications.items = _items;
+
+          setGlobalData(global);
+          
+          setTimeout(() => {  
+              setMedicationsList();
+              medicationActions.setlb_med(false);   
+          }, 2000);
+      }
   }
 
   if (loading) {
@@ -121,7 +141,12 @@ const PathologicalHistory = (
             <br/>
             <MDBContainer>
               <MDBBtn onClick={medicationActions.toggleMedication} disabled={medicationActions.loadingButton} className="btn btn-primary btn-sm">
-                  <MDBIcon icon="plus" size="2x" />
+                  {!medicationActions.lb_med && <MDBIcon icon="plus" size="2x" />}
+                  {medicationActions.lb_med && 
+                    <div className="spinner-border spinner-border-sm" role="status">
+                      <span className="sr-only">Loading...</span>
+                    </div>
+                  }
               </MDBBtn>
               <MDBDataTable
                 striped bordered searchLabel="Buscar"
