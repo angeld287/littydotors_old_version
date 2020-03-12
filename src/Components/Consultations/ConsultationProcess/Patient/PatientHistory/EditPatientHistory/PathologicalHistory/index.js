@@ -25,6 +25,7 @@ const PathologicalHistory = (
                         setGlobalData: setGlobalData
                       } 
                    ) => {
+
       const { api, 
               medicationActions, 
               edit, 
@@ -32,13 +33,14 @@ const PathologicalHistory = (
               loading,
               setPatientAllergies,
               setPatientSurgicalInterventions,
-            
+              medicationTable,
+              setMedicationsList,
+              
             } = usePathologicalHistory(setGlobalData, global);
 
   const [ allergiesToEdit, setAllergiesToEdit ] = useState([]);
   const [ surgicalInterventionsToEdit, setSurgicalInterventionsToEdit ] = useState([]);
   const [ medicationsToEdit, setMedicationsToEdit ] = useState([]);
-  const [ medicationsTable, setMedicationsTable ] = useState([]);
 
   useEffect(() => {       
       setEditObjects();
@@ -82,26 +84,6 @@ const PathologicalHistory = (
     setSurgicalInterventionsToEdit(_s);
     setMedicationsToEdit(_m);
   }
-
-  const setMedicationsList = () => {
-    const data = global.patient.patientHistory.pathologicalHistory.patientMedications;
-		var formated = [];
-
-		data.items.forEach((item) => {
-			formated.push({
-				name: item.medications.name,
-				drug_concentration: item.drug_concentration,
-				options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); removeMedication(item.id) }}> <MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); /* familyActions.openFamilyModalToEdit(item)  */}}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
-			});
-		});
-
-    const medicationstable = {
-			columns: [ { label: 'Medicamento', field: 'name', sort: 'asc' }, { label: 'Concentracion', field: 'drug_concentration', sort: 'asc' }, { label: 'Opciones', field: 'options', sort: 'disabled' }],
-			rows: formated
-		};
-
-    setMedicationsTable(medicationstable);
-  };
   
   const removeMedication = async (id) => {
     medicationActions.setlb_med(true);
@@ -151,7 +133,7 @@ const PathologicalHistory = (
               <MDBDataTable
                 striped bordered searchLabel="Buscar"
                 responsiveSm={true} small hover entries={5}
-                btn={true} data={medicationsTable} noRecordsFoundLabel="No se han encontrado datos"
+                btn={true} data={medicationTable} noRecordsFoundLabel="No se han encontrado datos"
                 entriesLabel="Cantidad" entriesOptions={[ 5, 10 ]} infoLabel={[ '', '-', 'de', 'registros' ]}
                 paginationLabel={[ 'Anterior', 'Siguiente' ]} noBottomColumns={true}
               />

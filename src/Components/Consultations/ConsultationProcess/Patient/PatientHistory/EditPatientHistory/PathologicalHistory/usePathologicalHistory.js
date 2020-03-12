@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { API, graphqlOperation } from 'aws-amplify';
 
 import { listMedicines, listCategorys, listAllergys, listSurgicalInterventions, listDiseases } from '../../../../../../../graphql/queries';
+import { createPatientMedications } from '../../../../../../../graphql/mutations';
 
 import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner, MDBBox,
     MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable, MDBModal } from "mdbreact";
@@ -88,11 +89,29 @@ const usePathologicalHistory = (setGlobalData, global) => {
         setGlobalData(global);
 	};
 
-    const createMedication = (o) => {
-        const _items = medication;
-        _items.push(o);        
-        setMedication(_items);
-        createdMedication();
+    const createMedication = async (o) => {
+
+        setlb_med(true);
+        const _items = global.patient.patientHistory.pathologicalHistory.patientMedications.items;
+        
+        console.log(o);
+
+        const input = {
+            patientMedicationsPathologicalHistoryId: global.patient.patientHistory.pathologicalHistory.id,
+            patientMedicationsMedicationsId: o.medication.value,
+            drug_concentration: o.drug_concentration
+        };
+        const medications = await API.graphql(graphqlOperation(createPatientMedications, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); });
+
+        const _patientMedications = medications.data.createPatientMedications;
+        _items.push(_patientMedications);
+        global.patient.patientHistory.pathologicalHistory.patientMedications.items = _items;
+        setGlobalData(global);
+        
+        setTimeout(() => {  
+            setMedicationsList()
+            setlb_med(false);   
+        }, 2000);
     }
 
     const removeMedication = async (id) => {
@@ -136,12 +155,34 @@ const usePathologicalHistory = (setGlobalData, global) => {
 
     };
 
+    const setMedicationsList = () => {
+      const data = global.patient.patientHistory.pathologicalHistory.patientMedications;
+          var formated = [];
+
+          data.items.forEach((item) => {
+              formated.push({
+                  name: item.medications.name,
+                  drug_concentration: item.drug_concentration,
+                  options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); removeMedication(item.id) }}> <MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); /* familyActions.openFamilyModalToEdit(item)  */}}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
+              });
+          });
+
+      const medicationstable = {
+              columns: [ { label: 'Medicamento', field: 'name', sort: 'asc' }, { label: 'Concentracion', field: 'drug_concentration', sort: 'asc' }, { label: 'Opciones', field: 'options', sort: 'disabled' }],
+              rows: formated
+          };
+
+      setMedicationTable(medicationstable);
+    };
+
     return { 
                 api, 
                 edit, 
                 loadingButton, 
                 loading,
                 medicationActions,
+                medicationTable,
+                setMedicationsList,
      };
     
 };
