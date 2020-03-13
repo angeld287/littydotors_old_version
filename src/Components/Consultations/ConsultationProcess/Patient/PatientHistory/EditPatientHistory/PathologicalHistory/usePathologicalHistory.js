@@ -95,8 +95,6 @@ const usePathologicalHistory = (setGlobalData, global) => {
         setlb_med(true);
         const _items = global.patient.patientHistory.pathologicalHistory.patientMedications.items;
         
-        console.log(o);
-
         const input = {
             patientMedicationsPathologicalHistoryId: global.patient.patientHistory.pathologicalHistory.id,
             patientMedicationsMedicationsId: o.medication.value,

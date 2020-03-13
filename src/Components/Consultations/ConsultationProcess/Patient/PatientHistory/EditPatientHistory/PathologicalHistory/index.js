@@ -5,6 +5,8 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
 
 import Select from 'react-select';
 
+import { createPatientAllergies, deletePatientAllergies, createPathologicalHistorySurgicalInt, deletePathologicalHistorySurgicalInt } from '../../../../../../../graphql/mutations'; 
+
 import Swal from 'sweetalert2';
 import { API, graphqlOperation } from 'aws-amplify';
 
@@ -18,7 +20,6 @@ const PathologicalHistory = (
                       {
                         global: global,
                         editP: editP,
-                        lb_editpath: lb_editpath,
                         setPatientMedications: setPatientMedications,
                         setGlobalData: setGlobalData
                       } 
@@ -29,8 +30,6 @@ const PathologicalHistory = (
               edit, 
               loadingButton, 
               loading,
-              setPatientAllergies,
-              setPatientSurgicalInterventions,
               medicationTable,
               setMedicationsList,
 
@@ -39,6 +38,9 @@ const PathologicalHistory = (
   const [ allergiesToEdit, setAllergiesToEdit ] = useState([]);
   const [ surgicalInterventionsToEdit, setSurgicalInterventionsToEdit ] = useState([]);
   const [ medicationsToEdit, setMedicationsToEdit ] = useState([]);
+  const [ lb_editpath, setLb_editpath ] = useState(false);
+
+
 
   useEffect(() => {       
       setEditObjects();
@@ -81,6 +83,104 @@ const PathologicalHistory = (
     setAllergiesToEdit(_a);
     setSurgicalInterventionsToEdit(_s);
     setMedicationsToEdit(_m);
+  }
+
+
+
+  const editPathological = async () => {
+      setLb_editpath(true);
+      const objectToEdit = {}
+      
+      const _itemsS = global.patient.patientHistory.pathologicalHistory.surgicalInterventions.items;
+      const _itemsA = global.patient.patientHistory.pathologicalHistory.patientAllergies.items;
+      const _id = global.patient.patientHistory.pathologicalHistory.id;
+
+      if (surgicalInterventionsToEdit !== null) {
+          
+          _itemsS.forEach( async (e) => {
+              const sIndex = surgicalInterventionsToEdit.findIndex(x => x.value === e.surgicalIntervention.id);
+              if(sIndex === -1){
+                  const deletedS = await API.graphql(graphqlOperation(deletePathologicalHistorySurgicalInt, {input: {id: e.id}} ));
+                  _itemsS.splice(_itemsS.findIndex(v => v.id === e.id), 1);
+              }
+          });
+
+          surgicalInterventionsToEdit.forEach(async (e) => {
+              const sIndex = _itemsS.findIndex(x => x.surgicalIntervention.id === e.value);
+              if(sIndex === -1){
+                  const input = {
+                      pathologicalHistorySurgicalIntPathologicalHistoryId: global.patient.patientHistory.pathologicalHistory.id,
+                      pathologicalHistorySurgicalIntSurgicalInterventionId: e.value
+                  };
+                  const surgery = await API.graphql(graphqlOperation(createPathologicalHistorySurgicalInt, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); setLb_editpath(false);  });
+                  const _surgicalIntervention = surgery.data.createPathologicalHistorySurgicalInt;
+                  _itemsS.push(_surgicalIntervention);                    
+              }
+          });
+
+          global.patient.patientHistory.pathologicalHistory.surgicalInterventions.items = _itemsS;
+
+      }else{
+          Swal.fire({
+                  position: 'top-end',
+                  icon: 'error',
+                  title: 'Favor completar el campo Intervenciones Quirurgicas',
+                  showConfirmButton: false,
+                  timer: 1500
+          });
+          setLb_editpath(false);
+          return
+      }
+
+      if (allergiesToEdit !== null) {
+            
+          _itemsA.forEach( async (e) => {
+              const aIndex = allergiesToEdit.findIndex(x => x.value === e.allergies.id);
+              if(aIndex === -1){
+                  const deletedfd = await API.graphql(graphqlOperation(deletePatientAllergies, {input: {id: e.id}} ));
+                  _itemsA.splice(_itemsA.findIndex(v => v.id === e.id), 1);
+              }
+          });
+
+          allergiesToEdit.forEach(async (e) => {
+              const aIndex = _itemsA.findIndex(x => x.allergies.id === e.value);
+              if(aIndex === -1){
+                  const input = {
+                      patientAllergiesPathologicalHistoryId: global.patient.patientHistory.pathologicalHistory.id,
+                      patientAllergiesAllergiesId: e.value
+                  };
+                    
+                  const phallergies = await API.graphql(graphqlOperation(createPatientAllergies, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); setLb_editpath(false);  });
+                  const _allergie = phallergies.data.createPatientAllergies;
+                  _itemsA.push(_allergie);                    
+              }
+          });
+      }else{
+          Swal.fire({
+                  position: 'top-end',
+                  icon: 'error',
+                  title: 'Favor completar el campo Alergias',
+                  showConfirmButton: false,
+                  timer: 1500
+          });
+          setLb_editpath(false);
+          return
+      }
+
+      /* const ufamilyh = await API.graphql(graphqlOperation(updateFamilyHistoryForGlobal, {input: objectToEdit} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); familyActions.setlb_family(false); });
+
+      _items.splice(_items.findIndex(v => v.id === o.id), 1);
+      _items.push(ufamilyh.data.updateFamilyHistory);
+      
+      global.patient.patientHistory.familyHistory.items = _items;
+
+      setGlobalData(global); */
+      
+      setTimeout(() => {  
+          setMedicationsList();
+          setLb_editpath(false);
+          editP();
+      }, 2000);
   }
 
   if (loading) {
@@ -131,21 +231,21 @@ const PathologicalHistory = (
       <MDBRow className="mb-3">
         <MDBCol>
           <label htmlFor="diseases" className="mt-2" >Intervenciones Quirurgicas</label>
-          {!loading && <Select isMulti id="surgincalinterventions" options={_surgicalInterventions} defaultValue={surgicalInterventionsToEdit} onChange={ (v) => {setPatientSurgicalInterventions(v)}}/>}
+          {!loading && <Select isMulti id="surgincalinterventions" options={_surgicalInterventions} defaultValue={surgicalInterventionsToEdit} onChange={ (v) => {setSurgicalInterventionsToEdit(v)}}/>}
           {loading && 
               <div style={{marginLeft: 10}} className="spinner-border spinner-border-sm" role="status"></div>
           }
         </MDBCol>
         <MDBCol>
           <label htmlFor="diseases" className="mt-2" >Alergias</label>
-          {!loading && <Select isMulti id="allergies" options={_allergies} defaultValue={allergiesToEdit} onChange={ (v) => {setPatientAllergies(v)}}/>}
+          {!loading && <Select isMulti id="allergies" options={_allergies} defaultValue={allergiesToEdit} onChange={ (v) => {setAllergiesToEdit(v)}}/>}
           {loading && 
               <div style={{marginLeft: 10}} className="spinner-border spinner-border-sm" role="status"></div>
           }
         </MDBCol>
       </MDBRow>
       <MDBRow>
-        <MDBBtn onClick={editP} disabled={lb_editpath} className="btn btn-primary btn-sm">
+        <MDBBtn onClick={editPathological} disabled={lb_editpath} className="btn btn-primary btn-sm">
             {!lb_editpath && <MDBIcon icon="save" size="2x"/>}
             {lb_editpath && 
               <div className="spinner-border spinner-border-sm" role="status">
