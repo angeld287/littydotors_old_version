@@ -22,36 +22,37 @@ const Pathological = ({
 		var surgical = [];
 		var medicines = [];
 		var allergies = [];
-
+    var s = 0;
+    var m = 0;
+    var a = 0;
     if (data.surgicalInterventions !== null && data.surgicalInterventions !== undefined) {
       data.surgicalInterventions.items.forEach((item) => {
+        s = s + 1;
         surgical.push({
+          number: s,
           name: item.surgicalIntervention.name,
         });
       });
-    }else{
-      console.log(pathological);
     }
 		
     if (data.patientMedications !== null && data.patientMedications !== undefined) {
       data.patientMedications.items.forEach((item) => {
+        m = m + 1;
         medicines.push({
+          number: m,
           name: item.medications.name +" - "+ item.drug_concentration,
         });
       });
-    }else{
-      console.log(pathological);
     }
-
 
     if (data.patientAllergies !== null && data.patientAllergies !== undefined) {
       data.patientAllergies.items.forEach((item) => {
+        a = a + 1;
         allergies.push({
+          number: a,
           name: item.allergies.name,
         });
       });
-    }else{
-      console.log(pathological);
     }
 
     setSurgicalInterventions(surgical);
@@ -59,9 +60,9 @@ const Pathological = ({
     setAllergies(allergies);
 	};
 
-  const _surgical = [ { label: 'Intervencion', field: 'name', sort: 'asc' }];
-  const _medications = [ { label: 'Medicamentos', field: 'name', sort: 'asc' }];
-  const _allergies = [ { label: 'Alergias', field: 'name', sort: 'asc' }];
+  const _surgical = [ { label: <MDBIcon size="2x" icon="cut" className="blue-text" />, field: 'number', width: 10}, { label: 'Intervenciones Quirurgicas', field: 'name', width: '80%' }];
+  const _medications = [ { label: <MDBIcon size="2x" icon="list-ol" className="blue-text" />, field: 'number', width: 10 }, { label: 'Medicamentos', field: 'name', width: '80%' }];
+  const _allergies = [ { label: <MDBIcon size="2x" icon="allergies" className="blue-text" />, field: 'number', width: 10 }, { label: 'Alergias', field: 'name', width: '80%' }];
 
 
   return (

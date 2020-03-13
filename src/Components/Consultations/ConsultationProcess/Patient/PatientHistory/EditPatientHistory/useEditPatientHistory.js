@@ -13,12 +13,18 @@ import {
         createPatientAllergies,
         createPatientHistory,
         createNonPathologicalHistory,
+        updatePatient,
+        deleteFamilyHistory,
     } from '../../../../../../graphql/mutations';
+
+import { updatePatientaddPatientHistory } from '../../../../../../graphql/custom-mutations';
+
+import usePatientHistory from '../usePatientHistory';
 
 import { MDBBtn, MDBIcon } from 'mdbreact';
 import Swal from 'sweetalert2';
 
-const useNewPatientHistory = (global, setGlobalData) => {
+const useEditPatientHistory = (global, setGlobalData, setList) => {
     const [ loading, setLoading ] = useState(false);
     const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
@@ -34,21 +40,32 @@ const useNewPatientHistory = (global, setGlobalData) => {
 	const [ familyTable, setFamilyTable ] = useState([]);
 	const [ familyModal, setFamilyModal ] = useState(false);
 	const [ familyEditObject, setFamilyEditObject ] = useState({});
+    const [ lb_family, setlb_family ] = useState(false);
 
     const [ nonPath, setNonPath ] = useState([]);
 	const [ nonPathTable, setNonPathTable ] = useState([]);
 	const [ nonPathModal, setNonPathModal ] = useState(false);
-	const [ nonPathEditObject, setNonPathEditObject ] = useState({});
+    const [ nonPathEditObject, setNonPathEditObject ] = useState({});
+    const [ lb_nonpath, setlb_nonpath ] = useState(false);
+    
 
+    const [ medication, setMedication ] = useState([]);
+	const [ medicationTable, setMedicationTable ] = useState([]);
+	const [ medicationModal, setMedicationModal ] = useState(false);
+    const [ medicationEditObject, setMedicationEditObject ] = useState({});
+    const [ lb_med, setlb_med ] = useState(false);
+    
 
+    const { setData, setTest, test } = usePatientHistory();
 
     useEffect(() => {
         let didCancel = false;
 		let api = {};
 
         const fetch = async () => {
+            
             try {
-				const _medications = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
+				/* const _medications = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
 				const _allergies = await API.graphql(graphqlOperation(listAllergys, {limit: 400}));
 				const _surgicalinterventions = await API.graphql(graphqlOperation(listSurgicalInterventions, {limit: 400}));
 				const _diseases = await API.graphql(graphqlOperation(listDiseases, {limit: 400}));
@@ -62,11 +79,12 @@ const useNewPatientHistory = (global, setGlobalData) => {
                     nonpathfrequencies: _nonpath.data.listCategorys.items.filter(x => x.module === "NonPathFrequency"),
                     nonpathtypes: _nonpath.data.listCategorys.items.filter(x => x.module === "NonPathType"),
                     familytypes: _nonpath.data.listCategorys.items.filter(x => x.module === "FamilyHistory"),
-                };
+                }; */
 
                 setApi(api);
                 createdFamily();
                 createdNonPath();
+                createdMedication();
                 global.patientHistory = {
                     notEmpty: true,
                     api: api,
@@ -170,7 +188,6 @@ const useNewPatientHistory = (global, setGlobalData) => {
         createdNonPath();
     }
 
-
     //funciones de datos de antecedentes familiares
     const toggleFamily = () => {
         setFamilyModal(!familyModal)
@@ -212,12 +229,22 @@ const useNewPatientHistory = (global, setGlobalData) => {
     }
 
     const removeFamily = async (id) => {
+        setlb_family(true);
         const result = await Swal.fire({ title: '¿Desea eliminar el elemento?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Eliminar', cancelButtonText: 'Cancelar'});
         if (result.value) {
-            const _items = family;
+            const _items = global.patient.patientHistory.familyHistory.items;
+            
+            API.graphql(graphqlOperation(deleteFamilyHistory, {input: {id: id}} ));
             _items.splice(_items.findIndex(v => v.id === id), 1);
-            setFamily(_items);
-            createdFamily();
+
+            global.patient.patientHistory.familyHistory.items = _items;
+
+            setGlobalData(global);
+            
+            setTimeout(() => {  
+                setList();
+                setlb_family(false);   
+            }, 2000);
         }
     }
 
@@ -238,92 +265,128 @@ const useNewPatientHistory = (global, setGlobalData) => {
         createdFamily();
     }
 
-    const onSubmit = async (i) => {  
-        setLoadingButton(true);      
-        global.patient.patientHistory = {
-            pathologicalHistory : { patientMedications: patientMedications, patientAllergies: patientAllergies, surgicalInterventions: patientSurgicalInterventions },
-            familyHistory : family,
-            nonPathologicalHistory : nonPath 
-        };                
-        try {
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //PATHOLOGICAL
-                 const pathological = await API.graphql(graphqlOperation(createPathologicalHistory, { input: {  } }));
-
-                patientMedications.forEach(async (e) => {
-                    const input = {
-                        patientMedicationsPathologicalHistoryId: pathological.data.createPathologicalHistory.id,
-                        patientMedicationsMedicationsId: e.id
-                    };
-                    const medications = await API.graphql(graphqlOperation(createPatientMedications, {input: input} ));
-                });
-
-                patientAllergies.forEach(async (e) => {
-                    const input = {
-                        patientAllergiesPathologicalHistoryId: pathological.data.createPathologicalHistory.id,
-                        patientAllergiesAllergiesId: e.id
-                    };
-                    const allergies = await API.graphql(graphqlOperation(createPatientAllergies, {input: input} ));
-                });
-
-                patientSurgicalInterventions.forEach(async (e) => {
-                    const input = {
-                        pathologicalHistorySurgicalIntPathologicalHistoryId: pathological.data.createPathologicalHistory.id,
-                        pathologicalHistorySurgicalIntSurgicalInterventionId: e.id
-                    };
-                    const surgery = await API.graphql(graphqlOperation(createPathologicalHistorySurgicalInt, {input: input} ));
-                });
-
-
-            //PATIENT HISTORY
-                const patienth = await API.graphql(graphqlOperation(createPatientHistory, {input: { patientHistoryPathologicalHistoryId: pathological.data.createPathologicalHistory.id}} ));
-
-            //NON PATHOLOGICAL
-                nonPath.forEach(async (e) => {
-                    const input = {
-                        active: e.active,
-                        frequency: e.frequency.value,
-                        comment: e.comment,
-                        patientHistoryNonPathologicalHistoryId: patienth.data.createPatientHistory.id,
-                        nonPathologicalHistoryTypeId: e.type.value,
-                    };
-
-                    const npnpathological = await API.graphql(graphqlOperation(createNonPathologicalHistory, {input: input} ));
-                });
-
-            //FAMILY
-
-                family.forEach(async (e) => {
-                    const input = {
-                        alive: e.alive,
-                        comment: e.comment,
-                        patientHistoryFamilyHistoryId: patienth.data.createPatientHistory.id,
-                        familyHistoryRelationshipId: e.relationship.value,
-                    };
-
-                    const cfamilyh = await API.graphql(graphqlOperation(createFamilyHistory, {input: input} ));
-                    e.diseases.forEach(async (d) => {
-                        const input = {
-                            familyDetailsDiseasesFamilyId: cfamilyh.data.createFamilyHistory.id,
-                            familyDetailsDiseasesDiseasesId: d.value,
-                        };
-                        const phdiseases = await API.graphql(graphqlOperation(createFamilyDetailsDiseases, {input: input} ));
-                    });
-                });
-            
-            setLoadingButton(false);
-			await Swal.fire('Correcto', 'El elemento se ha creado correctamente', 'success');
-			
-		} catch (error) {
-            setLoadingButton(false);
-			Swal.fire('Ha ocurrido un error', 'Intentelo de nuevo mas tarde');
-		}
+    //funciones de medicamentos
+    const toggleMedication = () => {
+        setMedicationModal(!medicationModal)
+        setEdit(false);
     }
 
-    return { createNonPath, loadingButton, onSubmit, setPatientAllergies, setPatientMedications, api, handleSubmit, formState, register, editNonPath,
-             setPatientSurgicalInterventions, errors, nonPathTable, nonPathModal, toggleNonPath, edit, nonPathEditObject, toggleFamily, familyModal,
-             familyTable, createFamily, removeFamily, editFamily, familyEditObject };
+    const createdMedication = () => {
+		var formated = [];
+		medication.forEach((item) => {
+			formated.push({
+				medication: item.medication.label,
+				drug_concentration: item.drug_concentration,
+				options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); removeMedication(item.id)}}><MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); openMedicationModalToEdit(item)}}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
+			});
+		});
+        const medicationtable = {
+			columns: [ { label: 'Medicamento', field: 'medication', sort: 'asc' }, { label: 'Concentracion', field: 'drug_concentration', sort: 'asc' }, { label: 'Opciones', field: 'options', sort: 'disabled' }],
+			rows: formated
+		};
+        setMedicationTable(medicationtable);
+        global.patientHistory.medication = {
+            table: medicationtable,
+            items: medication
+        };
+        setGlobalData(global);
+	};
+
+    const createMedication = (o) => {
+        const _items = medication;
+        _items.push(o);        
+        setMedication(_items);
+        createdMedication();
+    }
+
+    const removeMedication = async (id) => {
+        const result = await Swal.fire({ title: '¿Desea eliminar el elemento?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Eliminar', cancelButtonText: 'Cancelar'});
+        if (result.value) {
+            const _items = medication;
+            _items.splice(_items.findIndex(v => v.id === id), 1);
+            setMedication(_items);
+            createdMedication();
+        }
+    }
+
+    const openMedicationModalToEdit = (o) => {
+        setEdit(true);
+        setMedicationModal(true);
+        setMedicationEditObject(o);
+    }
+
+    const editMedication = (o) => {
+        const _items = medication;
+
+        _items.splice(_items.findIndex(v => v.patientMedicationsMedicationsId === o.patientMedicationsMedicationsId), 1);
+
+        _items.push(o);
+        setMedication(_items);
+        setEdit(false);
+        createdMedication();
+    }
+
+    const nonPathActions = {
+        createNonPath: createNonPath, 
+        toggleNonPath: toggleNonPath, 
+        nonPathModal: nonPathModal, 
+        nonPathTable: nonPathTable, 
+        removeNonPath: removeNonPath,
+        editNonPath: editNonPath,
+        nonPathEditObject: nonPathEditObject, 
+        lb_nonpath: lb_nonpath,
+        setlb_nonpath: setlb_nonpath,
+        openNonPathModalToEdit: openNonPathModalToEdit,
+    };
+
+    const familyActions = {
+        createFamily: createFamily, 
+        toggleFamily: toggleFamily, 
+        familyModal: familyModal,
+        familyTable: familyTable,
+        removeFamily: removeFamily, 
+        editFamily: editFamily, 
+        familyEditObject: familyEditObject,
+        lb_family: lb_family,
+        setlb_family: setlb_family,
+        openFamilyModalToEdit: openFamilyModalToEdit
+    };
+
+    const medicationActions = {
+        createMedication: createMedication, 
+        toggleMedication: toggleMedication, 
+        medicationModal: medicationModal,
+        medicationTable: medicationTable, 
+        removeMedication: removeMedication, 
+        editMedication: editMedication, 
+        medicationEditObject: medicationEditObject,
+        lb_med: lb_med,
+        setlb_med: setlb_med,
+        openMedicationModalToEdit: openMedicationModalToEdit,
+
+    };
+
+    return {  
+                handleSubmit, 
+                formState, 
+                register, 
+                errors, 
+
+                api, 
+                edit, 
+                loadingButton, 
+
+                setPatientAllergies, 
+                setPatientMedications, 
+                setPatientSurgicalInterventions, 
+                
+                nonPathActions,
+                familyActions,
+                medicationActions,
+            };
     
 };
 
-export default useNewPatientHistory;
+export default useEditPatientHistory;

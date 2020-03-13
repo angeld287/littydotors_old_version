@@ -6,15 +6,16 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
 import Select from 'react-select';
 import Swal from 'sweetalert2';
 
-const uuidv1 = require('uuid/v1');
+import useFamilyHistory from './useFamilyHistory';
 
 const FamilyHistory = ({
+    familyActions: familyActions,
     toggleFamily: toggleFamily,
-    api: api,
-    createFamily: createFamily,
-    editFamily: editFamily,
     edit: edit,
-    familyEditObject: familyEditObject
+    familyEditObject: familyEditObject,
+    global: global,
+    setGlobalData: setGlobalData,
+    setList: setList,
 }) => {
 
   const [ id, setId ] = useState("");
@@ -23,20 +24,38 @@ const FamilyHistory = ({
   const [ comment, setComment ] = useState("");
   const [ alive, setAlive ] = useState(true);
 
+  const [ diseasesToEdit, setDiseasesToEdit ] = useState([]);
+
+
+  const { api, createFamily, loading, editFamily} = useFamilyHistory(global, setGlobalData, setList, toggleFamily, familyActions);
+
   const _diseases = [];
-  api.diseases.forEach(element => {
-    var item = {value: element.id, label: element.name};
-    _diseases.push(item);
-  });
+  if (api.diseases !== undefined) {
+    api.diseases.forEach(element => {
+      var item = {value: element.id, label: element.name};
+      _diseases.push(item);
+    }); 
+  }
 
   const relationships = [];
-  api.familytypes.forEach(element => {
-    var item = {value: element.id, label: element.name};
-    relationships.push(item);
-  });
+  if (api.familytypes !== undefined) {
+    api.familytypes.forEach(element => {
+      var item = {value: element.id, label: element.name};
+      relationships.push(item);
+    });
+  }
 
-  useEffect(() => {            
+  useEffect(() => {       
+    
         if(edit){
+
+          const _d = []
+          familyEditObject.diseases.items.forEach( e => {
+            _d.push({value: e.diseases.id, label: e.diseases.name})
+          })
+
+          setDiseasesToEdit(_d);
+          
           setId(familyEditObject.id);
           setRelationship(familyEditObject.relationship);          
           setDiseases(familyEditObject.diseases);
@@ -62,7 +81,6 @@ const FamilyHistory = ({
     }
 
     if ((relationship.length < 1) || (diseases.length < 1)) {
-        //Swal.fire('Campo Obligatorio', 'Favor completar el campo Lugar de Evento', 'error');
         Swal.fire({
               position: 'top-end',
               icon: 'error',
@@ -72,10 +90,9 @@ const FamilyHistory = ({
         });
         return
     }
-
     if (create) {
        createFamily({
-           id: uuidv1(),
+           //id: uuidv1(),
            date: new Date(),
            diseases: diseases,
            relationship: relationship,
@@ -105,16 +122,21 @@ const FamilyHistory = ({
 
   const setAliveD = () => { setAlive(!alive); }
 
-  const rindex = !edit ? null : relationships.findIndex(v => v.value === familyEditObject.relationship.value);
+  const rindex = !edit ? null : relationships.findIndex(v => v.value === familyEditObject.relationship.id);
   const dlist = !edit ? null : familyEditObject.diseases;
+
+  
   return (
     <MDBContainer>
         <MDBModalHeader toggle={toggleFamily}>Crear Antecedente Familiar</MDBModalHeader>
         <MDBModalBody>
           <MDBRow className="mb-3">
             <MDBCol md="8" >
-              <label htmlFor="relationship" className="mt-2" >Parentesco</label>
-              <Select id="relationship" options={relationships} defaultValue={relationships[rindex]} onChange={ (v) => {setRelationship(v)}} />
+              <label htmlFor="relationship" className="mt-2" >Parentesco </label>
+              {!loading && <Select isLoading={loading} id="relationship" options={relationships} defaultValue={relationships[rindex]} onChange={ (v) => {setRelationship(v)}} />}
+              {loading && 
+                  <div style={{marginLeft: 10}} className="spinner-border spinner-border-sm" role="status"></div>
+              }
             </MDBCol>
             <MDBCol md="4" >
               <div className="custom-control custom-checkbox">
@@ -125,7 +147,10 @@ const FamilyHistory = ({
           </MDBRow>
 
           <label htmlFor="diseases" className="mt-2" >Enfermedades</label>
-          <Select isMulti id="diseases" options={_diseases} defaultValue={dlist} onChange={ (v) => {setDiseases(v)}}/>
+          {!loading && <Select isMulti id="diseases" options={_diseases} defaultValue={diseasesToEdit} onChange={ (v) => {setDiseases(v)}}/>}
+          {loading && 
+              <div style={{marginLeft: 10}} className="spinner-border spinner-border-sm" role="status"></div>
+          }
           <div className="form-group">
             <label htmlFor="comment">Comentario</label>
             <textarea name="comment" className="form-control" id="comment" rows="3" value={comment} onChange={ (e) => {setComment(e.target.value)}}></textarea>
