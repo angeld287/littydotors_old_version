@@ -19,19 +19,14 @@ const PatientDetails = (
                    ) => {
 
   const [ loadingButton, setLoadingButton ] = useState(false);
-  const [ mhcreated, setMhcreated ] = useState(global.medicalConsultation.medicalHistory.reason === "N/A");
+  const [ withoutReason, setWithoutReason ] = useState(global.medicalConsultation.medicalHistory.reason === "N/A");
   const [ reason, setReason ] = useState(global.medicalConsultation.medicalHistory.reason);
+  const [ edit, setEdit ] = useState(false);
 
 
   const { loadingHistory, data } = UsePatientDetails(childProps, patientData, global, setGlobalData);
   const age = moment(new Date()).format('YYYY') - moment(patientData.birthdate).format('YYYY');
-
-  const Buttons = (
-    <div>
-      {mhcreated &&<MDBBtn className="btn btn-outline-blue" onClick={addConsultationReason} disabled={reason !== "N/A"}>Agregar</MDBBtn>}
-      {!mhcreated &&<MDBBtn className="btn btn-outline-blue" onClick={addConsultationReason} >Editar</MDBBtn>}
-    </div>
-  );
+  const Editing = () => {setEdit(!edit)}
 
   const addConsultationReason = async () => {
     console.log(global.medicalConsultation.medicalHistory.reason);
@@ -50,7 +45,16 @@ const PatientDetails = (
     setGlobalData(global);
 
     setLoadingButton(false); */
+    setWithoutReason(false);
   }
+
+  const Buttons = (
+    <div>
+      {withoutReason &&<MDBBtn className="btn btn-outline-blue" onClick={addConsultationReason} disabled={reason !== "N/A"}><MDBIcon icon="plus" size="2x" /></MDBBtn>}
+      {(!withoutReason && !edit) &&<MDBBtn className="btn btn-outline-blue" onClick={Editing} ><MDBIcon icon="edit" size="2x" /></MDBBtn>}
+      {(!withoutReason && edit) &&<MDBBtn className="btn btn-outline-blue" onClick={Editing} ><MDBIcon icon="save" size="2x" /></MDBBtn>}
+    </div>
+  );
 
   return (
     <div>
@@ -71,7 +75,7 @@ const PatientDetails = (
           <MDBCard style={{ width: '100%' }}>
             <h4 className="text-center font-weight-bold pt-4 pb-2 mb-2"><strong>Razon de Consulta Medica</strong></h4>
             <div style={{marginRight: 30, marginLeft: 30}}>
-              <MDBInput type="textarea" label="Describa la razon de consulta" value={reason} disabled={!mhcreated} rows="6" onChange={ e => {e.preventDefault(); setReason(e.target.value)}}/>
+              <MDBInput type="textarea" label="Describa la razon de consulta" value={reason} disabled={!withoutReason} rows="6" onChange={ e => {e.preventDefault(); setReason(e.target.value)}}/>
             </div>
             <div className="text-center mt-1">
                   {!loadingButton && 
