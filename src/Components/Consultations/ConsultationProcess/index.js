@@ -8,7 +8,7 @@ import useConsultations from '../useConsultations';
 import useConsultationProcess from './useConsultationProcess';
 import PatientDetails from './Patient/PatientDetail';
 import NewPatient from './Patient/newPatient';
-import NewPhysicalExploration from './MedicalHistory/NewPhysicalExploration';
+import PhysicalExploration from './MedicalHistory/PhysicalExploration';
 import NewPatientHistory from './Patient/PatientHistory/NewPatientHistory';
 import PatientHistory from './Patient/PatientHistory';
 import NewPostConsultationsActivity from './MedicalHistory/NewPostConsultationsActivity';
@@ -17,7 +17,7 @@ import NewPostConsultationsActivity from './MedicalHistory/NewPostConsultationsA
 const ConsultationProcess = ({childProps:childProps}) => {
   const { consultationObject, error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, setCreateNewPatient, patientData,
           formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName, setGlobalData, global,
-          setHasPatientHistory, hasPatientHistory, patientHistory, setPatientHistory } = useConsultationProcess();
+          setHasPatientHistory, hasPatientHistory, patientHistory, setPatientHistory, _reason } = useConsultationProcess();
 
   const { createConsultation } = useConsultations();
   
@@ -66,6 +66,7 @@ const ConsultationProcess = ({childProps:childProps}) => {
                         createConsultation={createConsultation} 
                         setCreateNewPatient={setCreateNewPatient} 
                         name={createNewPatientName}
+                        reason={_reason}
                         childProps={childProps}
                       />
                     )
@@ -90,7 +91,7 @@ const ConsultationProcess = ({childProps:childProps}) => {
             {formActivePanel == 3 &&
             (<MDBCol md="12">
               <h3 className="font-weight-bold pl-0 my-4"><strong>Exploracion Fisica</strong></h3>
-                <NewPhysicalExploration
+                <PhysicalExploration
                   patientData={patientData}
                   childProps={childProps}
                   global={global}

@@ -223,6 +223,31 @@ export const getMedicalConsultation = /* GraphQL */ `
         physicalExploration {
           id
           general_exploration
+          vitalsign {
+              id
+              blood_pressure
+              breathing
+              pulse
+              temperature
+              doctor
+              secretary
+              patient
+              owner
+          }
+          regionalExploration {
+              id
+              head
+              neck
+              thorax
+              abdomen
+              members
+              genitals
+              others
+              doctor
+              secretary
+              patient
+              owner
+            }
           doctor
           secretary
           patient

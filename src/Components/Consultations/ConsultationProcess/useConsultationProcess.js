@@ -11,6 +11,7 @@ const useConsultationProcess = () => {
     const [ hasPatientHistory, setHasPatientHistory ] = useState(false);
     const [ patientHistory, setPatientHistory ] = useState({});
     const [ createNewPatientName, setCreateNewPatientName ] = useState("");
+    const [ _reason, setReason ] = useState("");
     const [ formActivePanelChanged, setFormActivePanelChanged ] = useState(false);
     const [ formActivePanel, setFormActivePanel ] = useState(0);
     const [ selectedDate, setSelectedDate ] = useState(new Date());
@@ -59,6 +60,7 @@ const useConsultationProcess = () => {
                 if (consultation === "null") {
                     setCreateNewPatient(true);
                     setCreateNewPatientName(patient);
+                    setReason(localStorage.getItem('consultationReason'));
                     setLoading(false);
                 }else{
                     API.graphql(graphqlOperation(getMedicalConsultation, { id: consultation}))
@@ -80,6 +82,7 @@ const useConsultationProcess = () => {
                             patient: r.data.getMedicalConsultation.patient,
                             medicalHistory: medicalHistory,
                             patientHistory: patientHistory,
+                            medicalConsultation: r.data.getMedicalConsultation,
                         });
                         setHasPatientHistory(r.data.getMedicalConsultation.patient.patientHistory !== null ? true : false);
                         setPatientData(r.data.getMedicalConsultation.patient);
@@ -116,7 +119,7 @@ const useConsultationProcess = () => {
 
     return { consultationObject, setGlobalData, global, error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, patientData,
              formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName, setCreateNewPatient,
-             setHasPatientHistory, hasPatientHistory, patientHistory, setPatientHistory  };
+             setHasPatientHistory, hasPatientHistory, patientHistory, setPatientHistory, _reason  };
 };
 
 export default useConsultationProcess;

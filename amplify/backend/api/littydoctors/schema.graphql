@@ -596,7 +596,7 @@ type RegionalExploration
     patient: String
 }
 
-type Category
+type Category 
     @model 
     @auth(rules: [
         # Defaults to use the "owner" field.
