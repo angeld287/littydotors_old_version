@@ -5,7 +5,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
 import { API, graphqlOperation } from 'aws-amplify';
 
 import UsePatientDetails from './usePatientDetails';
-import { createMedicalHistory, updateMedicalHistory } from '../../../../../graphql/mutations';
+import { updateMedicalHistory } from '../../../../../graphql/mutations';
 import moment from 'moment';
 import Swal from 'sweetalert2';
 
@@ -26,33 +26,39 @@ const PatientDetails = (
 
   const { loadingHistory, data } = UsePatientDetails(childProps, patientData, global, setGlobalData);
   const age = moment(new Date()).format('YYYY') - moment(patientData.birthdate).format('YYYY');
-  const Editing = () => {setEdit(!edit)}
 
-  const addConsultationReason = async () => {
-    console.log(global.medicalConsultation.medicalHistory.reason);
 
-    console.log(localStorage.getItem('consultationReason'));
-    
-    /* setLoadingButton(true);
+  const EditingReason = () => {  
+    setEdit(true);
+  }
 
-    //const medicalHistory = global.medicalConsultation.medicalHistory;
+  const updateReason = async () => {
+    setLoadingButton(true);
+    const medicalHistory = global.medicalConsultation.medicalHistory;
     const input = {};
     input.reason = reason;
-    input.medicalHistoryPatientId = global.patient.id;
-    const cmh = await API.graphql(graphqlOperation(createMedicalHistory, {input: input} )).catch( e => { throw new SyntaxError("Error GraphQL"); console.log(e); setLoadingButton(false); });
-    const medicalHistory = cmh.data.createMedicalHistory;
-    global.medicalConsultation.medicalHistory = medicalHistory;
+    input.id = medicalHistory.id;
+    const cmh = await API.graphql(graphqlOperation(updateMedicalHistory, {input: input} )).catch( e => {console.log(e); setLoadingButton(false); throw new SyntaxError("Error GraphQL"); });
+    global.medicalConsultation.medicalHistory = cmh.data.updateMedicalHistory;
     setGlobalData(global);
+    setLoadingButton(false);
+  }
 
-    setLoadingButton(false); */
+  const saveReason = () => {
+    updateReason();
+    setEdit(false);
+  }
+
+  const addReason = () => {
+    updateReason();
     setWithoutReason(false);
   }
 
   const Buttons = (
     <div>
-      {withoutReason &&<MDBBtn className="btn btn-outline-blue" onClick={addConsultationReason} disabled={reason !== "N/A"}><MDBIcon icon="plus" size="2x" /></MDBBtn>}
-      {(!withoutReason && !edit) &&<MDBBtn className="btn btn-outline-blue" onClick={Editing} ><MDBIcon icon="edit" size="2x" /></MDBBtn>}
-      {(!withoutReason && edit) &&<MDBBtn className="btn btn-outline-blue" onClick={Editing} ><MDBIcon icon="save" size="2x" /></MDBBtn>}
+      {withoutReason &&<MDBBtn className="btn btn-outline-blue" onClick={addReason} disabled={reason === "N/A"  && reason === ""}><MDBIcon icon="plus" size="2x" /></MDBBtn>}
+      {(!withoutReason && !edit) &&<MDBBtn className="btn btn-outline-blue" onClick={EditingReason} disabled={reason === ""}><MDBIcon icon="edit" size="2x" /></MDBBtn>}
+      {(!withoutReason && edit) &&<MDBBtn className="btn btn-outline-blue" onClick={saveReason} disabled={reason === ""}><MDBIcon icon="save" size="2x" /></MDBBtn>}
     </div>
   );
 
@@ -75,7 +81,7 @@ const PatientDetails = (
           <MDBCard style={{ width: '100%' }}>
             <h4 className="text-center font-weight-bold pt-4 pb-2 mb-2"><strong>Razon de Consulta Medica</strong></h4>
             <div style={{marginRight: 30, marginLeft: 30}}>
-              <MDBInput type="textarea" label="Describa la razon de consulta" value={reason} disabled={!withoutReason} rows="6" onChange={ e => {e.preventDefault(); setReason(e.target.value)}}/>
+              <MDBInput type="textarea" label="Describa la razon de consulta" value={reason} disabled={!withoutReason && !edit} rows="6" onChange={ e => {e.preventDefault(); setReason(e.target.value)}}/>
             </div>
             <div className="text-center mt-1">
                   {!loadingButton && 
