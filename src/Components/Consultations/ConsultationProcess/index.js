@@ -11,7 +11,7 @@ import NewPatient from './Patient/newPatient';
 import PhysicalExploration from './MedicalHistory/PhysicalExploration';
 import NewPatientHistory from './Patient/PatientHistory/NewPatientHistory';
 import PatientHistory from './Patient/PatientHistory';
-import NewPostConsultationsActivity from './MedicalHistory/NewPostConsultationsActivity';
+import NewPostConsultationsActivity from './MedicalHistory/PostConsultationsActivity/NewPostConsultationsActivity';
 
 
 const ConsultationProcess = ({childProps:childProps}) => {
