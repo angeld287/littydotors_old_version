@@ -3,7 +3,9 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable } from "mdbreact";
 
 import usePhysicalExploration from './usePhysicalExploration';
+import ViewPhysicalExploration from './ViewPhysicalExploration';
 import NewPhysicalExploration from './NewPhysicalExploration';
+import EditPhysicalExploration from './EditPhysicalExploration';
 
 
 
@@ -11,17 +13,12 @@ const PhysicalExploration = ({
     global: global,
     setGlobalData: setGlobalData
 }) => {
-  const { actions } = usePhysicalExploration(global, setGlobalData);
-
-  const medicalHistory = global.medicalConsultation.medicalHistory;
-
-  const [ _new, setNew ] = useState( (medicalHistory === null) && (medicalHistory !== null ? (medicalHistory.physicalExploration !== null) : true));
-  const [ _edit, setEdit ] = useState(false);
+  const { actions, _new , _edit, setEdit, editLoading, fields, editPhysicalExploration, setEditData} = usePhysicalExploration(global, setGlobalData);
 
   useEffect(() => {
       let didCancel = false;
 
-      const fetch = async () => {
+      const fetch = async () => {        
           try {
             } catch (error) {
           }
@@ -48,16 +45,21 @@ const PhysicalExploration = ({
 
       {/* Mostrar Datos de Exploracion Fisica */}
       {(!_new && !_edit)&&
-          <div className="form-group">
-            <label htmlFor="general_exploration">Show</label>
-          </div>
+          <ViewPhysicalExploration
+              global={global}
+              setEdit={setEdit}
+              editLoading={editLoading}
+          />
       }
 
       {/* Editar Datos de Exploracion Fisica */}
       {(!_new && _edit)&&
-          <div className="form-group">
-            <label htmlFor="general_exploration">Edit</label>
-          </div>
+          <EditPhysicalExploration
+              editPhysicalExploration={editPhysicalExploration}
+              fields={fields}
+              editLoading={editLoading}
+              setEditData={setEditData}
+          />
       }
       
     </MDBContainer>

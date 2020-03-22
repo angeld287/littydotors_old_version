@@ -4,8 +4,6 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
 
 import usePhysicalExploration from '../usePhysicalExploration';
 
-
-
 const NewPhysicalExploration = ({
     global: global,
     setGlobalData: setGlobalData,
