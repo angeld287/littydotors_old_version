@@ -208,13 +208,39 @@ export const getMedicalConsultation = /* GraphQL */ `
       postConsultationsActivity {
         id
         medicalpres {
-          nextToken
+          items {
+            id
+            date
+            frequency
+            duration
+            comment
+            medications {
+              id
+              name
+            }
+          }
         }
         medicalAnalysis {
-          nextToken
+          items {
+            id
+            state
+            date
+            medicalAnalysis{
+              id
+              name
+            }
+          }
         }
         surgicalIntervention {
-          nextToken
+          items {
+            id
+            state
+            date
+            surgicalIntervention{
+              id
+              name
+            }
+          }
         }
       }
       medicalHistory {

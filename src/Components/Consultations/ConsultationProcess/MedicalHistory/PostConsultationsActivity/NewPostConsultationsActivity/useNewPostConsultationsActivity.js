@@ -3,10 +3,13 @@ import { useHistory, useParams } from 'react-router-dom';
 import { API, graphqlOperation } from 'aws-amplify';
 import useForm from 'react-hook-form';
 import { listMedicalAnalysiss, listSurgicalInterventions, listMedicines } from '../../../../../../graphql/queries';
+import { createPostConsultActMedAnalysis, createMedicalPrescription, createPostConsultActSurgicalInt, createPostConsultationsActivity,
+        updateMedicalConsultation } from '../../../../../../graphql/mutations';
+import { updateMedicalConsultationForPCAGlobal } from '../../../../../../graphql/custom-mutations';
 import { MDBBtn, MDBIcon } from 'mdbreact';
 import Swal from 'sweetalert2';
 
-const useNewPostConsultationsActivity = (global, setGlobalData) => {
+const useNewPostConsultationsActivity = (global, setGlobalData, setNew) => {
     const [ loading, setLoading ] = useState(false);
     const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
@@ -102,7 +105,7 @@ const useNewPostConsultationsActivity = (global, setGlobalData) => {
     };
     
 
-    const createMedicalPrescription = (o) => {
+    const _createMedicalPrescription = (o) => {
         const _items = items;
         _items.push(o);
         setItems(_items);
@@ -146,12 +149,63 @@ const useNewPostConsultationsActivity = (global, setGlobalData) => {
         createdPrescriptions();
     }
 
-    const onSubmit = (i) => {
-            console.log(i);
-            
+    const onSubmit = async (i) => {
+            setLoading(true);
+
+            const mpitems = [];
+            const maitems = [];
+            const siitems = [];
+            const pca = await API.graphql(graphqlOperation(createPostConsultationsActivity, {input: {}} )).catch( e => { console.log(e); setLoading(false); throw new SyntaxError("Error GraphQL"); });
+
+            //createMedicalPrescription
+            items.forEach(async (e) => {
+                //enum State { INSERTED APPROVED CONFIRMED PRESENT IN_PROCESS FINISHED REJECTED CANCELED DONE NOT_DONE }
+                const input = {};
+                input.frequency = String
+                input.duration = String
+                input.comment = String
+                input.postConsultationsActivityMedicalpresId = pca.data.createPostConsultationsActivity.id;
+                input.medicalPrescriptionMedicationsId = e.medication.value;
+                input.date = new Date();
+
+                const pcama = await API.graphql(graphqlOperation(createMedicalPrescription, {input: input} )).catch( e => { console.log(e); setLoading(false); throw new SyntaxError("Error GraphQL"); });
+            });
+
+            medicalAnalysis.forEach(async (e) => {
+                //enum State { INSERTED APPROVED CONFIRMED PRESENT IN_PROCESS FINISHED REJECTED CANCELED DONE NOT_DONE }
+                const input = {};
+
+                input.state = 'INSERTED';
+                input.date = new Date();
+                input.postConsultActMedAnalysisPcActivitiesId = pca.data.createPostConsultationsActivity.id;
+                input.postConsultActMedAnalysisMedicalAnalysisId = e.id;
+
+                const pcama = await API.graphql(graphqlOperation(createPostConsultActMedAnalysis, {input: input} )).catch( e => { console.log(e); setLoading(false); throw new SyntaxError("Error GraphQL"); });
+            });
+
+            surgicalIntervention.forEach(async (e) => {
+                const input = {};
+
+                input.state = 'INSERTED';
+                input.date = new Date();
+                input.postConsultActSurgicalIntPcActivitiesId = pca.data.createPostConsultationsActivity.id;
+                input.postConsultActSurgicalIntSurgicalInterventionId = e.id;
+
+                const pcsi = await API.graphql(graphqlOperation(createPostConsultActSurgicalInt, {input: input} )).catch( e => { console.log(e); setLoading(false); throw new SyntaxError("Error GraphQL"); });
+            });
+
+            const mcinput = {};
+            mcinput.medicalConsultationPostConsultationsActivityId = pca.data.createPostConsultationsActivity.id;
+            mcinput.id = global.medicalConsultation.id;
+            const mdco = await API.graphql(graphqlOperation(updateMedicalConsultationForPCAGlobal, {input: mcinput} )).catch( e => {console.log(e); setLoadingButton(false); throw new SyntaxError("Error GraphQL"); });
+
+            global.medicalConsultation.postConsultationsActivity = mdco.data.updateMedicalConsultation.postConsultationsActivity;
+            setGlobalData(global);
+            setNew(false);
+            setLoading(false);
     }
 
-    return { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention };
+    return { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, _createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention };
 };
 
 export default useNewPostConsultationsActivity;

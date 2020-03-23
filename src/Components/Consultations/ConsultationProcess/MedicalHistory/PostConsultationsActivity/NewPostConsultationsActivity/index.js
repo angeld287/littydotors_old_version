@@ -10,9 +10,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const NewPostConsultationsActivity = ({
     global: global,
-    setGlobalData: setGlobalData
+    setGlobalData: setGlobalData,
+    setNew: setNew,
 }) => {
-  const { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention } = useNewPostConsultationsActivity(global, setGlobalData);
+  const { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, _createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention } = useNewPostConsultationsActivity(global, setGlobalData, setNew);
 
   return (
     <MDBContainer>
@@ -33,7 +34,7 @@ const NewPostConsultationsActivity = ({
           <MDBModal isOpen={modal} toggle={toggle} size="lg">
             <NewMedicalPrescription
               toggle={toggle}
-              createMedicalPrescription={createMedicalPrescription}
+              createMedicalPrescription={_createMedicalPrescription}
               editMedicalPrescription={editMedicalPrescription}
               api={api}
               edit={edit}

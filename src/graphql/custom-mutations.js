@@ -198,3 +198,52 @@ export const updateNonPathologicalHistoryForGlobal = /* GraphQL */ `
     }
   }
 `;
+
+export const updateMedicalConsultationForPCAGlobal = /* GraphQL */ `
+  mutation UpdateMedicalConsultation(
+    $input: UpdateMedicalConsultationInput!
+    $condition: ModelMedicalConsultationConditionInput
+  ) {
+    updateMedicalConsultation(input: $input, condition: $condition) {
+      id
+      postConsultationsActivity {
+        id
+        medicalpres {
+          items {
+            id
+            date
+            frequency
+            duration
+            comment
+            medications {
+              id
+              name
+            }
+          }
+        }
+        medicalAnalysis {
+          items {
+            id
+            state
+            date
+            medicalAnalysis{
+              id
+              name
+            }
+          }
+        }
+        surgicalIntervention {
+          items {
+            id
+            state
+            date
+            surgicalIntervention{
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+`;

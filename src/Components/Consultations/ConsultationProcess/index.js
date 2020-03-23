@@ -11,7 +11,7 @@ import NewPatient from './Patient/newPatient';
 import PhysicalExploration from './MedicalHistory/PhysicalExploration';
 import NewPatientHistory from './Patient/PatientHistory/NewPatientHistory';
 import PatientHistory from './Patient/PatientHistory';
-import NewPostConsultationsActivity from './MedicalHistory/PostConsultationsActivity/NewPostConsultationsActivity';
+import PostConsultationsActivity from './MedicalHistory/PostConsultationsActivity';
 
 
 const ConsultationProcess = ({childProps:childProps}) => {
@@ -105,7 +105,7 @@ const ConsultationProcess = ({childProps:childProps}) => {
             {formActivePanel == 4 &&
             (<MDBCol md="12">
               <h3 className="font-weight-bold pl-0 my-4"><strong>Prescripciones y Estudios</strong></h3>
-                <NewPostConsultationsActivity
+                <PostConsultationsActivity
                   patientData={patientData}
                   childProps={childProps}
                   global={global}

@@ -11,7 +11,7 @@ const PostConsultationsActivity = ({
     global: global,
     setGlobalData: setGlobalData
 }) => {
-  const { actions, _new , _edit, setEdit, editLoading, fields, editPostConsultationsActivity, setEditData} = usePostConsultationsActivity(global, setGlobalData);
+  const { actions, setNew, _new , _edit, setEdit, editLoading, fields, editPostConsultationsActivity } = usePostConsultationsActivity(global, setGlobalData);
 
   useEffect(() => {
       let didCancel = false;
@@ -38,6 +38,7 @@ const PostConsultationsActivity = ({
               global={global}
               setGlobalData={setGlobalData}
               actions={actions}
+              setNew={setNew}
           />
       }
 
@@ -53,10 +54,8 @@ const PostConsultationsActivity = ({
       {/* Editar Datos de Exploracion Fisica */}
       {(!_new && _edit)&&
           <EditPostConsultationsActivity
-              editPhysicalExploration={editPhysicalExploration}
               fields={fields}
               editLoading={editLoading}
-              setEditData={setEditData}
           />
       }
       
