@@ -5,6 +5,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
 const EditPostConsultationsActivity = ({
     fields: fields,
     editLoading: editLoading,
+    api : api,
 }) => {
 
   useEffect(() => {

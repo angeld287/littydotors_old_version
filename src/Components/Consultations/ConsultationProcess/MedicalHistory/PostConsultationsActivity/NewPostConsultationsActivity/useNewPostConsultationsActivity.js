@@ -2,7 +2,6 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { API, graphqlOperation } from 'aws-amplify';
 import useForm from 'react-hook-form';
-import { listMedicalAnalysiss, listSurgicalInterventions, listMedicines } from '../../../../../../graphql/queries';
 import { createPostConsultActMedAnalysis, createMedicalPrescription, createPostConsultActSurgicalInt, createPostConsultationsActivity,
         updateMedicalConsultation } from '../../../../../../graphql/mutations';
 import { updateMedicalConsultationForPCAGlobal } from '../../../../../../graphql/custom-mutations';
@@ -22,59 +21,10 @@ const useNewPostConsultationsActivity = (global, setGlobalData, setNew) => {
     const [ prescriptionMedication, setPrescriptionMedication ] = useState([]);
     const [ api, setApi ] = useState([]);
 
-    const [ items, setItems ] = useState([]);
+    const [ items, setItems ] = useState();
     const [ table, setTable ] = useState([]);
     const [ modal, setModal ] = useState(false);
     const [ editObject, setEditObject ] = useState({});
-
-    useEffect(() => {
-        let didCancel = false;
-        let api = {};
-
-        const fetch = async () => {
-            try {
-                const _medicalanalysis = await API.graphql(graphqlOperation(listMedicalAnalysiss, {limit: 400}));
-                const _surgicalintervention = await API.graphql(graphqlOperation(listSurgicalInterventions, {limit: 400}));
-                const _medications = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
-
-                api = {
-                    medicalanalysis: _medicalanalysis.data.listMedicalAnalysiss.items,
-                    surgicalintervention: _surgicalintervention.data.listSurgicalInterventions.items,
-                    prescriptionmedications: _medications.data.listMedicines.items
-                };
-                
-                setApi(api);
-                createdPrescriptions();
-                global.medicalHistory.postConsultationActivities = {
-                    notEmpty: true,
-                    api: api,
-                    medicalPrescriptions: {
-                        items: [],
-                        table: [],
-                    },
-                };
-                setGlobalData(global);
-                setLoadingButton(false);
-            } catch (error) {
-                setError(true);
-                setLoading(false);
-            }
-        };
-        if (global.medicalHistory.postConsultationActivities.notEmpty !== true) {
-            setLoadingButton(true);
-            fetch();
-        }else{
-            const __items = global.medicalHistory.postConsultationActivities.medicalPrescriptions.items;
-            const __table = global.medicalHistory.postConsultationActivities.medicalPrescriptions.table;
-            setApi(global.medicalHistory.postConsultationActivities.api);
-            setItems(__items);
-            setTable(__table);
-        }
-
-        return () => {
-            didCancel = true;
-        };
-    }, []);
 
     const toggle = () => {
         setModal(!modal);

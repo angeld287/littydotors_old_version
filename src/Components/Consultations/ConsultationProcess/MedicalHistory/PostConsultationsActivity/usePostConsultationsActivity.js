@@ -1,106 +1,66 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { listMedicalAnalysiss, listSurgicalInterventions, listMedicines } from '../../../../../graphql/queries';
 import { API, graphqlOperation } from 'aws-amplify';
 import useForm from 'react-hook-form';
 
 
 const usePostConsultationsActivity = (global, setGlobalData) => {
     const [ loading, setLoading ] = useState(false);
+    const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
     let { consultation, patient } = useParams();
     const { register, handleSubmit, errors, formState } = useForm();
 
-  const [ _new, setNew ] = useState(global.medicalConsultation.postConsultationsActivity === null);
-  const [ _edit, setEdit ] = useState(false);
-  const [ editLoading, setEditLoading ] = useState(false);
+    const [ _new, setNew ] = useState(global.medicalConsultation.postConsultationsActivity === null);
+    const [ _edit, setEdit ] = useState(false);
+    const [ editLoading, setEditLoading ] = useState(false);
+    const [ api, setApi ] = useState([]);
+    const [ items, setItems ] = useState([]);
+    const [ table, setTable ] = useState([]);
 
-  const physicalexploration = global.medicalConsultation.medicalHistory.physicalExploration;
-
-  const vs = physicalexploration === null ? null : physicalexploration.vitalsign;
-  const re = physicalexploration === null ? null : physicalexploration.regionalExploration;
-
-  //fields
-  const [ general_exploration, setgeneral_exploration ] = useState(
-            physicalexploration === null ? "" :
-            (physicalexploration.general_exploration === null ? "" :  physicalexploration.general_exploration)
-        );
-
-  //vs
-  const [ breathing, setbreathing ] = useState(vs === null ? "" : (vs.breathing === null ? "" : vs.breathing));
-  const [ pulse, setpulse ] = useState(vs === null ? "" : (vs.pulse === null ? "" : vs.pulse));
-  const [ blood_pressure, setblood_pressure ] = useState(vs === null ? "" : (vs.blood_pressure === null ? "" : vs.blood_pressure));
-  const [ temperature, settemperature ] = useState(vs === null ? "" : (vs.temperature === null ? "" : vs.temperature));
-
-  //re
-  const [ head, sethead ] = useState(re === null ? "" : (re.head === null ? "" : re.head));
-  const [ neck, setneck ] = useState(re === null ? "" : (re.neck === null ? "" : re.neck));
-  const [ thorax, setthorax ] = useState(re === null ? "" : (re.thorax === null ? "" : re.thorax));
-  const [ abdomen, setabdomen ] = useState(re === null ? "" : (re.abdomen === null ? "" : re.abdomen));
-  const [ members, setmembers ] = useState(re === null ? "" : (re.members === null ? "" : re.members));
-  const [ genitals, setgenitals ] = useState(re === null ? "" : (re.genitals === null ? "" : re.genitals));
-  const [ others, setothers ] = useState(re === null ? "" : (re.others === null ? "" : re.others));
-
-
-  const fields = {
-    general_exploration: {
-        general_exploration, setgeneral_exploration
-    },
-    breathing: {
-        breathing, setbreathing
-    },
-    pulse:{
-        pulse, setpulse
-    },
-    blood_pressure:{
-        blood_pressure, setblood_pressure
-    },
-    temperature:{
-        temperature, settemperature
-    },
-    head:{
-        head, sethead
-    },
-    neck:{
-        neck, setneck
-    },
-    thorax:{
-        thorax, setthorax
-    },
-    abdomen:{
-        abdomen, setabdomen
-    },
-    members:{
-        members, setmembers
-    },
-    genitals:{
-        genitals, setgenitals
-    },
-    others:{
-        others, setothers
-    }
-  }
-
-
-    useEffect(() => {
+  useEffect(() => {
         let didCancel = false;
+        let api = {};
 
         const fetch = async () => {
             try {
-                /* API.graphql(graphqlOperation(createMedicalHistory, {input: input}))
-                .then((r) => {
-                    
-                }).catch((err) => { 
-                    console.log("Ocurrio un error: ",err); 
-                    setError(true) 
-                    setLoading(false);
-                });  */
+                const _medicalanalysis = await API.graphql(graphqlOperation(listMedicalAnalysiss, {limit: 400}));
+                const _surgicalintervention = await API.graphql(graphqlOperation(listSurgicalInterventions, {limit: 400}));
+                const _medications = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
+
+                api = {
+                    medicalanalysis: _medicalanalysis.data.listMedicalAnalysiss.items,
+                    surgicalintervention: _surgicalintervention.data.listSurgicalInterventions.items,
+                    prescriptionmedications: _medications.data.listMedicines.items
+                };
+                
+                setApi(api);
+                global.medicalHistory.postConsultationActivities = {
+                    notEmpty: true,
+                    api: api,
+                    medicalPrescriptions: {
+                        items: [],
+                        table: [],
+                    },
+                };
+                setGlobalData(global);
+                setLoadingButton(false);
             } catch (error) {
                 setError(true);
                 setLoading(false);
             }
         };
-
-        fetch();
+        if (global.medicalHistory.postConsultationActivities.notEmpty !== true) {
+            setLoadingButton(true);
+            fetch();
+        }else{
+            const __items = global.medicalHistory.postConsultationActivities.medicalPrescriptions.items;
+            const __table = global.medicalHistory.postConsultationActivities.medicalPrescriptions.table;
+            setApi(global.medicalHistory.postConsultationActivities.api);
+            setItems(__items);
+            setTable(__table);
+        }
 
         return () => {
             didCancel = true;
@@ -128,7 +88,7 @@ const usePostConsultationsActivity = (global, setGlobalData) => {
         formState: formState
     }
 
-    return { actions, errors, setNew, _new, _edit, setEdit, editLoading, fields, editPhysicalExploration};
+    return { actions, errors, setNew, _new, _edit, setEdit, editLoading, editPhysicalExploration, api};
 };
 
 export default usePostConsultationsActivity;

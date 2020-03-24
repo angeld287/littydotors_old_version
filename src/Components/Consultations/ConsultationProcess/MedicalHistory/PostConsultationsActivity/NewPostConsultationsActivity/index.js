@@ -12,8 +12,9 @@ const NewPostConsultationsActivity = ({
     global: global,
     setGlobalData: setGlobalData,
     setNew: setNew,
+    api : api,
 }) => {
-  const { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, _createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention } = useNewPostConsultationsActivity(global, setGlobalData, setNew);
+  const { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, _createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, setMedicalAnalysis, setSurgicalIntervention } = useNewPostConsultationsActivity(global, setGlobalData, setNew);
 
   return (
     <MDBContainer>
