@@ -21,7 +21,7 @@ const useNewPostConsultationsActivity = (global, setGlobalData, setNew) => {
     const [ prescriptionMedication, setPrescriptionMedication ] = useState([]);
     const [ api, setApi ] = useState([]);
 
-    const [ items, setItems ] = useState();
+    const [ items, setItems ] = useState([]);
     const [ table, setTable ] = useState([]);
     const [ modal, setModal ] = useState(false);
     const [ editObject, setEditObject ] = useState({});
@@ -108,42 +108,48 @@ const useNewPostConsultationsActivity = (global, setGlobalData, setNew) => {
             const pca = await API.graphql(graphqlOperation(createPostConsultationsActivity, {input: {}} )).catch( e => { console.log(e); setLoading(false); throw new SyntaxError("Error GraphQL"); });
 
             //createMedicalPrescription
-            items.forEach(async (e) => {
-                //enum State { INSERTED APPROVED CONFIRMED PRESENT IN_PROCESS FINISHED REJECTED CANCELED DONE NOT_DONE }
-                const input = {};
-                input.frequency = String
-                input.duration = String
-                input.comment = String
-                input.postConsultationsActivityMedicalpresId = pca.data.createPostConsultationsActivity.id;
-                input.medicalPrescriptionMedicationsId = e.medication.value;
-                input.date = new Date();
-
-                const pcama = await API.graphql(graphqlOperation(createMedicalPrescription, {input: input} )).catch( e => { console.log(e); setLoading(false); throw new SyntaxError("Error GraphQL"); });
-            });
-
-            medicalAnalysis.forEach(async (e) => {
-                //enum State { INSERTED APPROVED CONFIRMED PRESENT IN_PROCESS FINISHED REJECTED CANCELED DONE NOT_DONE }
-                const input = {};
-
-                input.state = 'INSERTED';
-                input.date = new Date();
-                input.postConsultActMedAnalysisPcActivitiesId = pca.data.createPostConsultationsActivity.id;
-                input.postConsultActMedAnalysisMedicalAnalysisId = e.id;
-
-                const pcama = await API.graphql(graphqlOperation(createPostConsultActMedAnalysis, {input: input} )).catch( e => { console.log(e); setLoading(false); throw new SyntaxError("Error GraphQL"); });
-            });
-
-            surgicalIntervention.forEach(async (e) => {
-                const input = {};
-
-                input.state = 'INSERTED';
-                input.date = new Date();
-                input.postConsultActSurgicalIntPcActivitiesId = pca.data.createPostConsultationsActivity.id;
-                input.postConsultActSurgicalIntSurgicalInterventionId = e.id;
-
-                const pcsi = await API.graphql(graphqlOperation(createPostConsultActSurgicalInt, {input: input} )).catch( e => { console.log(e); setLoading(false); throw new SyntaxError("Error GraphQL"); });
-            });
-
+            if (items !== undefined) {
+                items.forEach(async (e) => {
+                    //enum State { INSERTED APPROVED CONFIRMED PRESENT IN_PROCESS FINISHED REJECTED CANCELED DONE NOT_DONE }
+                    const input = {};
+                    input.frequency = String
+                    input.duration = String
+                    input.comment = String
+                    input.postConsultationsActivityMedicalpresId = pca.data.createPostConsultationsActivity.id;
+                    input.medicalPrescriptionMedicationsId = e.medication.value;
+                    input.date = new Date();
+    
+                    const pcama = await API.graphql(graphqlOperation(createMedicalPrescription, {input: input} )).catch( e => { console.log(e); setLoading(false); throw new SyntaxError("Error GraphQL"); });
+                });
+            }
+            
+            if (medicalAnalysis !== undefined) {
+                medicalAnalysis.forEach(async (e) => {
+                    //enum State { INSERTED APPROVED CONFIRMED PRESENT IN_PROCESS FINISHED REJECTED CANCELED DONE NOT_DONE }
+                    const input = {};
+    
+                    input.state = 'INSERTED';
+                    input.date = new Date();
+                    input.postConsultActMedAnalysisPcActivitiesId = pca.data.createPostConsultationsActivity.id;
+                    input.postConsultActMedAnalysisMedicalAnalysisId = e.id;
+    
+                    const pcama = await API.graphql(graphqlOperation(createPostConsultActMedAnalysis, {input: input} )).catch( e => { console.log(e); setLoading(false); throw new SyntaxError("Error GraphQL"); });
+                });
+            }
+            
+            if (surgicalIntervention !== undefined) {
+                surgicalIntervention.forEach(async (e) => {
+                    const input = {};
+    
+                    input.state = 'INSERTED';
+                    input.date = new Date();
+                    input.postConsultActSurgicalIntPcActivitiesId = pca.data.createPostConsultationsActivity.id;
+                    input.postConsultActSurgicalIntSurgicalInterventionId = e.id;
+    
+                    const pcsi = await API.graphql(graphqlOperation(createPostConsultActSurgicalInt, {input: input} )).catch( e => { console.log(e); setLoading(false); throw new SyntaxError("Error GraphQL"); });
+                });
+            }
+            
             const mcinput = {};
             mcinput.medicalConsultationPostConsultationsActivityId = pca.data.createPostConsultationsActivity.id;
             mcinput.id = global.medicalConsultation.id;
@@ -151,8 +157,11 @@ const useNewPostConsultationsActivity = (global, setGlobalData, setNew) => {
 
             global.medicalConsultation.postConsultationsActivity = mdco.data.updateMedicalConsultation.postConsultationsActivity;
             setGlobalData(global);
-            setNew(false);
-            setLoading(false);
+
+            setTimeout(() => {  
+                setNew(false);
+                setLoading(false);
+            }, 2000);
     }
 
     return { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, _createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention };

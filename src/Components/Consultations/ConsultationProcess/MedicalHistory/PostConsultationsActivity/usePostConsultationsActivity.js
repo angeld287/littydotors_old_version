@@ -28,7 +28,7 @@ const usePostConsultationsActivity = (global, setGlobalData) => {
                 const _medicalanalysis = await API.graphql(graphqlOperation(listMedicalAnalysiss, {limit: 400}));
                 const _surgicalintervention = await API.graphql(graphqlOperation(listSurgicalInterventions, {limit: 400}));
                 const _medications = await API.graphql(graphqlOperation(listMedicines, {limit: 400}));
-
+                
                 api = {
                     medicalanalysis: _medicalanalysis.data.listMedicalAnalysiss.items,
                     surgicalintervention: _surgicalintervention.data.listSurgicalInterventions.items,
@@ -36,6 +36,7 @@ const usePostConsultationsActivity = (global, setGlobalData) => {
                 };
                 
                 setApi(api);
+                
                 global.medicalHistory.postConsultationActivities = {
                     notEmpty: true,
                     api: api,
@@ -46,6 +47,7 @@ const usePostConsultationsActivity = (global, setGlobalData) => {
                 };
                 setGlobalData(global);
                 setLoadingButton(false);
+                setLoading(false);
             } catch (error) {
                 setError(true);
                 setLoading(false);
@@ -53,6 +55,7 @@ const usePostConsultationsActivity = (global, setGlobalData) => {
         };
         if (global.medicalHistory.postConsultationActivities.notEmpty !== true) {
             setLoadingButton(true);
+            setLoading(true);
             fetch();
         }else{
             const __items = global.medicalHistory.postConsultationActivities.medicalPrescriptions.items;
@@ -88,7 +91,7 @@ const usePostConsultationsActivity = (global, setGlobalData) => {
         formState: formState
     }
 
-    return { actions, errors, setNew, _new, _edit, setEdit, editLoading, editPhysicalExploration, api};
+    return { actions, errors, setNew, _new, _edit, setEdit, editLoading, editPhysicalExploration, api, loading};
 };
 
 export default usePostConsultationsActivity;

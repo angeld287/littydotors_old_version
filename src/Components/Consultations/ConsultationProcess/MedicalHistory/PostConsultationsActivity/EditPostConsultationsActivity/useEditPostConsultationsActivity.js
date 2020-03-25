@@ -9,7 +9,7 @@ import { updateMedicalConsultationForPCAGlobal } from '../../../../../../graphql
 import { MDBBtn, MDBIcon } from 'mdbreact';
 import Swal from 'sweetalert2';
 
-const useViewPostConsultationsActivity = (global, setGlobalData, setNew) => {
+const useEditPostConsultationsActivity = (global, setGlobalData) => {
     const [ loading, setLoading ] = useState(false);
     const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
@@ -38,17 +38,15 @@ const useViewPostConsultationsActivity = (global, setGlobalData, setNew) => {
 
     const createdPrescriptions = () => {
         var formated = [];
-        var mn = 0;
         items.forEach((item) => {
-            mn = mn + 1;
             formated.push({
-                number: mn,
                 medicationName: item.medications.name,
                 frequency: item.frequency === null ? "N/A" : item.frequency,
+                options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); removeMedicalPrescription(item.medicalPrescriptionMedicationsId)}}><MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); openModalToEdit(item)}}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
             });
         });
         const _table = {
-            columns: [{label:  <MDBIcon size="2x" icon="notes-medical" className="blue-text" />, field: 'number', sort: 'disabled'}, {label: 'Medicamento', field: 'medicationName', sort: 'asc'}, {label: 'Frecuencia', field: 'frequency', sort: 'asc'} ],
+            columns: [{label: 'Medicamento', field: 'medicationName', sort: 'asc'}, {label: 'Frecuencia', field: 'frequency', sort: 'asc'}, {label: 'Opciones', field: 'options', sort: 'disabled'} ],
             rows: formated
         };
 
@@ -106,8 +104,11 @@ const useViewPostConsultationsActivity = (global, setGlobalData, setNew) => {
         createdPrescriptions();
     }
 
+    const editPCActivities = () => {
 
-    return { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, _createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention };
+    }    
+
+    return { editPCActivities, editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, _createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention };
 };
 
-export default useViewPostConsultationsActivity;
+export default useEditPostConsultationsActivity;

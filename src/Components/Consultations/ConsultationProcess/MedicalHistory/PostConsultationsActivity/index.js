@@ -11,7 +11,7 @@ const PostConsultationsActivity = ({
     global: global,
     setGlobalData: setGlobalData
 }) => {
-  const { actions, setNew, _new , _edit, setEdit, editLoading, fields, editPostConsultationsActivity, api} = usePostConsultationsActivity(global, setGlobalData);
+  const { actions, setNew, _new , _edit, setEdit, editLoading, fields, editPostConsultationsActivity, api, loading} = usePostConsultationsActivity(global, setGlobalData);
 
   useEffect(() => {
       let didCancel = false;
@@ -29,7 +29,8 @@ const PostConsultationsActivity = ({
       };
   }, []);
 
-
+  if (loading) return (<MDBContainer><MDBBox display="flex" justifyContent="center" className="mt-5"><MDBSpinner big/></MDBBox></MDBContainer>)
+  
   return (
     <MDBContainer>
       {/* Crear Datos de Exploracion Fisica */}
@@ -57,6 +58,8 @@ const PostConsultationsActivity = ({
       {/* Editar Datos de Exploracion Fisica */}
       {(!_new && _edit)&&
           <EditPostConsultationsActivity
+              global={global}
+              setGlobalData={setGlobalData}
               fields={fields}
               editLoading={editLoading}
               api={api}

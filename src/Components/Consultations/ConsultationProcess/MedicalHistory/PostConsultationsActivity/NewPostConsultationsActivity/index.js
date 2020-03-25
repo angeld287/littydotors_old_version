@@ -75,7 +75,7 @@ const NewPostConsultationsActivity = ({
           </MDBCol>
         </MDBRow>
           <div className="text-center py-4 mt-3">
-              {!loading && <MDBBtn className="btn btn-outline-blue" type="submit" disabled={formState.isSubmitting}>Agregar</MDBBtn>}
+              {!loading && <MDBBtn className="btn btn-outline-blue" type="submit" disabled={formState.isSubmitting}><MDBIcon size="2x" icon="plus" className="blue-text" /></MDBBtn>}
               {loading && <MDBSpinner small />}
 					</div>
       </form>
