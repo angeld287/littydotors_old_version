@@ -21,7 +21,7 @@ const NewPostConsultationsActivity = ({
       <form onSubmit={handleSubmit(onSubmit)}>
       <h6 className="text-center font-weight-bold pt-5 pb-3 mb-2"><strong>Prescripciones Medicas</strong></h6>
       <MDBBtn onClick={toggle} disabled={loadingButton} className="btn btn-primary btn-sm">
-				crear receta medica
+        <MDBIcon size="2x" icon="plus" />
 			</MDBBtn>
       <MDBRow className="mb-3">
         <MDBCol>

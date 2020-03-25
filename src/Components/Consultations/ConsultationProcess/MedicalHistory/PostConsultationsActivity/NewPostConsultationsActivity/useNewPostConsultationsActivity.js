@@ -112,9 +112,9 @@ const useNewPostConsultationsActivity = (global, setGlobalData, setNew) => {
                 items.forEach(async (e) => {
                     //enum State { INSERTED APPROVED CONFIRMED PRESENT IN_PROCESS FINISHED REJECTED CANCELED DONE NOT_DONE }
                     const input = {};
-                    input.frequency = String
-                    input.duration = String
-                    input.comment = String
+                    input.frequency = e.frequency.value;
+                    input.duration = e.duration;
+                    input.comment = e.comment;
                     input.postConsultationsActivityMedicalpresId = pca.data.createPostConsultationsActivity.id;
                     input.medicalPrescriptionMedicationsId = e.medication.value;
                     input.date = new Date();

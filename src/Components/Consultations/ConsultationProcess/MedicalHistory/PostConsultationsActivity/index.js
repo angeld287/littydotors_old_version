@@ -63,6 +63,7 @@ const PostConsultationsActivity = ({
               fields={fields}
               editLoading={editLoading}
               api={api}
+              setEdit={setEdit}
           />
       }
       
