@@ -101,7 +101,8 @@ const useConsultations = () => {
                 doctorname: state.doctorusername, 
                 secretary: state.secretary, 
                 patientname: _patient.username,
-                medicalConsultationMedicalHistoryId: cmh.data.createMedicalHistory.id
+                medicalConsultationMedicalHistoryId: cmh.data.createMedicalHistory.id,
+                state: 'IN_PROCESS',
             };
         
         API.graphql(graphqlOperation(createMedicalConsultation, {input: input}))

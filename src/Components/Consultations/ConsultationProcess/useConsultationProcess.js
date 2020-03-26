@@ -3,9 +3,11 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { useHistory, useParams } from 'react-router-dom';
 import { getPatient } from '../../../graphql/queries';
 import { getMedicalConsultation } from '../../../graphql/custom-queries';
+import { updateMedicalConsultation } from '../../../graphql/mutations';
 
 const useConsultationProcess = () => {
     const [ loading, setLoading ] = useState(true);
+    const [ loadingButton, setLoadingButton ] = useState(false);
     const [ error, setError ] = useState(false);
     const [ createNewPatient, setCreateNewPatient ] = useState(false);
     const [ hasPatientHistory, setHasPatientHistory ] = useState(false);
@@ -35,8 +37,14 @@ const useConsultationProcess = () => {
         }
     }
 
-    const handleSubmission = () => {
-        alert('Form submitted!');
+    const handleSubmission = async () => {
+        setLoadingButton(true);
+        const input = { 
+            id: global.medicalConsultation.id,
+            state: 'DONE',
+        };
+        const cmh = await API.graphql(graphqlOperation(updateMedicalConsultation, {input: input} )).catch( e => { console.log(e); setLoadingButton(false); throw new SyntaxError("Error GraphQL");});
+        setLoadingButton(false)
     }
 
     const calculateAutofocus = () => {
@@ -119,7 +127,7 @@ const useConsultationProcess = () => {
 
     return { consultationObject, setGlobalData, global, error, loading, swapFormActive, handleNextPrevClick, handleSubmission, calculateAutofocus, selectedDate, setSelectedDate, patientData,
              formActivePanelChanged, setFormActivePanelChanged, formActivePanel, setFormActivePanel, createNewPatient, createNewPatientName, setCreateNewPatient,
-             setHasPatientHistory, hasPatientHistory, patientHistory, setPatientHistory, _reason  };
+             setHasPatientHistory, hasPatientHistory, patientHistory, setPatientHistory, _reason, loadingButton  };
 };
 
 export default useConsultationProcess;

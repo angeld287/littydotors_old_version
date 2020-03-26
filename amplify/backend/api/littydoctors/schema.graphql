@@ -184,6 +184,7 @@ type MedicalConsultation
     patient: Patient @connection
     postConsultationsActivity: PostConsultationsActivity @connection
     medicalHistory: MedicalHistory @connection
+    state: State
     doctorname: String
     secretary: String
     patientname: String

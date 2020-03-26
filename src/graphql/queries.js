@@ -511,6 +511,7 @@ export const getMedicalConsultation = /* GraphQL */ `
         patientname
         owner
       }
+      state
       doctorname
       secretary
       patientname
@@ -571,6 +572,7 @@ export const listMedicalConsultations = /* GraphQL */ `
           patientname
           owner
         }
+        state
         doctorname
         secretary
         patientname

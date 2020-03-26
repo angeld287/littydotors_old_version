@@ -629,6 +629,7 @@ export const onCreateMedicalConsultation = /* GraphQL */ `
         patientname
         owner
       }
+      state
       doctorname
       secretary
       patientname
@@ -723,6 +724,7 @@ export const onUpdateMedicalConsultation = /* GraphQL */ `
         patientname
         owner
       }
+      state
       doctorname
       secretary
       patientname
@@ -814,6 +816,7 @@ export const onDeleteMedicalConsultation = /* GraphQL */ `
         patientname
         owner
       }
+      state
       doctorname
       secretary
       patientname

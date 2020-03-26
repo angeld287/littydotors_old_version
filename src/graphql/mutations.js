@@ -780,6 +780,7 @@ export const createMedicalConsultation = /* GraphQL */ `
         patientname
         owner
       }
+      state
       doctorname
       secretary
       patientname
@@ -874,6 +875,7 @@ export const updateMedicalConsultation = /* GraphQL */ `
         patientname
         owner
       }
+      state
       doctorname
       secretary
       patientname
@@ -968,6 +970,7 @@ export const deleteMedicalConsultation = /* GraphQL */ `
         patientname
         owner
       }
+      state
       doctorname
       secretary
       patientname

@@ -124,6 +124,7 @@ export const getMedicalConsultation = /* GraphQL */ `
   query GetMedicalConsultation($id: ID!) {
     getMedicalConsultation(id: $id) {
       id
+      state
       patient {
         id
         name

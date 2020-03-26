@@ -206,6 +206,7 @@ export const updateMedicalConsultationForPCAGlobal = /* GraphQL */ `
   ) {
     updateMedicalConsultation(input: $input, condition: $condition) {
       id
+      state
       postConsultationsActivity {
         id
         medicalpres {
