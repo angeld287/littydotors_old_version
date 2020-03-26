@@ -19,7 +19,7 @@ const EditPostConsultationsActivity = ({
   //const { register, loading, handleSubmit, onSubmit, formState } = usePhysicalExploration(global, setGlobalData);
 
   const { table, editPCActivities, toggle, _createMedicalPrescription, editMedicalPrescription, edit, editObject, modal, setViewObjects, setMedicalanalysis, 
-          setSurgicalinterventions, medicalanalysis, surgicalinterventions, editLoading } = useEditPostConsultationsActivity(global, setGlobalData, _setEdit);
+          setSurgicalinterventions, medicalanalysis, surgicalinterventions, editLoading, addloadb } = useEditPostConsultationsActivity(global, setGlobalData, _setEdit);
 
   const [ loading, setloading ] = useState([]);
 
@@ -58,8 +58,9 @@ const EditPostConsultationsActivity = ({
   return (
     <MDBContainer>
           <h6 className="text-center font-weight-bold pt-5 pb-3 mb-2"><strong>Prescripciones Medicas</strong></h6>
-          <MDBBtn onClick={toggle} disabled={loading} className="btn btn-primary btn-sm">
-            <MDBIcon size="2x" icon="plus" />
+          <MDBBtn onClick={toggle} disabled={loading || addloadb} className="btn btn-primary btn-sm">
+            {!addloadb && <MDBIcon size="2x" icon="plus" />}
+            {addloadb && <MDBSpinner small />}
           </MDBBtn>
           <MDBRow className="mb-3">
             <MDBCol>

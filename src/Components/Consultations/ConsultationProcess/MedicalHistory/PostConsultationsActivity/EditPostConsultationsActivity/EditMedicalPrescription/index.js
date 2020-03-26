@@ -5,6 +5,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MD
 
 import Select from 'react-select'
 import Swal from 'sweetalert2';
+const uuidv1 = require('uuid/v1');
 
 const EditMedicalPrescription = ({
   toggle: toggle,
@@ -20,6 +21,7 @@ const EditMedicalPrescription = ({
   const [ duration, setDuration ] = useState("");
   const [ comment, setComment ] = useState("");
   const [ medication, setMedication ] = useState([]);
+  const [ id, setId ] = useState("");
 
   const medications = [];
   api.prescriptionmedications.forEach(element => {
@@ -56,13 +58,15 @@ const EditMedicalPrescription = ({
           setFrequency(editObject.frequency);
           setDuration(editObject.duration === null ? "N/A" : editObject.duration);
           setComment(editObject.comment === null ? "N/A" : editObject.comment);
-          setMedication(editObject.medication);
+          setMedication(editObject.medications);
+          setId(editObject.id);
         }else{
           setPrescriptionMedication("");          
           setFrequency([]);
           setDuration("");
           setComment("");
           setMedication([]);
+          setId("");
           
         }
   }, []);
@@ -81,6 +85,7 @@ const EditMedicalPrescription = ({
     }
     if (create) {
        createMedicalPrescription({
+          id: uuidv1(),
           date: new Date(),
           frequency: frequency,
           medication: medication,
@@ -93,6 +98,7 @@ const EditMedicalPrescription = ({
        toggle();
     }else{
       editMedicalPrescription({
+          id: id,
           date: new Date(),
           frequency: frequency,
           medication: medication,
