@@ -180,7 +180,9 @@ const useEditPostConsultationsActivity = (global, setGlobalData, _setEdit) => {
                 if(sIndex === -1){
                     const input = {
                         postConsultActSurgicalIntPcActivitiesId: postConsultationsActivity.id,
-                        postConsultActSurgicalIntSurgicalInterventionId: e.value
+                        postConsultActSurgicalIntSurgicalInterventionId: e.value,
+                        state: 'INSERTED',
+                        date: new Date()
                     };
                     const surgery = await API.graphql(graphqlOperation(createPostConsultActSurgicalInt, {input: input} )).catch( e => { console.log(e); setEditLoading(false);  throw new SyntaxError("Error GraphQL"); });
                     const _surgicalIntervention = surgery.data.createPostConsultActSurgicalInt;
@@ -205,6 +207,8 @@ const useEditPostConsultationsActivity = (global, setGlobalData, _setEdit) => {
                     const input = {
                         postConsultActMedAnalysisPcActivitiesId: postConsultationsActivity.id,
                         postConsultActMedAnalysisMedicalAnalysisId: e.value,
+                        state: 'INSERTED',
+                        date: new Date()
                     };
                     const surgery = await API.graphql(graphqlOperation(createPostConsultActMedAnalysis, {input: input} )).catch( e => { console.log(e); setEditLoading(false);  throw new SyntaxError("Error GraphQL"); });
                     const _surgicalIntervention = surgery.data.createPostConsultActMedAnalysis;

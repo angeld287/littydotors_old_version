@@ -284,3 +284,66 @@ export const getMedicalConsultation = /* GraphQL */ `
     }
   }
 `;
+
+
+export const listMedicalConsultationsForHistory = /* GraphQL */ `
+  query ListMedicalConsultations(
+    $filter: ModelMedicalConsultationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMedicalConsultations(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        medicalHistory {
+          id
+          reason
+        }
+        state  
+        createdAt 
+        postConsultationsActivity {
+          id
+          medicalpres {
+            items {
+              id
+              date
+              frequency
+              duration
+              comment
+              medications {
+                id
+                name
+              }
+            }
+          }
+          medicalAnalysis {
+            items {
+              id
+              state
+              date
+              medicalAnalysis{
+                id
+                name
+              }
+            }
+          }
+          surgicalIntervention {
+            items {
+              id
+              state
+              date
+              surgicalIntervention{
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

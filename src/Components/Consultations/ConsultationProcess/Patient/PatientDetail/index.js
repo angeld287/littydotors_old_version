@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 
-import { MDBContainer, MDBRow, MDBCol, MDBStepper, MDBStep, MDBBtn, MDBInput, MDBIcon, MDBSpinner, MDBBox,
+import { MDBContainer, MDBRow, MDBCol, MDBTable, MDBTableBody, MDBTableHead, MDBBtn, MDBInput, MDBIcon, MDBSpinner, MDBBox,
          MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBDatePicker, MDBDataTable } from "mdbreact";
 import { API, graphqlOperation } from 'aws-amplify';
 
@@ -24,7 +24,7 @@ const PatientDetails = (
   const [ edit, setEdit ] = useState(false);
 
 
-  const { loadingHistory, data } = UsePatientDetails(childProps, patientData, global, setGlobalData);
+  const { loadingHistory, data, lastMC, loading, analysis, loadingAnal } = UsePatientDetails(childProps, patientData, global, setGlobalData);
   const age = moment(new Date()).format('YYYY') - moment(patientData.birthdate).format('YYYY');
 
 
@@ -54,6 +54,9 @@ const PatientDetails = (
     setWithoutReason(false);
   }
 
+  if (loading) return (<MDBContainer><MDBBox display="flex" justifyContent="center" className="mt-5"><MDBSpinner big/></MDBBox></MDBContainer>)
+  
+
   const Buttons = (
     <div>
       {withoutReason &&<MDBBtn className="btn btn-outline-blue" onClick={addReason} disabled={reason === "N/A"  && reason === ""}><MDBIcon icon="plus" size="2x" /></MDBBtn>}
@@ -81,7 +84,18 @@ const PatientDetails = (
           <MDBCard style={{ width: '100%' }}>
             <h4 className="text-center font-weight-bold pt-4 pb-2 mb-2"><strong>Razon de Consulta Medica</strong></h4>
             <div style={{marginRight: 30, marginLeft: 30}}>
-              <MDBInput type="textarea" label="Describa la razon de consulta" value={reason} disabled={!withoutReason && !edit} rows="6" onChange={ e => {e.preventDefault(); setReason(e.target.value)}}/>
+              <MDBInput style={{overflowY:'scroll'}} type="textarea" label="Describa la razon de consulta" value={reason} rows="6" 
+                onChange={ e => 
+                    {
+                      e.preventDefault(); 
+                      if (!withoutReason && !edit) {
+                        return false;
+                      }else{
+                        setReason(e.target.value)
+                      }
+                    }
+                  }
+              />
             </div>
             <div className="text-center mt-1">
                   {!loadingButton && 
@@ -98,13 +112,11 @@ const PatientDetails = (
           <MDBCard style={{ width: '100%' }}>
              <h4 className="text-center font-weight-bold pt-4 pb-2 mb-2"><strong>Historial de Consultas</strong></h4>
             {!loadingHistory &&
-              <MDBContainer>
-                <MDBDataTable
-                  striped
-                  bordered
-                  small
-                  data={data}
-                />
+              <MDBContainer style={{marginBottom: 20}}>
+                <MDBTable scrollY>
+                  <MDBTableHead columns={data.columns} />
+                  <MDBTableBody rows={data.rows} />
+                </MDBTable>
               </MDBContainer>
             }
             {loadingHistory &&
@@ -116,11 +128,17 @@ const PatientDetails = (
             }
           </MDBCard>
         </MDBCol>
-        <MDBCol md="6">
-          <MDBCard style={{ width: '100%' }}>
-            <h4 className="text-center font-weight-bold pt-4 pb-2 mb-2"><strong>Analisis pendientes</strong></h4>
-          </MDBCard>
-        </MDBCol>
+          <MDBCol md="6">
+            <MDBCard style={{ width: '100%' }}>
+                <MDBContainer style={{marginBottom: 20}}>
+                  <h4 className="text-center font-weight-bold pt-4 pb-2 mb-2"><strong>Analisis pendientes</strong> {loadingAnal &&  <MDBSpinner small/>} </h4>
+                  <MDBTable scrollY>
+                    <MDBTableHead columns={analysis.columns} />
+                    <MDBTableBody rows={analysis.rows} />
+                  </MDBTable>
+                </MDBContainer>
+            </MDBCard>
+          </MDBCol>
       </MDBRow>
     </div>
   );
