@@ -150,14 +150,14 @@ const usePathologicalHistory = (setGlobalData, global) => {
     const setMedicationsList = () => {
       const data = global.patient.patientHistory.pathologicalHistory.patientMedications;
           var formated = [];
-
-          data.items.forEach((item) => {
+          const items = data.items.sort((a,b) => { return new Date(b.createdAt) - new Date(a.createdAt)});
+            items.forEach((item) => {
               formated.push({
                   name: item.medications.name,
                   drug_concentration: item.drug_concentration,
                   options: (<Fragment><MDBBtn color="red" size="sm" onClick={(e) => {e.preventDefault(); removeMedication(item.id) }}> <MDBIcon icon="trash" size="2x"/></MDBBtn><MDBBtn size="sm" onClick={(e) => {e.preventDefault(); openMedicationModalToEdit(item) }}><MDBIcon icon="edit" size="2x"/></MDBBtn></Fragment>)
               });
-          });
+            });
 
       const medicationstable = {
               columns: [ { label: 'Medicamento', field: 'name', sort: 'asc' }, { label: 'Concentracion', field: 'drug_concentration', sort: 'asc' }, { label: 'Opciones', field: 'options', sort: 'disabled' }],

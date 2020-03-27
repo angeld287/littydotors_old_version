@@ -94,6 +94,7 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
                 
                 setGlobalData(global);
                 setLoadingButton(false);
+                setLoading(false);
             } catch (error) {
                 setError(true);
                 setLoading(false);
@@ -103,13 +104,16 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
 
         if(global.patientHistory.notEmpty !== true){
             setLoadingButton(true);
+            setLoading(true);
             fetch();
         }else{
+            setLoading(true);
             setApi(global.patientHistory.api);
             setFamily(global.patientHistory.family.items);
             setFamilyTable(global.patientHistory.family.table);
             setNonPath(global.patientHistory.nonPath.items);
             setNonPathTable(global.patientHistory.nonPath.table);
+            setLoading(false);
         }
 
         return () => {
@@ -486,6 +490,7 @@ const useNewPatientHistory = (global, setGlobalData, setHasPatientHistory, setPa
                 nonPathActions,
                 familyActions,
                 medicationActions,
+                loading,
             };
     
 };

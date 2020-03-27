@@ -301,8 +301,10 @@ export const getMedicalAppointment = /* GraphQL */ `
         birthdate
         patientHistory {
           id
+          createdAt
           owner
         }
+        createdAt
         owner
       }
       rejection {
@@ -394,6 +396,7 @@ export const listMedicalAppointments = /* GraphQL */ `
           size
           age
           birthdate
+          createdAt
           owner
         }
         rejection {
@@ -461,8 +464,10 @@ export const getMedicalConsultation = /* GraphQL */ `
         birthdate
         patientHistory {
           id
+          createdAt
           owner
         }
+        createdAt
         owner
       }
       postConsultationsActivity {
@@ -479,6 +484,7 @@ export const getMedicalConsultation = /* GraphQL */ `
         doctor
         secretary
         patient
+        createdAt
         owner
       }
       medicalHistory {
@@ -496,6 +502,7 @@ export const getMedicalConsultation = /* GraphQL */ `
           size
           age
           birthdate
+          createdAt
           owner
         }
         physicalExploration {
@@ -504,13 +511,16 @@ export const getMedicalConsultation = /* GraphQL */ `
           doctor
           secretary
           patient
+          createdAt
           owner
         }
         doctor
         secretary
         patientname
+        createdAt
         owner
       }
+      state
       doctorname
       secretary
       patientname
@@ -554,6 +564,7 @@ export const listMedicalConsultations = /* GraphQL */ `
           size
           age
           birthdate
+          createdAt
           owner
         }
         postConsultationsActivity {
@@ -561,6 +572,7 @@ export const listMedicalConsultations = /* GraphQL */ `
           doctor
           secretary
           patient
+          createdAt
           owner
         }
         medicalHistory {
@@ -569,8 +581,10 @@ export const listMedicalConsultations = /* GraphQL */ `
           doctor
           secretary
           patientname
+          createdAt
           owner
         }
+        state
         doctorname
         secretary
         patientname
@@ -600,8 +614,10 @@ export const getMedicalHistory = /* GraphQL */ `
         birthdate
         patientHistory {
           id
+          createdAt
           owner
         }
+        createdAt
         owner
       }
       physicalExploration {
@@ -616,6 +632,7 @@ export const getMedicalHistory = /* GraphQL */ `
           doctor
           secretary
           patient
+          createdAt
           owner
         }
         regionalExploration {
@@ -630,16 +647,19 @@ export const getMedicalHistory = /* GraphQL */ `
           doctor
           secretary
           patient
+          createdAt
           owner
         }
         doctor
         secretary
         patient
+        createdAt
         owner
       }
       doctor
       secretary
       patientname
+      createdAt
       owner
     }
   }
@@ -666,6 +686,7 @@ export const listMedicalHistorys = /* GraphQL */ `
           size
           age
           birthdate
+          createdAt
           owner
         }
         physicalExploration {
@@ -674,11 +695,13 @@ export const listMedicalHistorys = /* GraphQL */ `
           doctor
           secretary
           patient
+          createdAt
           owner
         }
         doctor
         secretary
         patientname
+        createdAt
         owner
       }
       nextToken
@@ -706,6 +729,7 @@ export const getPatient = /* GraphQL */ `
         }
         pathologicalHistory {
           id
+          createdAt
           owner
         }
         familyHistory {
@@ -721,10 +745,13 @@ export const getPatient = /* GraphQL */ `
           abortions
           caesarean_sections
           contraceptive_method
+          createdAt
           owner
         }
+        createdAt
         owner
       }
+      createdAt
       owner
     }
   }
@@ -750,8 +777,10 @@ export const listPatients = /* GraphQL */ `
         birthdate
         patientHistory {
           id
+          createdAt
           owner
         }
+        createdAt
         owner
       }
       nextToken
@@ -768,6 +797,7 @@ export const getPatientHistory = /* GraphQL */ `
           active
           frequency
           comment
+          createdAt
           owner
         }
         nextToken
@@ -783,6 +813,7 @@ export const getPatientHistory = /* GraphQL */ `
         patientAllergies {
           nextToken
         }
+        createdAt
         owner
       }
       familyHistory {
@@ -790,6 +821,7 @@ export const getPatientHistory = /* GraphQL */ `
           id
           alive
           comment
+          createdAt
           owner
         }
         nextToken
@@ -804,8 +836,10 @@ export const getPatientHistory = /* GraphQL */ `
         abortions
         caesarean_sections
         contraceptive_method
+        createdAt
         owner
       }
+      createdAt
       owner
     }
   }
@@ -824,6 +858,7 @@ export const listPatientHistorys = /* GraphQL */ `
         }
         pathologicalHistory {
           id
+          createdAt
           owner
         }
         familyHistory {
@@ -839,8 +874,10 @@ export const listPatientHistorys = /* GraphQL */ `
           abortions
           caesarean_sections
           contraceptive_method
+          createdAt
           owner
         }
+        createdAt
         owner
       }
       nextToken
@@ -856,11 +893,13 @@ export const getNonPathologicalHistory = /* GraphQL */ `
         name
         description
         module
+        createdAt
         owner
       }
       active
       frequency
       comment
+      createdAt
       owner
     }
   }
@@ -883,11 +922,13 @@ export const listNonPathologicalHistorys = /* GraphQL */ `
           name
           description
           module
+          createdAt
           owner
         }
         active
         frequency
         comment
+        createdAt
         owner
       }
       nextToken
@@ -902,6 +943,7 @@ export const getPathologicalHistory = /* GraphQL */ `
         items {
           id
           date
+          createdAt
         }
         nextToken
       }
@@ -909,15 +951,18 @@ export const getPathologicalHistory = /* GraphQL */ `
         items {
           id
           drug_concentration
+          createdAt
         }
         nextToken
       }
       patientAllergies {
         items {
           id
+          createdAt
         }
         nextToken
       }
+      createdAt
       owner
     }
   }
@@ -944,6 +989,7 @@ export const listPathologicalHistorys = /* GraphQL */ `
         patientAllergies {
           nextToken
         }
+        createdAt
         owner
       }
       nextToken
@@ -959,16 +1005,19 @@ export const getFamilyHistory = /* GraphQL */ `
         name
         description
         module
+        createdAt
         owner
       }
       alive
       diseases {
         items {
           id
+          createdAt
         }
         nextToken
       }
       comment
+      createdAt
       owner
     }
   }
@@ -987,6 +1036,7 @@ export const listFamilyHistorys = /* GraphQL */ `
           name
           description
           module
+          createdAt
           owner
         }
         alive
@@ -994,6 +1044,7 @@ export const listFamilyHistorys = /* GraphQL */ `
           nextToken
         }
         comment
+        createdAt
         owner
       }
       nextToken
@@ -1009,9 +1060,11 @@ export const getDisease = /* GraphQL */ `
       familyDetails {
         items {
           id
+          createdAt
         }
         nextToken
       }
+      createdAt
       owner
     }
   }
@@ -1030,6 +1083,7 @@ export const listDiseases = /* GraphQL */ `
         familyDetails {
           nextToken
         }
+        createdAt
         owner
       }
       nextToken
@@ -1048,6 +1102,7 @@ export const getGynecoObstetricHistory = /* GraphQL */ `
       abortions
       caesarean_sections
       contraceptive_method
+      createdAt
       owner
     }
   }
@@ -1073,6 +1128,7 @@ export const listGynecoObstetricHistorys = /* GraphQL */ `
         abortions
         caesarean_sections
         contraceptive_method
+        createdAt
         owner
       }
       nextToken
@@ -1088,9 +1144,11 @@ export const getAllergy = /* GraphQL */ `
       patients {
         items {
           id
+          createdAt
         }
         nextToken
       }
+      createdAt
       owner
     }
   }
@@ -1109,6 +1167,7 @@ export const listAllergys = /* GraphQL */ `
         patients {
           nextToken
         }
+        createdAt
         owner
       }
       nextToken
@@ -1124,12 +1183,14 @@ export const getMedicine = /* GraphQL */ `
         items {
           id
           drug_concentration
+          createdAt
         }
         nextToken
       }
       code
       drug_concentration
       chemical_composition
+      createdAt
       owner
     }
   }
@@ -1150,6 +1211,7 @@ export const listMedicines = /* GraphQL */ `
         code
         drug_concentration
         chemical_composition
+        createdAt
         owner
       }
       nextToken
@@ -1170,6 +1232,7 @@ export const getPostConsultationsActivity = /* GraphQL */ `
           doctor
           secretary
           patient
+          createdAt
           owner
         }
         nextToken
@@ -1179,6 +1242,7 @@ export const getPostConsultationsActivity = /* GraphQL */ `
           id
           state
           date
+          createdAt
         }
         nextToken
       }
@@ -1187,12 +1251,14 @@ export const getPostConsultationsActivity = /* GraphQL */ `
           id
           state
           date
+          createdAt
         }
         nextToken
       }
       doctor
       secretary
       patient
+      createdAt
       owner
     }
   }
@@ -1222,6 +1288,7 @@ export const listPostConsultationsActivitys = /* GraphQL */ `
         doctor
         secretary
         patient
+        createdAt
         owner
       }
       nextToken
@@ -1244,12 +1311,14 @@ export const getMedicalPrescription = /* GraphQL */ `
         code
         drug_concentration
         chemical_composition
+        createdAt
         owner
       }
       comment
       doctor
       secretary
       patient
+      createdAt
       owner
     }
   }
@@ -1276,12 +1345,14 @@ export const listMedicalPrescriptions = /* GraphQL */ `
           code
           drug_concentration
           chemical_composition
+          createdAt
           owner
         }
         comment
         doctor
         secretary
         patient
+        createdAt
         owner
       }
       nextToken
@@ -1299,9 +1370,11 @@ export const getMedicalAnalysis = /* GraphQL */ `
           id
           state
           date
+          createdAt
         }
         nextToken
       }
+      createdAt
       owner
     }
   }
@@ -1324,6 +1397,7 @@ export const listMedicalAnalysiss = /* GraphQL */ `
         medicalAnalysis {
           nextToken
         }
+        createdAt
         owner
       }
       nextToken
@@ -1341,6 +1415,7 @@ export const getSurgicalIntervention = /* GraphQL */ `
           id
           state
           date
+          createdAt
         }
         nextToken
       }
@@ -1348,9 +1423,11 @@ export const getSurgicalIntervention = /* GraphQL */ `
         items {
           id
           date
+          createdAt
         }
         nextToken
       }
+      createdAt
       owner
     }
   }
@@ -1376,6 +1453,7 @@ export const listSurgicalInterventions = /* GraphQL */ `
         pathologicalHistory {
           nextToken
         }
+        createdAt
         owner
       }
       nextToken
@@ -1396,6 +1474,7 @@ export const getPhysicalExploration = /* GraphQL */ `
         doctor
         secretary
         patient
+        createdAt
         owner
       }
       regionalExploration {
@@ -1410,11 +1489,13 @@ export const getPhysicalExploration = /* GraphQL */ `
         doctor
         secretary
         patient
+        createdAt
         owner
       }
       doctor
       secretary
       patient
+      createdAt
       owner
     }
   }
@@ -1442,6 +1523,7 @@ export const listPhysicalExplorations = /* GraphQL */ `
           doctor
           secretary
           patient
+          createdAt
           owner
         }
         regionalExploration {
@@ -1456,11 +1538,13 @@ export const listPhysicalExplorations = /* GraphQL */ `
           doctor
           secretary
           patient
+          createdAt
           owner
         }
         doctor
         secretary
         patient
+        createdAt
         owner
       }
       nextToken
@@ -1478,6 +1562,7 @@ export const getVitalSign = /* GraphQL */ `
       doctor
       secretary
       patient
+      createdAt
       owner
     }
   }
@@ -1498,6 +1583,7 @@ export const listVitalSigns = /* GraphQL */ `
         doctor
         secretary
         patient
+        createdAt
         owner
       }
       nextToken
@@ -1518,6 +1604,7 @@ export const getRegionalExploration = /* GraphQL */ `
       doctor
       secretary
       patient
+      createdAt
       owner
     }
   }
@@ -1545,6 +1632,7 @@ export const listRegionalExplorations = /* GraphQL */ `
         doctor
         secretary
         patient
+        createdAt
         owner
       }
       nextToken
@@ -1558,6 +1646,7 @@ export const getCategory = /* GraphQL */ `
       name
       description
       module
+      createdAt
       owner
     }
   }
@@ -1574,6 +1663,7 @@ export const listCategorys = /* GraphQL */ `
         name
         description
         module
+        createdAt
         owner
       }
       nextToken

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {listPatients} from './../../graphql/queries';
-import { createMedicalConsultation } from '../../graphql/mutations';
+import { createMedicalConsultation, createMedicalHistory } from '../../graphql/mutations';
 import { API, graphqlOperation } from 'aws-amplify';
 import { filterByValue } from '../../Functions/filterArray'
 
@@ -14,6 +14,7 @@ const useConsultations = () => {
     const [ autoCompleteLoading, setAutoCompleteLoading ] = useState(false);
     const [ newPatient, setNewPatient ] = useState(false);
     const [ newPatientName, setNewPatientName ] = useState("");
+    const [ reason, setReason ] = useState("");
 
 
     useEffect(() => {
@@ -87,9 +88,24 @@ const useConsultations = () => {
         }
     }
 
-    const createConsultation = (state, _patient) => {
+    const createConsultation = async (state, _patient, _reason) => {       
         setLoadingButton(true);
-        API.graphql(graphqlOperation(createMedicalConsultation, {input: { medicalConsultationDoctorId: state.doctorid, medicalConsultationPatientId: _patient.id, doctorname: state.doctorusername, secretary: state.secretary, patientname: _patient.username }}))
+        const mhinput = {};
+        mhinput.reason = reason === null || reason === "" ? "N/A" : reason;
+        mhinput.medicalHistoryPatientId = _patient.id;
+        const cmh = await API.graphql(graphqlOperation(createMedicalHistory, {input: mhinput} )).catch( e => { console.log(e); setLoadingButton(false); throw new SyntaxError("Error GraphQL");});
+        
+        const input = { 
+                medicalConsultationDoctorId: state.doctorid, 
+                medicalConsultationPatientId: _patient.id, 
+                doctorname: state.doctorusername, 
+                secretary: state.secretary, 
+                patientname: _patient.username,
+                medicalConsultationMedicalHistoryId: cmh.data.createMedicalHistory.id,
+                state: 'IN_PROCESS',
+            };
+        
+        API.graphql(graphqlOperation(createMedicalConsultation, {input: input}))
         .then((r) => {
             var consultationid = r.data.createMedicalConsultation.id
             setLoadingButton(false);
@@ -100,7 +116,7 @@ const useConsultations = () => {
         });
     }
 
-    return { createConsultation, loadingButton, patients, error, loading, setPatients, patient, setPatient, autoCompleteLoading, searchPatient, newPatientName, setNewPatientName};
+    return { createConsultation, loadingButton, patients, error, loading, setPatients, patient, setPatient, autoCompleteLoading, searchPatient, newPatientName, setNewPatientName, setReason, reason};
 };
 
 export default useConsultations;

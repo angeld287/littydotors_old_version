@@ -10,16 +10,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const NewPostConsultationsActivity = ({
     global: global,
-    setGlobalData: setGlobalData
+    setGlobalData: setGlobalData,
+    setNew: setNew,
+    api : api,
 }) => {
-  const { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, api, setMedicalAnalysis, setSurgicalIntervention } = useNewPostConsultationsActivity(global, setGlobalData);
+  const { editObject, edit, toggle, table, loadingButton, editMedicalPrescription, removeMedicalPrescription, _createMedicalPrescription, setPrescriptionMedication, modal, setModal, items, register, loading, handleSubmit, onSubmit, formState, setMedicalAnalysis, setSurgicalIntervention } = useNewPostConsultationsActivity(global, setGlobalData, setNew);
 
   return (
     <MDBContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
       <h6 className="text-center font-weight-bold pt-5 pb-3 mb-2"><strong>Prescripciones Medicas</strong></h6>
       <MDBBtn onClick={toggle} disabled={loadingButton} className="btn btn-primary btn-sm">
-				crear receta medica
+        <MDBIcon size="2x" icon="plus" />
 			</MDBBtn>
       <MDBRow className="mb-3">
         <MDBCol>
@@ -33,7 +35,7 @@ const NewPostConsultationsActivity = ({
           <MDBModal isOpen={modal} toggle={toggle} size="lg">
             <NewMedicalPrescription
               toggle={toggle}
-              createMedicalPrescription={createMedicalPrescription}
+              createMedicalPrescription={_createMedicalPrescription}
               editMedicalPrescription={editMedicalPrescription}
               api={api}
               edit={edit}
@@ -73,7 +75,7 @@ const NewPostConsultationsActivity = ({
           </MDBCol>
         </MDBRow>
           <div className="text-center py-4 mt-3">
-              {!loading && <MDBBtn className="btn btn-outline-blue" type="submit" disabled={formState.isSubmitting}>Agregar</MDBBtn>}
+              {!loading && <MDBBtn className="btn btn-outline-blue" type="submit" disabled={formState.isSubmitting}><MDBIcon size="2x" icon="plus" className="blue-text" /></MDBBtn>}
               {loading && <MDBSpinner small />}
 					</div>
       </form>

@@ -253,6 +253,9 @@ const PathologicalHistory = (
               </div>
             }
         </MDBBtn>
+        <MDBBtn onClick={editP} disabled={lb_editpath} className="btn btn-primary btn-sm">
+            <MDBIcon icon="times" size="2x"/>
+        </MDBBtn>
       </MDBRow>
     </MDBContainer>
   );

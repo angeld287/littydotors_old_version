@@ -124,6 +124,7 @@ export const getMedicalConsultation = /* GraphQL */ `
   query GetMedicalConsultation($id: ID!) {
     getMedicalConsultation(id: $id) {
       id
+      state
       patient {
         id
         name
@@ -145,6 +146,7 @@ export const getMedicalConsultation = /* GraphQL */ `
                 name
               }
               owner
+              createdAt
             }
             nextToken
           }
@@ -158,6 +160,7 @@ export const getMedicalConsultation = /* GraphQL */ `
                   name
                   description
                 }
+                createdAt
               }
             }
             patientMedications {
@@ -167,6 +170,7 @@ export const getMedicalConsultation = /* GraphQL */ `
                   id
                   name
                 }
+                createdAt
                 drug_concentration
               }
             }
@@ -178,6 +182,7 @@ export const getMedicalConsultation = /* GraphQL */ `
                   name
                   description
                 }
+                createdAt
               }
             }
           }
@@ -186,6 +191,7 @@ export const getMedicalConsultation = /* GraphQL */ `
               id
               alive
               comment
+              createdAt
               diseases {
                 items {
                   id
@@ -208,13 +214,40 @@ export const getMedicalConsultation = /* GraphQL */ `
       postConsultationsActivity {
         id
         medicalpres {
-          nextToken
+          items {
+            id
+            date
+            frequency
+            duration
+            comment
+            createdAt
+            medications {
+              id
+              name
+            }
+          }
         }
         medicalAnalysis {
-          nextToken
+          items {
+            id
+            state
+            date
+            medicalAnalysis{
+              id
+              name
+            }
+          }
         }
         surgicalIntervention {
-          nextToken
+          items {
+            id
+            state
+            date
+            surgicalIntervention{
+              id
+              name
+            }
+          }
         }
       }
       medicalHistory {
@@ -223,12 +256,100 @@ export const getMedicalConsultation = /* GraphQL */ `
         physicalExploration {
           id
           general_exploration
+          vitalsign {
+              id
+              blood_pressure
+              breathing
+              pulse
+              temperature
+              doctor
+              secretary
+              patient
+              owner
+          }
+          regionalExploration {
+              id
+              head
+              neck
+              thorax
+              abdomen
+              members
+              genitals
+              others
+              doctor
+              secretary
+              patient
+              owner
+            }
           doctor
           secretary
           patient
         }
       }
       createdAt
+    }
+  }
+`;
+
+
+export const listMedicalConsultationsForHistory = /* GraphQL */ `
+  query ListMedicalConsultations(
+    $filter: ModelMedicalConsultationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMedicalConsultations(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        medicalHistory {
+          id
+          reason
+        }
+        state  
+        createdAt 
+        postConsultationsActivity {
+          id
+          medicalpres {
+            items {
+              id
+              date
+              frequency
+              duration
+              comment
+              medications {
+                id
+                name
+              }
+            }
+          }
+          medicalAnalysis {
+            items {
+              id
+              state
+              date
+              medicalAnalysis{
+                id
+                name
+              }
+            }
+          }
+          surgicalIntervention {
+            items {
+              id
+              state
+              date
+              surgicalIntervention{
+                id
+                name
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;

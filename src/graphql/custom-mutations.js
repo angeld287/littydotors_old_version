@@ -101,6 +101,7 @@ export const createFamilyHistoryForGlobal = /* GraphQL */ `
       }
       comment
       owner
+      createdAt
     }
   }
 `;
@@ -144,6 +145,7 @@ export const updateFamilyHistoryForGlobal = /* GraphQL */ `
       }
       comment
       owner
+      createdAt
     }
   }
 `;
@@ -177,6 +179,7 @@ export const createNonPathologicalHistoryForGlobal = /* GraphQL */ `
         name
       }
       owner
+      createdAt
     }
   }
 `;
@@ -195,6 +198,57 @@ export const updateNonPathologicalHistoryForGlobal = /* GraphQL */ `
         name
       }
       owner
+      createdAt
+    }
+  }
+`;
+
+export const updateMedicalConsultationForPCAGlobal = /* GraphQL */ `
+  mutation UpdateMedicalConsultation(
+    $input: UpdateMedicalConsultationInput!
+    $condition: ModelMedicalConsultationConditionInput
+  ) {
+    updateMedicalConsultation(input: $input, condition: $condition) {
+      id
+      state
+      postConsultationsActivity {
+        id
+        medicalpres {
+          items {
+            id
+            date
+            frequency
+            duration
+            comment
+            medications {
+              id
+              name
+            }
+          }
+        }
+        medicalAnalysis {
+          items {
+            id
+            state
+            date
+            medicalAnalysis{
+              id
+              name
+            }
+          }
+        }
+        surgicalIntervention {
+          items {
+            id
+            state
+            date
+            surgicalIntervention{
+              id
+              name
+            }
+          }
+        }
+      }
     }
   }
 `;

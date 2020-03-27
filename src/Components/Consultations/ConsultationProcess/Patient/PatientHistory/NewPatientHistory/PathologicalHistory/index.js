@@ -51,7 +51,7 @@ const PathologicalHistory = (
             <br/>
             <MDBContainer>
               <MDBBtn onClick={medicationActions.toggleMedication} disabled={medicationActions.loadingButton} className="btn btn-primary btn-sm">
-                  Agregar Medicacion
+                <MDBIcon icon="plus" size="2x" />
               </MDBBtn>
               <MDBDataTable
                 striped bordered searchLabel="Buscar"

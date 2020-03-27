@@ -45,8 +45,6 @@ const NonPathologicalHistory = ({
 
   useEffect(() => {  
         if(edit){
-          console.log(nonPathEditObject);
-          
           setId(nonPathEditObject.id);
           setType(nonPathEditObject.type);          
           setFrequency(nonPathEditObject.frequency);
