@@ -68,6 +68,7 @@ const PhysicalExploration = ({
               fields={fields}
               editLoading={editLoading}
               setEditData={setEditData}
+              setEdit={setEdit}
           />
       }
       

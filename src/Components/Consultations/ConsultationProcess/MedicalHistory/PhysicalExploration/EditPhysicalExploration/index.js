@@ -7,6 +7,7 @@ const EditPhysicalExploration = ({
     fields: fields,
     editLoading: editLoading,
     setEditData: setEditData,
+    setEdit: setEdit,
 }) => {
 
   useEffect(() => {
@@ -115,7 +116,8 @@ const EditPhysicalExploration = ({
               }}name="others"  className="form-control" id="others" rows="3" ></textarea>
           </div>
           <div className="text-center py-4 mt-3">
-              {!editLoading && <MDBBtn className="btn btn-outline-blue" onClick={editPhysicalExploration} >Editar</MDBBtn>}
+              {!editLoading && <MDBBtn className="btn btn-outline-blue" onClick={editPhysicalExploration} ><MDBIcon icon="save" size="2x" /></MDBBtn>}
+              {!editLoading && <MDBBtn className="btn btn-outline-blue" onClick={e => {setEdit(false)}} ><MDBIcon icon="times" size="2x" /></MDBBtn>}
               {editLoading && <MDBSpinner small />}
 					</div>
     </MDBContainer>

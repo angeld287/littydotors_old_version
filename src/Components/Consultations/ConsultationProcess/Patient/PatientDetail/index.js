@@ -62,6 +62,7 @@ const PatientDetails = (
       {withoutReason &&<MDBBtn className="btn btn-outline-blue" onClick={addReason} disabled={reason === "N/A"  && reason === ""}><MDBIcon icon="plus" size="2x" /></MDBBtn>}
       {(!withoutReason && !edit) &&<MDBBtn className="btn btn-outline-blue" onClick={EditingReason} disabled={reason === ""}><MDBIcon icon="edit" size="2x" /></MDBBtn>}
       {(!withoutReason && edit) &&<MDBBtn className="btn btn-outline-blue" onClick={saveReason} disabled={reason === ""}><MDBIcon icon="save" size="2x" /></MDBBtn>}
+      {(!withoutReason && edit) &&<MDBBtn className="btn btn-outline-blue" onClick={ e => {e.preventDefault(); setEdit(false);}} disabled={reason === ""}><MDBIcon icon="times" size="2x" /></MDBBtn>}
     </div>
   );
 

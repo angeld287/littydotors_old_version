@@ -97,6 +97,7 @@ const EditPostConsultationsActivity = ({
           </MDBRow>
           <div className="text-center py-4 mt-3">
               {!editLoading && <MDBBtn className="btn btn-outline-blue" disabled={false} onClick={editPCActivities}><MDBIcon size="2x" icon="save" className="blue-text" /></MDBBtn>}
+              {!editLoading && <MDBBtn className="btn btn-outline-blue" disabled={false} onClick={e => {e.preventDefault(); _setEdit(false);}}><MDBIcon size="2x" icon="times" className="blue-text" /></MDBBtn>}
               {editLoading && <MDBSpinner small />}
 					</div>
     </MDBContainer>

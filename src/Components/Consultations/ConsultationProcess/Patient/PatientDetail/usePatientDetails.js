@@ -21,9 +21,10 @@ const UsePatientDetails = (childProps, patient, global, setGlobalData) => {
         var _patientData = {};
 
         const fetch = async () => {
-            setLoading(true);
+            
             try {
                 if (global.consultationsHistory !== true) {
+                    setLoading(true);
                     setLoadingHistory(true);
 
                     const filtermc = {
@@ -38,12 +39,11 @@ const UsePatientDetails = (childProps, patient, global, setGlobalData) => {
                     };
 
                     const listmc = await API.graphql(graphqlOperation(listMedicalConsultationsForHistory, filtermc)).catch((err) => { console.log("Ocurrio un error: ",err); setLoadingHistory(false); setLoading(false); });   
-                    
                     const rows = [];
                     var number = 0;
                     var items = listmc.data.listMedicalConsultations.items.sort((a,b) => { return new Date(b.createdAt) - new Date(a.createdAt)});
 
-                    global.pendingAnalysis = items[0].postConsultationsActivity.medicalAnalysis.items;
+                    if(items.length > 0){global.pendingAnalysis = items[0].postConsultationsActivity.medicalAnalysis.items};
 
                     items.forEach(e => {
                         number = number + 1;
@@ -65,7 +65,7 @@ const UsePatientDetails = (childProps, patient, global, setGlobalData) => {
                         rows: rows
                     };
 
-                    setAnalysisList(items[0].postConsultationsActivity.medicalAnalysis.items);
+                    if(items.length > 0){setAnalysisList(items[0].postConsultationsActivity.medicalAnalysis.items);}
                     setData(data);
                     global.consultationsHistory = true;
                     global.consultationsHistoryData = data;

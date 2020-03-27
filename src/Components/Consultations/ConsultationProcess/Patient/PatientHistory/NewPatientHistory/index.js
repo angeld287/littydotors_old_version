@@ -74,7 +74,7 @@ const NewPatientHistory = ({
                 <br/>
                 <MDBContainer>
                   <MDBBtn onClick={nonPathActions.toggleNonPath} disabled={loadingButton} className="btn btn-primary btn-sm">
-                      Crear Antecedente No Patológicos
+                    <MDBIcon icon="plus" size="2x" />
                   </MDBBtn>
                   <MDBDataTable
                     striped bordered searchLabel="Buscar"
@@ -107,7 +107,7 @@ const NewPatientHistory = ({
                 <br/>
                 <MDBContainer>
                   <MDBBtn onClick={familyActions.toggleFamily} disabled={loadingButton} className="btn btn-primary btn-sm">
-                      Crear Antecedente Familiares
+                    <MDBIcon icon="plus" size="2x" />
                   </MDBBtn>
                   <MDBDataTable
                     striped bordered searchLabel="Buscar"

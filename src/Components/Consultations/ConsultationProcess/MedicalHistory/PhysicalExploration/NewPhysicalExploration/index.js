@@ -65,7 +65,7 @@ const NewPhysicalExploration = ({
             <textarea name="others"  className="form-control" id="others" rows="3" ref={actions.register}></textarea>
           </div>
           <div className="text-center py-4 mt-3">
-              {!actions.loading && <MDBBtn className="btn btn-outline-blue" type="submit" disabled={actions.formState.isSubmitting}>Agregar</MDBBtn>}
+              {!actions.loading && <MDBBtn className="btn btn-outline-blue" type="submit" disabled={actions.formState.isSubmitting}><MDBIcon icon="plus" size="2x" /></MDBBtn>}
               {actions.loading && <MDBSpinner small />}
 					</div>
       </form>

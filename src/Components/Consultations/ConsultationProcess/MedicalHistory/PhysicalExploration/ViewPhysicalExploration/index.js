@@ -72,7 +72,7 @@ const ViewPhysicalExploration = ({
             <textarea value={re.others === null ? "" : re.others} disabled name="others"  className="form-control" id="others" rows="3" ></textarea>
           </div>
           <div className="text-center py-4 mt-3">
-              {!editLoading && <MDBBtn className="btn btn-outline-blue" disabled={false} onClick={editData}>Editar</MDBBtn>}
+              {!editLoading && <MDBBtn className="btn btn-outline-blue" disabled={false} onClick={editData}><MDBIcon icon="edit" size="2x" /></MDBBtn>}
               {editLoading && <MDBSpinner small />}
 					</div>
     </MDBContainer>
