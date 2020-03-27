@@ -101,6 +101,7 @@ export const createFamilyHistoryForGlobal = /* GraphQL */ `
       }
       comment
       owner
+      createdAt
     }
   }
 `;
@@ -144,6 +145,7 @@ export const updateFamilyHistoryForGlobal = /* GraphQL */ `
       }
       comment
       owner
+      createdAt
     }
   }
 `;
@@ -177,6 +179,7 @@ export const createNonPathologicalHistoryForGlobal = /* GraphQL */ `
         name
       }
       owner
+      createdAt
     }
   }
 `;
@@ -195,6 +198,7 @@ export const updateNonPathologicalHistoryForGlobal = /* GraphQL */ `
         name
       }
       owner
+      createdAt
     }
   }
 `;

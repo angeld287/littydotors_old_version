@@ -211,6 +211,7 @@ type MedicalHistory
     doctor: String
     secretary: String
     patientname: String
+    createdAt: String
 }
 
 type Patient 
@@ -237,6 +238,7 @@ type Patient
     age: String
     birthdate: String
     patientHistory: PatientHistory @connection
+    createdAt: String
 }
 
 #Antecedentes del paciente
@@ -257,6 +259,7 @@ type PatientHistory
     pathologicalHistory: PathologicalHistory @connection
     familyHistory: [FamilyHistory] @connection
     gynecoObstetricHistory: GynecoObstetricHistory @connection
+    createdAt: String
 }
 
 type NonPathologicalHistory 
@@ -276,6 +279,7 @@ type NonPathologicalHistory
     active: Boolean
     frequency: String
     comment: String
+    createdAt: String
 }
 
 type PathologicalHistory
@@ -294,6 +298,7 @@ type PathologicalHistory
     surgicalInterventions: [PathologicalHistorySurgicalInt] @connection(name: "phsi")
     patientMedications: [PatientMedications] @connection(name: "pm")
     patientAllergies: [PatientAllergies] @connection(name: "pa")
+    createdAt: String
 }
 
 type FamilyHistory
@@ -313,12 +318,14 @@ type FamilyHistory
     alive: Boolean
     diseases: [FamilyDetailsDiseases] @connection(name: "fdd")
     comment: String
+    createdAt: String
 }
 
 type FamilyDetailsDiseases @model(queries: null) {
   id: ID!
   family: FamilyHistory @connection(name: "fdd")
   diseases: Disease @connection(name: "dfd")
+  createdAt: String
 }
 
 type Disease
@@ -337,6 +344,7 @@ type Disease
     name: String
     description: String
     familyDetails: [FamilyDetailsDiseases] @connection(name: "dfd")
+    createdAt: String
 }
 
 type GynecoObstetricHistory
@@ -360,6 +368,7 @@ type GynecoObstetricHistory
     abortions: String
     caesarean_sections: String
     contraceptive_method: String
+    createdAt: String
 }
 
 type Allergy
@@ -378,12 +387,14 @@ type Allergy
     name: String
     description: String
     patients: [PatientAllergies] @connection(name: "ap")
+    createdAt: String
 }
 
 type PatientAllergies @model(queries: null) {
   id: ID!
   pathologicalHistory: PathologicalHistory @connection(name: "pa")
   allergies: Allergy @connection(name: "ap")
+  createdAt: String
 }
 
 type PatientMedications @model(queries: null) {
@@ -391,6 +402,7 @@ type PatientMedications @model(queries: null) {
   pathologicalHistory: PathologicalHistory @connection(name: "pm")
   medications: Medicine @connection(name: "mp")
   drug_concentration: String
+  createdAt: String
 }
 
 type Medicine
@@ -412,6 +424,7 @@ type Medicine
     drug_concentration: String #500mg, 200mg, 50mg 
     chemical_composition: String
     #mp: [MedicalPrescriptionsMedications] @connection(name: "mmp")
+    createdAt: String
 }
 
 type PostConsultationsActivity
@@ -434,6 +447,7 @@ type PostConsultationsActivity
     doctor: String
     secretary: String
     patient: String
+    createdAt: String
 }
 
 type MedicalPrescription
@@ -458,6 +472,7 @@ type MedicalPrescription
     doctor: String
     secretary: String
     patient: String
+    createdAt: String
 }
 
 """ type MedicalPrescriptionsMedications @model(queries: null) {
@@ -472,6 +487,7 @@ type PostConsultActMedAnalysis @model(queries: null) {
   date: String
   pcActivities: PostConsultationsActivity @connection(name: "pcama")
   medicalAnalysis: MedicalAnalysis @connection(name: "mapca")
+  createdAt: String
 }
 
 type MedicalAnalysis
@@ -490,6 +506,7 @@ type MedicalAnalysis
     name: String
     code: String
     medicalAnalysis: [PostConsultActMedAnalysis] @connection(name: "mapca")
+    createdAt: String
 }
 
 type PostConsultActSurgicalInt @model(queries: null) {
@@ -498,6 +515,7 @@ type PostConsultActSurgicalInt @model(queries: null) {
   date: String
   pcActivities: PostConsultationsActivity @connection(name: "pcasi")
   surgicalIntervention: SurgicalIntervention @connection(name: "sipca")
+  createdAt: String
 }
 
 type PathologicalHistorySurgicalInt @model(queries: null) {
@@ -505,6 +523,7 @@ type PathologicalHistorySurgicalInt @model(queries: null) {
   date: String
   pathologicalHistory: PathologicalHistory @connection(name: "phsi")
   surgicalIntervention: SurgicalIntervention @connection(name: "siph")
+  createdAt: String
 }
 
 type SurgicalIntervention
@@ -524,6 +543,7 @@ type SurgicalIntervention
     description: String
     surgicalIntervention: [PostConsultActSurgicalInt] @connection(name: "sipca")
     pathologicalHistory: [PathologicalHistorySurgicalInt] @connection(name: "siph")
+    createdAt: String
 }
 
 type PhysicalExploration
@@ -546,6 +566,7 @@ type PhysicalExploration
     doctor: String
     secretary: String
     patient: String
+    createdAt: String
 }
 
 type VitalSign
@@ -569,6 +590,7 @@ type VitalSign
     doctor: String
     secretary: String
     patient: String
+    createdAt: String
 }
 
 type RegionalExploration
@@ -595,6 +617,7 @@ type RegionalExploration
     doctor: String
     secretary: String
     patient: String
+    createdAt: String
 }
 
 type Category 
@@ -610,4 +633,5 @@ type Category
     name: String
     description: String
     module: String
+    createdAt: String
 }

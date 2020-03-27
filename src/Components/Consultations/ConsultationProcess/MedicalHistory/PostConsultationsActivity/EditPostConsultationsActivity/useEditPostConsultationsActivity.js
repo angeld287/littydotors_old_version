@@ -42,7 +42,8 @@ const useEditPostConsultationsActivity = (global, setGlobalData, _setEdit) => {
 
     const createdPrescriptions = () => {
         var formated = [];
-        items.forEach((item) => {
+        const _items = items.sort((a,b) => { return new Date(b.createdAt) - new Date(a.createdAt)});
+        _items.forEach((item) => {
             formated.push({
                 medicationName: item.medications.name,
                 frequency: item.frequency === null ? "N/A" : item.frequency,

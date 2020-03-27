@@ -146,6 +146,7 @@ export const getMedicalConsultation = /* GraphQL */ `
                 name
               }
               owner
+              createdAt
             }
             nextToken
           }
@@ -159,6 +160,7 @@ export const getMedicalConsultation = /* GraphQL */ `
                   name
                   description
                 }
+                createdAt
               }
             }
             patientMedications {
@@ -168,6 +170,7 @@ export const getMedicalConsultation = /* GraphQL */ `
                   id
                   name
                 }
+                createdAt
                 drug_concentration
               }
             }
@@ -179,6 +182,7 @@ export const getMedicalConsultation = /* GraphQL */ `
                   name
                   description
                 }
+                createdAt
               }
             }
           }
@@ -187,6 +191,7 @@ export const getMedicalConsultation = /* GraphQL */ `
               id
               alive
               comment
+              createdAt
               diseases {
                 items {
                   id
@@ -215,6 +220,7 @@ export const getMedicalConsultation = /* GraphQL */ `
             frequency
             duration
             comment
+            createdAt
             medications {
               id
               name

@@ -48,8 +48,8 @@ const Family = ({
 
   const setList = () => {
 		var formated = [];
-
-		data.items.forEach((item) => {
+    const items = data.items.sort((a,b) => { return new Date(b.createdAt) - new Date(a.createdAt)});
+		  items.forEach((item) => {
             var dItems = null;
             item.diseases.items.forEach((d) => {
                 dItems = dItems+" - "+d.diseases.name;

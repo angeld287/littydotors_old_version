@@ -47,11 +47,9 @@ const NonPathological = ({
   }
 
   const setList = () => {
-		var formated = [];
-
-    
-        data.items.forEach((item) => {              
-                
+    var formated = [];
+    const items = data.items.sort((a,b) => { return new Date(b.createdAt) - new Date(a.createdAt)});
+        items.forEach((item) => {              
           formated.push({
             type: item.type.name,
             frequency: item.frequency,
