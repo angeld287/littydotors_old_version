@@ -30,7 +30,18 @@ const NewPatientHistory = ({
     nonPathActions,
     familyActions,
     medicationActions,
+    loading,
   } = useNewPatientHistory(global, setGlobalData, setHasPatientHistory, setPatientHistory);
+
+  if (loading) {
+    return (
+      <MDBContainer>
+        <MDBBox display="flex" justifyContent="center" className="mt-5">
+          <MDBSpinner big/>
+        </MDBBox>
+      </MDBContainer>
+    );
+  }
 
   return (
       <form onSubmit={handleSubmit(onSubmit)}>

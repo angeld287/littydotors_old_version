@@ -13,7 +13,7 @@ const PhysicalExploration = ({
     global: global,
     setGlobalData: setGlobalData
 }) => {
-  const { actions, _new , _edit, setEdit, editLoading, fields, editPhysicalExploration, setEditData} = usePhysicalExploration(global, setGlobalData);
+  const { actions, _new , _edit, setEdit, editLoading, fields, editPhysicalExploration, setEditData, loading} = usePhysicalExploration(global, setGlobalData);
 
   useEffect(() => {
       let didCancel = false;
@@ -31,6 +31,15 @@ const PhysicalExploration = ({
       };
   }, []);
 
+  if (loading) {
+    return (
+      <MDBContainer>
+        <MDBBox display="flex" justifyContent="center" className="mt-5">
+          <MDBSpinner big/>
+        </MDBBox>
+      </MDBContainer>
+    );
+  }
 
   return (
     <MDBContainer>

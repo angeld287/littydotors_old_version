@@ -107,9 +107,9 @@ const usePhysicalExploration = (global, setGlobalData) => {
                 setLoading(false);
             }
         };
-
+        setLoading(true);
         fetch();
-
+        setLoading(false);
         return () => {
             didCancel = true;
         };
@@ -237,7 +237,7 @@ const usePhysicalExploration = (global, setGlobalData) => {
         formState: formState
     }
 
-    return { actions, errors, _new, _edit, setEdit, editLoading, fields, editPhysicalExploration, setEditData};
+    return { actions, errors, _new, _edit, setEdit, editLoading, fields, editPhysicalExploration, setEditData, loading};
 };
 
 export default usePhysicalExploration;
